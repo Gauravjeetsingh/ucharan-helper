@@ -5,6 +5,7 @@ __pycache__/
 evaluation/private/
 evaluation/controls/
 data/evidence/
+data/corrections/
 local-recordings/
 node_modules/
 .env

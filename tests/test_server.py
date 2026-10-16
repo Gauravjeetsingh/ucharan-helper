@@ -40,6 +40,11 @@ class RouteTests(unittest.TestCase):
                     self.assertEqual(status, 200)
                     self.assertIn(b'<!doctype html>', body.lower())
                     self.assertIn('Content-Security-Policy', headers)
+                    self.assertIn(b'href="/apps/shared/favicon.svg"', body)
+        status, headers, body = self.request('/apps/shared/favicon.svg')
+        self.assertEqual(status, 200)
+        self.assertEqual(headers['Content-type'], 'image/svg+xml')
+        self.assertIn('ੴ'.encode(), body)
 
     def test_generator_does_not_load_review(self):
         _, _, body = self.request('/timestamps')
@@ -60,6 +65,37 @@ class RouteTests(unittest.TestCase):
         self.assertTrue(json.loads(self.request('/api/status')[2])['local_only'])
         self.assertEqual(self.request('/api/status', headers={'Origin': 'https://example.com'})[0], 403)
         self.assertEqual(self.request('/api/status', headers={'Host': 'example.com'})[0], 403)
+
+    def test_corrections_save_load_delete(self):
+        import tempfile
+        from pathlib import Path
+        from backend import corrections
+        headers = {'Content-Type': 'application/json'}
+        key = 'a' * 64
+        with tempfile.TemporaryDirectory() as directory:
+            original, corrections.CORRECTIONS = corrections.CORRECTIONS, Path(directory)
+            reference = (Path(__file__).resolve().parents[1]/'data/reference/word-timings.json').read_bytes()
+            try:
+                body = json.dumps({'audio_key': key, 'word_id': 'v1-w03', 'start': 7.13, 'end': 8.58})
+                status, _, raw = self.request('/api/corrections/save', 'POST', body, headers)
+                self.assertEqual(status, 200)
+                self.assertEqual(json.loads(raw)['words']['v1-w03']['end'], 8.58)
+                saved = json.loads((Path(directory)/f'{key}.json').read_text(encoding='utf-8'))
+                self.assertEqual(saved['words']['v1-w03']['start'], 7.13)
+                self.assertEqual(json.loads(self.request(f'/api/corrections/{key}')[2])['words']['v1-w03']['start'], 7.13)
+                status, _, raw = self.request('/api/corrections/delete', 'POST', json.dumps({'audio_key': key, 'word_id': 'v1-w03'}), headers)
+                self.assertEqual((status, json.loads(raw)['words']), (200, {}))
+                self.assertFalse((Path(directory)/f'{key}.json').exists())
+                for bad in [{'audio_key': '../x', 'word_id': 'w1', 'start': 1, 'end': 2},
+                            {'audio_key': key, 'word_id': '../w', 'start': 1, 'end': 2},
+                            {'audio_key': key, 'word_id': 'w1', 'start': 2, 'end': 1},
+                            {'audio_key': key, 'word_id': 'w1', 'start': True, 'end': 2}]:
+                    self.assertEqual(self.request('/api/corrections/save', 'POST', json.dumps(bad), headers)[0], 400)
+                self.assertEqual(self.request('/api/corrections/not-a-checksum')[0], 400)
+                self.assertEqual(self.request('/api/corrections/save', 'POST', '{}', {**headers, 'Origin': 'https://example.com'})[0], 403)
+            finally:
+                corrections.CORRECTIONS = original
+            self.assertEqual((Path(__file__).resolve().parents[1]/'data/reference/word-timings.json').read_bytes(), reference)
 
     def test_bad_api_requests(self):
         headers = {'Content-Type': 'application/json'}
