@@ -80,7 +80,9 @@ function render() {
   }
   const playing = session.state === 'playing', completed = session.state === 'completed';
   $('practice').hidden = completed; $('results').hidden = !completed;
-  $('play-icon').hidden = playing; $('pause-icon').hidden = !playing;
+  // SVG elements do not reflect the HTMLElement.hidden property.
+  $('play-icon').toggleAttribute('hidden', playing);
+  $('pause-icon').toggleAttribute('hidden', !playing);
   const label = completed ? 'Play again' : playing ? 'Pause' : session.state === 'paused' ? 'Continue' : 'Play';
   $('play-label').textContent = label;
   $('play').setAttribute('aria-label', completed ? 'Play again' : playing ? 'Pause audio' : 'Play audio');
