@@ -14,7 +14,10 @@ use a different ustaad.
 1. The Gurbani CTC model (the `/timestamps` model) decodes the ustaad's clip into
    Gurmukhi pieces as heard, keeping each piece's likely alternatives (e.g. ਤ 77%
    / ਚ 23%). We never demand more certainty from the student than the model had
-   about the ustaad.
+   about the ustaad. Exception: if the ustaad clearly made a consonant (≥50%)
+   and it is essentially gone from the student's audio (<5%), an alternative
+   doesn't excuse it. The model leans towards common words, so even the
+   ustaad's ਸਤਿ shows ਚ at 23%; “sach” drops ਤ to ~0, a correct “sat” keeps ~0.2+.
 2. Those pieces are aligned to the student's audio. A piece fails when a sound
    the ustaad didn't make, or silence, is clearly stronger (`min_sound_score` in
    the lesson, default -1.5). Back-to-back vowel pieces count as one vowel, so a

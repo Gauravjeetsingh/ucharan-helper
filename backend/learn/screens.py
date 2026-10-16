@@ -21,6 +21,11 @@ BLANK = 256
 # counts as the ustaad's sound too: we never demand more certainty from the
 # student than the model had about the ustaad.
 CANDIDATE_MIN = .1
+# ...but when the ustaad clearly made a consonant and it is essentially absent
+# from the student's audio, an alternative doesn't excuse it. The model leans
+# towards common words (ਸਚੁ), so even the ustaad's ਸਤਿ shows ਚ at 23%; a student
+# saying "sach" drops ਤ to ~0, while a correct "sat" keeps it above ~0.2.
+CLEAR_IN_USTAAD, GONE_IN_STUDENT = .5, .05
 _CACHE = {}
 
 
@@ -79,7 +84,8 @@ def ustaad_pieces(model, screen):
             # Where this sound sits in the clip: between the neighbouring sounds (seconds).
             region = ((spikes[n - 1][0] + 1) * step if n else max(0, frame - 2) * step,
                       spikes[n + 1][0] * step if n + 1 < len(spikes) else (frame + 3) * step)
-            pieces[index].append(dict(token=token, candidates=candidates, region=region))
+            pieces[index].append(dict(token=token, candidates=candidates, region=region,
+                                      prob=float(np.exp(lp[frame, token]))))
         _CACHE[key] = pieces
     return _CACHE[key]
 
@@ -131,8 +137,17 @@ def judge(model, lp, step, reference, threshold):
         others[:, candidates] = -np.inf
         odds = lp[frames][:, candidates].max(1) - others.max(1)
         best = int(odds.argmax())
-        scores[owner[k]].append(dict(piece=piece['token'], score=float(odds[best]), candidates=piece['candidates'],
-                                     heard_instead=int(others[best].argmax())))
+        score, instead = float(odds[best]), int(others[best].argmax())
+        support = float(np.exp(lp[frames, piece['token']]).max())
+        written = text(model, [piece['token']])
+        # Only pieces that start with a consonant: “ੰਗ” is mostly a nasal tail.
+        if piece['prob'] >= CLEAR_IN_USTAAD and support < GONE_IN_STUDENT and written and written[0] not in VOWELS:
+            score = min(score, threshold - 1)
+            loudest = lp[frames].copy()
+            loudest[:, piece['token']] = -np.inf
+            instead = int(np.unravel_index(loudest.argmax(), loudest.shape)[1])
+        scores[owner[k]].append(dict(piece=piece['token'], score=score, candidates=piece['candidates'],
+                                     heard_instead=instead))
         span = spans[owner[k]]
         span[0] = frames[0] if span[0] is None else span[0]
         span[1] = frames[-1]
