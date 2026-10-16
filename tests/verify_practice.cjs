@@ -7,7 +7,7 @@ const assert=require('node:assert/strict');
   try{
     const context=await browser.newContext({permissions:['microphone'],viewport:{width:1280,height:1000}}),page=await context.newPage(),errors=[],remote=[];
     page.on('pageerror',e=>errors.push(e.message));page.on('request',req=>{if(!req.url().startsWith('http://127.0.0.1:8768')&&!req.url().startsWith('blob:'))remote.push(req.url());});
-    await page.goto('http://127.0.0.1:8768/learn');await page.waitForSelector('#phrase option',{state:'attached'});
+    await page.goto('http://127.0.0.1:8768/apps/learn/lab.html');await page.waitForSelector('#phrase option',{state:'attached'});
     const source=JSON.parse(fs.readFileSync('data/reference/word-timings.json','utf8')),reference=JSON.parse(fs.readFileSync('data/reference/reference-phones.json','utf8'));
     assert.deepEqual(await page.locator('.gurmukhi').allTextContents(),source.verses.map(v=>v.text));
     assert.equal(await page.locator('#phrase').inputValue(),'phrase-v1-w02');

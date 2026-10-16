@@ -15,7 +15,7 @@ const assert = require('node:assert/strict');
         return original.call(this,when,offset,duration);
       };
     });
-    await page.goto('http://127.0.0.1:8767/learn');
+    await page.goto('http://127.0.0.1:8767/apps/learn/lab.html');
     await page.waitForSelector('.word');
     assert.equal(await page.locator('.word').count(),25);
     const source=JSON.parse(fs.readFileSync('data/reference/word-timings.json','utf8'));
