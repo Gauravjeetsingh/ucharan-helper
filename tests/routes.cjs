@@ -33,6 +33,7 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
       await page.goto(`${base}/${route}`);
       await page.waitForSelector(`nav a[aria-current="page"][href="/${route}"]`);
       if(route==='learn') await page.waitForSelector('.word');
+      else if(route==='follow') await page.waitForSelector('.follow-word');
       else assert.equal(await page.getByText('Not built yet').count(),1);
     }
     await page.goto(`${base}/timestamps`);

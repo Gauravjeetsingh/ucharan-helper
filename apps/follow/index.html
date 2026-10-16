@@ -1,3 +1,57 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Follow along · Uchaaran</title><link rel="stylesheet" href="/apps/shared/app.css"><script type="module" src="/apps/shared/nav.js"></script></head>
-<body><header><div class="brand">ੴ <span>UCHAARAN</span></div><span class="tag">HACKATHON WORKSPACE</span></header><main><section class="placeholder"><div class="eyebrow">COMING NEXT</div><h1>Follow along</h1><p>Follow the paath word by word as it plays. This feature is planned and is ready for a teammate to build.</p><span class="route-state">Not built yet</span><div class="actions"><a class="button" href="/timestamps">Open timestamp generator</a></div></section></main></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#fff9ef">
+  <title>Follow along · Uchaaran</title>
+  <link rel="stylesheet" href="/apps/follow/style.css">
+  <script type="module" src="/apps/follow/app.js"></script>
+</head>
+<body>
+  <main class="demo-stage">
+    <div class="demo-wrap">
+      <nav class="demo-nav" aria-label="App sections">
+        <a href="/timestamps">Timestamps</a><a href="/follow" aria-current="page">Follow</a><a href="/learn">Learn</a><a href="/test">Test</a>
+      </nav>
+      <p class="demo-label">Level 1 — Follow along <span>Mobile demo</span></p>
+      <section class="phone-shell" aria-label="Follow-along mobile demo">
+        <div class="phone-screen">
+          <header class="session-header">
+            <span class="level-badge" aria-hidden="true">1</span>
+            <div class="session-title"><span>LEVEL 1</span><h1>Follow along</h1></div>
+            <div class="points" aria-label="Attention points"><span aria-hidden="true">★</span><output id="points">0</output></div>
+          </header>
+          <progress id="progress" max="1" value="0" aria-label="Audio progress"></progress>
+          <section id="practice" class="practice" aria-label="Tap along with the paath">
+            <p class="instruction">Tap each word as you hear it</p>
+            <div id="reader" class="reader" tabindex="0" aria-label="Gurbani words"></div>
+            <p id="encouragement" class="encouragement" aria-live="polite"></p>
+          </section>
+          <section id="results" class="results" aria-label="Follow-along results" hidden>
+            <div id="stars" class="result-stars" aria-label="Stars earned"></div>
+            <h2 id="result-title"></h2>
+            <p id="result-message"></p>
+            <div id="missed-words" class="missed-words" aria-label="Words to listen for next time"></div>
+          </section>
+          <footer class="session-footer">
+            <div class="counts" aria-label="Tap results">
+              <span class="caught"><i aria-hidden="true"></i><output id="caught">0</output> caught</span>
+              <span class="missed"><i aria-hidden="true"></i><output id="missed">0</output> missed</span>
+            </div>
+            <button id="play" class="play-button" type="button" aria-label="Play audio" disabled>
+              <svg id="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4.5v15l12-7.5z"/></svg>
+              <svg id="pause-icon" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M6 4h4v16H6zm8 0h4v16h-4z"/></svg>
+            </button>
+            <span id="play-label" class="play-label">Loading…</span>
+            <button id="restart" class="restart" type="button" hidden>Start again</button>
+            <p id="status" class="status" role="status">Loading the paath…</p>
+          </footer>
+        </div>
+      </section>
+      <p class="demo-note">Japji Sahib · tap-along demo</p>
+    </div>
+  </main>
+  <audio id="paath" preload="auto" hidden></audio>
+</body>
+</html>

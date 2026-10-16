@@ -16,7 +16,7 @@ ROUTES = {f'/{name}': f'apps/{name}/index.html' for name in ['timestamps', 'foll
 PUBLIC = {f'/data/reference/{name}' for name in [
     'word-timings.json', 'banidb-shabad-1.json', 'recording.wav', 'reference-phones.json', 'phone-raw.json']}
 ASSETS = {f'/{p.relative_to(ROOT).as_posix()}' for p in (ROOT/'apps').rglob('*')
-          if p.is_file() and p.suffix in {'.html', '.js', '.css'}}
+          if p.is_file() and p.suffix in {'.html', '.js', '.mjs', '.css'}}
 
 
 class Handler(SimpleHTTPRequestHandler):

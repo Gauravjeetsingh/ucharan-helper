@@ -30,3 +30,5 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: python serve.py > /tmp/uchaaran-server.log 2>&1 &
       - run: npm run test:browser
+      - run: npm run test:follow
+      - run: npm run test:follow:browser
