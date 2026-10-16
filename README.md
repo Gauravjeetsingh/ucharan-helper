@@ -8,7 +8,7 @@ The timestamp generator is separate from the experimental learning tools.
 | `/timestamps` | Audio + Gurmukhi → word timing JSON | `apps/timestamps/` |
 | `/follow` | Placeholder; ready for implementation | `apps/follow/` |
 | `/learn` | Existing timing review, sound review and phrase practice; experimental | `apps/learn/` |
-| `/test` | Placeholder; ready for implementation | `apps/test/` |
+| `/test` | Learner audio → local sound observations → optional Claude English definitions | `apps/test/` |
 
 `/` redirects to `/timestamps`. The generator does not load the word-review or
 pronunciation-practice UI. Each route works directly and on refresh.
@@ -97,6 +97,72 @@ loopback server; nothing is automatically retained or uploaded externally.
 Human corrections and timing edits save separately in browser storage and can
 be exported. The original checked-in reference artifact is not overwritten.
 
+## Learner pronunciation definitions (Claude)
+
+Open <http://127.0.0.1:8767/test>. This feature independently describes learner
+audio; a teammate's ustaad-definition work is kept separate. It does not load
+teacher audio, expected scripture, reference phones, or teacher timestamps.
+
+1. Record a phrase (maximum 14.5 seconds), or choose audio up to 15 seconds.
+   The browser decodes and converts it to mono 16 kHz PCM WAV locally.
+2. Press **Extract sounds locally**. The optional phone model above recognizes
+   the recording without a spelling prompt. Listen to the approximate sound
+   segments, inspect the observations, or download their JSON. No cloud request
+   is made. Silence, clipping, weak/unknown labels and excessive event counts
+   withhold definitions and ask for another recording.
+3. Inspect **Preview the sound observations sent to Claude**. It contains only sound
+   event IDs, observed labels, approximate emission times and limitations.
+   Choose the consent checkbox and press **Generate pronunciation definitions**.
+   Claude returns plain-English sound explanations, optional English examples
+   with the matching letters capitalized, and tentative word/sound groups.
+4. Replay the groups/sounds, discard/retry, or explicitly download definitions.
+   Nothing is automatically retained. Choosing new audio invalidates previous
+   observations, definitions and consent.
+
+Enable local extraction with the phonetic dependencies/model described above.
+To enable Claude, copy `.env.example` to `.env` (ignored by Git), then edit it
+locally:
+
+```dotenv
+ANTHROPIC_API_KEY=your-key-here
+ANTHROPIC_MODEL=claude-sonnet-5-5
+```
+
+Never paste a key into chat, the browser or Git. Restart `python serve.py` after
+editing `.env`. Existing process environment variables take precedence. An
+explicit `--env path/to/local.env` is supported. No Anthropic SDK is required;
+the optional provider call uses Python's standard-library HTTPS client.
+
+Claude does **not** directly hear audio in this workflow. Its documented API
+supports text/image input, and its OpenAI compatibility layer ignores audio
+input. This branch uses the agreed **local acoustic model → Claude description**
+path. Only the allowlisted observations are sent externally after consent; no
+WAV, audio base64, audio filename/checksum, reference data, or local API key is
+included in the Claude message. The key authenticates the HTTPS request to
+Anthropic on the server and is never sent to the browser. This does not imply
+zero retention by the external provider; their API policies apply to the text
+observations you choose to send. A parent makes this choice for a child.
+
+The server preserves the extracted event IDs/labels and rejects Claude responses
+that drop, duplicate, reorder or invent events. It checks the output structure
+and that English highlight fragments occur in their example words. These checks
+do **not** prove that an English example is phonetically correct. No output is
+treated as a grade or human-reviewed description. Definitions inherit acoustic
+recognizer errors (the earlier reference experiment changed labels with context
+on 19/25 words); English accents, word grouping, length and exact sound identity
+remain uncertain. See [docs/LEARNER_DEFINITIONS.md](docs/LEARNER_DEFINITIONS.md)
+for the API/JSON handoff to the reference-definition teammate.
+
+Optional command-line use for an already-converted short WAV:
+
+```sh
+python -m scripts.define_learner my-phrase.wav --output local-observations.json
+python -m scripts.define_learner my-phrase.wav --send-observations-to-claude --output local-definitions.json
+```
+
+The second command explicitly opts into sending sound observations; neither
+uploads the audio. Keep downloaded learner artifacts private and outside Git.
+
 Reference reproduction tools (run from the repository root):
 
 ```sh
@@ -122,10 +188,11 @@ apps/                   independent route pages
   timestamps/           generation only
   learn/                previous review + practice prototype
   follow/               placeholder
-  test/                 placeholder
+  test/                 learner recording and sound definitions
   shared/               navigation and styles
 backend/                local server + timestamp inference
   learn/                optional phonetic engine
+  learner/              local observations + Claude description prompt/contracts
 scripts/                portable setup/reproduction modules
 data/reference/         shared demo inputs and reference JSON
 models/                 ignored local weights
@@ -141,6 +208,7 @@ Standard-library checks (no model downloads):
 
 ```sh
 python -m unittest tests.test_server
+python -m unittest tests.test_learner_definitions
 python -m tests.verify_data
 ```
 
@@ -155,6 +223,7 @@ Optional browser tests require Node 20+; start the app in another terminal:
 npm ci
 npx playwright install chromium
 npm run test:browser
+npm run test:definitions
 npm run test:timing-review
 ```
 

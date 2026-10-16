@@ -67,6 +67,21 @@ class RouteTests(unittest.TestCase):
         self.assertEqual(self.request('/api/timestamps/generate', 'POST', '', headers)[0], 413)
         self.assertEqual(self.request('/api/unknown', 'POST', '{}', headers)[0], 404)
 
+    def test_learner_configuration_and_consent(self):
+        status, _, body = self.request('/api/test/status')
+        self.assertEqual(status, 200)
+        config = json.loads(body)
+        self.assertEqual(config['provider'], 'anthropic')
+        self.assertFalse(config['audio_sent_to_provider'])
+        self.assertNotIn('api_key',config)
+        headers = {'Content-Type':'application/json'}
+        status, _, body = self.request('/api/test/define','POST','{}',headers)
+        self.assertEqual(status,400)
+        self.assertIn('Choose whether',json.loads(body)['error'])
+        self.assertEqual(self.request('/api/test/define','POST','{}',dict(headers,Origin='https://example.com'))[0],403)
+        for path in ['/.env','/.env.example','/backend/learner/describe.prompt.txt']:
+            self.assertEqual(self.request(path)[0],404)
+
 
 if __name__ == '__main__':
     unittest.main()

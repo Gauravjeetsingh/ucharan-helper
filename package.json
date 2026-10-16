@@ -8,7 +8,8 @@
   "scripts": {
     "test:browser": "node tests/routes.cjs",
     "test:timing-review": "node tests/verify_browser.cjs",
-    "test:learn": "node tests/verify_practice.cjs"
+    "test:learn": "node tests/verify_practice.cjs",
+    "test:definitions": "node tests/learner-definitions.cjs"
   },
   "devDependencies": { "playwright": "1.62.1" }
 }

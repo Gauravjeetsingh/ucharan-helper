@@ -1,3 +1,42 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Test mode · Uchaaran</title><link rel="stylesheet" href="/apps/shared/app.css"><script type="module" src="/apps/shared/nav.js"></script></head>
-<body><header><div class="brand">ੴ <span>UCHAARAN</span></div><span class="tag">HACKATHON WORKSPACE</span></header><main><section class="placeholder"><div class="eyebrow">COMING NEXT</div><h1>Test mode</h1><p>Recite independently and see what to practise next. This feature is planned and is ready for a teammate to build.</p><span class="route-state">Not built yet</span><div class="actions"><a class="button" href="/timestamps">Open timestamp generator</a></div></section></main></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Your sound definitions · Uchaaran</title>
+  <link rel="stylesheet" href="/apps/shared/app.css"><link rel="stylesheet" href="/apps/test/style.css">
+  <script type="module" src="/apps/shared/nav.js"></script><script type="module" src="/apps/test/app.js"></script>
+</head>
+<body>
+  <header><div class="brand">ੴ <span>UCHAARAN</span></div><span class="tag">LEARNER AUDIO EXPERIMENT</span></header>
+  <main class="learner">
+    <section class="intro"><div class="eyebrow">YOUR RECORDING → SOUND OBSERVATIONS → ENGLISH EXAMPLES</div>
+      <h1>Describe what you said.</h1><p>Record a short phrase. Extract its sounds on this computer, then choose whether Claude explains those sound observations in ordinary English.</p>
+      <p class="hint">These are automatic draft descriptions of your recording. The ustaad reference and pronunciation comparison are separate work.</p>
+    </section>
+    <section class="card capture" aria-label="Record or choose learner audio">
+      <div class="eyebrow">1 · YOUR AUDIO</div><h2>One phrase, up to 15 seconds</h2>
+      <div class="actions"><button id="record" class="primary">● Record phrase</button><button id="stop-record" disabled>Stop recording</button><label class="file-button">Choose audio<input id="file" type="file" accept="audio/*"></label><button id="discard" disabled>Discard</button></div>
+      <p id="capture-status" role="status">Microphone access starts only when you press Record. Audio stays in this tab until you choose an action.</p>
+      <audio id="playback" controls hidden></audio>
+      <button id="download-audio" disabled>Download my recording</button>
+    </section>
+    <section class="card" aria-label="Local sound extraction">
+      <div class="eyebrow">2 · ON THIS COMPUTER</div><h2>Extract the sounds</h2>
+      <p>Local recognition produces sound labels and approximate locations in your own audio. It does not use the ustaad recording or an expected verse.</p>
+      <div class="actions"><button id="extract" class="primary" disabled>Extract sounds locally</button><button id="download-evidence" disabled>Download observations JSON</button></div>
+      <p id="extract-status" role="status">Choose or record audio first. No cloud request is made by this step.</p>
+      <div id="local-evidence"></div>
+    </section>
+    <section class="card" aria-label="Optional Claude sound descriptions">
+      <div class="eyebrow">3 · OPTIONAL CLAUDE REQUEST</div><h2>Explain with English examples</h2>
+      <p>Claude receives the extracted sound observations. It does not hear your recording. Its descriptions inherit any mistakes made by the local recognizer.</p>
+      <p id="configuration" class="status" role="status">Checking local setup…</p>
+      <details><summary>Preview the sound observations sent to Claude</summary><pre id="payload-preview">Extract sounds first. No audio, API key, or expected verse is included in this preview.</pre></details>
+      <label class="consent"><input id="consent" type="checkbox" disabled> I choose to send these sound observations to Anthropic Claude. For a child's recording, a parent makes this choice.</label>
+      <div class="actions"><button id="define" class="primary" disabled>Generate pronunciation definitions</button><button id="download-definition" disabled>Download definitions JSON</button></div>
+      <p id="definition-status" role="status">Definitions will appear here after your request.</p>
+      <div id="definitions" aria-live="polite"></div>
+    </section>
+    <footer>Audio, observations, and definitions are kept in tab/process memory. Downloads are your choice. No pronunciation score is assigned.</footer>
+  </main>
+</body></html>

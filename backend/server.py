@@ -11,6 +11,7 @@ from urllib.parse import unquote, urlparse
 from .paths import ROOT, REFERENCE
 
 MODEL_LOCK = threading.Lock()
+DEFINITION_LOCK = threading.Lock()
 MODELS = {}
 ROUTES = {f'/{name}': f'apps/{name}/index.html' for name in ['timestamps', 'follow', 'learn', 'test']}
 PUBLIC = {f'/data/reference/{name}' for name in [
@@ -61,6 +62,9 @@ class Handler(SimpleHTTPRequestHandler):
             return self.reply(200, dict(local_only=True, stores_student_audio=False,
                 timestamp_model_present=all((ROOT/'models/timestamps'/f).is_file() for f in ['model.int8.onnx', 'tokenizer.model']),
                 model_present=(ROOT/'models/phone/pytorch_model.bin').is_file()), head)
+        if path == '/api/test/status':
+            from .learner.definitions import configuration
+            return self.reply(200, configuration(), head)
         if path.rstrip('/') in ROUTES:
             self.path = '/' + ROUTES[path.rstrip('/')]
         elif path not in PUBLIC | ASSETS:
@@ -79,12 +83,13 @@ class Handler(SimpleHTTPRequestHandler):
     def do_POST(self):
         if not self.local_request():
             return self.reply(403, {'error': 'Local same-origin requests only.'})
-        if self.path not in {'/api/timestamps/generate', '/api/learn/analyze'}:
+        if self.path not in {'/api/timestamps/generate', '/api/learn/analyze', '/api/test/extract', '/api/test/define'}:
             return self.reply(404, {'error': 'Not found.'})
         if self.headers.get_content_type() != 'application/json':
             return self.reply(415, {'error': 'Expected JSON.'})
-        if not MODEL_LOCK.acquire(blocking=False):
-            return self.reply(429, {'error': 'A local model is busy. Try again shortly.'})
+        lock = DEFINITION_LOCK if self.path == '/api/test/define' else MODEL_LOCK
+        if not lock.acquire(blocking=False):
+            return self.reply(429, {'error': 'Another definition request is running. Try again shortly.' if self.path == '/api/test/define' else 'A local model is busy. Try again shortly.'})
         try:
             length = int(self.headers.get('Content-Length', 0))
             maximum = 6_000_000 if self.path.startswith('/api/timestamps/') else 1_500_000
@@ -100,6 +105,16 @@ class Handler(SimpleHTTPRequestHandler):
                 if 'timestamps' not in MODELS:
                     MODELS['timestamps'] = TimestampModel()
                 result = MODELS['timestamps'].generate(request)
+            elif self.path == '/api/test/extract':
+                from .learner.definitions import extract, provider_observations
+                raw = base64.b64decode(request['audio_base64'], validate=True)
+                evidence, model = extract(raw, MODELS.get('phone'))
+                if model is not None:
+                    MODELS['phone'] = model
+                result = dict(evidence=evidence, claude_payload_preview=provider_observations(evidence))
+            elif self.path == '/api/test/define':
+                from .learner.definitions import describe
+                result = describe(request)
             else:
                 from .learn.phone_engine import PhoneModel, compare, read_wav, quality
                 reference = json.loads((REFERENCE/'reference-phones.json').read_text(encoding='utf-8'))
@@ -123,13 +138,16 @@ class Handler(SimpleHTTPRequestHandler):
             print(f'Local inference failed: {type(error).__name__}', flush=True)
             self.reply(503, {'error': 'Local analysis failed. Check model setup in README.md.'})
         finally:
-            MODEL_LOCK.release()
+            lock.release()
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--port', type=int, default=8767)
+    parser.add_argument('--env', type=str, default=str(ROOT/'.env'), help='Optional local credential file (never served).')
     args = parser.parse_args()
+    from .config import load_env
+    load_env(args.env)
     server = ThreadingHTTPServer(('127.0.0.1', args.port), Handler)
     print(f'Open http://127.0.0.1:{args.port}/timestamps', flush=True)
     try:

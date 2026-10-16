@@ -33,7 +33,10 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
       await page.goto(`${base}/${route}`);
       await page.waitForSelector(`nav a[aria-current="page"][href="/${route}"]`);
       if(route==='learn') await page.waitForSelector('.word');
-      else assert.equal(await page.getByText('Not built yet').count(),1);
+      else if(route==='test') {
+        await page.waitForSelector('#extract');
+        assert.equal(await page.locator('#define').isDisabled(),true);
+      } else assert.equal(await page.getByText('Not built yet').count(),1);
     }
     await page.goto(`${base}/timestamps`);
     assert.equal(await page.locator('header').count(),1);
@@ -45,6 +48,6 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
     await page.waitForSelector('nav a[aria-current="page"]');
     await page.screenshot({path:require('node:path').join(require('node:os').tmpdir(), 'uchaaran-timestamps-desktop.png'),fullPage:true});
     assert.deepEqual(errors,[]);
-    console.log('PASS: routes, isolated generator, sample JSON/export, browser WAV conversion, placeholders, learn loading, mobile layout.');
+    console.log('PASS: routes, isolated generator, sample JSON/export, browser WAV conversion, learner definition page, learn loading, mobile layout.');
   } finally {await browser.close();}
 })().catch(error=>{console.error(error);process.exit(1);});
