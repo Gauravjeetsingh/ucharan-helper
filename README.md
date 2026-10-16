@@ -100,6 +100,12 @@ not validated attention thresholds; source boundaries still await review.
 
 ## Optional Learn development
 
+The main `/learn` page uses a phone layout: listen, record, then see green/red
+words with explanations below. It shows no percentage score or ustaad tip.
+Phrase comparison uses the timestamp model above; see
+[docs/LEARN_PRACTICE.md](docs/LEARN_PRACTICE.md) for the flow and its limitations.
+The Lesson menu links to the existing timing and sound lab described below.
+
 Existing work lives separately under `/learn`. Static playback, timing edits,
 reference sound review and notes work without the phone model. For local student
 comparison, in the activated Python 3.12 environment:
@@ -179,6 +185,7 @@ npm run test:browser
 npm run test:timing-review
 npm run test:follow
 npm run test:follow:browser
+npm run test:learn:ui
 ```
 
 Use `APP_URL=http://127.0.0.1:8768` for the route smoke test if needed. For the

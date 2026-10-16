@@ -1,10 +1,21 @@
 # Learn · listen and repeat
 
-Top section of `/learn`. Each screen shows a few Gurmukhi words and one ustaad
-clip. The student listens, records, and each word turns green (sounds matched),
-red (a sound clearly differed) or grey (the app could not tell). Tapping a word
-shows how the model heard the ustaad and the student, in Gurmukhi, and why it
-was red.
+`/learn` presents a cream phone frame with lesson progress, a Gurmukhi phrase,
+and speaker, microphone and next-pankti controls. Listen to the whole ustaad
+clip to enable the microphone, then record and tap stop to compare locally.
+The waveform follows the playing audio or microphone; it does not give live
+pronunciation judgements.
+
+Words turn green when the model finds a match and red when it finds a possible
+sound difference. Red cards below the phrase explain the differences returned
+by the comparison API, show what the model heard, and let you replay both
+recordings. Tapping a word also replays its ustaad segment. Uncertain words stay
+neutral and prompt another attempt. There are no percentages or ustaad tips.
+The middle section scrolls while the recording controls stay accessible.
+
+Choose a lesson, shuffle, or return to the previous pankti from the Lesson
+menu above the frame. Existing source text, occurrence IDs, audio and timings
+are preserved. The older timing and sound lab remains linked in that menu.
 
 ## Source of truth
 
@@ -52,3 +63,5 @@ debugging; nothing is kept on the server.
 - `backend/learn/screens_api.py`: HTTP handlers; `server.py` only has two hooks.
 - Tests: `tests/test_learn_screens_routes.py` (stdlib),
   `tests/verify_learn_screens.py` (acoustic checks skip without the model).
+  `npm run test:learn:ui` checks browser playback/capture and synthetic
+  comparison responses with a running server; it does not validate acoustics.

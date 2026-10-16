@@ -32,3 +32,4 @@ jobs:
       - run: npm run test:browser
       - run: npm run test:follow
       - run: npm run test:follow:browser
+      - run: npm run test:learn:ui
