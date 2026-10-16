@@ -6,7 +6,7 @@ The timestamp generator is separate from the experimental learning tools.
 | Route | Current state | Source |
 | --- | --- | --- |
 | `/timestamps` | Audio + Gurmukhi → word timing JSON | `apps/timestamps/` |
-| `/follow` | Placeholder; ready for implementation | `apps/follow/` |
+| `/follow` | Mobile-frame audio/tap demo with green/red timing feedback | `apps/follow/` |
 | `/learn` | Existing timing review, sound review and phrase practice; experimental | `apps/learn/` |
 | `/test` | Placeholder; ready for implementation | `apps/test/` |
 
@@ -77,6 +77,27 @@ using generated timing data as reference labels. The sample's original 25
 source occurrences and extra opening speech remain preserved in its artifact.
 See [docs/DATA.md](docs/DATA.md) for the JSON contracts and model provenance.
 
+## Follow-along mobile demo
+
+Open <http://127.0.0.1:8767/follow>. The desktop page presents a narrow phone
+viewport for the hackathon demo; on a phone it fits the available width. The
+screen uses the supplied recording and existing 25 source-word timings. No ML
+setup or microphone access is required.
+
+Press Play and tap each word as it is recited. A tap from 180 ms before the
+word's start to 320 ms after its end is green. An early tap or a word whose
+window expires is red. Each occurrence counts once; repeated words retain
+separate identities. Attention points follow the mockup: +10 per caught word,
+−5 per miss, with a floor of zero. They are not pronunciation scores.
+
+Pause freezes playback and leaves the round intact. Start again resets it.
+The audio clock drives progress, expired words, and passage scrolling, including
+after background frame gaps. The short WAV is buffered locally as Blob media
+before play so seeking/replay work without HTTP-range support. Completion shows
+stars, caught/missed counts, missed-word chips, and Play again. Results remain in
+memory and are not uploaded or persisted. Timing grace values are demo settings,
+not validated attention thresholds; source boundaries still await review.
+
 ## Optional Learn development
 
 Existing work lives separately under `/learn`. Static playback, timing edits,
@@ -121,7 +142,7 @@ human validation. Synthetic teacher controls are not real learner ratings.
 apps/                   independent route pages
   timestamps/           generation only
   learn/                previous review + practice prototype
-  follow/               placeholder
+  follow/               mobile tap-along demo
   test/                 placeholder
   shared/               navigation and styles
 backend/                local server + timestamp inference
@@ -156,6 +177,8 @@ npm ci
 npx playwright install chromium
 npm run test:browser
 npm run test:timing-review
+npm run test:follow
+npm run test:follow:browser
 ```
 
 Use `APP_URL=http://127.0.0.1:8768` for the route smoke test if needed. For the

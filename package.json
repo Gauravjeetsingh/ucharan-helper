@@ -7,6 +7,8 @@
   "engines": { "node": ">=20" },
   "scripts": {
     "test:browser": "node tests/routes.cjs",
+    "test:follow": "node --test tests/follow.test.cjs",
+    "test:follow:browser": "node tests/follow.cjs",
     "test:timing-review": "node tests/verify_browser.cjs",
     "test:learn": "node tests/verify_practice.cjs"
   },

@@ -21,7 +21,9 @@ on separate branches without rewriting each other's pages.
 - `apps/timestamps/`: generator only: audio/text input, generation, JSON export.
   Do not add word review, microphone practice, IPA review, or scoring here.
 - `apps/learn/`: existing word timing review and experimental pronunciation work.
-- `apps/follow/` and `apps/test/`: placeholders for teammates to implement.
+- `apps/follow/`: mobile-frame tap-along demo using the existing word timings.
+  Keep judgement on the media clock, preserve paused state and distinct IDs.
+- `apps/test/`: placeholder for teammates to implement.
 - `apps/shared/`: navigation/shared styles. Scope feature-specific CSS locally.
 - `backend/timestamps.py`: known-text CTC timestamp generation.
 - `backend/learn/`: audio-derived phone analysis; import/load lazily.
@@ -54,6 +56,8 @@ on separate branches without rewriting each other's pages.
 - Browser: Node 20+, `npm ci`, `npx playwright install chromium`, start server,
   then `npm run test:browser`. BROWSER_EXECUTABLE is an optional local override.
 - Optional existing Learn checks: see README.md.
+- Follow timing logic: `npm run test:follow`. With server/browser installed:
+  `npm run test:follow:browser` (real playback + desktop/mobile checks).
 - Run checks relevant to changes; synthetic fixtures are not acoustic validation.
 
 ## Collaboration
