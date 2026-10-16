@@ -16,6 +16,8 @@ class LessonTests(unittest.TestCase):
         known = {w['id']: w for v in timing['verses'] for w in v['words']}
         for path in LESSONS.glob('*.json'):
             lesson = json.loads(path.read_text(encoding='utf-8'))
+            if path.name == 'pronunciation-cards.json':
+                continue
             for screen in lesson['screens']:
                 self.assertTrue(screen['audio'].startswith('/data/') and screen['audio'].endswith('.wav'))
                 self.assertLess(screen['end'] - screen['start'], 15)
@@ -30,10 +32,15 @@ class ToneRuleTests(unittest.TestCase):
     """The ustaad's voicing is the target; only clear opposites are flagged."""
     def test_rules(self):
         from backend.learn.tone import check
-        self.assertIn('softly', check(None, 'ਭ', (.97, .01), (.74, .61)))   # ustaad p, student bh
-        self.assertIsNone(check(None, 'ਭ', (.97, .01), (.9, .2)))          # student also p
-        self.assertIsNone(check(None, 'ਭ', (.6, .3), (.1, .9)))            # ustaad unclear: no judgement
-        self.assertIn('voiced', check(None, 'ਧ', (.02, .9), (.8, .05)))     # ustaad voiced, student plain
+        self.assertIn('softly', check(None, 'ਭ', (.97, .01, 0), (.74, .61, 0)))   # ustaad p, student bh
+        self.assertIsNone(check(None, 'ਭ', (.97, .01, 0), (.9, .2, 0)))          # student also p
+        self.assertIsNone(check(None, 'ਭ', (.6, .3, 0), (.1, .9, 0)))            # ustaad unclear: no judgement
+        self.assertIn('voiced', check(None, 'ਧ', (.02, .9, 0), (.8, .05, 0)))     # ustaad voiced, student plain
+        # Card target: graded only where the model clearly hears the ustaad that way.
+        self.assertIn('softly', check(None, 'ਭ', (.97, .01, 0), (.6, .7, 0), 'voiceless'))
+        self.assertIsNone(check(None, 'ਭ', (.1, .88, 0), (.05, .95, .5), 'voiceless'))  # model hears ustaad as b: no grade
+        self.assertIn('softly', check(None, 'ਭ', (.39, .56, 0), (.02, .95, 0), 'voiceless'))  # ਭੀ: ustaad half p, student bhi
+        self.assertIsNone(check(None, 'ਭ', (.39, .56, 0), (.12, .86, 0), 'voiceless'))       # noisy ustaad copy: no flag
 
 
 class AcousticTests(unittest.TestCase):

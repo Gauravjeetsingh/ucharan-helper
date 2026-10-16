@@ -1,7 +1,7 @@
 """HTTP glue for Learn practice screens, kept out of server.py to avoid merge conflicts.
 
 server.py calls serve_lesson_file() for /data/lessons/* and post() for
-/api/learn/screens/compare. Same local-only, size and lock rules as the server.
+/api/learn/screens/* (compare, cards). Same local-only, size and lock rules as the server.
 """
 import base64
 import binascii
@@ -33,9 +33,54 @@ def serve_lesson_file(handler, path, head=False):
     return SimpleHTTPRequestHandler.do_HEAD(handler) if head else SimpleHTTPRequestHandler.do_GET(handler)
 
 
+CARD_FIELDS = {'say': 300, 'not': 300}
+
+
+def save_card(request):
+    """Update one word's card from the review page. Only wording, check mode and voicing are editable."""
+    path = LESSONS / 'pronunciation-cards.json'
+    cards = json.loads(path.read_text(encoding='utf-8'))
+    card = cards['words'].get(request.get('word_id'))
+    sounds = request.get('sounds')
+    if card is None or not isinstance(sounds, list) or len(sounds) != len(card['sounds']):
+        raise ValueError('Unknown word or wrong number of sounds.')
+    if request.get('status') not in {'draft', 'confirmed'}:
+        raise ValueError('Status must be draft or confirmed.')
+    for sound, edit in zip(card['sounds'], sounds):
+        if not isinstance(edit, dict):
+            raise ValueError('Each sound must be an object.')
+        for field, limit in CARD_FIELDS.items():
+            value = edit.get(field, '')
+            if not isinstance(value, str) or len(value) > limit:
+                raise ValueError(f'Invalid {field} text.')
+            if value.strip():
+                sound[field] = value.strip()
+            else:
+                sound.pop(field, None)
+        if not sound.get('say'):
+            raise ValueError(f'Describe how the ustaad says {sound["letters"]}.')
+        if edit.get('check') not in {'check', 'tip'}:
+            raise ValueError('Check must be "check" or "tip".')
+        sound['check'] = edit['check']
+        if 'voicing' in sound or edit.get('voicing'):
+            if edit.get('voicing') not in {'voiceless', 'voiced'}:
+                raise ValueError('Voicing must be voiceless or voiced.')
+            sound['voicing'] = edit['voicing']
+    note, reviewer = request.get('note', ''), request.get('reviewed_by', '')
+    if not isinstance(note, str) or len(note) > 1000 or not isinstance(reviewer, str) or len(reviewer) > 80:
+        raise ValueError('Invalid note or reviewer.')
+    card.update(status=request['status'], note=note.strip(), reviewed_by=reviewer.strip() or None)
+    pending = path.with_suffix('.json.partial')
+    pending.write_text(json.dumps(cards, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    pending.replace(path)
+    return dict(word_id=request['word_id'], card=card)
+
+
 def post(handler, lock, models):
     if not handler.local_request():
         return handler.reply(403, {'error': 'Local same-origin requests only.'})
+    if handler.path not in {'/api/learn/screens/compare', '/api/learn/screens/cards'}:
+        return handler.reply(404, {'error': 'Not found.'})
     if handler.headers.get_content_type() != 'application/json':
         return handler.reply(415, {'error': 'Expected JSON.'})
     if not lock.acquire(blocking=False):
@@ -47,6 +92,8 @@ def post(handler, lock, models):
         request = json.loads(handler.rfile.read(length))
         if not isinstance(request, dict):
             raise ValueError('Expected a JSON object.')
+        if handler.path.endswith('/cards'):
+            return handler.reply(200, save_card(request))
         lesson = load_lesson(request.get('lesson_id'))
         screen = next((s for s in lesson['screens'] if s['id'] == request.get('screen_id')), None)
         if screen is None:
