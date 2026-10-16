@@ -1,0 +1,14 @@
+{
+  "name": "ucharan-helper",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local Gurbani timestamp generation and separate learning experiments",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test:browser": "node tests/routes.cjs",
+    "test:timing-review": "node tests/verify_browser.cjs",
+    "test:learn": "node tests/verify_practice.cjs"
+  },
+  "devDependencies": { "playwright": "1.62.1" }
+}

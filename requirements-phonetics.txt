@@ -1,0 +1,5 @@
+# Optional Learn inference dependencies. Use Python 3.12.
+numpy==1.26.4
+torch==2.2.0
+transformers==4.37.2
+# No phonemizer/espeak dependency: labels come directly from acoustic logits.

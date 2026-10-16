@@ -1,0 +1,4 @@
+# Python 3.12. CPU-only timestamp generation; no PyTorch or phone model needed.
+numpy==1.26.4
+onnxruntime==1.17.0
+sentencepiece==0.1.99

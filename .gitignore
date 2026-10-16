@@ -1,0 +1,17 @@
+models/
+__pycache__/
+.venv/
+*.pyc
+evaluation/private/
+evaluation/controls/
+data/evidence/
+local-recordings/
+node_modules/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.partial
+test-results/
+playwright-report/
+.pytest_cache/

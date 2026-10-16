@@ -1,0 +1,3567 @@
+{
+  "model": "facebook/wav2vec2-xlsr-53-espeak-cv-ft",
+  "revision": "2c733782da5604684829819a5eb744c193fe9398",
+  "frame_stride_seconds": 0.02,
+  "note": "Unconstrained greedy CTC acoustic labels, not an ASR transcript converted to IPA.",
+  "audio_sha256": "1bab6549ba51c04fe7ab2af4beb40eb89c68cca843e65fac821a936af5f3086e",
+  "labels": [
+    "ɑ",
+    "h",
+    "i",
+    "b",
+    "ʌ",
+    "dʒ",
+    "iː",
+    "j",
+    "o",
+    "i",
+    "k",
+    "uː",
+    "a",
+    "ŋ",
+    "k",
+    "aː",
+    "r",
+    "ə",
+    "s",
+    "ɑ",
+    "t",
+    "e",
+    "n",
+    "ɑ",
+    "m",
+    "ə",
+    "k",
+    "a",
+    "r",
+    "t",
+    "aː",
+    "p",
+    "o",
+    "r",
+    "k",
+    "y",
+    "n",
+    "i",
+    "r",
+    "p",
+    "h",
+    "o",
+    "n",
+    "e",
+    "r",
+    "ʌ",
+    "v",
+    "ɛ",
+    "r",
+    "ə",
+    "a",
+    "k",
+    "aː",
+    "l",
+    "ə",
+    "m",
+    "u",
+    "r",
+    "a",
+    "t",
+    "ɪ",
+    "a",
+    "d",
+    "j",
+    "uː",
+    "n",
+    "iː",
+    "s",
+    "h",
+    "ɛ",
+    "m",
+    "a",
+    "ŋ",
+    "ɡ",
+    "u",
+    "r",
+    "p",
+    "r",
+    "ʌ",
+    "s",
+    "ɑ",
+    "d",
+    "e",
+    "dʒ",
+    "aː",
+    "p",
+    "ə",
+    "aː",
+    "d",
+    "ɪ",
+    "s",
+    "ɑ",
+    "dʒ",
+    "ə",
+    "dʒ",
+    "u",
+    "ɡ",
+    "aː",
+    "d",
+    "ə",
+    "s",
+    "a",
+    "tʃ",
+    "ə",
+    "h",
+    "p",
+    "i",
+    "s",
+    "ɑ",
+    "tʃ",
+    "ə",
+    "n",
+    "aː",
+    "n",
+    "ʌ",
+    "k",
+    "ə",
+    "h",
+    "u",
+    "s",
+    "i",
+    "p",
+    "i",
+    "s",
+    "ɑ",
+    "dʒ",
+    "ə"
+  ],
+  "events": [
+    {
+      "token_id": 59,
+      "start_frame": 4,
+      "end_frame": 5,
+      "label": "ɑ",
+      "start": 0.08,
+      "end": 0.105,
+      "posterior": 0.5369110107421875,
+      "alternatives": [
+        {
+          "label": "ɑ",
+          "posterior": 0.5369110107421875
+        },
+        {
+          "label": "aː",
+          "posterior": 0.15172864496707916
+        },
+        {
+          "label": "a",
+          "posterior": 0.1130770742893219
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.06396545469760895
+        }
+      ]
+    },
+    {
+      "token_id": 39,
+      "start_frame": 14,
+      "end_frame": 16,
+      "label": "h",
+      "start": 0.28,
+      "end": 0.325,
+      "posterior": 0.8800553679466248,
+      "alternatives": [
+        {
+          "label": "h",
+          "posterior": 0.8800553679466248
+        },
+        {
+          "label": "x",
+          "posterior": 0.005830422043800354
+        },
+        {
+          "label": "j",
+          "posterior": 0.002086494816467166
+        },
+        {
+          "label": "r",
+          "posterior": 0.002059072954580188
+        }
+      ]
+    },
+    {
+      "token_id": 10,
+      "start_frame": 17,
+      "end_frame": 18,
+      "label": "i",
+      "start": 0.34,
+      "end": 0.365,
+      "posterior": 0.7850561141967773,
+      "alternatives": [
+        {
+          "label": "i",
+          "posterior": 0.7850561141967773
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.0830005332827568
+        },
+        {
+          "label": "iː",
+          "posterior": 0.05944051593542099
+        },
+        {
+          "label": "e",
+          "posterior": 0.020069805905222893
+        }
+      ]
+    },
+    {
+      "token_id": 26,
+      "start_frame": 24,
+      "end_frame": 25,
+      "label": "b",
+      "start": 0.48,
+      "end": 0.505,
+      "posterior": 0.9695863723754883,
+      "alternatives": [
+        {
+          "label": "b",
+          "posterior": 0.9695863723754883
+        },
+        {
+          "label": "p",
+          "posterior": 0.005104344338178635
+        },
+        {
+          "label": "v",
+          "posterior": 0.0040843188762664795
+        },
+        {
+          "label": "m",
+          "posterior": 0.002053983975201845
+        }
+      ]
+    },
+    {
+      "token_id": 33,
+      "start_frame": 27,
+      "end_frame": 28,
+      "label": "ʌ",
+      "start": 0.54,
+      "end": 0.565,
+      "posterior": 0.21131150424480438,
+      "alternatives": [
+        {
+          "label": "ʌ",
+          "posterior": 0.21131150424480438
+        },
+        {
+          "label": "ə",
+          "posterior": 0.10970012098550797
+        },
+        {
+          "label": "ɯ",
+          "posterior": 0.061105936765670776
+        },
+        {
+          "label": "ɔ",
+          "posterior": 0.05186845734715462
+        }
+      ]
+    },
+    {
+      "token_id": 60,
+      "start_frame": 48,
+      "end_frame": 49,
+      "label": "dʒ",
+      "start": 0.96,
+      "end": 0.985,
+      "posterior": 0.6388190984725952,
+      "alternatives": [
+        {
+          "label": "dʒ",
+          "posterior": 0.6388190984725952
+        },
+        {
+          "label": "d",
+          "posterior": 0.0646471381187439
+        },
+        {
+          "label": "ɟ",
+          "posterior": 0.03236043453216553
+        },
+        {
+          "label": "dʲ",
+          "posterior": 0.02439921349287033
+        }
+      ]
+    },
+    {
+      "token_id": 30,
+      "start_frame": 52,
+      "end_frame": 53,
+      "label": "iː",
+      "start": 1.04,
+      "end": 1.065,
+      "posterior": 0.6289490461349487,
+      "alternatives": [
+        {
+          "label": "iː",
+          "posterior": 0.6289490461349487
+        },
+        {
+          "label": "i",
+          "posterior": 0.3162839412689209
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.015392309986054897
+        },
+        {
+          "label": "j",
+          "posterior": 0.0026066922582685947
+        }
+      ]
+    },
+    {
+      "token_id": 24,
+      "start_frame": 60,
+      "end_frame": 61,
+      "label": "j",
+      "start": 1.2,
+      "end": 1.225,
+      "posterior": 0.5862197875976562,
+      "alternatives": [
+        {
+          "label": "j",
+          "posterior": 0.5862197875976562
+        },
+        {
+          "label": "i",
+          "posterior": 0.004291411954909563
+        },
+        {
+          "label": "iː",
+          "posterior": 0.0024700777139514685
+        },
+        {
+          "label": "l",
+          "posterior": 0.000838768552057445
+        }
+      ]
+    },
+    {
+      "token_id": 19,
+      "start_frame": 64,
+      "end_frame": 65,
+      "label": "o",
+      "start": 1.28,
+      "end": 1.305,
+      "posterior": 0.3716154098510742,
+      "alternatives": [
+        {
+          "label": "o",
+          "posterior": 0.3716154098510742
+        },
+        {
+          "label": "oː",
+          "posterior": 0.1682642102241516
+        },
+        {
+          "label": "u",
+          "posterior": 0.15063196420669556
+        },
+        {
+          "label": "ʊ",
+          "posterior": 0.06618240475654602
+        }
+      ]
+    },
+    {
+      "token_id": 10,
+      "start_frame": 148,
+      "end_frame": 149,
+      "label": "i",
+      "start": 2.96,
+      "end": 2.985,
+      "posterior": 0.7374768257141113,
+      "alternatives": [
+        {
+          "label": "i",
+          "posterior": 0.7374768257141113
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.12216919660568237
+        },
+        {
+          "label": "iː",
+          "posterior": 0.0612921342253685
+        },
+        {
+          "label": "e",
+          "posterior": 0.023772794753313065
+        }
+      ]
+    },
+    {
+      "token_id": 11,
+      "start_frame": 163,
+      "end_frame": 165,
+      "label": "k",
+      "start": 3.26,
+      "end": 3.305,
+      "posterior": 0.8904085159301758,
+      "alternatives": [
+        {
+          "label": "k",
+          "posterior": 0.8904085159301758
+        },
+        {
+          "label": "ɡ",
+          "posterior": 0.007316450588405132
+        },
+        {
+          "label": "p",
+          "posterior": 0.001043921336531639
+        },
+        {
+          "label": "x",
+          "posterior": 0.0009519881568849087
+        }
+      ]
+    },
+    {
+      "token_id": 46,
+      "start_frame": 201,
+      "end_frame": 202,
+      "label": "uː",
+      "start": 4.02,
+      "end": 4.045,
+      "posterior": 0.2691107988357544,
+      "alternatives": [
+        {
+          "label": "uː",
+          "posterior": 0.2691107988357544
+        },
+        {
+          "label": "oː",
+          "posterior": 0.22331632673740387
+        },
+        {
+          "label": "u",
+          "posterior": 0.1798417866230011
+        },
+        {
+          "label": "o",
+          "posterior": 0.1012360006570816
+        }
+      ]
+    },
+    {
+      "token_id": 9,
+      "start_frame": 224,
+      "end_frame": 225,
+      "label": "a",
+      "start": 4.48,
+      "end": 4.505,
+      "posterior": 0.4132637083530426,
+      "alternatives": [
+        {
+          "label": "a",
+          "posterior": 0.4132637083530426
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.26209545135498047
+        },
+        {
+          "label": "ɑ",
+          "posterior": 0.1417350322008133
+        },
+        {
+          "label": "ɔ",
+          "posterior": 0.035358987748622894
+        }
+      ]
+    },
+    {
+      "token_id": 42,
+      "start_frame": 231,
+      "end_frame": 233,
+      "label": "ŋ",
+      "start": 4.62,
+      "end": 4.665,
+      "posterior": 0.6775349378585815,
+      "alternatives": [
+        {
+          "label": "ŋ",
+          "posterior": 0.6775349378585815
+        },
+        {
+          "label": "n",
+          "posterior": 0.049816735088825226
+        },
+        {
+          "label": "m",
+          "posterior": 0.003070106729865074
+        },
+        {
+          "label": "ɲ",
+          "posterior": 0.0021714612375944853
+        }
+      ]
+    },
+    {
+      "token_id": 11,
+      "start_frame": 242,
+      "end_frame": 244,
+      "label": "k",
+      "start": 4.84,
+      "end": 4.885,
+      "posterior": 0.7450631856918335,
+      "alternatives": [
+        {
+          "label": "k",
+          "posterior": 0.7450631856918335
+        },
+        {
+          "label": "ɡ",
+          "posterior": 0.019452951848506927
+        },
+        {
+          "label": "x",
+          "posterior": 0.0012914580292999744
+        },
+        {
+          "label": "q",
+          "posterior": 0.0010496650356799364
+        }
+      ]
+    },
+    {
+      "token_id": 73,
+      "start_frame": 246,
+      "end_frame": 247,
+      "label": "aː",
+      "start": 4.92,
+      "end": 4.945,
+      "posterior": 0.37542474269866943,
+      "alternatives": [
+        {
+          "label": "aː",
+          "posterior": 0.37542474269866943
+        },
+        {
+          "label": "ɑ",
+          "posterior": 0.19426730275154114
+        },
+        {
+          "label": "a",
+          "posterior": 0.16424046456813812
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.11473735421895981
+        }
+      ]
+    },
+    {
+      "token_id": 31,
+      "start_frame": 265,
+      "end_frame": 266,
+      "label": "r",
+      "start": 5.3,
+      "end": 5.325,
+      "posterior": 0.8333023190498352,
+      "alternatives": [
+        {
+          "label": "r",
+          "posterior": 0.8333023190498352
+        },
+        {
+          "label": "ɾ",
+          "posterior": 0.054594993591308594
+        },
+        {
+          "label": "ɹ",
+          "posterior": 0.03842521831393242
+        },
+        {
+          "label": "d",
+          "posterior": 0.02304834872484207
+        }
+      ]
+    },
+    {
+      "token_id": 7,
+      "start_frame": 268,
+      "end_frame": 269,
+      "label": "ə",
+      "start": 5.36,
+      "end": 5.385,
+      "posterior": 0.1847606599330902,
+      "alternatives": [
+        {
+          "label": "ə",
+          "posterior": 0.1847606599330902
+        },
+        {
+          "label": "y",
+          "posterior": 0.09755206853151321
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.08002498745918274
+        },
+        {
+          "label": "ɯ",
+          "posterior": 0.0748853087425232
+        }
+      ]
+    },
+    {
+      "token_id": 5,
+      "start_frame": 341,
+      "end_frame": 342,
+      "label": "s",
+      "start": 6.82,
+      "end": 6.845,
+      "posterior": 0.9734842777252197,
+      "alternatives": [
+        {
+          "label": "s",
+          "posterior": 0.9734842777252197
+        },
+        {
+          "label": "ts",
+          "posterior": 0.007923546247184277
+        },
+        {
+          "label": "z",
+          "posterior": 0.0035240857396274805
+        },
+        {
+          "label": "θ",
+          "posterior": 0.0020791750866919756
+        }
+      ]
+    },
+    {
+      "token_id": 59,
+      "start_frame": 345,
+      "end_frame": 346,
+      "label": "ɑ",
+      "start": 6.9,
+      "end": 6.925,
+      "posterior": 0.4133303165435791,
+      "alternatives": [
+        {
+          "label": "ɑ",
+          "posterior": 0.4133303165435791
+        },
+        {
+          "label": "a",
+          "posterior": 0.20415246486663818
+        },
+        {
+          "label": "aː",
+          "posterior": 0.1530493199825287
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.06961292773485184
+        }
+      ]
+    },
+    {
+      "token_id": 6,
+      "start_frame": 360,
+      "end_frame": 361,
+      "label": "t",
+      "start": 7.2,
+      "end": 7.225,
+      "posterior": 0.87867671251297,
+      "alternatives": [
+        {
+          "label": "t",
+          "posterior": 0.87867671251297
+        },
+        {
+          "label": "tː",
+          "posterior": 0.024906475096940994
+        },
+        {
+          "label": "t[",
+          "posterior": 0.018606392666697502
+        },
+        {
+          "label": "d",
+          "posterior": 0.013463523238897324
+        }
+      ]
+    },
+    {
+      "token_id": 16,
+      "start_frame": 363,
+      "end_frame": 364,
+      "label": "e",
+      "start": 7.26,
+      "end": 7.285,
+      "posterior": 0.19798697531223297,
+      "alternatives": [
+        {
+          "label": "e",
+          "posterior": 0.19798697531223297
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.1448659747838974
+        },
+        {
+          "label": "ə",
+          "posterior": 0.08197098225355148
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.07576736062765121
+        }
+      ]
+    },
+    {
+      "token_id": 4,
+      "start_frame": 378,
+      "end_frame": 379,
+      "label": "n",
+      "start": 7.56,
+      "end": 7.585,
+      "posterior": 0.9932006597518921,
+      "alternatives": [
+        {
+          "label": "n",
+          "posterior": 0.9932006597518921
+        },
+        {
+          "label": "m",
+          "posterior": 0.001765705761499703
+        },
+        {
+          "label": "ŋ",
+          "posterior": 0.00063494429923594
+        },
+        {
+          "label": "l",
+          "posterior": 0.0005467053852044046
+        }
+      ]
+    },
+    {
+      "token_id": 59,
+      "start_frame": 382,
+      "end_frame": 383,
+      "label": "ɑ",
+      "start": 7.64,
+      "end": 7.665,
+      "posterior": 0.41177189350128174,
+      "alternatives": [
+        {
+          "label": "ɑ",
+          "posterior": 0.41177189350128174
+        },
+        {
+          "label": "aː",
+          "posterior": 0.28571459650993347
+        },
+        {
+          "label": "a",
+          "posterior": 0.09270714223384857
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.06898469477891922
+        }
+      ]
+    },
+    {
+      "token_id": 13,
+      "start_frame": 399,
+      "end_frame": 401,
+      "label": "m",
+      "start": 7.98,
+      "end": 8.025,
+      "posterior": 0.9898123741149902,
+      "alternatives": [
+        {
+          "label": "m",
+          "posterior": 0.9898123741149902
+        },
+        {
+          "label": "n",
+          "posterior": 0.0020772041752934456
+        },
+        {
+          "label": "b",
+          "posterior": 0.00038025874528102577
+        },
+        {
+          "label": "v",
+          "posterior": 0.0002702073543332517
+        }
+      ]
+    },
+    {
+      "token_id": 7,
+      "start_frame": 403,
+      "end_frame": 404,
+      "label": "ə",
+      "start": 8.06,
+      "end": 8.085,
+      "posterior": 0.6421550512313843,
+      "alternatives": [
+        {
+          "label": "ə",
+          "posterior": 0.6421550512313843
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.13430649042129517
+        },
+        {
+          "label": "ɯ",
+          "posterior": 0.019750691950321198
+        },
+        {
+          "label": "a",
+          "posterior": 0.013711253181099892
+        }
+      ]
+    },
+    {
+      "token_id": 11,
+      "start_frame": 464,
+      "end_frame": 466,
+      "label": "k",
+      "start": 9.28,
+      "end": 9.325,
+      "posterior": 0.7617261409759521,
+      "alternatives": [
+        {
+          "label": "k",
+          "posterior": 0.7617261409759521
+        },
+        {
+          "label": "ɡ",
+          "posterior": 0.08241179585456848
+        },
+        {
+          "label": "t",
+          "posterior": 0.0017673646798357368
+        },
+        {
+          "label": "p",
+          "posterior": 0.0014411220327019691
+        }
+      ]
+    },
+    {
+      "token_id": 9,
+      "start_frame": 468,
+      "end_frame": 469,
+      "label": "a",
+      "start": 9.36,
+      "end": 9.385,
+      "posterior": 0.45570433139801025,
+      "alternatives": [
+        {
+          "label": "a",
+          "posterior": 0.45570433139801025
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.2521486282348633
+        },
+        {
+          "label": "ɑ",
+          "posterior": 0.1524943709373474
+        },
+        {
+          "label": "ɔ",
+          "posterior": 0.0184762105345726
+        }
+      ]
+    },
+    {
+      "token_id": 31,
+      "start_frame": 472,
+      "end_frame": 473,
+      "label": "r",
+      "start": 9.44,
+      "end": 9.465,
+      "posterior": 0.9851942658424377,
+      "alternatives": [
+        {
+          "label": "r",
+          "posterior": 0.9851942658424377
+        },
+        {
+          "label": "ɹ",
+          "posterior": 0.002758823335170746
+        },
+        {
+          "label": "ɾ",
+          "posterior": 0.002553079044446349
+        },
+        {
+          "label": "l",
+          "posterior": 0.0011292269919067621
+        }
+      ]
+    },
+    {
+      "token_id": 6,
+      "start_frame": 481,
+      "end_frame": 482,
+      "label": "t",
+      "start": 9.62,
+      "end": 9.645,
+      "posterior": 0.8731343150138855,
+      "alternatives": [
+        {
+          "label": "t",
+          "posterior": 0.8731343150138855
+        },
+        {
+          "label": "tː",
+          "posterior": 0.025360681116580963
+        },
+        {
+          "label": "t[",
+          "posterior": 0.01987260952591896
+        },
+        {
+          "label": "d",
+          "posterior": 0.0044877128675580025
+        }
+      ]
+    },
+    {
+      "token_id": 73,
+      "start_frame": 485,
+      "end_frame": 486,
+      "label": "aː",
+      "start": 9.7,
+      "end": 9.725,
+      "posterior": 0.4350327253341675,
+      "alternatives": [
+        {
+          "label": "aː",
+          "posterior": 0.4350327253341675
+        },
+        {
+          "label": "ɑ",
+          "posterior": 0.252697616815567
+        },
+        {
+          "label": "a",
+          "posterior": 0.12973880767822266
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.05398491024971008
+        }
+      ]
+    },
+    {
+      "token_id": 18,
+      "start_frame": 508,
+      "end_frame": 509,
+      "label": "p",
+      "start": 10.16,
+      "end": 10.185,
+      "posterior": 0.9473282694816589,
+      "alternatives": [
+        {
+          "label": "p",
+          "posterior": 0.9473282694816589
+        },
+        {
+          "label": "b",
+          "posterior": 0.03363610804080963
+        },
+        {
+          "label": "t",
+          "posterior": 0.002050140406936407
+        },
+        {
+          "label": "k",
+          "posterior": 0.0014485629508271813
+        }
+      ]
+    },
+    {
+      "token_id": 19,
+      "start_frame": 510,
+      "end_frame": 511,
+      "label": "o",
+      "start": 10.2,
+      "end": 10.225,
+      "posterior": 0.43824824690818787,
+      "alternatives": [
+        {
+          "label": "o",
+          "posterior": 0.43824824690818787
+        },
+        {
+          "label": "u",
+          "posterior": 0.2575807571411133
+        },
+        {
+          "label": "ʊ",
+          "posterior": 0.06254406273365021
+        },
+        {
+          "label": "oː",
+          "posterior": 0.05256180837750435
+        }
+      ]
+    },
+    {
+      "token_id": 31,
+      "start_frame": 513,
+      "end_frame": 515,
+      "label": "r",
+      "start": 10.26,
+      "end": 10.305,
+      "posterior": 0.8630053997039795,
+      "alternatives": [
+        {
+          "label": "r",
+          "posterior": 0.8630053997039795
+        },
+        {
+          "label": "ɹ",
+          "posterior": 0.002002076478675008
+        },
+        {
+          "label": "ɾ",
+          "posterior": 0.0018118745647370815
+        },
+        {
+          "label": "n",
+          "posterior": 0.0008346472750417888
+        }
+      ]
+    },
+    {
+      "token_id": 11,
+      "start_frame": 523,
+      "end_frame": 524,
+      "label": "k",
+      "start": 10.46,
+      "end": 10.485,
+      "posterior": 0.934220552444458,
+      "alternatives": [
+        {
+          "label": "k",
+          "posterior": 0.934220552444458
+        },
+        {
+          "label": "x",
+          "posterior": 0.009691545739769936
+        },
+        {
+          "label": "q",
+          "posterior": 0.0068341209553182125
+        },
+        {
+          "label": "ɡ",
+          "posterior": 0.0045708054676651955
+        }
+      ]
+    },
+    {
+      "token_id": 47,
+      "start_frame": 528,
+      "end_frame": 529,
+      "label": "y",
+      "start": 10.56,
+      "end": 10.585,
+      "posterior": 0.21607746183872223,
+      "alternatives": [
+        {
+          "label": "y",
+          "posterior": 0.21607746183872223
+        },
+        {
+          "label": "ɯ",
+          "posterior": 0.07531799376010895
+        },
+        {
+          "label": "ø",
+          "posterior": 0.07272615283727646
+        },
+        {
+          "label": "ʉ",
+          "posterior": 0.056342046707868576
+        }
+      ]
+    },
+    {
+      "token_id": 4,
+      "start_frame": 609,
+      "end_frame": 610,
+      "label": "n",
+      "start": 12.18,
+      "end": 12.205,
+      "posterior": 0.9928568601608276,
+      "alternatives": [
+        {
+          "label": "n",
+          "posterior": 0.9928568601608276
+        },
+        {
+          "label": "m",
+          "posterior": 0.0017229323275387287
+        },
+        {
+          "label": "l",
+          "posterior": 0.0005188868963159621
+        },
+        {
+          "label": "ɲ",
+          "posterior": 0.00044195339432917535
+        }
+      ]
+    },
+    {
+      "token_id": 10,
+      "start_frame": 612,
+      "end_frame": 613,
+      "label": "i",
+      "start": 12.24,
+      "end": 12.265,
+      "posterior": 0.6456869840621948,
+      "alternatives": [
+        {
+          "label": "i",
+          "posterior": 0.6456869840621948
+        },
+        {
+          "label": "e",
+          "posterior": 0.15051651000976562
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.10385727882385254
+        },
+        {
+          "label": "iː",
+          "posterior": 0.01027610246092081
+        }
+      ]
+    },
+    {
+      "token_id": 31,
+      "start_frame": 618,
+      "end_frame": 619,
+      "label": "r",
+      "start": 12.36,
+      "end": 12.385,
+      "posterior": 0.9852873086929321,
+      "alternatives": [
+        {
+          "label": "r",
+          "posterior": 0.9852873086929321
+        },
+        {
+          "label": "ɹ",
+          "posterior": 0.00419621542096138
+        },
+        {
+          "label": "ɾ",
+          "posterior": 0.002252261620014906
+        },
+        {
+          "label": "rʲ",
+          "posterior": 0.0008121514110825956
+        }
+      ]
+    },
+    {
+      "token_id": 18,
+      "start_frame": 627,
+      "end_frame": 628,
+      "label": "p",
+      "start": 12.54,
+      "end": 12.565,
+      "posterior": 0.977514386177063,
+      "alternatives": [
+        {
+          "label": "p",
+          "posterior": 0.977514386177063
+        },
+        {
+          "label": "b",
+          "posterior": 0.008602413348853588
+        },
+        {
+          "label": "k",
+          "posterior": 0.001647162833251059
+        },
+        {
+          "label": "t",
+          "posterior": 0.0015945753548294306
+        }
+      ]
+    },
+    {
+      "token_id": 39,
+      "start_frame": 637,
+      "end_frame": 639,
+      "label": "h",
+      "start": 12.74,
+      "end": 12.785,
+      "posterior": 0.8964077830314636,
+      "alternatives": [
+        {
+          "label": "h",
+          "posterior": 0.8964077830314636
+        },
+        {
+          "label": "x",
+          "posterior": 0.0042995885014534
+        },
+        {
+          "label": "r",
+          "posterior": 0.0024505634792149067
+        },
+        {
+          "label": "a",
+          "posterior": 0.0012065006885677576
+        }
+      ]
+    },
+    {
+      "token_id": 19,
+      "start_frame": 642,
+      "end_frame": 643,
+      "label": "o",
+      "start": 12.84,
+      "end": 12.865,
+      "posterior": 0.4053342342376709,
+      "alternatives": [
+        {
+          "label": "o",
+          "posterior": 0.4053342342376709
+        },
+        {
+          "label": "oː",
+          "posterior": 0.31373342871665955
+        },
+        {
+          "label": "ɔ",
+          "posterior": 0.05787787586450577
+        },
+        {
+          "label": "u",
+          "posterior": 0.041889626532793045
+        }
+      ]
+    },
+    {
+      "token_id": 4,
+      "start_frame": 674,
+      "end_frame": 676,
+      "label": "n",
+      "start": 13.48,
+      "end": 13.525,
+      "posterior": 0.7970526218414307,
+      "alternatives": [
+        {
+          "label": "n",
+          "posterior": 0.7970526218414307
+        },
+        {
+          "label": "m",
+          "posterior": 0.0016876760637387633
+        },
+        {
+          "label": "ŋ",
+          "posterior": 0.001079924637451768
+        },
+        {
+          "label": "ɲ",
+          "posterior": 0.0009003263548947871
+        }
+      ]
+    },
+    {
+      "token_id": 16,
+      "start_frame": 677,
+      "end_frame": 678,
+      "label": "e",
+      "start": 13.54,
+      "end": 13.565,
+      "posterior": 0.7987424731254578,
+      "alternatives": [
+        {
+          "label": "e",
+          "posterior": 0.7987424731254578
+        },
+        {
+          "label": "eː",
+          "posterior": 0.0663551315665245
+        },
+        {
+          "label": "ɛ",
+          "posterior": 0.03237098082900047
+        },
+        {
+          "label": "i",
+          "posterior": 0.027227623388171196
+        }
+      ]
+    },
+    {
+      "token_id": 31,
+      "start_frame": 682,
+      "end_frame": 683,
+      "label": "r",
+      "start": 13.64,
+      "end": 13.665,
+      "posterior": 0.9351814389228821,
+      "alternatives": [
+        {
+          "label": "r",
+          "posterior": 0.9351814389228821
+        },
+        {
+          "label": "ɾ",
+          "posterior": 0.02112025022506714
+        },
+        {
+          "label": "ɹ",
+          "posterior": 0.020644886419177055
+        },
+        {
+          "label": "l",
+          "posterior": 0.0035450048744678497
+        }
+      ]
+    },
+    {
+      "token_id": 33,
+      "start_frame": 684,
+      "end_frame": 685,
+      "label": "ʌ",
+      "start": 13.68,
+      "end": 13.705,
+      "posterior": 0.35017871856689453,
+      "alternatives": [
+        {
+          "label": "ʌ",
+          "posterior": 0.35017871856689453
+        },
+        {
+          "label": "ə",
+          "posterior": 0.23794342577457428
+        },
+        {
+          "label": "ɛ",
+          "posterior": 0.04920286685228348
+        },
+        {
+          "label": "a",
+          "posterior": 0.03236423805356026
+        }
+      ]
+    },
+    {
+      "token_id": 25,
+      "start_frame": 689,
+      "end_frame": 690,
+      "label": "v",
+      "start": 13.78,
+      "end": 13.805,
+      "posterior": 0.9757829308509827,
+      "alternatives": [
+        {
+          "label": "v",
+          "posterior": 0.9757829308509827
+        },
+        {
+          "label": "b",
+          "posterior": 0.006102276034653187
+        },
+        {
+          "label": "f",
+          "posterior": 0.00154209160245955
+        },
+        {
+          "label": "vʲ",
+          "posterior": 0.0014003862161189318
+        }
+      ]
+    },
+    {
+      "token_id": 14,
+      "start_frame": 693,
+      "end_frame": 694,
+      "label": "ɛ",
+      "start": 13.86,
+      "end": 13.885,
+      "posterior": 0.40405404567718506,
+      "alternatives": [
+        {
+          "label": "ɛ",
+          "posterior": 0.40405404567718506
+        },
+        {
+          "label": "æ",
+          "posterior": 0.1674884408712387
+        },
+        {
+          "label": "aː",
+          "posterior": 0.12170474231243134
+        },
+        {
+          "label": "eː",
+          "posterior": 0.07731255888938904
+        }
+      ]
+    },
+    {
+      "token_id": 31,
+      "start_frame": 708,
+      "end_frame": 709,
+      "label": "r",
+      "start": 14.16,
+      "end": 14.185,
+      "posterior": 0.9354240894317627,
+      "alternatives": [
+        {
+          "label": "r",
+          "posterior": 0.9354240894317627
+        },
+        {
+          "label": "ɹ",
+          "posterior": 0.02196894772350788
+        },
+        {
+          "label": "ɾ",
+          "posterior": 0.017290780320763588
+        },
+        {
+          "label": "d",
+          "posterior": 0.003518548095598817
+        }
+      ]
+    },
+    {
+      "token_id": 7,
+      "start_frame": 710,
+      "end_frame": 711,
+      "label": "ə",
+      "start": 14.2,
+      "end": 14.225,
+      "posterior": 0.21388038992881775,
+      "alternatives": [
+        {
+          "label": "ə",
+          "posterior": 0.21388038992881775
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.06868823617696762
+        },
+        {
+          "label": "y",
+          "posterior": 0.06577829271554947
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.05681727081537247
+        }
+      ]
+    },
+    {
+      "token_id": 9,
+      "start_frame": 785,
+      "end_frame": 786,
+      "label": "a",
+      "start": 15.7,
+      "end": 15.725,
+      "posterior": 0.36985060572624207,
+      "alternatives": [
+        {
+          "label": "a",
+          "posterior": 0.36985060572624207
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.27410075068473816
+        },
+        {
+          "label": "ɑ",
+          "posterior": 0.1618974506855011
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.03663580119609833
+        }
+      ]
+    },
+    {
+      "token_id": 11,
+      "start_frame": 794,
+      "end_frame": 795,
+      "label": "k",
+      "start": 15.88,
+      "end": 15.905,
+      "posterior": 0.9716190695762634,
+      "alternatives": [
+        {
+          "label": "k",
+          "posterior": 0.9716190695762634
+        },
+        {
+          "label": "ɡ",
+          "posterior": 0.007291682530194521
+        },
+        {
+          "label": "q",
+          "posterior": 0.001804617466405034
+        },
+        {
+          "label": "kː",
+          "posterior": 0.0015580233884975314
+        }
+      ]
+    },
+    {
+      "token_id": 73,
+      "start_frame": 798,
+      "end_frame": 799,
+      "label": "aː",
+      "start": 15.96,
+      "end": 15.985,
+      "posterior": 0.3739366829395294,
+      "alternatives": [
+        {
+          "label": "aː",
+          "posterior": 0.3739366829395294
+        },
+        {
+          "label": "ɑ",
+          "posterior": 0.24470533430576324
+        },
+        {
+          "label": "a",
+          "posterior": 0.12080583721399307
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.1055954173207283
+        }
+      ]
+    },
+    {
+      "token_id": 8,
+      "start_frame": 812,
+      "end_frame": 813,
+      "label": "l",
+      "start": 16.24,
+      "end": 16.265,
+      "posterior": 0.9531107544898987,
+      "alternatives": [
+        {
+          "label": "l",
+          "posterior": 0.9531107544898987
+        },
+        {
+          "label": "ɭ",
+          "posterior": 0.019154833629727364
+        },
+        {
+          "label": "ɭʲ",
+          "posterior": 0.0017343006329610944
+        },
+        {
+          "label": "ʎ",
+          "posterior": 0.0016183167463168502
+        }
+      ]
+    },
+    {
+      "token_id": 7,
+      "start_frame": 814,
+      "end_frame": 815,
+      "label": "ə",
+      "start": 16.28,
+      "end": 16.305,
+      "posterior": 0.2519012987613678,
+      "alternatives": [
+        {
+          "label": "ə",
+          "posterior": 0.2519012987613678
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.16627714037895203
+        },
+        {
+          "label": "e",
+          "posterior": 0.10970169305801392
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.10441705584526062
+        }
+      ]
+    },
+    {
+      "token_id": 13,
+      "start_frame": 820,
+      "end_frame": 822,
+      "label": "m",
+      "start": 16.4,
+      "end": 16.445,
+      "posterior": 0.8719164133071899,
+      "alternatives": [
+        {
+          "label": "m",
+          "posterior": 0.8719164133071899
+        },
+        {
+          "label": "n",
+          "posterior": 0.003022918477654457
+        },
+        {
+          "label": "b",
+          "posterior": 0.0006928303046151996
+        },
+        {
+          "label": "p",
+          "posterior": 0.0004380845930427313
+        }
+      ]
+    },
+    {
+      "token_id": 34,
+      "start_frame": 824,
+      "end_frame": 825,
+      "label": "u",
+      "start": 16.48,
+      "end": 16.505,
+      "posterior": 0.4247305393218994,
+      "alternatives": [
+        {
+          "label": "u",
+          "posterior": 0.4247305393218994
+        },
+        {
+          "label": "uː",
+          "posterior": 0.41674894094467163
+        },
+        {
+          "label": "ʊ",
+          "posterior": 0.03596753627061844
+        },
+        {
+          "label": "oː",
+          "posterior": 0.02561355009675026
+        }
+      ]
+    },
+    {
+      "token_id": 31,
+      "start_frame": 833,
+      "end_frame": 834,
+      "label": "r",
+      "start": 16.66,
+      "end": 16.685,
+      "posterior": 0.9596090912818909,
+      "alternatives": [
+        {
+          "label": "r",
+          "posterior": 0.9596090912818909
+        },
+        {
+          "label": "ɹ",
+          "posterior": 0.019105438143014908
+        },
+        {
+          "label": "ɾ",
+          "posterior": 0.008020082488656044
+        },
+        {
+          "label": "rʲ",
+          "posterior": 0.00127339584287256
+        }
+      ]
+    },
+    {
+      "token_id": 9,
+      "start_frame": 835,
+      "end_frame": 836,
+      "label": "a",
+      "start": 16.7,
+      "end": 16.725,
+      "posterior": 0.23130670189857483,
+      "alternatives": [
+        {
+          "label": "a",
+          "posterior": 0.23130670189857483
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.19140106439590454
+        },
+        {
+          "label": "e",
+          "posterior": 0.1050710454583168
+        },
+        {
+          "label": "ə",
+          "posterior": 0.07088939845561981
+        }
+      ]
+    },
+    {
+      "token_id": 6,
+      "start_frame": 844,
+      "end_frame": 845,
+      "label": "t",
+      "start": 16.88,
+      "end": 16.905,
+      "posterior": 0.8872589468955994,
+      "alternatives": [
+        {
+          "label": "t",
+          "posterior": 0.8872589468955994
+        },
+        {
+          "label": "tː",
+          "posterior": 0.025299696251749992
+        },
+        {
+          "label": "t[",
+          "posterior": 0.015879422426223755
+        },
+        {
+          "label": "d",
+          "posterior": 0.009405680932104588
+        }
+      ]
+    },
+    {
+      "token_id": 17,
+      "start_frame": 847,
+      "end_frame": 848,
+      "label": "ɪ",
+      "start": 16.94,
+      "end": 16.965,
+      "posterior": 0.2176339030265808,
+      "alternatives": [
+        {
+          "label": "ɪ",
+          "posterior": 0.2176339030265808
+        },
+        {
+          "label": "e",
+          "posterior": 0.1635473519563675
+        },
+        {
+          "label": "ə",
+          "posterior": 0.10391023755073547
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.08170957863330841
+        }
+      ]
+    },
+    {
+      "token_id": 9,
+      "start_frame": 876,
+      "end_frame": 877,
+      "label": "a",
+      "start": 17.52,
+      "end": 17.545,
+      "posterior": 0.4930005967617035,
+      "alternatives": [
+        {
+          "label": "a",
+          "posterior": 0.4930005967617035
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.3303993046283722
+        },
+        {
+          "label": "ɐ",
+          "posterior": 0.036801278591156006
+        },
+        {
+          "label": "ɑ",
+          "posterior": 0.03468278795480728
+        }
+      ]
+    },
+    {
+      "token_id": 12,
+      "start_frame": 882,
+      "end_frame": 883,
+      "label": "d",
+      "start": 17.64,
+      "end": 17.665,
+      "posterior": 0.7587948441505432,
+      "alternatives": [
+        {
+          "label": "d",
+          "posterior": 0.7587948441505432
+        },
+        {
+          "label": "ɟ",
+          "posterior": 0.028539516031742096
+        },
+        {
+          "label": "dʒ",
+          "posterior": 0.02683063969016075
+        },
+        {
+          "label": "d[",
+          "posterior": 0.02475765533745289
+        }
+      ]
+    },
+    {
+      "token_id": 24,
+      "start_frame": 884,
+      "end_frame": 885,
+      "label": "j",
+      "start": 17.68,
+      "end": 17.705,
+      "posterior": 0.6605935096740723,
+      "alternatives": [
+        {
+          "label": "j",
+          "posterior": 0.6605935096740723
+        },
+        {
+          "label": "i",
+          "posterior": 0.008369232527911663
+        },
+        {
+          "label": "iː",
+          "posterior": 0.002754722023382783
+        },
+        {
+          "label": "l",
+          "posterior": 0.0009634902235120535
+        }
+      ]
+    },
+    {
+      "token_id": 46,
+      "start_frame": 886,
+      "end_frame": 887,
+      "label": "uː",
+      "start": 17.72,
+      "end": 17.745,
+      "posterior": 0.5621634721755981,
+      "alternatives": [
+        {
+          "label": "uː",
+          "posterior": 0.5621634721755981
+        },
+        {
+          "label": "u",
+          "posterior": 0.3178587555885315
+        },
+        {
+          "label": "oː",
+          "posterior": 0.017500488087534904
+        },
+        {
+          "label": "ʊ",
+          "posterior": 0.015164444223046303
+        }
+      ]
+    },
+    {
+      "token_id": 4,
+      "start_frame": 895,
+      "end_frame": 896,
+      "label": "n",
+      "start": 17.9,
+      "end": 17.925,
+      "posterior": 0.990760862827301,
+      "alternatives": [
+        {
+          "label": "n",
+          "posterior": 0.990760862827301
+        },
+        {
+          "label": "m",
+          "posterior": 0.0017974241636693478
+        },
+        {
+          "label": "ŋ",
+          "posterior": 0.001056860783137381
+        },
+        {
+          "label": "ɲ",
+          "posterior": 0.0007359061855822802
+        }
+      ]
+    },
+    {
+      "token_id": 30,
+      "start_frame": 899,
+      "end_frame": 900,
+      "label": "iː",
+      "start": 17.98,
+      "end": 18.005,
+      "posterior": 0.4665793478488922,
+      "alternatives": [
+        {
+          "label": "iː",
+          "posterior": 0.4665793478488922
+        },
+        {
+          "label": "i",
+          "posterior": 0.38132917881011963
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.07356413453817368
+        },
+        {
+          "label": "eː",
+          "posterior": 0.008328557945787907
+        }
+      ]
+    },
+    {
+      "token_id": 5,
+      "start_frame": 910,
+      "end_frame": 911,
+      "label": "s",
+      "start": 18.2,
+      "end": 18.225,
+      "posterior": 0.9711540341377258,
+      "alternatives": [
+        {
+          "label": "s",
+          "posterior": 0.9711540341377258
+        },
+        {
+          "label": "z",
+          "posterior": 0.018360672518610954
+        },
+        {
+          "label": "ts",
+          "posterior": 0.0024239381309598684
+        },
+        {
+          "label": "ʃ",
+          "posterior": 0.0009261488448828459
+        }
+      ]
+    },
+    {
+      "token_id": 39,
+      "start_frame": 913,
+      "end_frame": 915,
+      "label": "h",
+      "start": 18.26,
+      "end": 18.305,
+      "posterior": 0.7112412452697754,
+      "alternatives": [
+        {
+          "label": "h",
+          "posterior": 0.7112412452697754
+        },
+        {
+          "label": "a",
+          "posterior": 0.0037423470057547092
+        },
+        {
+          "label": "x",
+          "posterior": 0.0022030938416719437
+        },
+        {
+          "label": "r",
+          "posterior": 0.0015227950643748045
+        }
+      ]
+    },
+    {
+      "token_id": 14,
+      "start_frame": 916,
+      "end_frame": 917,
+      "label": "ɛ",
+      "start": 18.32,
+      "end": 18.345,
+      "posterior": 0.4772123098373413,
+      "alternatives": [
+        {
+          "label": "ɛ",
+          "posterior": 0.4772123098373413
+        },
+        {
+          "label": "æ",
+          "posterior": 0.1488669067621231
+        },
+        {
+          "label": "eː",
+          "posterior": 0.10148655623197556
+        },
+        {
+          "label": "e",
+          "posterior": 0.07237077504396439
+        }
+      ]
+    },
+    {
+      "token_id": 13,
+      "start_frame": 932,
+      "end_frame": 933,
+      "label": "m",
+      "start": 18.64,
+      "end": 18.665,
+      "posterior": 0.8819626569747925,
+      "alternatives": [
+        {
+          "label": "m",
+          "posterior": 0.8819626569747925
+        },
+        {
+          "label": "b",
+          "posterior": 0.05817321315407753
+        },
+        {
+          "label": "p",
+          "posterior": 0.030896015465259552
+        },
+        {
+          "label": "v",
+          "posterior": 0.0029614653903990984
+        }
+      ]
+    },
+    {
+      "token_id": 9,
+      "start_frame": 935,
+      "end_frame": 936,
+      "label": "a",
+      "start": 18.7,
+      "end": 18.725,
+      "posterior": 0.44317004084587097,
+      "alternatives": [
+        {
+          "label": "a",
+          "posterior": 0.44317004084587097
+        },
+        {
+          "label": "ɑ",
+          "posterior": 0.3090759813785553
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.05371296405792236
+        },
+        {
+          "label": "aː",
+          "posterior": 0.0400412380695343
+        }
+      ]
+    },
+    {
+      "token_id": 42,
+      "start_frame": 945,
+      "end_frame": 947,
+      "label": "ŋ",
+      "start": 18.9,
+      "end": 18.945,
+      "posterior": 0.6403615474700928,
+      "alternatives": [
+        {
+          "label": "ŋ",
+          "posterior": 0.6403615474700928
+        },
+        {
+          "label": "n",
+          "posterior": 0.029269270598888397
+        },
+        {
+          "label": "m",
+          "posterior": 0.0024510654620826244
+        },
+        {
+          "label": "ɲ",
+          "posterior": 0.0021884404122829437
+        }
+      ]
+    },
+    {
+      "token_id": 35,
+      "start_frame": 969,
+      "end_frame": 970,
+      "label": "ɡ",
+      "start": 19.38,
+      "end": 19.405,
+      "posterior": 0.9542767405509949,
+      "alternatives": [
+        {
+          "label": "ɡ",
+          "posterior": 0.9542767405509949
+        },
+        {
+          "label": "k",
+          "posterior": 0.026630526408553123
+        },
+        {
+          "label": "b",
+          "posterior": 0.0017581494757905602
+        },
+        {
+          "label": "d",
+          "posterior": 0.0012794494396075606
+        }
+      ]
+    },
+    {
+      "token_id": 34,
+      "start_frame": 972,
+      "end_frame": 973,
+      "label": "u",
+      "start": 19.44,
+      "end": 19.465,
+      "posterior": 0.4432304799556732,
+      "alternatives": [
+        {
+          "label": "u",
+          "posterior": 0.4432304799556732
+        },
+        {
+          "label": "o",
+          "posterior": 0.2902211546897888
+        },
+        {
+          "label": "oː",
+          "posterior": 0.05860353261232376
+        },
+        {
+          "label": "ʊ",
+          "posterior": 0.05037103593349457
+        }
+      ]
+    },
+    {
+      "token_id": 31,
+      "start_frame": 976,
+      "end_frame": 977,
+      "label": "r",
+      "start": 19.52,
+      "end": 19.545,
+      "posterior": 0.9820442795753479,
+      "alternatives": [
+        {
+          "label": "r",
+          "posterior": 0.9820442795753479
+        },
+        {
+          "label": "ɹ",
+          "posterior": 0.004506817553192377
+        },
+        {
+          "label": "ɾ",
+          "posterior": 0.004006411414593458
+        },
+        {
+          "label": "d",
+          "posterior": 0.000896287674549967
+        }
+      ]
+    },
+    {
+      "token_id": 18,
+      "start_frame": 984,
+      "end_frame": 985,
+      "label": "p",
+      "start": 19.68,
+      "end": 19.705,
+      "posterior": 0.9678366780281067,
+      "alternatives": [
+        {
+          "label": "p",
+          "posterior": 0.9678366780281067
+        },
+        {
+          "label": "b",
+          "posterior": 0.018347185105085373
+        },
+        {
+          "label": "t",
+          "posterior": 0.0018313053296878934
+        },
+        {
+          "label": "k",
+          "posterior": 0.0013636329676955938
+        }
+      ]
+    },
+    {
+      "token_id": 31,
+      "start_frame": 987,
+      "end_frame": 988,
+      "label": "r",
+      "start": 19.74,
+      "end": 19.765,
+      "posterior": 0.9589970707893372,
+      "alternatives": [
+        {
+          "label": "r",
+          "posterior": 0.9589970707893372
+        },
+        {
+          "label": "ɹ",
+          "posterior": 0.011837121099233627
+        },
+        {
+          "label": "ɾ",
+          "posterior": 0.011443056166172028
+        },
+        {
+          "label": "d",
+          "posterior": 0.0015449952334165573
+        }
+      ]
+    },
+    {
+      "token_id": 33,
+      "start_frame": 988,
+      "end_frame": 989,
+      "label": "ʌ",
+      "start": 19.76,
+      "end": 19.785,
+      "posterior": 0.24789071083068848,
+      "alternatives": [
+        {
+          "label": "ʌ",
+          "posterior": 0.24789071083068848
+        },
+        {
+          "label": "a",
+          "posterior": 0.2016366720199585
+        },
+        {
+          "label": "e",
+          "posterior": 0.18643765151500702
+        },
+        {
+          "label": "ɛ",
+          "posterior": 0.09322366863489151
+        }
+      ]
+    },
+    {
+      "token_id": 5,
+      "start_frame": 994,
+      "end_frame": 995,
+      "label": "s",
+      "start": 19.88,
+      "end": 19.905,
+      "posterior": 0.9773437976837158,
+      "alternatives": [
+        {
+          "label": "s",
+          "posterior": 0.9773437976837158
+        },
+        {
+          "label": "z",
+          "posterior": 0.004152587614953518
+        },
+        {
+          "label": "ts",
+          "posterior": 0.003920162562280893
+        },
+        {
+          "label": "ʃ",
+          "posterior": 0.0024356446228921413
+        }
+      ]
+    },
+    {
+      "token_id": 59,
+      "start_frame": 1000,
+      "end_frame": 1001,
+      "label": "ɑ",
+      "start": 20.0,
+      "end": 20.025,
+      "posterior": 0.36106622219085693,
+      "alternatives": [
+        {
+          "label": "ɑ",
+          "posterior": 0.36106622219085693
+        },
+        {
+          "label": "aː",
+          "posterior": 0.24966536462306976
+        },
+        {
+          "label": "a",
+          "posterior": 0.13477545976638794
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.10665500909090042
+        }
+      ]
+    },
+    {
+      "token_id": 12,
+      "start_frame": 1021,
+      "end_frame": 1022,
+      "label": "d",
+      "start": 20.42,
+      "end": 20.445,
+      "posterior": 0.872000515460968,
+      "alternatives": [
+        {
+          "label": "d",
+          "posterior": 0.872000515460968
+        },
+        {
+          "label": "l",
+          "posterior": 0.034729473292827606
+        },
+        {
+          "label": "d[",
+          "posterior": 0.008058654144406319
+        },
+        {
+          "label": "t",
+          "posterior": 0.005298812408000231
+        }
+      ]
+    },
+    {
+      "token_id": 16,
+      "start_frame": 1024,
+      "end_frame": 1025,
+      "label": "e",
+      "start": 20.48,
+      "end": 20.505,
+      "posterior": 0.2926549017429352,
+      "alternatives": [
+        {
+          "label": "e",
+          "posterior": 0.2926549017429352
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.23212909698486328
+        },
+        {
+          "label": "i",
+          "posterior": 0.19298182427883148
+        },
+        {
+          "label": "eː",
+          "posterior": 0.05402960628271103
+        }
+      ]
+    },
+    {
+      "token_id": 60,
+      "start_frame": 1050,
+      "end_frame": 1051,
+      "label": "dʒ",
+      "start": 21.0,
+      "end": 21.025,
+      "posterior": 0.8246251940727234,
+      "alternatives": [
+        {
+          "label": "dʒ",
+          "posterior": 0.8246251940727234
+        },
+        {
+          "label": "ɟ",
+          "posterior": 0.012695174664258957
+        },
+        {
+          "label": "ʒ",
+          "posterior": 0.012123852036893368
+        },
+        {
+          "label": "tʃ",
+          "posterior": 0.010663166642189026
+        }
+      ]
+    },
+    {
+      "token_id": 73,
+      "start_frame": 1054,
+      "end_frame": 1055,
+      "label": "aː",
+      "start": 21.08,
+      "end": 21.105,
+      "posterior": 0.3965892195701599,
+      "alternatives": [
+        {
+          "label": "aː",
+          "posterior": 0.3965892195701599
+        },
+        {
+          "label": "ɑ",
+          "posterior": 0.20883232355117798
+        },
+        {
+          "label": "a",
+          "posterior": 0.20191001892089844
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.0786428153514862
+        }
+      ]
+    },
+    {
+      "token_id": 18,
+      "start_frame": 1065,
+      "end_frame": 1066,
+      "label": "p",
+      "start": 21.3,
+      "end": 21.325,
+      "posterior": 0.7864667773246765,
+      "alternatives": [
+        {
+          "label": "p",
+          "posterior": 0.7864667773246765
+        },
+        {
+          "label": "b",
+          "posterior": 0.17300833761692047
+        },
+        {
+          "label": "pʲ",
+          "posterior": 0.0029982721898704767
+        },
+        {
+          "label": "k",
+          "posterior": 0.002517129061743617
+        }
+      ]
+    },
+    {
+      "token_id": 7,
+      "start_frame": 1068,
+      "end_frame": 1069,
+      "label": "ə",
+      "start": 21.36,
+      "end": 21.385,
+      "posterior": 0.32825249433517456,
+      "alternatives": [
+        {
+          "label": "ə",
+          "posterior": 0.32825249433517456
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.20642367005348206
+        },
+        {
+          "label": "ɯ",
+          "posterior": 0.056597355753183365
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.03925009071826935
+        }
+      ]
+    },
+    {
+      "token_id": 73,
+      "start_frame": 1130,
+      "end_frame": 1131,
+      "label": "aː",
+      "start": 22.6,
+      "end": 22.625,
+      "posterior": 0.30672338604927063,
+      "alternatives": [
+        {
+          "label": "aː",
+          "posterior": 0.30672338604927063
+        },
+        {
+          "label": "ɑ",
+          "posterior": 0.19352293014526367
+        },
+        {
+          "label": "a",
+          "posterior": 0.15741828083992004
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.12608885765075684
+        }
+      ]
+    },
+    {
+      "token_id": 12,
+      "start_frame": 1147,
+      "end_frame": 1148,
+      "label": "d",
+      "start": 22.94,
+      "end": 22.965,
+      "posterior": 0.9239549040794373,
+      "alternatives": [
+        {
+          "label": "d",
+          "posterior": 0.9239549040794373
+        },
+        {
+          "label": "d[",
+          "posterior": 0.009035797789692879
+        },
+        {
+          "label": "t",
+          "posterior": 0.008165008388459682
+        },
+        {
+          "label": "ð",
+          "posterior": 0.0033021909184753895
+        }
+      ]
+    },
+    {
+      "token_id": 17,
+      "start_frame": 1149,
+      "end_frame": 1150,
+      "label": "ɪ",
+      "start": 22.98,
+      "end": 23.005,
+      "posterior": 0.18525256216526031,
+      "alternatives": [
+        {
+          "label": "ɪ",
+          "posterior": 0.18525256216526031
+        },
+        {
+          "label": "y",
+          "posterior": 0.10372444987297058
+        },
+        {
+          "label": "e",
+          "posterior": 0.08202118426561356
+        },
+        {
+          "label": "i",
+          "posterior": 0.06316520273685455
+        }
+      ]
+    },
+    {
+      "token_id": 5,
+      "start_frame": 1156,
+      "end_frame": 1157,
+      "label": "s",
+      "start": 23.12,
+      "end": 23.145,
+      "posterior": 0.9801028966903687,
+      "alternatives": [
+        {
+          "label": "s",
+          "posterior": 0.9801028966903687
+        },
+        {
+          "label": "z",
+          "posterior": 0.004758813884109259
+        },
+        {
+          "label": "ʃ",
+          "posterior": 0.003186628920957446
+        },
+        {
+          "label": "ts",
+          "posterior": 0.0027199683245271444
+        }
+      ]
+    },
+    {
+      "token_id": 59,
+      "start_frame": 1161,
+      "end_frame": 1162,
+      "label": "ɑ",
+      "start": 23.22,
+      "end": 23.245,
+      "posterior": 0.7221527695655823,
+      "alternatives": [
+        {
+          "label": "ɑ",
+          "posterior": 0.7221527695655823
+        },
+        {
+          "label": "a",
+          "posterior": 0.08198466151952744
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.04399670660495758
+        },
+        {
+          "label": "ɔ",
+          "posterior": 0.037759531289339066
+        }
+      ]
+    },
+    {
+      "token_id": 60,
+      "start_frame": 1177,
+      "end_frame": 1178,
+      "label": "dʒ",
+      "start": 23.54,
+      "end": 23.565,
+      "posterior": 0.39352545142173767,
+      "alternatives": [
+        {
+          "label": "dʒ",
+          "posterior": 0.39352545142173767
+        },
+        {
+          "label": "tʃ",
+          "posterior": 0.2647228240966797
+        },
+        {
+          "label": "tɕ",
+          "posterior": 0.011785300448536873
+        },
+        {
+          "label": "j",
+          "posterior": 0.009851571172475815
+        }
+      ]
+    },
+    {
+      "token_id": 7,
+      "start_frame": 1180,
+      "end_frame": 1181,
+      "label": "ə",
+      "start": 23.6,
+      "end": 23.625,
+      "posterior": 0.3206367492675781,
+      "alternatives": [
+        {
+          "label": "ə",
+          "posterior": 0.3206367492675781
+        },
+        {
+          "label": "e",
+          "posterior": 0.09557927399873734
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.06995418667793274
+        },
+        {
+          "label": "ø",
+          "posterior": 0.05046727508306503
+        }
+      ]
+    },
+    {
+      "token_id": 60,
+      "start_frame": 1211,
+      "end_frame": 1212,
+      "label": "dʒ",
+      "start": 24.22,
+      "end": 24.245,
+      "posterior": 0.6294638514518738,
+      "alternatives": [
+        {
+          "label": "dʒ",
+          "posterior": 0.6294638514518738
+        },
+        {
+          "label": "ɟ",
+          "posterior": 0.051752712577581406
+        },
+        {
+          "label": "d",
+          "posterior": 0.030997274443507195
+        },
+        {
+          "label": "dʲ",
+          "posterior": 0.020189132541418076
+        }
+      ]
+    },
+    {
+      "token_id": 34,
+      "start_frame": 1214,
+      "end_frame": 1215,
+      "label": "u",
+      "start": 24.28,
+      "end": 24.305,
+      "posterior": 0.6678136587142944,
+      "alternatives": [
+        {
+          "label": "u",
+          "posterior": 0.6678136587142944
+        },
+        {
+          "label": "uː",
+          "posterior": 0.17130626738071442
+        },
+        {
+          "label": "ʊ",
+          "posterior": 0.04645088315010071
+        },
+        {
+          "label": "o",
+          "posterior": 0.0243582371622324
+        }
+      ]
+    },
+    {
+      "token_id": 35,
+      "start_frame": 1220,
+      "end_frame": 1221,
+      "label": "ɡ",
+      "start": 24.4,
+      "end": 24.425,
+      "posterior": 0.9555999636650085,
+      "alternatives": [
+        {
+          "label": "ɡ",
+          "posterior": 0.9555999636650085
+        },
+        {
+          "label": "k",
+          "posterior": 0.019201161339879036
+        },
+        {
+          "label": "d",
+          "posterior": 0.0016961577348411083
+        },
+        {
+          "label": "b",
+          "posterior": 0.0015580590115860105
+        }
+      ]
+    },
+    {
+      "token_id": 73,
+      "start_frame": 1224,
+      "end_frame": 1225,
+      "label": "aː",
+      "start": 24.48,
+      "end": 24.505,
+      "posterior": 0.3040643334388733,
+      "alternatives": [
+        {
+          "label": "aː",
+          "posterior": 0.3040643334388733
+        },
+        {
+          "label": "ɑ",
+          "posterior": 0.2910959720611572
+        },
+        {
+          "label": "a",
+          "posterior": 0.21889489889144897
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.07320259511470795
+        }
+      ]
+    },
+    {
+      "token_id": 12,
+      "start_frame": 1237,
+      "end_frame": 1239,
+      "label": "d",
+      "start": 24.74,
+      "end": 24.785,
+      "posterior": 0.8155195116996765,
+      "alternatives": [
+        {
+          "label": "d",
+          "posterior": 0.8155195116996765
+        },
+        {
+          "label": "t",
+          "posterior": 0.0071707721799612045
+        },
+        {
+          "label": "l",
+          "posterior": 0.0036921468563377857
+        },
+        {
+          "label": "d[",
+          "posterior": 0.0027116311248391867
+        }
+      ]
+    },
+    {
+      "token_id": 7,
+      "start_frame": 1240,
+      "end_frame": 1241,
+      "label": "ə",
+      "start": 24.8,
+      "end": 24.825,
+      "posterior": 0.28103992342948914,
+      "alternatives": [
+        {
+          "label": "ə",
+          "posterior": 0.28103992342948914
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.13077612221240997
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.11144082248210907
+        },
+        {
+          "label": "e",
+          "posterior": 0.08698608726263046
+        }
+      ]
+    },
+    {
+      "token_id": 5,
+      "start_frame": 1247,
+      "end_frame": 1248,
+      "label": "s",
+      "start": 24.94,
+      "end": 24.965,
+      "posterior": 0.9789538979530334,
+      "alternatives": [
+        {
+          "label": "s",
+          "posterior": 0.9789538979530334
+        },
+        {
+          "label": "ts",
+          "posterior": 0.0038870710413903
+        },
+        {
+          "label": "z",
+          "posterior": 0.002996091265231371
+        },
+        {
+          "label": "ʃ",
+          "posterior": 0.0018885958706960082
+        }
+      ]
+    },
+    {
+      "token_id": 9,
+      "start_frame": 1251,
+      "end_frame": 1252,
+      "label": "a",
+      "start": 25.02,
+      "end": 25.045,
+      "posterior": 0.3987341821193695,
+      "alternatives": [
+        {
+          "label": "a",
+          "posterior": 0.3987341821193695
+        },
+        {
+          "label": "ɑ",
+          "posterior": 0.3555185794830322
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.05767048895359039
+        },
+        {
+          "label": "aː",
+          "posterior": 0.04612578824162483
+        }
+      ]
+    },
+    {
+      "token_id": 66,
+      "start_frame": 1265,
+      "end_frame": 1266,
+      "label": "tʃ",
+      "start": 25.3,
+      "end": 25.325,
+      "posterior": 0.32219329476356506,
+      "alternatives": [
+        {
+          "label": "tʃ",
+          "posterior": 0.32219329476356506
+        },
+        {
+          "label": "dʒ",
+          "posterior": 0.18069924414157867
+        },
+        {
+          "label": "t[",
+          "posterior": 0.02978845313191414
+        },
+        {
+          "label": "tɕ",
+          "posterior": 0.023748818784952164
+        }
+      ]
+    },
+    {
+      "token_id": 7,
+      "start_frame": 1269,
+      "end_frame": 1270,
+      "label": "ə",
+      "start": 25.38,
+      "end": 25.405,
+      "posterior": 0.2956900894641876,
+      "alternatives": [
+        {
+          "label": "ə",
+          "posterior": 0.2956900894641876
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.07647570222616196
+        },
+        {
+          "label": "ø",
+          "posterior": 0.055071208626031876
+        },
+        {
+          "label": "ɯ",
+          "posterior": 0.048175111413002014
+        }
+      ]
+    },
+    {
+      "token_id": 39,
+      "start_frame": 1293,
+      "end_frame": 1295,
+      "label": "h",
+      "start": 25.86,
+      "end": 25.905,
+      "posterior": 0.8835598230361938,
+      "alternatives": [
+        {
+          "label": "h",
+          "posterior": 0.8835598230361938
+        },
+        {
+          "label": "x",
+          "posterior": 0.002458475064486265
+        },
+        {
+          "label": "r",
+          "posterior": 0.001600493909791112
+        },
+        {
+          "label": "a",
+          "posterior": 0.0014673800906166434
+        }
+      ]
+    },
+    {
+      "token_id": 18,
+      "start_frame": 1320,
+      "end_frame": 1321,
+      "label": "p",
+      "start": 26.4,
+      "end": 26.425,
+      "posterior": 0.8768083453178406,
+      "alternatives": [
+        {
+          "label": "p",
+          "posterior": 0.8768083453178406
+        },
+        {
+          "label": "b",
+          "posterior": 0.09148448705673218
+        },
+        {
+          "label": "t",
+          "posterior": 0.002159450901672244
+        },
+        {
+          "label": "k",
+          "posterior": 0.0017798056360334158
+        }
+      ]
+    },
+    {
+      "token_id": 10,
+      "start_frame": 1323,
+      "end_frame": 1324,
+      "label": "i",
+      "start": 26.46,
+      "end": 26.485,
+      "posterior": 0.5108057856559753,
+      "alternatives": [
+        {
+          "label": "i",
+          "posterior": 0.5108057856559753
+        },
+        {
+          "label": "iː",
+          "posterior": 0.41577455401420593
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.026193952187895775
+        },
+        {
+          "label": "eː",
+          "posterior": 0.003941706847399473
+        }
+      ]
+    },
+    {
+      "token_id": 5,
+      "start_frame": 1342,
+      "end_frame": 1343,
+      "label": "s",
+      "start": 26.84,
+      "end": 26.865,
+      "posterior": 0.9800514578819275,
+      "alternatives": [
+        {
+          "label": "s",
+          "posterior": 0.9800514578819275
+        },
+        {
+          "label": "z",
+          "posterior": 0.006478371564298868
+        },
+        {
+          "label": "ts",
+          "posterior": 0.0035555160138756037
+        },
+        {
+          "label": "θ",
+          "posterior": 0.001079280162230134
+        }
+      ]
+    },
+    {
+      "token_id": 59,
+      "start_frame": 1347,
+      "end_frame": 1348,
+      "label": "ɑ",
+      "start": 26.94,
+      "end": 26.965,
+      "posterior": 0.4852953255176544,
+      "alternatives": [
+        {
+          "label": "ɑ",
+          "posterior": 0.4852953255176544
+        },
+        {
+          "label": "a",
+          "posterior": 0.19921807944774628
+        },
+        {
+          "label": "aː",
+          "posterior": 0.08557528257369995
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.08194952458143234
+        }
+      ]
+    },
+    {
+      "token_id": 66,
+      "start_frame": 1361,
+      "end_frame": 1362,
+      "label": "tʃ",
+      "start": 27.22,
+      "end": 27.245,
+      "posterior": 0.2791721820831299,
+      "alternatives": [
+        {
+          "label": "tʃ",
+          "posterior": 0.2791721820831299
+        },
+        {
+          "label": "dʒ",
+          "posterior": 0.25065866112709045
+        },
+        {
+          "label": "tɕ",
+          "posterior": 0.026176903396844864
+        },
+        {
+          "label": "t[",
+          "posterior": 0.022265033796429634
+        }
+      ]
+    },
+    {
+      "token_id": 7,
+      "start_frame": 1365,
+      "end_frame": 1366,
+      "label": "ə",
+      "start": 27.3,
+      "end": 27.325,
+      "posterior": 0.40131649374961853,
+      "alternatives": [
+        {
+          "label": "ə",
+          "posterior": 0.40131649374961853
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.07329504936933517
+        },
+        {
+          "label": "ɛ",
+          "posterior": 0.05193493142724037
+        },
+        {
+          "label": "ɯ",
+          "posterior": 0.03489261120557785
+        }
+      ]
+    },
+    {
+      "token_id": 4,
+      "start_frame": 1389,
+      "end_frame": 1391,
+      "label": "n",
+      "start": 27.78,
+      "end": 27.825,
+      "posterior": 0.9585950374603271,
+      "alternatives": [
+        {
+          "label": "n",
+          "posterior": 0.9585950374603271
+        },
+        {
+          "label": "m",
+          "posterior": 0.0010531011503189802
+        },
+        {
+          "label": "ŋ",
+          "posterior": 0.0005222631734795868
+        },
+        {
+          "label": "l",
+          "posterior": 0.0004189601168036461
+        }
+      ]
+    },
+    {
+      "token_id": 73,
+      "start_frame": 1393,
+      "end_frame": 1394,
+      "label": "aː",
+      "start": 27.86,
+      "end": 27.885,
+      "posterior": 0.35842451453208923,
+      "alternatives": [
+        {
+          "label": "aː",
+          "posterior": 0.35842451453208923
+        },
+        {
+          "label": "a",
+          "posterior": 0.19175350666046143
+        },
+        {
+          "label": "ɑ",
+          "posterior": 0.15823829174041748
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.12591120600700378
+        }
+      ]
+    },
+    {
+      "token_id": 4,
+      "start_frame": 1404,
+      "end_frame": 1405,
+      "label": "n",
+      "start": 28.08,
+      "end": 28.105,
+      "posterior": 0.9903130531311035,
+      "alternatives": [
+        {
+          "label": "n",
+          "posterior": 0.9903130531311035
+        },
+        {
+          "label": "m",
+          "posterior": 0.002018569502979517
+        },
+        {
+          "label": "ŋ",
+          "posterior": 0.0012608356773853302
+        },
+        {
+          "label": "l",
+          "posterior": 0.0005247470689937472
+        }
+      ]
+    },
+    {
+      "token_id": 33,
+      "start_frame": 1407,
+      "end_frame": 1408,
+      "label": "ʌ",
+      "start": 28.14,
+      "end": 28.165,
+      "posterior": 0.2847883105278015,
+      "alternatives": [
+        {
+          "label": "ʌ",
+          "posterior": 0.2847883105278015
+        },
+        {
+          "label": "ə",
+          "posterior": 0.2368967980146408
+        },
+        {
+          "label": "ɯ",
+          "posterior": 0.06050059199333191
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.05075296014547348
+        }
+      ]
+    },
+    {
+      "token_id": 11,
+      "start_frame": 1414,
+      "end_frame": 1416,
+      "label": "k",
+      "start": 28.28,
+      "end": 28.325,
+      "posterior": 0.9543285369873047,
+      "alternatives": [
+        {
+          "label": "k",
+          "posterior": 0.9543285369873047
+        },
+        {
+          "label": "ɡ",
+          "posterior": 0.007630295120179653
+        },
+        {
+          "label": "p",
+          "posterior": 0.0008049039752222598
+        },
+        {
+          "label": "t",
+          "posterior": 0.0007930059218779206
+        }
+      ]
+    },
+    {
+      "token_id": 7,
+      "start_frame": 1418,
+      "end_frame": 1419,
+      "label": "ə",
+      "start": 28.36,
+      "end": 28.385,
+      "posterior": 0.6113929748535156,
+      "alternatives": [
+        {
+          "label": "ə",
+          "posterior": 0.6113929748535156
+        },
+        {
+          "label": "ʌ",
+          "posterior": 0.05492931231856346
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.0320901982486248
+        },
+        {
+          "label": "ɯ",
+          "posterior": 0.022573379799723625
+        }
+      ]
+    },
+    {
+      "token_id": 39,
+      "start_frame": 1440,
+      "end_frame": 1442,
+      "label": "h",
+      "start": 28.8,
+      "end": 28.845,
+      "posterior": 0.8578452467918396,
+      "alternatives": [
+        {
+          "label": "h",
+          "posterior": 0.8578452467918396
+        },
+        {
+          "label": "x",
+          "posterior": 0.005496665835380554
+        },
+        {
+          "label": "r",
+          "posterior": 0.0018206092063337564
+        },
+        {
+          "label": "ʁ",
+          "posterior": 0.0012473694514483213
+        }
+      ]
+    },
+    {
+      "token_id": 34,
+      "start_frame": 1444,
+      "end_frame": 1445,
+      "label": "u",
+      "start": 28.88,
+      "end": 28.905,
+      "posterior": 0.28528645634651184,
+      "alternatives": [
+        {
+          "label": "u",
+          "posterior": 0.28528645634651184
+        },
+        {
+          "label": "o",
+          "posterior": 0.2481297254562378
+        },
+        {
+          "label": "oː",
+          "posterior": 0.10389715433120728
+        },
+        {
+          "label": "uː",
+          "posterior": 0.07249044626951218
+        }
+      ]
+    },
+    {
+      "token_id": 5,
+      "start_frame": 1454,
+      "end_frame": 1455,
+      "label": "s",
+      "start": 29.08,
+      "end": 29.105,
+      "posterior": 0.9249855279922485,
+      "alternatives": [
+        {
+          "label": "s",
+          "posterior": 0.9249855279922485
+        },
+        {
+          "label": "z",
+          "posterior": 0.04794091358780861
+        },
+        {
+          "label": "ts",
+          "posterior": 0.009881313890218735
+        },
+        {
+          "label": "θ",
+          "posterior": 0.0016378997825086117
+        }
+      ]
+    },
+    {
+      "token_id": 10,
+      "start_frame": 1457,
+      "end_frame": 1458,
+      "label": "i",
+      "start": 29.14,
+      "end": 29.165,
+      "posterior": 0.6370274424552917,
+      "alternatives": [
+        {
+          "label": "i",
+          "posterior": 0.6370274424552917
+        },
+        {
+          "label": "iː",
+          "posterior": 0.17224043607711792
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.0742543563246727
+        },
+        {
+          "label": "e",
+          "posterior": 0.020865842700004578
+        }
+      ]
+    },
+    {
+      "token_id": 18,
+      "start_frame": 1470,
+      "end_frame": 1471,
+      "label": "p",
+      "start": 29.4,
+      "end": 29.425,
+      "posterior": 0.9103419184684753,
+      "alternatives": [
+        {
+          "label": "p",
+          "posterior": 0.9103419184684753
+        },
+        {
+          "label": "b",
+          "posterior": 0.053212542086839676
+        },
+        {
+          "label": "pʲ",
+          "posterior": 0.004857110790908337
+        },
+        {
+          "label": "k",
+          "posterior": 0.001834541792050004
+        }
+      ]
+    },
+    {
+      "token_id": 10,
+      "start_frame": 1472,
+      "end_frame": 1473,
+      "label": "i",
+      "start": 29.44,
+      "end": 29.465,
+      "posterior": 0.4477207660675049,
+      "alternatives": [
+        {
+          "label": "i",
+          "posterior": 0.4477207660675049
+        },
+        {
+          "label": "iː",
+          "posterior": 0.23879168927669525
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.017401132732629776
+        },
+        {
+          "label": "j",
+          "posterior": 0.009685142897069454
+        }
+      ]
+    },
+    {
+      "token_id": 5,
+      "start_frame": 1487,
+      "end_frame": 1488,
+      "label": "s",
+      "start": 29.74,
+      "end": 29.765,
+      "posterior": 0.9825267195701599,
+      "alternatives": [
+        {
+          "label": "s",
+          "posterior": 0.9825267195701599
+        },
+        {
+          "label": "ts",
+          "posterior": 0.004007515963166952
+        },
+        {
+          "label": "z",
+          "posterior": 0.0024557311553508043
+        },
+        {
+          "label": "θ",
+          "posterior": 0.0016600864473730326
+        }
+      ]
+    },
+    {
+      "token_id": 59,
+      "start_frame": 1491,
+      "end_frame": 1492,
+      "label": "ɑ",
+      "start": 29.82,
+      "end": 29.845,
+      "posterior": 0.5342501401901245,
+      "alternatives": [
+        {
+          "label": "ɑ",
+          "posterior": 0.5342501401901245
+        },
+        {
+          "label": "a",
+          "posterior": 0.17977285385131836
+        },
+        {
+          "label": "ɑː",
+          "posterior": 0.07710892707109451
+        },
+        {
+          "label": "aː",
+          "posterior": 0.04147375747561455
+        }
+      ]
+    },
+    {
+      "token_id": 60,
+      "start_frame": 1502,
+      "end_frame": 1503,
+      "label": "dʒ",
+      "start": 30.04,
+      "end": 30.065,
+      "posterior": 0.45315781235694885,
+      "alternatives": [
+        {
+          "label": "dʒ",
+          "posterior": 0.45315781235694885
+        },
+        {
+          "label": "tʃ",
+          "posterior": 0.18482543528079987
+        },
+        {
+          "label": "ɟ",
+          "posterior": 0.016806380823254585
+        },
+        {
+          "label": "tɕ",
+          "posterior": 0.016106314957141876
+        }
+      ]
+    },
+    {
+      "token_id": 7,
+      "start_frame": 1505,
+      "end_frame": 1506,
+      "label": "ə",
+      "start": 30.1,
+      "end": 30.125,
+      "posterior": 0.3428334891796112,
+      "alternatives": [
+        {
+          "label": "ə",
+          "posterior": 0.3428334891796112
+        },
+        {
+          "label": "ɪ",
+          "posterior": 0.06658120453357697
+        },
+        {
+          "label": "e",
+          "posterior": 0.059179678559303284
+        },
+        {
+          "label": "ɯ",
+          "posterior": 0.05564031004905701
+        }
+      ]
+    }
+  ]
+}
