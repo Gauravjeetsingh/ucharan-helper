@@ -57,6 +57,10 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_header('Content-Length', '0')
             self.end_headers()
             return
+        if path.startswith('/data/lessons/'):
+            from .learn.screens_api import serve_lesson_file
+            return serve_lesson_file(self, path, head)
+
         if path == '/api/status':
             return self.reply(200, dict(local_only=True, stores_student_audio=False,
                 timestamp_model_present=all((ROOT/'models/timestamps'/f).is_file() for f in ['model.int8.onnx', 'tokenizer.model']),
@@ -77,6 +81,10 @@ class Handler(SimpleHTTPRequestHandler):
         self.get(True)
 
     def do_POST(self):
+        if self.path == '/api/learn/screens/compare':
+            from .learn.screens_api import post
+            return post(self, MODEL_LOCK, MODELS)
+
         if not self.local_request():
             return self.reply(403, {'error': 'Local same-origin requests only.'})
         if self.path not in {'/api/timestamps/generate', '/api/learn/analyze'}:

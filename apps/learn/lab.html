@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Learn lab · Uchaaran</title>
+  <link rel="stylesheet" href="/apps/learn/style.css">
+  <script type="module" src="/apps/learn/app.js"></script>
+  <script type="module" src="/apps/learn/practice.js"></script>
+<link rel="stylesheet" href="/apps/shared/app.css"><script type="module" src="/apps/shared/nav.js"></script></head>
+<body>
+  <header><div class="brand">ੴ <span>UCHAARAN / REFERENCE LAB</span></div><span class="tag">HACKATHON MVP</span></header>
+  <main>
+    <section class="intro"><div class="eyebrow">OLDER TOOLS · <a href="/learn">← back to practice</a></div><h1>Learn lab.</h1><p>One ustaad recording, one phrase at a time. Acoustic sound labels and comparisons are experimental and have not been human-verified.</p></section>
+    <section class="practice recording" aria-label="Phrase practice">
+      <div class="eyebrow">PHRASE PRACTICE · SINGLE RECORDING</div>
+      <label>Choose a short phrase<select id="phrase"></select></label>
+      <h2 id="phrase-text" lang="pa"></h2>
+      <div class="play-actions"><button id="listen-phrase" class="primary">▶ Listen to ustaad</button><button id="listen-phrase-context">Hear context</button><button id="stop-practice">■ Stop</button></div>
+      <p class="hint">Your recording stays in memory in this tab. “Compare locally” sends it only to the analysis server on this computer; it is not saved there. No cloud upload or automatic recording. A parent can choose whether to download a child's recording for review.</p>
+      <div class="play-actions"><button id="record-student">● Record phrase</button><button id="stop-record" disabled>Stop recording</button><label class="import">Choose audio file<input id="student-file" type="file" accept="audio/*"></label><button id="compare" class="primary" disabled>Compare locally</button><button id="retry" disabled>Retry / discard</button></div>
+      <p id="practice-status" role="status">Loading audio-derived draft…</p>
+      <audio id="student-audio" controls hidden></audio>
+      <div class="play-actions"><button id="download-student" disabled>Download this attempt</button><button id="download-result" disabled>Download evidence JSON</button></div>
+      <div id="practice-results" aria-live="polite"></div>
+    </section>
+    <details class="recording" id="sound-review"><summary>Review the audio-derived reference sounds</summary>
+      <p>Listen before correcting. The ustaad recording is the teaching standard. Extracted labels remain unchanged; your corrections and ordinary-language notes save separately in this browser. No IPA knowledge is required. Notes may describe an example, replay location, or what to hear.</p>
+      <p class="hint">Use space-separated model labels for optional corrections. Unsupported sounds belong in notes and need a better recognizer; no generic Punjabi sound is substituted. “Reviewed” records your listening check, not expert validation of the model.</p>
+      <div id="sound-review-words"></div>
+      <div class="play-actions"><button id="export-sounds">Download sound review</button><label class="import">Import sound review<input id="import-sounds" type="file" accept="application/json,.json"></label></div>
+      <p id="sound-status" role="status"></p><details><summary>Model inventory and limitations</summary><pre id="inventory-audit"></pre></details>
+    </details>
+    <details class="recording" id="human-evaluation"><summary>Ustaad rating worksheet · no ratings collected yet</summary>
+      <p>Listen to the whole attempt and both word segments. Rate independently before opening model evidence. Use a pseudonymous speaker code; keep calibration and evaluation speakers separate.</p>
+      <div class="evaluation-fields"><label>Speaker code<input id="eval-speaker" maxlength="80"></label><label>Split<select id="eval-split"><option value="evaluation">Held-out evaluation</option><option value="calibration">Calibration</option></select></label><label>Attempt type<select id="eval-type"><option>Natural attempt</option><option>Correct at comfortable pace</option><option>Correct slower</option><option>Correct faster</option><option>Deliberate substitution</option><option>Deliberate deletion</option><option>Deliberate insertion</option><option>Deliberate vowel-length change</option></select></label></div>
+      <div id="rating-words"></div>
+      <p class="hint">Use “unable to judge” for noise, uncertain sound labels, or missing context. Record intended mistakes separately from heard mistakes. Blank ratings are not annotations. Downloading is an explicit choice; no ratings are submitted anywhere.</p>
+      <button id="export-ratings">Download rating worksheet JSON</button><p id="rating-status" role="status"></p>
+    </details>
+    <h2 class="timing-heading">Word timing review</h2>
+    <div class="toolbar"><span id="summary">Loading reference…</span><div><a href="/data/reference/word-timings.json" target="_blank">Source JSON ↗</a><button id="export">Download review JSON</button><label class="import">Import review<input id="import" type="file" accept="application/json,.json"></label></div></div>
+    <p id="notice" class="notice" role="status"></p>
+    <div class="workspace">
+      <section class="verses" aria-label="Authoritative BaniDB verses"><div class="section-title">BaniDB · Shabad 1 <a href="/data/reference/banidb-shabad-1.json" target="_blank">Source response ↗</a></div><div id="verses"></div><div class="legend"><span>● Selected</span><span>○ Needs review</span><span class="absent">◌ Outside / unconfirmed</span></div></section>
+      <aside class="editor" aria-label="Word timing editor"><div class="eyebrow">SELECTED OCCURRENCE</div><h2 id="selected" lang="pa">—</h2><p id="identity"></p><p id="word-note"></p>
+        <div class="bounds"><label>Start · seconds<input id="start" type="number" min="0" step="0.01"></label><label>End · seconds<input id="end" type="number" min="0" step="0.01"></label></div>
+        <div class="nudges"><button data-nudge="start:-0.02">Start −.02</button><button data-nudge="start:0.02">Start +.02</button><button data-nudge="end:-0.02">End −.02</button><button data-nudge="end:0.02">End +.02</button></div>
+        <p id="range-error" role="alert"></p>
+        <div class="play-actions"><button id="replay" class="primary">▶ Replay word</button><button id="context">Hear in context</button><button id="stop" aria-label="Stop audio">■</button></div>
+        <label class="review-label"><input id="reviewed" type="checkbox"> I reviewed this occurrence</label>
+        <label class="status-label">Coverage<select id="coverage"><option value="aligned">Present in clip</option><option value="uncertain">Coverage uncertain</option><option value="outside_audio">Outside clip</option></select></label>
+        <div class="navigation"><button id="previous">← Previous</button><button id="next">Next →</button></div><p class="hint">Edits save in this browser. Download the review JSON to keep or share them. The source file stays available above.</p>
+      </aside>
+    </div>
+    <section class="recording"><div><div class="eyebrow">SUPPLIED RECORDING</div><h3>snippet.mov <span>· actual paath audio</span></h3></div><audio id="audio" controls preload="metadata" src="/data/reference/recording.wav"></audio><canvas id="waveform" height="100" aria-label="Recording waveform with selected word highlighted"></canvas><div class="cursor-actions"><span id="cursor">0.00 s</span><button id="set-start">Use cursor as start</button><button id="set-end">Use cursor as end</button></div><p class="hint">Use the full recording player to find a boundary, then copy its cursor time into the selected word. The waveform shows the selected interval.</p></section>
+    <footer><span>First four verses · exact Unicode text · distinct word occurrence IDs</span><span>Experimental evidence · human review pending</span></footer>
+  </main>
+</body>
+</html>

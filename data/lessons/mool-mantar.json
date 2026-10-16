@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "id": "mool-mantar",
+  "title": "Mool Mantar",
+  "note": "Each screen is judged only against its own ustaad clip. Word times are unreviewed estimates from word-timings.json.",
+  "min_sound_score": -1.5,
+  "screens": [
+    {
+      "id": "screen-1",
+      "ustaad": "Ustaad 1 (sample recording)",
+      "audio": "/data/reference/recording.wav",
+      "start": 2.74,
+      "end": 11.022,
+      "words": [
+        {
+          "id": "v1-w01",
+          "text": "ੴ",
+          "start": 2.89,
+          "end": 5.65
+        },
+        {
+          "id": "v1-w02",
+          "text": "ਸਤਿ",
+          "start": 6.71,
+          "end": 7.413
+        },
+        {
+          "id": "v1-w03",
+          "text": "ਨਾਮੁ",
+          "start": 7.413,
+          "end": 8.292
+        },
+        {
+          "id": "v1-w04",
+          "text": "ਕਰਤਾ",
+          "start": 9.24,
+          "end": 9.972
+        },
+        {
+          "id": "v1-w05",
+          "text": "ਪੁਰਖੁ",
+          "start": 9.972,
+          "end": 10.872
+        }
+      ]
+    },
+    {
+      "id": "screen-2",
+      "ustaad": "Ustaad 1 (sample recording)",
+      "audio": "/data/reference/recording.wav",
+      "start": 11.86,
+      "end": 17.402,
+      "words": [
+        {
+          "id": "v1-w06",
+          "text": "ਨਿਰਭਉ",
+          "start": 12.01,
+          "end": 13.143
+        },
+        {
+          "id": "v1-w07",
+          "text": "ਨਿਰਵੈਰੁ",
+          "start": 13.21,
+          "end": 14.45
+        },
+        {
+          "id": "v1-w08",
+          "text": "ਅਕਾਲ",
+          "start": 15.66,
+          "end": 16.322
+        },
+        {
+          "id": "v1-w09",
+          "text": "ਮੂਰਤਿ",
+          "start": 16.322,
+          "end": 17.252
+        }
+      ]
+    },
+    {
+      "id": "screen-3",
+      "ustaad": "Ustaad 1 (sample recording)",
+      "audio": "/data/reference/recording.wav",
+      "start": 17.14,
+      "end": 20.872,
+      "words": [
+        {
+          "id": "v1-w10",
+          "text": "ਅਜੂਨੀ",
+          "start": 17.29,
+          "end": 18.122
+        },
+        {
+          "id": "v1-w11",
+          "text": "ਸੈਭੰ",
+          "start": 18.122,
+          "end": 19.102
+        },
+        {
+          "id": "v1-w12",
+          "text": "ਗੁਰ",
+          "start": 19.11,
+          "end": 19.602
+        },
+        {
+          "id": "v1-w13",
+          "text": "ਪ੍ਰਸਾਦਿ",
+          "start": 19.602,
+          "end": 20.722
+        }
+      ]
+    },
+    {
+      "id": "screen-4",
+      "ustaad": "Ustaad 1 (sample recording)",
+      "audio": "/data/reference/recording.wav",
+      "start": 20.572,
+      "end": 25.782,
+      "words": [
+        {
+          "id": "v2-w01",
+          "text": "ਜਪੁ",
+          "start": 20.722,
+          "end": 21.643
+        },
+        {
+          "id": "v3-w01",
+          "text": "ਆਦਿ",
+          "start": 22.53,
+          "end": 23.082
+        },
+        {
+          "id": "v3-w02",
+          "text": "ਸਚੁ",
+          "start": 23.082,
+          "end": 23.922
+        },
+        {
+          "id": "v3-w03",
+          "text": "ਜੁਗਾਦਿ",
+          "start": 23.97,
+          "end": 24.882
+        },
+        {
+          "id": "v3-w04",
+          "text": "ਸਚੁ",
+          "start": 24.882,
+          "end": 25.632
+        }
+      ]
+    },
+    {
+      "id": "screen-5",
+      "ustaad": "Ustaad 1 (sample recording)",
+      "audio": "/data/reference/recording.wav",
+      "start": 25.482,
+      "end": 30.503,
+      "words": [
+        {
+          "id": "v4-w01",
+          "text": "ਹੈ",
+          "start": 25.632,
+          "end": 26.192
+        },
+        {
+          "id": "v4-w02",
+          "text": "ਭੀ",
+          "start": 26.192,
+          "end": 26.692
+        },
+        {
+          "id": "v4-w03",
+          "text": "ਸਚੁ",
+          "start": 26.692,
+          "end": 27.562
+        },
+        {
+          "id": "v4-w04",
+          "text": "ਨਾਨਕ",
+          "start": 27.562,
+          "end": 28.532
+        },
+        {
+          "id": "v4-w05",
+          "text": "ਹੋਸੀ",
+          "start": 28.55,
+          "end": 29.282
+        },
+        {
+          "id": "v4-w06",
+          "text": "ਭੀ",
+          "start": 29.282,
+          "end": 29.623
+        },
+        {
+          "id": "v4-w07",
+          "text": "ਸਚੁ",
+          "start": 29.623,
+          "end": 30.353
+        }
+      ]
+    }
+  ]
+}
