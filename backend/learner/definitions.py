@@ -1,7 +1,7 @@
 """Local acoustic evidence -> Claude English descriptions. Claude receives no audio.
 
 No source text, expected phones, teacher recording, score, or G2P is used here.
-Evidence stays in the browser between stages. A process-local HMAC prevents the
+Evidence stays in the browser between stages. A local HMAC prevents the
 description endpoint from accepting edited evidence as a fresh model extraction.
 """
 import hashlib
@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path
 import secrets
+import threading
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
@@ -18,12 +19,38 @@ from ..paths import ROOT
 
 DEFAULT_MODEL = 'claude-sonnet-5-5'
 PROMPT_PATH = Path(__file__).with_name('describe.prompt.txt')
-SIGNING_KEY = secrets.token_bytes(32)
+KEY_PATH = ROOT/'.local/learner-evidence.key'
+KEY_LOCK = threading.Lock()
 MAX_EVENTS = 128
 
 
 def canonical(value):
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False).encode('utf-8')
+
+
+class StaleEvidenceError(ValueError):
+    """Changed evidence or evidence from a different local signing key."""
+
+
+def signing_key():
+    """Persist only random signing bytes, never a recording or sound observations.
+
+    The key is independent of the Claude credential so configuring/changing an
+    API key and restarting does not invalidate observations already in a tab.
+    """
+    with KEY_LOCK:
+        KEY_PATH.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+        try:
+            descriptor = os.open(KEY_PATH, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        except FileExistsError:
+            pass
+        else:
+            with os.fdopen(descriptor, 'wb') as stream:
+                stream.write(secrets.token_bytes(32))
+        value = KEY_PATH.read_bytes()
+        if len(value) != 32:
+            raise RuntimeError('The local evidence key is incomplete. Remove .local/learner-evidence.key and extract sounds again. No observations were sent externally.')
+        return value
 
 
 def configuration():
@@ -35,15 +62,15 @@ def configuration():
 
 
 def sign(evidence):
-    return dict(evidence, integrity=hmac.new(SIGNING_KEY, canonical(evidence), hashlib.sha256).hexdigest())
+    return dict(evidence, integrity=hmac.new(signing_key(), canonical(evidence), hashlib.sha256).hexdigest())
 
 
 def verify(evidence):
     if not isinstance(evidence, dict): raise ValueError('Extract sounds locally before requesting definitions.')
     raw = {k: v for k, v in evidence.items() if k != 'integrity'}
     signature = evidence.get('integrity')
-    if not isinstance(signature, str) or not hmac.compare_digest(signature, hmac.new(SIGNING_KEY, canonical(raw), hashlib.sha256).hexdigest()):
-        raise ValueError('Sound evidence changed or the server restarted. Extract sounds locally again.')
+    if not isinstance(signature, str) or not signature.isascii() or not hmac.compare_digest(signature, hmac.new(signing_key(), canonical(raw), hashlib.sha256).hexdigest()):
+        raise StaleEvidenceError('These sound observations need to be extracted again. Your recording is still in this tab; click Extract sounds locally, then generate definitions again.')
     if evidence['status'] != 'ready' or not evidence['events']:
         raise ValueError('This recording has insufficient sound evidence. Re-record before requesting definitions.')
     return evidence

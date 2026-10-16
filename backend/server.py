@@ -129,7 +129,11 @@ class Handler(SimpleHTTPRequestHandler):
                 result['audio_sha256'] = hashlib.sha256(raw).hexdigest()
             self.reply(200, result)
         except (ValueError, KeyError, TypeError, binascii.Error, wave.Error) as error:
-            self.reply(400, {'error': str(error)})
+            payload = {'error': str(error)}
+            from .learner.definitions import StaleEvidenceError
+            if isinstance(error, StaleEvidenceError):
+                payload['error_code'] = 'stale_learner_evidence'
+            self.reply(400, payload)
         except ImportError:
             self.reply(503, {'error': 'Optional model dependencies are missing. Follow README.md for this feature.'})
         except RuntimeError as error:

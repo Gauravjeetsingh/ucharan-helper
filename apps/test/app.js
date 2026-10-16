@@ -51,7 +51,7 @@ async function record(){
 async function api(path,input){
   const response=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(input)});
   let body;try{body=await response.json();}catch{throw Error('Use the project server: python serve.py. A static file server cannot run this flow.');}
-  if(!response.ok)throw Error(body.error||`Request failed (${response.status}).`);return body;
+  if(!response.ok){const error=Error(body.error||`Request failed (${response.status}).`);error.code=body.error_code;throw error;}return body;
 }
 function download(value,name){const blob=value instanceof Blob?value:new Blob([JSON.stringify(value,null,2)+'\n'],{type:'application/json'}),url=URL.createObjectURL(blob),link=node('a');link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function renderEvidence(){
@@ -85,7 +85,7 @@ async function extract(){
 async function define(){
   busy=true;definition=null;$('definitions').replaceChildren();stopPlayback();controls();const token=generation;$('definition-status').textContent='Claude is describing the extracted sound observations… audio stays local.';
   try{const result=await api('/api/test/define',{evidence,consent_to_external_processing:$('consent').checked});if(token!==generation)return;definition=result;renderDefinitions();$('definition-status').textContent='Draft definitions ready. Listen back to check them; no pronunciation score was assigned.';
-  }catch(e){$('definition-status').textContent=e.message;}finally{busy=false;controls();}
+  }catch(e){if(e.code==='stale_learner_evidence'){$('consent').checked=false;evidence=null;$('extract-status').textContent='Your recording is still available. Extract sounds locally again, then review the new observations before generating definitions.';}$('definition-status').textContent=e.message;}finally{busy=false;controls();}
 }
 $('record').onclick=record;$('stop-record').onclick=()=>{if(recorder?.state==='recording')recorder.stop();};$('discard').onclick=()=>{generation++;discard();$('capture-status').textContent='Recording and results discarded from this tab.';};
 $('file').onchange=async()=>{const file=$('file').files[0];if(!file)return;const token=++generation;discard();busy=true;controls();try{await accept(file,token);}catch(e){$('capture-status').textContent=e.message;}finally{busy=false;controls();$('file').value='';}};

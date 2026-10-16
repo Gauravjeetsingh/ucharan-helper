@@ -22,9 +22,13 @@ metadata and model identity are preserved. Files/expected text are not passed
 to Claude.
 
 `POST /api/test/define` accepts the unchanged `evidence` plus
-`consent_to_external_processing: true`. A process-local integrity signature
+`consent_to_external_processing: true`. A local integrity signature
 ensures the evidence was extracted by this server without edits. A server
-restart invalidates the signature; extract again from the in-tab recording.
+restart preserves the signature, including when a Claude API key is configured
+or changed. Only a random 32-byte signing key is stored in ignored
+`.local/learner-evidence.key`; recordings and observations are not stored there.
+Evidence created before this fix or on another machine needs one re-extraction
+from the recording still in the tab. Do not refresh away an unsaved recording.
 The signature is not a portable expert-review or pronunciation certificate.
 
 The server sends only the preview to the Claude Messages API. The checked-in

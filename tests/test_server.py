@@ -1,7 +1,10 @@
 """Portable core routes and access checks: no optional packages/model downloads."""
 import json
+from pathlib import Path
+import tempfile
 import threading
 import unittest
+from unittest.mock import patch
 from http.client import HTTPConnection
 from http.server import ThreadingHTTPServer
 from backend.server import Handler
@@ -79,7 +82,12 @@ class RouteTests(unittest.TestCase):
         self.assertEqual(status,400)
         self.assertIn('Choose whether',json.loads(body)['error'])
         self.assertEqual(self.request('/api/test/define','POST','{}',dict(headers,Origin='https://example.com'))[0],403)
-        for path in ['/.env','/.env.example','/backend/learner/describe.prompt.txt']:
+        invalid=json.dumps(dict(evidence={'integrity':'old'},consent_to_external_processing=True))
+        with tempfile.TemporaryDirectory() as folder,patch('backend.learner.definitions.KEY_PATH',Path(folder)/'evidence.key'):
+            status, _, body=self.request('/api/test/define','POST',invalid,headers)
+        self.assertEqual(status,400)
+        self.assertEqual(json.loads(body)['error_code'],'stale_learner_evidence')
+        for path in ['/.env','/.env.example','/.local/learner-evidence.key','/backend/learner/describe.prompt.txt']:
             self.assertEqual(self.request(path)[0],404)
 
 

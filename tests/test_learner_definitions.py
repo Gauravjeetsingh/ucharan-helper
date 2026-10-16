@@ -3,6 +3,8 @@ import copy
 import io
 import json
 import os
+import subprocess
+import sys
 from pathlib import Path
 import tempfile
 import unittest
@@ -31,6 +33,13 @@ def description():
 
 
 class DefinitionTests(unittest.TestCase):
+    def setUp(self):
+        temporary=tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.key_path=Path(temporary.name)/'private/evidence.key'
+        patcher=patch.object(module,'KEY_PATH',self.key_path)
+        patcher.start();self.addCleanup(patcher.stop)
+
     def test_event_identity_and_order_are_preserved(self):
         evidence=observations();result=module.validate_description(description(),evidence)
         sounds=result['groups'][0]['sounds']
@@ -58,7 +67,24 @@ class DefinitionTests(unittest.TestCase):
             with self.assertRaises(ValueError):module.describe(dict(evidence=edited,consent_to_external_processing=True))
             call.assert_not_called()
         old=observations()
-        with patch.object(module,'SIGNING_KEY',b'another-server-process'),self.assertRaises(ValueError):module.verify(old)
+        with patch.object(module,'KEY_PATH',self.key_path.parent/'another-server.key'),self.assertRaises(module.StaleEvidenceError):module.verify(old)
+
+    def test_evidence_survives_new_server_process_and_api_key_change(self):
+        evidence=observations()
+        with patch.dict(os.environ,{'ANTHROPIC_API_KEY':'different-test-key'}):
+            self.assertEqual(module.verify(evidence),evidence)
+        code='import json,sys; from pathlib import Path; from backend.learner import definitions as m; m.KEY_PATH=Path(sys.argv[1]); m.verify(json.load(sys.stdin)); print("verified")'
+        result=subprocess.run([sys.executable,'-c',code,str(self.key_path)],
+            input=json.dumps(evidence),capture_output=True,text=True,check=True,cwd=module.ROOT)
+        self.assertEqual(result.stdout.strip(),'verified')
+        self.assertEqual(len(self.key_path.read_bytes()),32)
+        if os.name!='nt':self.assertEqual(self.key_path.stat().st_mode & 0o777,0o600)
+        self.assertEqual(list(self.key_path.parent.iterdir()),[self.key_path])
+
+    def test_incomplete_key_fails_without_overwriting_it(self):
+        self.key_path.parent.mkdir();self.key_path.write_bytes(b'incomplete')
+        with self.assertRaisesRegex(RuntimeError,'incomplete'):observations()
+        self.assertEqual(self.key_path.read_bytes(),b'incomplete')
 
     def test_missing_key_does_not_call_provider(self):
         with patch.dict(os.environ,{'ANTHROPIC_API_KEY':''}),patch.object(module,'call_claude') as call:
