@@ -16,7 +16,7 @@ class LessonTests(unittest.TestCase):
         known = {w['id']: w for v in timing['verses'] for w in v['words']}
         for path in LESSONS.glob('*.json'):
             lesson = json.loads(path.read_text(encoding='utf-8'))
-            if path.name.startswith('pronunciation-cards'):
+            if 'screens' not in lesson:  # cards files, timestamp files (e.g. japjisahib.json)
                 continue
             for screen in lesson['screens']:
                 self.assertTrue(screen['audio'].startswith('/data/') and screen['audio'].endswith('.wav'))
