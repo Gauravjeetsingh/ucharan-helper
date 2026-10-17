@@ -284,7 +284,7 @@ $('player').addEventListener('seeked', () => highlightAt($('player').currentTime
 function controls() {
   $('generate').disabled = busy || !audioBytes || !$('transcript').value.trim();
   $('existing').disabled = busy || !sampleSelected;
-  $('sample').disabled = $('upload').disabled = $('transcript').disabled = $('expansion').disabled = busy;
+  $('sample').disabled = $('upload').disabled = $('text-upload').disabled = $('transcript').disabled = $('expansion').disabled = busy;
 }
 function chooseAudio(bytes, name, mime = 'audio/wav') {
   if (audioUrl) URL.revokeObjectURL(audioUrl);
@@ -308,7 +308,7 @@ async function pcmWav(bytes) {
   const context = new AudioContext();
   try {
     const decoded = await context.decodeAudioData(bytes.slice(0));
-    if (decoded.duration > 120 || decoded.duration < .25) throw Error('Choose between 0.25 and 120 seconds of audio.');
+    if (decoded.duration > 1800 || decoded.duration < .25) throw Error("Choose between 0.25 seconds and 30 minutes of audio.");
     const offline = new OfflineAudioContext(1, Math.ceil(decoded.duration * 16000), 16000);
     const source = offline.createBufferSource(); source.buffer = decoded; source.connect(offline.destination); source.start();
     const samples = (await offline.startRendering()).getChannelData(0);
@@ -334,17 +334,32 @@ $('sample').onclick = async () => {
 };
 $('upload').onchange = async () => {
   const token = ++selection, file = $('upload').files[0]; if (!file) return;
-  if (file.size > 40*1024*1024) { status('Choose an audio file under 40 MB.'); return; }
+  if (file.size > 300*1024*1024) { status("Choose an audio file under 300 MB."); return; }
   const bytes = await file.arrayBuffer(); if (selection !== token) return;
   sampleSelected = false; chooseAudio(bytes, file.name, file.type);
 };
 for (const id of ['transcript','expansion']) $(id).oninput = () => { invalidate(); controls(); };
+$('text-upload').onchange = async () => {
+  const file = $('text-upload').files[0]; if (!file) return;
+  if (file.size > 64*1024) { status('Choose a text file under 64 KB.'); return; }
+  // Only whitespace is tidied: blank lines, repeated spaces and line-edge spaces. Gurmukhi characters are kept exactly.
+  const text = (await file.text()).replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n')
+    .split('\n').map(line => line.replace(/[ \t\u00a0]+/g, ' ').trim()).filter(Boolean).join('\n');
+  $('transcript').value = text; $('text-upload').value = ''; $('transcript').dispatchEvent(new Event('input'));
+  invalidate(); controls(); status(`Loaded ${file.name}. Check the text, then generate timestamps.`);
+};
 $('existing').onclick = async () => {
   try { show(await (await fetch('/data/reference/word-timings.json')).json(), 'Loaded the existing sample artifact. These timings were not regenerated.'); }
   catch (error) { status(error.message); }
 };
+function showLoader(message) {
+  const loader = document.createElement('div'); loader.className = 'loader'; loader.setAttribute('role', 'status');
+  loader.append(Object.assign(document.createElement('span'), {className: 'spinner'}), Object.assign(document.createElement('span'), {textContent: message}));
+  $('word-playback').replaceChildren(loader);
+}
 $('generate').onclick = async () => {
   busy = true; invalidate(); controls(); status('Generating locally… First model loading can take a moment.');
+  showLoader('Generating word timestamps… long recordings can take a few minutes.');
   try {
     const response = await fetch('/api/timestamps/generate', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
       audio_base64: await pcmWav(audioBytes), filename: audioName, text: $('transcript').value,
@@ -352,7 +367,10 @@ $('generate').onclick = async () => {
     })});
     const value = await response.json(); if (!response.ok) throw Error(value.error || 'Generation failed.');
     show(value, 'Timestamps generated. Download the JSON to keep or share the result.');
-  } catch (error) { status(error.message); }
+  } catch (error) {
+    status(error.message);
+    $('word-playback').replaceChildren(Object.assign(document.createElement('span'), {className: 'placeholder', textContent: `Could not generate: ${error.message}`}));
+  }
   finally { busy = false; controls(); }
 };
 $('download').onclick = () => {

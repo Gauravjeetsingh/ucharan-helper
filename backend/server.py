@@ -102,7 +102,7 @@ class Handler(SimpleHTTPRequestHandler):
             return self.reply(429, {'error': 'A local model is busy. Try again shortly.'})
         try:
             length = int(self.headers.get('Content-Length', 0))
-            maximum = 6_000_000 if self.path.startswith('/api/timestamps/') else 1_500_000
+            maximum = 80_000_000 if self.path.startswith('/api/timestamps/') else 1_500_000
             if not 0 < length <= maximum:
                 return self.reply(413, {'error': 'Request is too large or empty.'})
             request = json.loads(self.rfile.read(length))
