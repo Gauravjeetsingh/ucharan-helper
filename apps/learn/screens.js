@@ -1,6 +1,6 @@
 // Learn practice screens: listen, repeat, and each word is judged only against that screen's ustaad clip.
 const $ = id => document.getElementById(id);
-const LESSONS = [['japji-short-phrases', 'Japji Sahib · short phrases'], ['mool-mantar', 'Mool Mantar']];
+const LESSONS = [['japji-short-phrases', 'Japji Sahib · short phrases'], ['mool-mantar', 'Mool Mantar'], ['japji-sahib', 'Japji Sahib · first lines (full recording)']];
 let cardData = null, lesson, index = 0, ctx, playing, recorder, stream, timer, student, studentWav, result, selected = null, generation = 0;
 const clips = new Map();
 
@@ -179,11 +179,11 @@ async function loadLesson(id) {
   const response = await fetch(`/data/lessons/${id}.json`);
   if (!response.ok) throw Error('Lesson file not found.');
   lesson = await response.json(); index = 0;
+  try { const r = await fetch(lesson.cards || '/data/lessons/pronunciation-cards.json'); cardData = r.ok ? await r.json() : null; } catch { cardData = null; }
   if (lesson.shuffle) shuffle(); else renderScreen();
 }
 
 async function init() {
-  try { const r = await fetch('/data/lessons/pronunciation-cards.json'); if (r.ok) cardData = await r.json(); } catch {}
   for (const [id, title] of LESSONS) { const o = document.createElement('option'); o.value = id; o.textContent = title; $('lp-lesson').append(o); }
   $('lp-lesson').onchange = () => loadLesson($('lp-lesson').value).catch(e => say(e.message));
   $('lp-shuffle').onclick = () => { if (!recorder) shuffle(); };

@@ -38,7 +38,10 @@ CARD_FIELDS = {'say': 300, 'not': 300}
 
 def save_card(request):
     """Update one word's card from the review page. Only wording, check mode and voicing are editable."""
-    path = LESSONS / 'pronunciation-cards.json'
+    name = request.get('file', 'pronunciation-cards.json')
+    if not isinstance(name, str) or not re.fullmatch(r'pronunciation-cards[a-z0-9-]*\.json', name):
+        raise ValueError('Unknown cards file.')
+    path = LESSONS / name
     cards = json.loads(path.read_text(encoding='utf-8'))
     card = cards['words'].get(request.get('word_id'))
     sounds = request.get('sounds')

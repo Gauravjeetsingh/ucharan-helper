@@ -9,6 +9,8 @@ clearly the other. The ustaad's audio sets the target, never the spelling.
 Limited to these letters: on other consonants the phone model mislabels
 correct learner speech too often (e.g. ਪ heard as b).
 """
+import math
+
 import numpy as np
 
 # letter: (voiceless name, voiced name, voiceless phone labels, voiced phone labels)
@@ -20,6 +22,20 @@ TONAL = {
     'ਢ': ('ṭ', 'ḍh', ['ʈ', 'ʈʰ'], ['ɖ']),
 }
 CLEAR, ABSENT = .5, .1
+# One rule for every check: red only when the student is no longer clearly on the
+# ustaad's side (less than 2:1 for the right sound) AND is at least 20x further from
+# it than the ustaad was. Relative, so it holds when the model half-hears the ustaad.
+SHIFT, SIDE = math.log(20), math.log(2)
+
+
+def odds(target, other):
+    clip = lambda p: min(.99, max(.01, p))
+    return math.log(clip(target) / clip(other))
+
+
+def differs(u_target, u_other, s_target, s_other):
+    student = odds(s_target, s_other)
+    return student < SIDE and odds(u_target, u_other) - student >= SHIFT
 PHONE_STEP = .02
 _CACHE = {}
 
@@ -65,8 +81,7 @@ def sibilant(phone_model, logp, region):
 
 def check_s(ustaad, student):
     """ਸ: the ustaad's is clearly “s”; flag a student's that is clearly “sh”."""
-    (u_s, u_sh), (s_s, s_sh) = ustaad, student
-    if u_s >= CLEAR and u_sh < ABSENT and s_sh >= CLEAR and s_s < ABSENT:
+    if differs(*ustaad, *student):
         return "ਸ: the ustaad says a clear “s” as in soul; yours sounded like “sh”."
     return None
 
@@ -84,8 +99,7 @@ def final_sihari(phone_model, logp, region):
 
 def check_sihari(ustaad, student):
     """A final sihari stretched into a long “ee” (aadee for ਆਦਿ) that the ustaad didn't have."""
-    (u_short, u_long), (s_short, s_long) = ustaad, student
-    if u_long < .3 and s_long >= CLEAR and s_long > s_short:
+    if differs(*ustaad, *student):
         return "ਿ: the ustaad ends with a light, short “i”; yours was stretched into a long “ee”."
     return None
 
@@ -97,9 +111,9 @@ def long_u(phone_model, logp, region):
     return float(max((probs[:, phone_model.vocab[l]].max() for l in ['u', 'uː'] if l in phone_model.vocab), default=0.)) if len(probs) else 0.
 
 
-def check_aunkar(ustaad_dulainkar, student_dulainkar, student_long_u):
-    """A final aunkar stretched into a full “oo” (purkhu for ਪੁਰਖੁ): both models must hear it."""
-    if ustaad_dulainkar < .05 and student_dulainkar >= .3 and student_long_u >= .3:
+def check_aunkar(ustaad, student):
+    """A final aunkar stretched into a full “oo” (purkhu for ਪੁਰਖੁ). (light, full-oo) pairs."""
+    if differs(*ustaad, *student):
         return "ੁ: the ustaad ends with a very light “u”; yours was stretched into a full “oo”."
     return None
 
@@ -119,21 +133,13 @@ def vowel_inside_cluster(events, region):
 def check(phone_model, letter, ustaad, student, target=None):
     """Return a reason string when the student's voicing clearly differs from the target.
 
-    ustaad / student: (voiceless, voiced, breath) probabilities. Without a card
-    the target is whatever the ustaad clearly was. With a confirmed card target:
-    if the model hears the ustaad the same way, the student must not clearly be
-    the opposite. If the model can't clearly hear the ustaad as the target
-    (e.g. ਭੀ heard as “b”), voicing isn't graded.
+    ustaad / student: (voiceless, voiced, breath) probabilities. The target is the
+    card's, else whichever way the ustaad leans. Judged with `differs`.
     """
     quiet, voiced_name = TONAL[letter][:2]
     (u_vl, u_vd, _), (s_vl, s_vd, _) = ustaad, student
     if target is None:
-        if u_vl >= CLEAR and u_vd < ABSENT:
-            target = 'voiceless'
-        elif u_vd >= CLEAR and u_vl < ABSENT:
-            target = 'voiced'
-        else:
-            return None
+        target = 'voiceless' if u_vl > u_vd else 'voiced'
     if target == 'voiceless':
         u_same, u_opp, s_same, s_opp = u_vl, u_vd, s_vl, s_vd
         message = (f"The ustaad says {letter} softly, like “{quiet}” with no voice in it; "
@@ -142,11 +148,5 @@ def check(phone_model, letter, ustaad, student, target=None):
         u_same, u_opp, s_same, s_opp = u_vd, u_vl, s_vd, s_vl
         message = f"The ustaad says {letter} with a voiced “{voiced_name}” sound; yours sounded like a plain “{quiet}”."
     # A breath (“h”) cue was tried and rejected: the h of a neighbouring ਹੈ leaks in.
-    if u_same >= CLEAR and u_opp < .3:
-        clear = s_opp >= CLEAR and (u_opp < ABSENT or s_opp > s_same)
-    else:
-        # The model half-hears the ustaad's target (ਭੀ: p .39 / b .56). Flag only a
-        # student whose target sound vanishes while the opposite is near-certain
-        # (“bhi”: p .02 / b .95), like a vanished consonant in screens.py.
-        clear = u_same >= .3 and s_same < .05 and s_opp >= .9
+    clear = differs(u_same, u_opp, s_same, s_opp)
     return message if clear else None

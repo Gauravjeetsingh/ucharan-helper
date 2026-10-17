@@ -19,7 +19,7 @@ import numpy as np
 
 from ..paths import ROOT
 from ..timestamps import ctc_path
-from .tone import SH
+from .tone import SH, differs as tone_differs
 
 LESSONS = ROOT / 'data/lessons'
 SR = 16000
@@ -28,11 +28,8 @@ BLANK = 256
 # counts as the ustaad's sound too: we never demand more certainty from the
 # student than the model had about the ustaad.
 CANDIDATE_MIN = .1
-# ...but when the ustaad clearly made a consonant and it is essentially absent
-# from the student's audio, an alternative doesn't excuse it. The model leans
-# towards common words (ਸਚੁ), so even the ustaad's ਸਤਿ shows ਚ at 23%; a student
-# saying "sach" drops ਤ to ~0, while a correct "sat" keeps it above ~0.2.
-CLEAR_IN_USTAAD, GONE_IN_STUDENT = .5, .05
+# ...but a consonant the student clearly replaced (tone.differs: “sach” for ਸਤਿ)
+# fails even if the replacement was one of the ustaad's alternatives.
 _CACHE = {}
 _CARDS = {}
 
@@ -42,15 +39,15 @@ def cards_path():
 
 
 def load_cards(audio):
-    """Cards for one ustaad recording, keyed by word id (re-read when the file changes)."""
-    path = cards_path()
-    if not path.is_file():
-        return {}
-    stamp = path.stat().st_mtime_ns
-    if _CARDS.get('stamp') != stamp:
-        _CARDS.update(stamp=stamp, data=json.loads(path.read_text(encoding='utf-8')))
-    data = _CARDS['data']
-    return data.get('words', {}) if data.get('audio') == audio else {}
+    """Cards for one ustaad recording, keyed by word id, from any pronunciation-cards*.json."""
+    for path in sorted(LESSONS.glob('pronunciation-cards*.json')):
+        stamp = path.stat().st_mtime_ns
+        if _CARDS.get(path, (None,))[0] != stamp:
+            _CARDS[path] = (stamp, json.loads(path.read_text(encoding='utf-8')))
+        data = _CARDS[path][1]
+        if data.get('audio') == audio:
+            return data.get('words', {})
+    return {}
 
 
 def piece_sounds(model, pieces, card):
@@ -66,20 +63,38 @@ def piece_sounds(model, pieces, card):
     return result
 
 
-def card_variants(model, pieces, card):
-    """Card-consistent versions of the ustaad's pieces.
+# Letters the models can't reliably tell apart in learner speech: tonal partners
+# (ਚ/ਝ, ਪ/ਭ…; tone is judged by the voicing check) and plain voiceless/voiced pairs
+# (ਪ/ਬ…: an unaspirated Punjabi “p” sounds like “b” to English-trained models).
+# Also the puff of air (ਪ/ਫ, ਕ/ਖ…): the models hear it on correct learner speech.
+NEAR = {c: set(group) for group in ['ਪਫਬਭ', 'ਤਥਦਧ', 'ਕਖਗਘ', 'ਟਠਡਢ', 'ਚਛਜਝ'] for c in group}
 
-    The model sometimes hears a held vowel the card doesn't have (the ustaad's ਸਚੁ
-    decoded as ਸਾ+ਚ+ੁ). The card is the confirmed truth, so the piece without the
-    extra signs (▁ਸ for ▁ਸਾ) also counts as the ustaad's sound.
+
+def piece_variants(model, pieces, card):
+    """Other tokens that count as the same sound as each ustaad piece.
+
+    - the same letters with/without the word-start marker (▁ਲ = ਲ);
+    - with a card: the model sometimes hears a held vowel the card doesn't have
+      (ਸਚੁ heard as ਸਾ…) or misses one the card has (ਰਹਾ heard as ਰਹ). The card is
+      the confirmed truth, so the card-consistent token counts too (ਸ, ਹਾ).
     """
-    letters = ''.join(sound['letters'] for sound in card['sounds'])
+    letters = ''.join(sound['letters'] for sound in card['sounds']) if card else ''
+    unk = model.tokenizer.unk_id()
     out = []
     for p in pieces:
         written = model.tokenizer.id_to_piece(p['token'])
-        kept = ''.join(c for c in written if c == '▁' or c in letters or c not in VOWELS)
-        token = model.tokenizer.piece_to_id(kept) if kept != written and kept.strip('▁') else None
-        out.append(token if token not in (None, model.tokenizer.unk_id()) else None)
+        bare = written.lstrip('▁')
+        forms = {bare, '▁' + bare}
+        if card:
+            kept = ''.join(c for c in bare if c in letters or c not in VOWELS)
+            if kept:
+                forms |= {kept, '▁' + kept}
+            at = letters.find(bare)
+            following = letters[at + len(bare)] if at >= 0 and at + len(bare) < len(letters) else ''
+            if following in VOWELS:
+                forms |= {bare + following, '▁' + bare + following}
+        tokens = {model.tokenizer.piece_to_id(f) for f in forms} - {unk, p['token']}
+        out.append(tokens)
     return out
 
 
@@ -189,9 +204,9 @@ def judge(model, lp, step, reference, threshold, cards=None):
     if DULAINKAR is None:
         DULAINKAR = model.tokenizer.piece_to_id('ੂ')
     for word, card in zip(reference, cards or [None] * len(reference)):
-        for piece, variant in zip(word, card_variants(model, word, card) if card else []):
-            if variant is not None:
-                piece['candidates'] = piece['candidates'] | {variant}
+        for piece, variants in zip(word, piece_variants(model, word, card)):
+            piece['candidates'] = piece['candidates'] | variants
+            piece['card_variants'] = variants
     pieces = [p for word in reference for p in word]
     owner = [i for i, word in enumerate(reference) for _ in word]
     path = ctc_path(lp, [p['token'] for p in pieces], BLANK)
@@ -202,23 +217,34 @@ def judge(model, lp, step, reference, threshold, cards=None):
         frames = piece_frames[k]
         piece['student_region'] = ((piece_frames[k - 1][-1] + 1) * step if k else max(0, frames[0] - 2) * step,
                                    piece_frames[k + 1][0] * step if k + 1 < len(pieces) else (frames[-1] + 3) * step)
-        candidates = sorted(piece['candidates'])
+        # Not rivals: other spellings starting with the same letter (ਪ / ▁ਪੁ / ਪੁਰ are one ਪ
+        # split differently) or a NEAR letter.
+        first = text(model, [piece['token']])[:1]
+        near = NEAR.get(first, {first})
+        same = [t for t in range(lp.shape[1] - 1) if text(model, [t])[:1] in near] if first and first not in VOWELS else []
+        candidates = sorted(set(piece['candidates']) | set(same))
         others = lp[frames].copy()
         others[:, candidates] = -np.inf
         odds = lp[frames][:, candidates].max(1) - others.max(1)
         best = int(odds.argmax())
         score, instead = float(odds[best]), int(others[best].argmax())
-        support = float(np.exp(lp[frames, piece['token']]).max())
-        top = int(lp[frames].max(0).argmax())
+        # The card's version of the piece (▁ਸ for a model-heard ▁ਸਾ) counts as support too.
+        own = [piece['token']] + [c for c in piece.get('card_variants', ())]
+        support = float(np.exp(lp[frames][:, own]).max())
+        rivals = lp[frames].copy()
+        rivals[:, own + [BLANK] + same] = -np.inf
+        rival = int(np.unravel_index(rivals.argmax(), rivals.shape)[1])
+        u_rival = max([v for c, v in piece['alternatives'].items() if c not in own and c != BLANK] or [0.])
+        piece['student_support'], piece['student_rival'] = support, float(np.exp(lp[frames, rival]).max())
+        # “ਪਰ” for a “ਪ੍ਰ”: the same letters with a vowel in place of the pairi sign.
+        written_piece = model.tokenizer.id_to_piece(piece['token'])
+        par = model.tokenizer.piece_to_id(written_piece.replace('੍', '')) if '੍' in written_piece else model.tokenizer.unk_id()
+        piece['student_par'] = float(np.exp(lp[frames, par]).max()) if par != model.tokenizer.unk_id() else 0.
         piece['student_dulainkar'] = float(np.exp(lp[frames, DULAINKAR]).max()) if DULAINKAR is not None else 0.
-        piece['student_alternative'] = top != piece['token'] and top in piece['candidates']
         written = text(model, [piece['token']])
         # Only pieces that start with a consonant: “ੰਗ” is mostly a nasal tail.
-        if piece['prob'] >= CLEAR_IN_USTAAD and support < GONE_IN_STUDENT and written and written[0] not in VOWELS:
-            score = min(score, threshold - 1)
-            loudest = lp[frames].copy()
-            loudest[:, piece['token']] = -np.inf
-            instead = int(np.unravel_index(loudest.argmax(), loudest.shape)[1])
+        if written and written[0] not in VOWELS and tone_differs(piece['prob'], u_rival, support, piece['student_rival']):
+            score, instead = min(score, threshold - 1), rival
         scores[owner[k]].append(dict(piece=piece['token'], score=score, candidates=piece['candidates'],
                                      heard_instead=instead))
         span = spans[owner[k]]
@@ -254,17 +280,27 @@ def judge(model, lp, step, reference, threshold, cards=None):
         lo = (before[-1][1] + spans[i][0]) / 2 if before else spans[i][0]
         hi = (spans[i][1] + after[0][0]) / 2 if after else spans[i][1]
         region = [(f, t) for f, t in heard if lo <= f <= hi]
+        card = (cards or [None] * len(reference))[i]
         mine = [t for _, t in region]
         weak = [s for s in scores[i] if s['score'] < threshold]
         explained = set().union(*(s['candidates'] for s in scores[i])) | {s['heard_instead'] for s in scores[i]}
+        # Pieces made only of this word's own letters aren't “added” sounds.
+        own_letters = set(text(model, [p['token'] for p in ref])) | set(''.join(x['letters'] for x in card['sounds']) if card else '')
+        own_letters |= set().union(*(NEAR.get(c, set()) for c in own_letters))
+        explained |= {t for _, t in region if set(text(model, [t])) <= own_letters | {' '}}
         # An added consonant (the m in "ekam kaar") needs clear evidence; an added
         # vowel sign is subtler and noisier, so it needs near-certain evidence.
         extra = [t for f, t in region if t not in explained and text(model, [t])
                  and np.exp(lp[f, t]) > (.95 if is_vowel(model, t) else .6)]
         reasons = []
+        # The card is the confirmed spelling. If the model heard the ustaad differently from
+        # it (ਪੁਰੀਆ heard as ਪ੍ਰੀਆ) but heard the student exactly as the card, the student wins.
+        plain = lambda value: value.replace(' ', '').replace('▁', '')
+        card_says = plain(card.get('spoken') or card['text']) if card else ''
+        if card and plain(text(model, [p['token'] for p in ref])) != card_says and plain(text(model, mine)) == card_says:
+            weak, extra = [], []
         if not mine:
             reasons.append('This word was missing or too quiet in your recording.')
-        card = (cards or [None] * len(reference))[i]
         mapped = piece_sounds(model, ref, card) if card else [set() for _ in ref]
         for k, s in enumerate(scores[i]):
             if s not in weak or not mine:
@@ -297,6 +333,11 @@ def check_tones(model, phone_model, samples, screen, reference, judged, cards):
     ustaad_events, ustaad_lp = tone.phone_infer(phone_model, read_clip(screen['audio'], screen['start'], screen['end']), key)
     student_events, student_lp = tone.phone_infer(phone_model, samples)
     flag = lambda result, reason: result.update(state='wrong', reason=' '.join(filter(None, [result.get('reason'), reason])))
+    # Calibrate voicing to this speaker: if their plain ਪ in this recording already sounds
+    # voiced to the phone model, it can't tell their soft ਭ from “bh”; don't grade voicing.
+    plain = [tone.voicing(phone_model, student_lp, p['student_region'], 'ਭ') for w in reference for p in w
+             if text(model, [p['token']])[:1] == 'ਪ' and 'student_region' in p]
+    voicing_ok = not plain or all(vl >= vd for vl, vd, _ in plain)
     for word, result, card in zip(reference, judged, cards):
         if result['state'] == 'unclear':
             continue
@@ -306,7 +347,11 @@ def check_tones(model, phone_model, samples, screen, reference, judged, cards):
                 continue
             written = text(model, [piece['token']])
             card_sounds = [card['sounds'][j] for j in sorted(sounds)] if card else []
-            graded = lambda letters: not any(letters in x['letters'] and x['check'] == 'tip' for x in card_sounds)
+            # A letter-specific check runs only if the card has that letter (the model can hear
+            # ਪ੍ਰ in a ਪੁਰੀਆ) and it isn't a tip.
+            card_letters = ''.join(x['letters'] for x in card['sounds']) if card else None
+            graded = lambda letters: (card_letters is None or letters in card_letters) and not any(
+                letters in x['letters'] and x['check'] == 'tip' for x in card_sounds)
             if 'ਸ' in written and graded('ਸ') and SH in phone_model.vocab:
                 reason = tone.check_s(tone.sibilant(phone_model, ustaad_lp, piece['region']),
                                       tone.sibilant(phone_model, student_lp, piece['student_region']))
@@ -315,7 +360,7 @@ def check_tones(model, phone_model, samples, screen, reference, judged, cards):
             if '੍ਰ' in written and graded('੍ਰ'):
                 # Two independent signals: the Gurbani model prefers “ਪਰ”, and the phone
                 # model hears a vowel between p and r that the ustaad didn't have.
-                if (piece.get('student_alternative') and tone.vowel_inside_cluster(student_events, piece['student_region'])
+                if (piece['student_support'] < piece['student_par'] and tone.vowel_inside_cluster(student_events, piece['student_region'])
                         and not tone.vowel_inside_cluster(ustaad_events, piece['region'])):
                     flag(result, "੍ਰ: the ustaad joins the r straight onto the consonant (“pra”); yours had a vowel in between (“par”).")
             ends_in_sihari = written == 'ਿ' or bool(card and card['sounds'][-1]['letters'] == 'ਿ')
@@ -329,14 +374,14 @@ def check_tones(model, phone_model, samples, screen, reference, judged, cards):
             # as long as the card says the word ends in ੁ.
             ends_in_aunkar = written == 'ੁ' or bool(card and card['sounds'][-1]['letters'] == 'ੁ')
             if piece is word[-1] and ends_in_aunkar and graded('ੁ'):
-                ustaad_oo = max(piece['alternatives'].get(DULAINKAR, 0.),
-                                tone.long_u(phone_model, ustaad_lp, piece['region']) - .05)
-                reason = tone.check_aunkar(ustaad_oo, piece.get('student_tail_dulainkar', 0.),
-                                           tone.long_u(phone_model, student_lp, piece['student_tail_region']))
+                u_oo = max(piece['alternatives'].get(DULAINKAR, 0.), tone.long_u(phone_model, ustaad_lp, piece['region']))
+                s_oo = max(piece.get('student_tail_dulainkar', 0.), tone.long_u(phone_model, student_lp, piece['student_tail_region']))
+                light = (piece['prob'], piece['student_support']) if written == 'ੁ' else (1 - u_oo, 1 - s_oo)
+                reason = tone.check_aunkar((light[0], u_oo), (light[1], s_oo))
                 if reason:
                     flag(result, reason)
             letter = tone.tonal_letter(written)
-            if not letter:
+            if not letter or not voicing_ok:
                 continue
             sound = next((card['sounds'][j] for j in sorted(sounds) if card['sounds'][j].get('voicing')), None)
             if sound and sound['check'] == 'tip':
@@ -348,6 +393,22 @@ def check_tones(model, phone_model, samples, screen, reference, judged, cards):
                 flag(result, reason)
 
 
+# Learner recordings so far: 14-26 dB between speech and background; the ustaad's ~70.
+MIN_SPEECH_GAP_DB = 10.
+
+
+def speech_to_background_db(x):
+    """Loud (speech) vs quiet (background) 20 ms frames, in dB."""
+    frames = np.sqrt(np.mean(np.pad(x, (0, -len(x) % 320)).reshape(-1, 320) ** 2, axis=1)) + 1e-6
+    return float(20 * np.log10(np.percentile(frames, 90) / np.percentile(frames, 10)))
+
+
+def normalise(x, peak=.7, max_gain=10.):
+    """Raise a quiet recording to a standard level (no filtering, gain capped)."""
+    level = float(np.percentile(np.abs(x), 99.9)) or 1e-6
+    return np.clip(x * min(max_gain, peak / level), -1, 1).astype(np.float32)
+
+
 def compare_screen(model, samples, lesson, screen, phone_model=None):
     from .phone_engine import quality
     words = screen['words']
@@ -357,6 +418,9 @@ def compare_screen(model, samples, lesson, screen, phone_model=None):
     q = quality(samples)
     if not q['usable']:
         return unclear(' '.join(q['reasons']))
+    if speech_to_background_db(samples) < MIN_SPEECH_GAP_DB:
+        return unclear('Too much background noise. Try a quieter place or move closer to the microphone.')
+    samples = normalise(samples)
     reference = ustaad_pieces(model, screen)
     if not any(reference):
         return unclear('No sounds were found in the ustaad clip for this screen. Check its word times.')

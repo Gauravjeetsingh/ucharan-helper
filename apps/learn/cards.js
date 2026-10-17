@@ -1,6 +1,7 @@
 // Review page for pronunciation cards: listen to the ustaad, correct each sound, confirm.
 const $ = id => document.getElementById(id);
 let cards, ctx, ustaad, playing;
+const FILE = new URLSearchParams(location.search).get('file') || 'pronunciation-cards.json';
 const el = (tag, props = {}, ...children) => { const n = Object.assign(document.createElement(tag), props); n.append(...children); return n; };
 
 async function play(start, end) {
@@ -64,7 +65,7 @@ function render(wid, timing) {
     status.textContent = 'Saving…';
     try {
       const response = await fetch('/api/learn/screens/cards', {method: 'POST', headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({word_id: wid, sounds, status: confirmed ? 'confirmed' : 'draft', note: note.value, reviewed_by: $('cards-reviewer').value})});
+        body: JSON.stringify({file: FILE, word_id: wid, sounds, status: confirmed ? 'confirmed' : 'draft', note: note.value, reviewed_by: $('cards-reviewer').value})});
       const value = await response.json();
       if (!response.ok) throw Error(value.error || 'Could not save.');
       cards.words[wid] = {...card, ...value.card};
@@ -78,10 +79,13 @@ function render(wid, timing) {
 }
 
 async function init() {
-  const [c, t] = await Promise.all([fetch('/data/lessons/pronunciation-cards.json'), fetch('/data/reference/word-timings.json')]);
+  const [c, t] = await Promise.all([fetch(`/data/lessons/${FILE}`), fetch('/data/reference/word-timings.json')]);
   if (!c.ok) throw Error('pronunciation-cards.json not found.');
   cards = await c.json();
   const timings = Object.fromEntries((await t.json()).verses.flatMap(v => v.words).map(w => [w.id, w]));
+  if (FILE !== 'pronunciation-cards.json') {  // Other recordings: word times come from the lesson screens.
+    for (const id of ['japji-sahib']) { const l = await (await fetch(`/data/lessons/${id}.json`)).json(); if (l.cards?.endsWith(FILE)) l.screens.forEach(sc => sc.words.forEach(w => { timings[w.id] = w; })); }
+  }
   try { $('cards-reviewer').value = localStorage.getItem('uchaaran-card-reviewer') || ''; } catch {}
   $('cards-reviewer').onchange = () => { try { localStorage.setItem('uchaaran-card-reviewer', $('cards-reviewer').value); } catch {} };
   $('cards-list').replaceChildren(...Object.keys(cards.words).map(wid => render(wid, timings[wid])));
