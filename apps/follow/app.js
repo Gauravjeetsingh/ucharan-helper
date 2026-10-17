@@ -46,17 +46,18 @@ function celebrate(earned) {
     return animation;
   };
   const colors = ['#f6a623', '#6668ed', '#2da46f', '#e66e83', '#ffd66b'];
-  for (let i = 0; i < 42; i++) {
+  const confettiCount = earned ? 72 : 42;
+  for (let i = 0; i < confettiCount; i++) {
     const piece = document.createElement('i'); piece.className = 'confetti-piece';
     piece.style.backgroundColor = colors[i % colors.length]; layer.append(piece);
-    const angle = (i / 42) * Math.PI * 2;
+    const angle = (i / confettiCount) * Math.PI * 2;
     const x = Math.cos(angle) * (65 + (i % 5) * 22);
     const y = Math.sin(angle) * 75 - 45;
     animate(piece, [
       {transform:'translate(-50%, -50%) scale(.2)', opacity:0},
       {transform:`translate(${x}px, ${y}px) rotate(${i * 31}deg)`, opacity:1, offset:.28},
       {transform:`translate(${x * 1.25}px, ${150 + i % 6 * 19}px) rotate(${i * 67}deg)`, opacity:0}
-    ], {duration:1400 + i % 5 * 100, easing:'cubic-bezier(.15,.65,.4,1)', fill:'both'});
+    ], {duration:(earned ? 1800 : 1400) + i % 5 * 100, easing:'cubic-bezier(.15,.65,.4,1)', fill:'both'});
   }
   if (earned) {
     const coin = document.createElement('img'); coin.className = 'reward-coin';
@@ -71,7 +72,7 @@ function celebrate(earned) {
       {transform:'translate(-50%, -50%) scale(1)', opacity:1, offset:.45},
       {transform:`translate(calc(-50% + ${dx * .45}px), calc(-50% + ${dy - 35}px)) scale(.75)`, opacity:1, offset:.75},
       {transform:`translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(.48)`, opacity:0}
-    ], {duration:1500, delay:150, easing:'ease-in-out', fill:'both'});
+    ], {duration:1900, delay:150, easing:'ease-in-out', fill:'both'});
     flight.finished.then(() => { if (token === celebrationToken) collectReward?.(); }, () => {});
   }
   Promise.allSettled(rewardAnimations.map(animation => animation.finished)).then(() => {
@@ -133,7 +134,9 @@ function updateVerse(time) {
 }
 
 function renderResults() {
-  const {caught, total} = session.stats;
+  const {caught, total, coinsEarned} = session.stats;
+  $('result-title').hidden = !coinsEarned;
+  $('result-message').hidden = !coinsEarned;
   $('result-title').textContent = `You caught ${caught} of ${total} words`;
   const missed = words.filter(word => session.results.get(word.id)?.status === 'missed');
   $('result-message').textContent = missed.length ? 'Missed words have a red line. Listen for them next time.' : 'You followed every word. ਸ਼ਾਬਾਸ਼!';
@@ -155,11 +158,13 @@ function render() {
   const playing = session.state === 'playing', completed = session.state === 'completed';
   $('practice').hidden = completed; $('results').hidden = !completed;
   // SVG elements do not reflect the HTMLElement.hidden property.
-  $('play-icon').toggleAttribute('hidden', playing);
+  const retry = completed && !session.stats.coinsEarned;
+  $('play-icon').toggleAttribute('hidden', playing || retry);
   $('pause-icon').toggleAttribute('hidden', !playing);
-  const label = completed ? 'Play again' : playing ? 'Pause' : session.state === 'paused' ? 'Continue' : 'Play';
+  $('retry-icon').toggleAttribute('hidden', !retry);
+  const label = retry ? 'Retry' : completed ? 'Play again' : playing ? 'Pause' : session.state === 'paused' ? 'Continue' : 'Play';
   $('play-label').textContent = label;
-  $('play').setAttribute('aria-label', completed ? 'Play again' : playing ? 'Pause audio' : 'Play audio');
+  $('play').setAttribute('aria-label', retry ? 'Retry pauri' : completed ? 'Play again' : playing ? 'Pause audio' : 'Play audio');
   $('play').disabled = !ready || starting;
   $('restart').hidden = session.state !== 'paused';
   $('next-pauri').hidden = !completed || pauri === 38;
