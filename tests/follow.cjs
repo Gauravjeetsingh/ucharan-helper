@@ -67,6 +67,10 @@ const words=verses.flatMap(v=>v.words);
     assert.equal(await page.locator('#result-title').textContent(),`You caught 0 of ${words.length} words`);
     assert.equal(await page.locator('#missed-words .missed-chip').count(),words.length);
     assert.equal(await page.locator('#missed').textContent(),String(words.length));
+    assert.equal(await page.locator('#points').innerText(),'0');
+    assert.equal(await page.locator('#stars').count(),0);
+    assert.equal(await page.locator('.reward-coin').count(),0);
+    assert.match(await page.locator('#coin-reward').innerText(),/70%/);
     await page.getByRole('button',{name:'Play again',exact:true}).click();
     assert.equal(await page.locator('#results').isHidden(),true);
     assert.equal(await page.locator('#play-icon').isVisible(),false);
@@ -88,7 +92,54 @@ const words=verses.flatMap(v=>v.words);
     assert.equal(await page.locator('#caught').innerText(),'0');assert.equal(await page.locator('#missed').innerText(),'0');
     const second=source.sections.find(s=>s.id==='pauri-2');
     assert.deepEqual(await page.locator('.gurmukhi-line').allTextContents(),source.verses.filter(v=>second.verse_ids.includes(v.verse_id)).map(v=>v.text));
+    const secondWords=source.verses.filter(v=>second.verse_ids.includes(v.verse_id)).flatMap(v=>v.words);
+    const catchCount=Math.ceil(secondWords.length*.7);
+    async function completeWithCaught(count) {
+      await page.getByRole('button',{name:'Play audio',exact:true}).click();
+      await page.waitForFunction(()=>!document.getElementById('paath').paused&&!document.getElementById('play').disabled);
+      await page.evaluate(({sample,count,end})=>{
+        const audio=document.getElementById('paath'), offset=Number(audio.dataset.referenceStart);
+        for(const word of sample.slice(0,count)){
+          audio.currentTime=(word.start+word.end)/2-offset;
+          document.querySelector(`[data-word-id="${word.id}"]`).click();
+        }
+        audio.currentTime=end+.02-offset;
+        audio.dispatchEvent(new Event('timeupdate'));
+      },{sample:secondWords,count,end:second.end});
+      await page.waitForSelector('#results:not([hidden])');
+      assert.equal(await page.locator('#caught').innerText(),String(count));
+    }
+    // Just below the threshold never awards a coin.
+    await completeWithCaught(catchCount-1);
+    assert.equal(await page.locator('#points').innerText(),'0');
+    assert.equal(await page.locator('.reward-coin').count(),0);
+    await page.getByRole('button',{name:'Play again',exact:true}).click();
+    await page.getByRole('button',{name:'Pause audio',exact:true}).click();
+    await page.getByRole('button',{name:'Start again',exact:true}).click();
+    await completeWithCaught(catchCount);
+    assert.equal(await page.locator('#points').innerText(),'0','Counter waits for coin arrival');
+    assert.equal(await page.locator('.confetti-piece').count(),42);
+    assert.equal(await page.locator('.reward-coin').isVisible(),true);
+    await page.waitForTimeout(500);
+    await page.screenshot({path:path.join(os.tmpdir(),'uchaaran-follow-coin-flight.png'),fullPage:true});
+    await page.waitForFunction(()=>document.getElementById('points').value==='1');
+    await page.locator('#paath').evaluate(audio=>{
+      audio.dispatchEvent(new Event('ended'));audio.dispatchEvent(new Event('timeupdate'));
+    });
+    assert.equal(await page.locator('#points').innerText(),'1','Repeated completion events do not award again');
+    await page.reload();await page.waitForFunction(()=>!document.getElementById('play').disabled);
+    assert.equal(await page.locator('#points').innerText(),'1','Total survives refresh');
+    await completeWithCaught(catchCount);
+    await page.locator('#next-pauri').click();
+    await page.waitForFunction(()=>document.getElementById('pauri-label').textContent==='PAURI 3 OF 38'&&!document.getElementById('play').disabled);
+    assert.equal(await page.locator('#points').innerText(),'2','Next pauri collects an interrupted coin flight');
+    assert.equal(await page.locator('.reward-coin,.confetti-piece').count(),0);
+    await page.goto(base+'/follow?pauri=2');await page.waitForFunction(()=>!document.getElementById('play').disabled);
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await completeWithCaught(catchCount);
+    assert.equal(await page.locator('#points').innerText(),'3');
+    assert.equal(await page.locator('.reward-coin,.confetti-piece').count(),0);
     assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
-    console.log('PASS: exact Gurmukhi, phone viewport, real audio-clock hits/misses, pause, restart, completion/replay, mobile fit, no external requests.');
+    console.log('PASS: exact Gurmukhi, phone viewport, real audio-clock hits/misses, pause, restart, completion/replay, mobile fit, 70% coin threshold, coin flight, accumulated rewards, reduced motion, no external requests.');
   }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exit(1);});

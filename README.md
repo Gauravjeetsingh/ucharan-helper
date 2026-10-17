@@ -96,8 +96,12 @@ each round. No ML setup or microphone access is required.
 Press Play and tap each word as it is recited. A tap from 180 ms before the
 word's start to 320 ms after its end is green. An early tap or a word whose
 window expires is red. Each occurrence counts once; repeated words retain
-separate identities. Attention points follow the mockup: +10 per caught word,
-−5 per miss, with a floor of zero. They are not pronunciation scores. A caught
+separate identities. Completing a pauri with at least 70% of words caught earns
+one Nanak Coin.
+Words do not add or subtract coins. Confetti celebrates completion; an earned
+coin flies into the counter. Reduced-motion mode updates the counter without
+animation. Coins accumulate across pauris and qualifying replays in the current
+browser tab session; they are not pronunciation scores. A caught
 word pops green; a missed word shakes red. Tap a red word to hear it again: the
 paath pauses during replay, then resumes without changing its tap result.
 Reduced-motion preferences disable these animations.
@@ -106,8 +110,10 @@ Pause freezes playback and leaves the round intact. Start again resets it.
 The audio clock drives progress, expired words, and passage scrolling, including
 after background frame gaps. Each pauri clip is buffered locally as Blob media
 before play so seeking/replay work without HTTP-range support. Completion shows
-stars, caught/missed counts, missed-word chips, and Play again. Results remain in
-memory and are not uploaded or persisted. Timing grace values are demo settings,
+the coin reward, caught/missed counts, missed-word chips, and Play again. Tap
+results remain in memory; only the coin total and completed-pauri IDs are saved
+in browser session storage. Nothing is uploaded. Timing grace values are demo
+settings,
 not validated attention thresholds; source boundaries still await review.
 
 ## Learn and independent Test recording

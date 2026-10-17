@@ -10,6 +10,76 @@ let clipOffset = 0, blobUrl, reviewing = false, reviewToken = 0, reviewFrame;
 const reviewAudio = new Audio();
 const now = () => audio.currentTime + clipOffset;
 const buttons = new Map();
+const COIN_KEY = 'uchaaran-nanak-coins';
+let coins = 0;
+try {
+  const stored = Number(sessionStorage.getItem(COIN_KEY));
+  if (Number.isSafeInteger(stored) && stored >= 0) coins = stored;
+} catch {}
+$('points').value = coins;
+let rewardAnimations = [], collectReward, celebrationToken = 0;
+
+function stopCelebration() {
+  // Collect an earned coin even if Next, Play again, or navigation interrupts its flight.
+  collectReward?.(); collectReward = null;
+  celebrationToken++;
+  rewardAnimations.forEach(animation => animation.cancel()); rewardAnimations = [];
+  $('celebration').replaceChildren(); $('celebration').hidden = true;
+  document.querySelector('.points').classList.remove('coin-collected');
+}
+
+function celebrate(earned) {
+  stopCelebration();
+  const token = celebrationToken;
+  const layer = $('celebration');
+  collectReward = earned ? () => {
+    $('points').value = coins;
+    document.querySelector('.points').classList.add('coin-collected');
+    collectReward = null;
+  } : null;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    collectReward?.(); return;
+  }
+  layer.hidden = false;
+  const animate = (element, keyframes, options) => {
+    const animation = element.animate(keyframes, options);
+    rewardAnimations.push(animation);
+    return animation;
+  };
+  const colors = ['#f6a623', '#6668ed', '#2da46f', '#e66e83', '#ffd66b'];
+  for (let i = 0; i < 42; i++) {
+    const piece = document.createElement('i'); piece.className = 'confetti-piece';
+    piece.style.backgroundColor = colors[i % colors.length]; layer.append(piece);
+    const angle = (i / 42) * Math.PI * 2;
+    const x = Math.cos(angle) * (65 + (i % 5) * 22);
+    const y = Math.sin(angle) * 75 - 45;
+    animate(piece, [
+      {transform:'translate(-50%, -50%) scale(.2)', opacity:0},
+      {transform:`translate(${x}px, ${y}px) rotate(${i * 31}deg)`, opacity:1, offset:.28},
+      {transform:`translate(${x * 1.25}px, ${150 + i % 6 * 19}px) rotate(${i * 67}deg)`, opacity:0}
+    ], {duration:1400 + i % 5 * 100, easing:'cubic-bezier(.15,.65,.4,1)', fill:'both'});
+  }
+  if (earned) {
+    const coin = document.createElement('img'); coin.className = 'reward-coin';
+    coin.src = '/apps/follow/assets/nanak-coin.png'; coin.alt = ''; layer.append(coin);
+    const bounds = layer.getBoundingClientRect();
+    const target = document.querySelector('.points .nanak-coin').getBoundingClientRect();
+    const dx = target.x + target.width / 2 - bounds.x - bounds.width / 2;
+    const dy = target.y + target.height / 2 - bounds.y - 125;
+    const flight = animate(coin, [
+      {transform:'translate(-50%, -50%) scale(.3)', opacity:0},
+      {transform:'translate(-50%, -50%) scale(1.1)', opacity:1, offset:.2},
+      {transform:'translate(-50%, -50%) scale(1)', opacity:1, offset:.45},
+      {transform:`translate(calc(-50% + ${dx * .45}px), calc(-50% + ${dy - 35}px)) scale(.75)`, opacity:1, offset:.75},
+      {transform:`translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(.48)`, opacity:0}
+    ], {duration:1500, delay:150, easing:'ease-in-out', fill:'both'});
+    flight.finished.then(() => { if (token === celebrationToken) collectReward?.(); }, () => {});
+  }
+  Promise.allSettled(rewardAnimations.map(animation => animation.finished)).then(() => {
+    if (token !== celebrationToken) return;
+    layer.hidden = true; layer.replaceChildren(); rewardAnimations = [];
+  });
+}
 
 function stopFrame() { cancelAnimationFrame(frame); }
 function message(text) { $('status').textContent = text; }
@@ -68,12 +138,9 @@ function renderResults() {
   $('result-title').textContent = `You caught ${caught} of ${total} words`;
   const missed = words.filter(word => session.results.get(word.id)?.status === 'missed');
   $('result-message').textContent = missed.length ? 'Missed words have a red line. Listen for them next time.' : 'You followed every word. ਸ਼ਾਬਾਸ਼!';
-  const stars = caught === 0 ? 0 : caught / total >= .9 ? 3 : caught / total >= .7 ? 2 : 1;
-  $('stars').replaceChildren(...Array.from({length: 3}, (_, i) => {
-    const star = document.createElement('span'); star.textContent = i < stars ? '★' : '☆';
-    star.setAttribute('aria-hidden', 'true'); return star;
-  }));
-  $('stars').setAttribute('aria-label', `${stars} of 3 stars`);
+  $('coin-reward').textContent = session.stats.coinsEarned
+    ? '+1 Nanak Coin · ਸ਼ਾਬਾਸ਼!'
+    : 'Catch at least 70% of the words to earn a Nanak Coin.';
   $('missed-words').replaceChildren(...missed.map(word => {
     const chip = document.createElement('span'); chip.className = 'missed-chip';
     chip.textContent = word.text; chip.lang = 'pa'; chip.dataset.wordId = word.id;
@@ -82,8 +149,8 @@ function renderResults() {
 }
 
 function render() {
-  const {caught, missed, points} = session.stats;
-  for (const [id, value] of [['caught', caught], ['missed', missed], ['points', points]]) {
+  const {caught, missed} = session.stats;
+  for (const [id, value] of [['caught', caught], ['missed', missed]]) {
     if ($(id).value !== String(value)) $(id).value = value;
   }
   const playing = session.state === 'playing', completed = session.state === 'completed';
@@ -119,7 +186,13 @@ function render() {
 function finish() {
   if (session.state !== 'playing') return;
   session.finish(now()); stopFrame(); audio.pause();
-  $('progress').value = 1; render(); message('Round complete. Play again whenever you’re ready.');
+  const earned = session.stats.coinsEarned;
+  if (earned) {
+    coins += earned;
+    try { sessionStorage.setItem(COIN_KEY, String(coins)); } catch {}
+  }
+  $('progress').value = 1; render(); celebrate(earned);
+  message(earned ? 'Pauri complete. You earned one Nanak Coin!' : 'Pauri complete. Keep listening and try again.');
   try {
     const previous = JSON.parse(sessionStorage.getItem('uchaaran-followed-pauris') || '[]');
     sessionStorage.setItem('uchaaran-followed-pauris', JSON.stringify([...new Set([...previous, pauri])]));
@@ -137,7 +210,7 @@ function tick() {
 function loop() { tick(); if (session.state === 'playing') frame = requestAnimationFrame(loop); }
 
 function reset() {
-  stopReview(); stopFrame(); session.reset(); audio.pause(); audio.currentTime = Math.max(0, clipStart - clipOffset);
+  stopCelebration(); stopReview(); stopFrame(); session.reset(); audio.pause(); audio.currentTime = Math.max(0, clipStart - clipOffset);
   activeVerse = -1; $('progress').value = 0;
   // Reveal the reader before scrolling: hidden elements retain old scroll offsets.
   render(); reader.scrollTop = 0; updateVerse(clipStart);
@@ -199,11 +272,11 @@ async function replayWord(word) {
     reviewFrame = requestAnimationFrame(watch);
   } catch(error) { if (token === reviewToken) { stopReview(); render(); message(error.message); } }
 }
-window.addEventListener('pagehide', () => { stopReview(); stopFrame(); audio.pause(); if(blobUrl) URL.revokeObjectURL(blobUrl); });
+window.addEventListener('pagehide', () => { stopCelebration(); stopReview(); stopFrame(); audio.pause(); if(blobUrl) URL.revokeObjectURL(blobUrl); });
 $('next-pauri').onclick = () => { pauri++; history.replaceState(null,'',`/follow?pauri=${pauri}`); loadSection().catch(error=>message(error.message)); };
 
 async function loadSection() {
-    ready = false; stopReview(); stopFrame(); audio.pause(); buttons.clear();
+    ready = false; stopCelebration(); stopReview(); stopFrame(); audio.pause(); buttons.clear();
     section = fullLesson.sections.find(s => s.id === `pauri-${pauri}`);
     source = {verses:fullLesson.verses.filter(v => section.verse_ids.includes(v.verse_id))};
     $('pauri-label').textContent = `PAURI ${pauri} OF 38`;
