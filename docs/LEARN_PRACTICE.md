@@ -36,8 +36,8 @@ unclear or missing feedback. A judged turn at 70% or below resets the streak;
 unavailable/unclear assessments and technical errors leave it unchanged.
 The message counts down (for example, “3 more to go for Nanak Coin”). The fifth
 qualifying turn adds one Nanak Coin to the same tab-session counter as Follow.
-The fifth turn shows centered confetti and a Nanak Coin that flies into the
-counter. On arrival, the counter increases and the five bars clear for a new
+The fifth turn shows multicolored flower petals falling from the top and a
+Nanak Coin rising from the bottom into the top-right counter. On arrival, the counter increases and the five bars clear for a new
 streak. Reduced-motion mode collects the coin and clears the bars immediately.
 The award and cleared streak are saved before the animation, so refreshing or
 navigating mid-flight preserves the reward without awarding it twice.
@@ -45,7 +45,7 @@ Navigation, playback and re-rendering never count as turns. Only streak and coin
 totals are saved in browser session storage, never recordings or word results.
 This rewards existing experimental feedback; it adds no calibrated score.
 
-The app starts at `/`: choose Japji Sahib, then Follow along, Learn, or Test.
+The app starts at `/`: choose Japji Sahib, then Follow along, Learn, or Read Aloud.
 Back returns to these modes; Home returns to all banis. Learn defaults to the
 complete bani, in source order, with no dropdown or shuffle. Previous/next
 pankti controls navigate 386 short screens, including the opening and salok.

@@ -37,7 +37,7 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
       await page.waitForSelector('.practice-home');
       if(route==='learn') await page.waitForSelector('.word');
       else if(route==='follow') await page.waitForSelector('.follow-word');
-      else await page.waitForSelector('#test-text p');
+      else await page.getByRole('heading',{name:'Coming soon',exact:true}).waitFor();
     }
     await page.goto(`${base}/timestamps`);
     assert.equal(await page.locator('header').count(),1);

@@ -341,6 +341,9 @@ async function loadLesson(id) {
   } catch(error) { if(token===generation) { phase='error'; say(`Could not load the lesson: ${error.message}`); controls(); } }
 }
 async function init() {
+  fetch('/api/status').then(response=>response.ok ? response.json() : null).then(status=>{
+    if (status && status.local_only === false) $('lp-hosted-privacy').hidden = false;
+  }).catch(()=>{});
   for(let i=0;i<27;i++) $('lp-wave').append(element('span'));
   $('lp-listen').onclick=()=>{
     if(phase==='listening'||phase==='audio-loading') { stop(); setPhase(result?'result':'idle',restMessage()); }

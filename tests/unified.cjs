@@ -24,19 +24,14 @@ const base=process.env.APP_URL||'http://127.0.0.1:8767';
     await page.waitForTimeout(250); // Allow the active-verse opacity transition to finish for the preview.
     await page.screenshot({path:path.join(os.tmpdir(),'uchaaran-unified-follow.png'),fullPage:true});
     await page.getByRole('link',{name:'Back to Japji Sahib',exact:true}).click();
-    await page.getByRole('link',{name:/3 Test/}).click();await page.waitForSelector('#test-text p');
-    const section=lesson.sections.find(s=>s.id==='pauri-1');
-    assert.deepEqual(await page.locator('#test-text p').allTextContents(),lesson.verses.filter(v=>section.verse_ids.includes(v.verse_id)).map(v=>v.text));
+    assert.equal(await page.getByRole('link',{name:/3 Read Aloud/}).locator('small').innerText(),'Coming soon');
+    await page.getByRole('link',{name:/3 Read Aloud/}).click();
+    assert.equal(await page.getByRole('heading',{name:'Coming soon',exact:true}).isVisible(),true);
+    assert.equal(await page.locator('#test-mic,#test-record,button,audio').count(),0);
+    assert.equal(await page.locator('script[src="/apps/test/app.js"]').count(),0);
     await page.screenshot({path:path.join(os.tmpdir(),'uchaaran-unified-test.png'),fullPage:true});
-    await page.getByRole('button',{name:'Start reading',exact:true}).click();
-    await page.waitForFunction(()=>document.getElementById('test-screen').dataset.phase==='recording');
-    assert.equal(await page.locator('#test-stop').isVisible(),true);assert.equal(await page.locator('#test-mic').isVisible(),false);
-    await page.waitForTimeout(800);await page.getByRole('button',{name:'Stop recording',exact:true}).click();
-    await page.waitForSelector('#test-attempt:not([hidden])');assert.ok((await page.locator('#test-playback').getAttribute('src')).startsWith('blob:'));
-    const download=page.waitForEvent('download');await page.locator('#test-save').click();assert.match((await download).suggestedFilename(),/^japji-pauri-1\./);
-    await page.locator('#test-next').click();assert.match(await page.locator('#test-pauri').innerText(),/PAURI 2/);assert.equal(await page.locator('#test-attempt').isHidden(),true);
     await page.getByRole('link',{name:'All banis',exact:true}).click();assert.equal(await page.locator('#banis').isVisible(),true);
     assert.deepEqual(errors,[]);assert.deepEqual(uploads,[]);
-    console.log('PASS: bani → three modes, shared navigation, phone fit, full Learn default, Test capture/download/reset without uploads.');
+    console.log('PASS: bani → three modes, shared navigation, phone fit, full Learn default, Read Aloud coming-soon placeholder without recording controls or uploads.');
   }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exit(1);});

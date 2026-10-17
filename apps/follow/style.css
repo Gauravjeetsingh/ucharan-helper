@@ -23,11 +23,4 @@ body{background:#eae3d3}
 }
 
 /* Pauri completion celebrates attention; only a 70%+ round earns a coin. */
-.celebration{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:5}
-.confetti-piece{position:absolute;left:50%;top:125px;width:8px;height:13px;border-radius:2px}
-.confetti-piece:nth-child(3n){width:9px;height:9px;border-radius:50%}
-.reward-coin{position:absolute;left:50%;top:125px;width:70px;height:70px;object-fit:contain;filter:drop-shadow(0 5px 7px #a46e2740)}
 .results .coin-reward{font-size:17px;font-weight:800;color:#9b621b;line-height:1.5;margin:0 auto 24px}
-.points.coin-collected{animation:coin-collect .45s ease-out}
-@keyframes coin-collect{0%,100%{transform:scale(1)}45%{transform:scale(1.17);box-shadow:0 0 0 6px #f6c56540}}
-@media(prefers-reduced-motion:reduce){.celebration{display:none}.points.coin-collected{animation:none}}

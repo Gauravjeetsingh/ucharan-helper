@@ -119,15 +119,15 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
       if(turn===2) await page.screenshot({path:path.join(os.tmpdir(),'uchaaran-learn-streak-mobile.png'),fullPage:true});
     }
     assert.match(await page.locator('#lp-streak-message').innerText(),/\+1 Nanak Coin/);
-    assert.equal(await page.locator('.lp-confetti').count(),72);
-    assert.equal(await page.locator('.lp-flying-coin').isVisible(),true);
-    const origin=await page.locator('.lp-flying-coin').evaluate(el=>{
+    assert.equal(await page.locator('.celebration-petal').count(),72);
+    assert.equal(await page.locator('.celebration-coin').isVisible(),true);
+    const origin=await page.locator('.celebration-coin').evaluate(el=>{
       const style=getComputedStyle(el), layer=el.parentElement.getBoundingClientRect();
       return {x:parseFloat(style.left),y:parseFloat(style.top),width:layer.width,height:layer.height};
     });
-    assert.ok(Math.abs(origin.x-origin.width/2)<1&&Math.abs(origin.y-origin.height/2)<1,'Coin starts at the center of the phone screen');
+    assert.ok(Math.abs(origin.x-origin.width/2)<1&&Math.abs(origin.y-(origin.height-75))<1,'Coin starts at the bottom of the phone screen');
     await page.waitForTimeout(650);
-    await page.screenshot({path:path.join(os.tmpdir(),'uchaaran-learn-coin-flight.png'),fullPage:true});
+    await page.screenshot({path:path.join(os.tmpdir(),'uchaaran-learn-petals.png'),fullPage:true});
     await page.waitForFunction(()=>document.getElementById('lp-coins').value==='1');
     assert.equal(await page.locator('.lp-segment.is-reached').count(),0);
     assert.equal(await page.locator('#lp-segments').getAttribute('aria-valuenow'),'0');
@@ -147,11 +147,11 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
     await page.locator('#lp-listen').click();
     await page.waitForFunction(()=>!document.getElementById('lp-record').disabled,null,{timeout:15000});
     for(let turn=0;turn<4;turn++) await recordTurn('success');
-    assert.equal(await page.locator('.lp-flying-coin').count(),1);
+    assert.equal(await page.locator('.celebration-coin').count(),1);
     await page.locator('#lp-next').click();
     assert.equal(await page.locator('#lp-coins').innerText(),'2');
     assert.equal(await page.locator('.lp-segment.is-reached').count(),0);
-    assert.equal(await page.locator('.lp-confetti,.lp-flying-coin').count(),0);
+    assert.equal(await page.locator('.celebration-petal,.celebration-coin').count(),0);
     // Reduced motion collects and resets immediately, with no animated layer.
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.evaluate(()=>sessionStorage.setItem('uchaaran-learn-streak','4'));
@@ -161,7 +161,7 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
     await recordTurn('success');
     assert.equal(await page.locator('#lp-coins').innerText(),'3');
     assert.equal(await page.locator('.lp-segment.is-reached').count(),0);
-    assert.equal(await page.locator('.lp-confetti,.lp-flying-coin').count(),0);
+    assert.equal(await page.locator('.celebration-petal,.celebration-coin').count(),0);
     await page.reload();await page.waitForSelector('.lp-word');
     assert.equal(await page.locator('#lp-coins').innerText(),'3');
     assert.equal(await page.locator('.lp-segment.is-reached').count(),0);
@@ -173,7 +173,11 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
       assert.equal(await page.locator('link[href="/apps/learn/screens.css"]').count(),0);
       assert.ok(await page.locator('.word-card').count()>0);
     }
+    await page.route('**/api/status',route=>route.fulfill({json:{local_only:false}}));
+    await page.goto(base+'/learn');await page.locator('#lp-hosted-privacy').waitFor({state:'visible'});
+    assert.match(await page.locator('#lp-hosted-privacy').innerText(),/checked on this server/);
+    const controls=await page.locator('.lp-controls').boundingBox();assert.ok(controls.y+controls.height<=650);
     assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
-    console.log(`PASS: Learn playback, capture/WAV, ID-based red/green feedback, unclear retry, replay/download, reset, mobile layout, five-turn streak/reset/reward, centered coin flight, interrupted/reduced-motion collection, shared coins, new lesson and isolated card reviews. Screenshots: ${os.tmpdir()}/uchaaran-learn-{desktop,feedback-mobile}.png`);
+    console.log(`PASS: Learn playback, capture/WAV, ID-based red/green feedback, unclear retry, replay/download, reset, mobile layout, five-turn streak/reset/reward, falling petals and rising coin, interrupted/reduced-motion collection, shared coins, new lesson and isolated card reviews. Screenshots: ${os.tmpdir()}/uchaaran-learn-{desktop,feedback-mobile}.png`);
   } finally {await browser.close();}
 })().catch(error=>{console.error(error);process.exit(1);});

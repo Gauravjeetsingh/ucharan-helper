@@ -1,4 +1,5 @@
 import {FollowSession, EARLY_GRACE, LATE_GRACE} from './session.mjs';
+import {celebratePetals} from '../shared/celebration.mjs';
 
 const $ = id => document.getElementById(id);
 const audio = $('paath');
@@ -16,68 +17,17 @@ try {
   if (Number.isSafeInteger(stored) && stored >= 0) coins = stored;
 } catch {}
 $('points').value = coins;
-let rewardAnimations = [], collectReward, celebrationToken = 0;
+let cancelCelebration;
 
 function stopCelebration() {
-  // Collect an earned coin even if Next, Play again, or navigation interrupts its flight.
-  collectReward?.(); collectReward = null;
-  celebrationToken++;
-  rewardAnimations.forEach(animation => animation.cancel()); rewardAnimations = [];
-  $('celebration').replaceChildren(); $('celebration').hidden = true;
-  document.querySelector('.points').classList.remove('coin-collected');
+  cancelCelebration?.(); cancelCelebration = null;
 }
 
 function celebrate(earned) {
   stopCelebration();
-  const token = celebrationToken;
-  const layer = $('celebration');
-  collectReward = earned ? () => {
-    $('points').value = coins;
-    document.querySelector('.points').classList.add('coin-collected');
-    collectReward = null;
-  } : null;
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    collectReward?.(); return;
-  }
-  layer.hidden = false;
-  const animate = (element, keyframes, options) => {
-    const animation = element.animate(keyframes, options);
-    rewardAnimations.push(animation);
-    return animation;
-  };
-  const colors = ['#f6a623', '#6668ed', '#2da46f', '#e66e83', '#ffd66b'];
-  const confettiCount = earned ? 72 : 42;
-  for (let i = 0; i < confettiCount; i++) {
-    const piece = document.createElement('i'); piece.className = 'confetti-piece';
-    piece.style.backgroundColor = colors[i % colors.length]; layer.append(piece);
-    const angle = (i / confettiCount) * Math.PI * 2;
-    const x = Math.cos(angle) * (65 + (i % 5) * 22);
-    const y = Math.sin(angle) * 75 - 45;
-    animate(piece, [
-      {transform:'translate(-50%, -50%) scale(.2)', opacity:0},
-      {transform:`translate(${x}px, ${y}px) rotate(${i * 31}deg)`, opacity:1, offset:.28},
-      {transform:`translate(${x * 1.25}px, ${150 + i % 6 * 19}px) rotate(${i * 67}deg)`, opacity:0}
-    ], {duration:(earned ? 1800 : 1400) + i % 5 * 100, easing:'cubic-bezier(.15,.65,.4,1)', fill:'both'});
-  }
-  if (earned) {
-    const coin = document.createElement('img'); coin.className = 'reward-coin';
-    coin.src = '/apps/follow/assets/nanak-coin.png'; coin.alt = ''; layer.append(coin);
-    const bounds = layer.getBoundingClientRect();
-    const target = document.querySelector('.points .nanak-coin').getBoundingClientRect();
-    const dx = target.x + target.width / 2 - bounds.x - bounds.width / 2;
-    const dy = target.y + target.height / 2 - bounds.y - 125;
-    const flight = animate(coin, [
-      {transform:'translate(-50%, -50%) scale(.3)', opacity:0},
-      {transform:'translate(-50%, -50%) scale(1.1)', opacity:1, offset:.2},
-      {transform:'translate(-50%, -50%) scale(1)', opacity:1, offset:.45},
-      {transform:`translate(calc(-50% + ${dx * .45}px), calc(-50% + ${dy - 35}px)) scale(.75)`, opacity:1, offset:.75},
-      {transform:`translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(.48)`, opacity:0}
-    ], {duration:1900, delay:150, easing:'ease-in-out', fill:'both'});
-    flight.finished.then(() => { if (token === celebrationToken) collectReward?.(); }, () => {});
-  }
-  Promise.allSettled(rewardAnimations.map(animation => animation.finished)).then(() => {
-    if (token !== celebrationToken) return;
-    layer.hidden = true; layer.replaceChildren(); rewardAnimations = [];
+  cancelCelebration = celebratePetals($('celebration'),document.querySelector('.points'),{
+    earned, petalCount:earned ? 72 : 42,
+    onCollect:() => { $('points').value = coins; }
   });
 }
 
