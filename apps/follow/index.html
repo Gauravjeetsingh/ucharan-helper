@@ -6,25 +6,23 @@
   <meta name="theme-color" content="#fff9ef">
   <title>Follow along · Uchaaran</title><link rel="icon" href="/apps/shared/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/apps/follow/style.css">
+  <link rel="stylesheet" href="/apps/shared/practice.css">
   <script type="module" src="/apps/follow/app.js"></script>
 </head>
 <body>
-  <main class="demo-stage">
-    <div class="demo-wrap">
-      <nav class="demo-nav" aria-label="App sections">
-        <a href="/timestamps">Timestamps</a><a href="/follow" aria-current="page">Follow</a><a href="/learn">Learn</a><a href="/test">Test</a>
-      </nav>
-      <p class="demo-label">Level 1 — Follow along <span>Mobile demo</span></p>
-      <section class="phone-shell" aria-label="Follow-along mobile demo">
-        <div class="phone-screen">
-          <header class="session-header">
-            <span class="level-badge" aria-hidden="true">1</span>
-            <div class="session-title"><span>LEVEL 1</span><h1>Follow along</h1></div>
+  <main class="practice-stage">
+    <div class="practice-wrap">
+      <section class="phone-shell practice-phone" aria-label="Follow along">
+        <div class="phone-screen practice-screen">
+          <header class="practice-header">
+            <a class="practice-back" href="/bani/japji-sahib" aria-label="Back to Japji Sahib"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7"/></svg></a>
+            <a class="practice-home" href="/" aria-label="All banis"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v11h-6v-7H9v7H3Z"/></svg></a>
+            <div class="practice-heading"><span id="pauri-label">PAURI 1 OF 38</span><h1>Follow along</h1></div>
             <div class="points" aria-label="Attention points"><span aria-hidden="true">★</span><output id="points">0</output></div>
           </header>
           <progress id="progress" max="1" value="0" aria-label="Audio progress"></progress>
           <section id="practice" class="practice" aria-label="Tap along with the paath">
-            <p class="instruction">Tap each word as you hear it</p>
+            <p id="instruction" class="instruction">Press play and listen closely</p>
             <div id="reader" class="reader" tabindex="0" aria-label="Gurbani words"></div>
             <p id="encouragement" class="encouragement" aria-live="polite"></p>
           </section>
@@ -44,14 +42,16 @@
               <svg id="pause-icon" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M6 4h4v16H6zm8 0h4v16h-4z"/></svg>
             </button>
             <span id="play-label" class="play-label">Loading…</span>
+            <button id="next-pauri" class="next-pauri" type="button" hidden>Next pauri →</button>
             <button id="restart" class="restart" type="button" hidden>Start again</button>
             <p id="status" class="status" role="status">Loading the paath…</p>
           </footer>
         </div>
       </section>
-      <p class="demo-note">Japji Sahib · tap-along demo</p>
+
     </div>
   </main>
+  <aside class="practice-utility"><a href="/timestamps">Timestamp tools</a></aside>
   <audio id="paath" preload="auto" hidden></audio>
 </body>
 </html>

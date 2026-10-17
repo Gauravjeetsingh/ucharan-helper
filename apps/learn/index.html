@@ -5,26 +5,15 @@
   <meta name="theme-color" content="#fff8ed"><title>Learn · Uchaaran</title>
   <link rel="icon" href="/apps/shared/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/apps/learn/screens.css">
+  <link rel="stylesheet" href="/apps/shared/practice.css">
   <script type="module" src="/apps/learn/screens.js"></script>
 </head>
 <body>
-<main class="lp-stage">
-  <div class="lp-wrap">
-    <nav class="lp-nav" aria-label="App sections"><a href="/timestamps">Timestamps</a><a href="/follow">Follow</a><a href="/learn" aria-current="page">Learn</a><a href="/test">Test</a></nav>
-    <div class="lp-demo-heading"><span>Level 2 — Learn</span>
-      <details class="lp-options"><summary>Lesson <span aria-hidden="true">⌄</span></summary>
-        <div class="lp-options-panel">
-          <label for="lp-lesson">Choose a lesson</label><select id="lp-lesson"></select>
-          <p id="lp-ustaad"></p><div class="lp-option-actions"><button id="lp-back">Previous pankti</button><button id="lp-shuffle">Shuffle</button></div>
-          <a href="/apps/learn/lab.html">Timing review &amp; sound lab</a>
-          <a href="/apps/learn/cards.html">Review pronunciation cards</a>
-          <a href="/apps/learn/cards.html?file=pronunciation-cards-japji.json">Review Japji Sahib cards (drafts)</a>
-        </div>
-      </details>
-    </div>
-    <section class="lp-phone" aria-label="Learn practice">
-      <div class="lp-screen" id="lp-screen" data-phase="idle">
-        <header class="lp-header"><span class="lp-level-badge" aria-hidden="true">2</span><div class="lp-heading"><span>LEVEL 2</span><h1>Learn</h1></div><span id="lp-progress" class="lp-progress"></span></header>
+<main class="practice-stage">
+  <div class="practice-wrap">
+    <section class="practice-phone" aria-label="Learn practice">
+      <div class="practice-screen lp-screen" id="lp-screen" data-phase="idle">
+        <header class="practice-header"><a class="practice-back" href="/bani/japji-sahib" aria-label="Back to Japji Sahib"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7"/></svg></a><a class="practice-home" href="/" aria-label="All banis"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v11h-6v-7H9v7H3Z"/></svg></a><div class="practice-heading"><span>JAPJI SAHIB</span><h1>Learn</h1></div><span id="lp-progress" class="lp-progress"></span></header>
         <div id="lp-segments" class="lp-segments" role="progressbar" aria-label="Lesson progress" aria-valuemin="1" aria-valuemax="1" aria-valuenow="1"></div>
         <div class="lp-reader" id="lp-reader">
           <section class="lp-phrase" aria-label="Words to practise"><div id="lp-words" class="lp-words" lang="pa"></div></section>
@@ -48,11 +37,12 @@
             <button id="lp-next" class="lp-round lp-next" aria-label="Next pankti" title="Next pankti" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" class="lp-stroke"/></svg></button>
           </div>
           <p id="lp-message" class="lp-message" role="status">Loading the lesson…</p>
+          <button id="lp-back" class="lp-previous" disabled>Previous pankti</button>
           <div class="lp-attempt-actions" id="lp-attempt-actions" hidden><button id="lp-hear">Hear my attempt</button><span aria-hidden="true">·</span><button id="lp-save">Save my attempt</button></div>
         </footer>
       </div>
     </section>
-    <p class="lp-note">Your recording stays on this computer · Experimental feedback</p>
   </div>
 </main>
+<aside class="practice-utility"><a href="/apps/learn/cards.html">Pronunciation review</a></aside>
 </body></html>

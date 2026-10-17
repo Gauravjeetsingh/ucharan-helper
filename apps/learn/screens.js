@@ -1,6 +1,6 @@
 // Learn UI. Lesson text/timings and comparison remain supplied by existing APIs.
 const $ = id => document.getElementById(id);
-const LESSONS = [['japji-short-phrases', 'Japji Sahib · short phrases'], ['mool-mantar', 'Mool Mantar'], ['japji-sahib', 'Japji Sahib · first lines (full recording)']];
+const LESSON_ID = 'japji-sahib-full';
 const SVG_NS = 'http://www.w3.org/2000/svg';
 let lesson, index = 0, ctx, playing, analyser, microphone, frame;
 let recorder, stream, timer, student, studentWav, result, selected = null;
@@ -12,7 +12,7 @@ const wordResult = i => result?.words?.find(w => w.id === screen().words[i].id);
 const say = text => { $('lp-message').textContent = text; };
 const restMessage = () => !result ? hasListened ? 'Your turn. Tap the microphone.' : 'Tap the speaker to hear Ustaad ji.'
   : result.status !== 'judged' ? 'Listen again, then give it another try.'
-  : index === lesson.screens.length - 1 ? 'Try again, or choose another lesson.' : 'Try again, or go to the next pankti.';
+  : index === lesson.screens.length - 1 ? 'You reached the end of Japji Sahib. You can practise again.' : 'Try again, or go to the next pankti.';
 const element = (tag, text, className) => {
   const node = document.createElement(tag);
   if (text !== undefined) node.textContent = text;
@@ -34,15 +34,15 @@ function controls() {
   $('lp-listen').disabled = busy() || phase === 'loading' || !lesson;
   $('lp-listen').setAttribute('aria-label', listening ? 'Stop ustaad playback' : 'Listen to ustaad');
   $('lp-listen').title = listening ? 'Stop playback' : 'Listen to ustaad';
-  $('lp-speaker-icon').hidden = listening; $('lp-speaker-stop').hidden = !listening;
+  $('lp-speaker-icon').toggleAttribute('hidden', listening); $('lp-speaker-stop').toggleAttribute('hidden', !listening);
   $('lp-record').disabled = !lesson || phase === 'loading' || phase === 'permission' || phase === 'checking' || listening || (!hasListened && !recording);
   $('lp-record').classList.toggle('recording', recording);
   $('lp-record').setAttribute('aria-label', recording ? 'Stop recording' : result || student ? 'Try again' : 'Record yourself');
   $('lp-record').title = recording ? 'Stop recording' : hasListened ? 'Record yourself' : 'Listen first, then record';
-  $('lp-mic-icon').hidden = recording || phase === 'checking'; $('lp-stop-icon').hidden = !recording; $('lp-checking-icon').hidden = phase !== 'checking';
+  $('lp-mic-icon').toggleAttribute('hidden', recording || phase === 'checking'); $('lp-stop-icon').toggleAttribute('hidden', !recording); $('lp-checking-icon').toggleAttribute('hidden', phase !== 'checking');
   $('lp-next').disabled = !lesson || busy() || phase === 'loading' || !result || result.status !== 'judged' || index === lesson.screens.length - 1;
   $('lp-back').disabled = !lesson || busy() || phase === 'loading' || index === 0;
-  $('lp-shuffle').disabled = $('lp-lesson').disabled = busy() || phase === 'loading';
+  $('lp-back').hidden = index === 0;
   $('lp-attempt-actions').hidden = !studentWav || busy();
   $('lp-hear').disabled = !student || busy();
   document.querySelectorAll('.lp-word').forEach(button => { button.disabled = busy() || phase === 'loading'; });
@@ -84,8 +84,12 @@ function startWave(input, playback) {
 }
 async function clip(url) {
   if (!clips.has(url)) {
-    const response = await fetch(url); if (!response.ok) throw Error('The reference recording could not be loaded.');
-    clips.set(url, ctx.decodeAudioData(await response.arrayBuffer()));
+    const response = await fetch(url);
+    if (!response.ok) { const error = await response.json().catch(() => ({})); throw Error(error.error || 'The reference recording could not be loaded.'); }
+    const offset = Number(response.headers.get('X-Audio-Start'));
+    clips.set(url, {buffer:await ctx.decodeAudioData(await response.arrayBuffer()), offset});
+    // Keep only recent phrases in memory on phones.
+    if (clips.size > 8) clips.delete(clips.keys().next().value);
   }
   return clips.get(url);
 }
@@ -102,18 +106,18 @@ async function play(buffer, start, end, token, options = {}) {
     setPhase(result ? 'result' : 'ready', restMessage());
   };
   const started = ctx.currentTime;
-  if (options.reference) startWave(source, {offset:start, started});
+  if (options.reference) startWave(source, {offset:start + options.referenceOffset, started});
   source.start(0, start, end - start);
 }
 async function playUstaad(start, end, fullReference = false) {
   if (busy() || !lesson) return;
-  stop(); const token = playbackToken, url = screen().audio;
+  stop(); const token = playbackToken, url = `/api/learn/screens/audio?lesson_id=${encodeURIComponent(lesson.id)}&screen_id=${encodeURIComponent(screen().id)}`;
   setPhase('audio-loading', 'Loading Ustaad ji’s recording…');
   try {
-    await audioContext(); const buffer = await clip(url);
+    await audioContext(); const reference = await clip(url);
     if (token !== playbackToken || busy()) return;
     setPhase('listening', 'Ustaad ji is reciting…');
-    await play(buffer, start, end, token, {reference:true, fullReference});
+    await play(reference.buffer, start - reference.offset, end - reference.offset, token, {reference:true, fullReference, referenceOffset:reference.offset});
   } catch (error) { if (token === playbackToken) showError(error.message); }
 }
 async function hearStudent(start = 0, end = student?.duration) {
@@ -185,11 +189,10 @@ function renderFeedback() {
 }
 function renderScreen() {
   generation++; stop(); result = null; selected = null; student = studentWav = null; hasListened = false;
-  $('lp-lesson').value = lesson.id; $('lp-ustaad').textContent = screen().ustaad;
   $('lp-progress').textContent = `Pankti ${index + 1} / ${lesson.screens.length}`;
-  const segments = $('lp-segments'); segments.replaceChildren(); segments.style.gridTemplateColumns = `repeat(${lesson.screens.length}, minmax(0, 1fr))`;
+  const segments = $('lp-segments'), count = Math.min(12, lesson.screens.length); segments.replaceChildren(); segments.style.gridTemplateColumns = `repeat(${count}, minmax(0, 1fr))`;
   segments.setAttribute('aria-valuemax', lesson.screens.length); segments.setAttribute('aria-valuenow', index + 1);
-  lesson.screens.forEach((_,i) => { const segment = element('span', undefined, 'lp-segment'); segment.classList.toggle('is-reached', i <= index); segments.append(segment); });
+  for (let i=0;i<count;i++) { const segment = element('span', undefined, 'lp-segment'); segment.classList.toggle('is-reached', i <= Math.floor(index * count / lesson.screens.length)); segments.append(segment); }
   renderWords(); renderFeedback(); $('lp-reader').scrollTop = 0;
   setPhase('idle', 'Tap the speaker to hear Ustaad ji.');
 }
@@ -253,12 +256,6 @@ function saveAttempt() {
   const verdict = screen().words.map((_,i) => ({correct:'G',wrong:'R',unclear:'X'})[wordResult(i)?.state] || 'X').join('');
   const link = element('a'); link.href = URL.createObjectURL(new Blob([studentWav], {type:'audio/wav'})); link.download = `attempt-${lesson.id}-${screen().id}-${verdict}-${stamp}.wav`; link.click(); setTimeout(() => URL.revokeObjectURL(link.href),1000);
 }
-function shuffle() {
-  if (busy()) return;
-  const screens = lesson.screens;
-  for (let i=screens.length-1;i>0;i--) { const j=Math.floor(Math.random()*(i+1)); [screens[i],screens[j]]=[screens[j],screens[i]]; }
-  index=0; renderScreen();
-}
 async function loadLesson(id) {
   if (busy()) return;
   generation++; stop(); setPhase('loading','Loading the lesson…'); const token=generation;
@@ -266,14 +263,11 @@ async function loadLesson(id) {
     const response=await fetch(`/data/lessons/${id}.json`); if(!response.ok) throw Error('Lesson file not found.');
     const value=await response.json(); if(token!==generation) return;
     lesson=value; index=0;
-    if(lesson.shuffle) { phase='idle'; shuffle(); } else renderScreen();
+    renderScreen();
   } catch(error) { if(token===generation) { phase='error'; say(`Could not load the lesson: ${error.message}`); controls(); } }
 }
 async function init() {
-  for(const [id,title] of LESSONS) { const option=element('option',title); option.value=id; $('lp-lesson').append(option); }
   for(let i=0;i<27;i++) $('lp-wave').append(element('span'));
-  $('lp-lesson').onchange=()=>loadLesson($('lp-lesson').value);
-  $('lp-shuffle').onclick=shuffle;
   $('lp-listen').onclick=()=>{
     if(phase==='listening'||phase==='audio-loading') { stop(); setPhase(result?'result':hasListened?'ready':'idle',restMessage()); }
     else playUstaad(screen().start,screen().end,true);
@@ -283,6 +277,6 @@ async function init() {
   $('lp-back').onclick=()=>{ if(!busy()&&index>0) { index--; renderScreen(); } };
   $('lp-next').onclick=()=>{ if(!busy()&&index<lesson.screens.length-1) { index++; renderScreen(); } };
   window.addEventListener('pagehide',()=>{ generation++; clearTimeout(timer); stop(); stream?.getTracks().forEach(track=>track.stop()); });
-  await loadLesson(LESSONS[0][0]);
+  await loadLesson(LESSON_ID);
 }
 init().catch(error=>say(`Could not start: ${error.message}`));

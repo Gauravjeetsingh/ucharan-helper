@@ -5,6 +5,10 @@ const audio = $('paath');
 const reader = $('reader');
 let source, session, words, clipStart, clipEnd, frame, starting = false, ready = false;
 let activeVerse = -1;
+let fullLesson, section, pauri = Math.max(1, Math.min(38, Math.trunc(Number(new URLSearchParams(location.search).get('pauri'))) || 1));
+let clipOffset = 0, blobUrl, reviewing = false, reviewToken = 0, reviewFrame;
+const reviewAudio = new Audio();
+const now = () => audio.currentTime + clipOffset;
 const buttons = new Map();
 
 function stopFrame() { cancelAnimationFrame(frame); }
@@ -16,17 +20,21 @@ function renderText() {
     const block = document.createElement('div');
     block.className = 'verse'; block.dataset.verseIndex = index;
     const line = document.createElement('p'); line.className = 'gurmukhi-line'; line.lang = 'pa';
-    const characters = Array.from(verse.text);
-    let position = 0;
+    const characters = Array.from(fullLesson.source.text);
+    let position = verse.source_start;
     for (const word of verse.words) {
       line.append(document.createTextNode(characters.slice(position, word.source_start).join('')));
       const button = document.createElement('button');
       button.type = 'button'; button.className = 'follow-word'; button.textContent = word.text;
       button.dataset.wordId = word.id;
+      const replay = document.createElement('span'); replay.className = 'word-replay'; replay.setAttribute('aria-hidden','true');
+      replay.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4Zm12-2v3a3 3 0 0 1 0 4v3a7 7 0 0 0 0-10Z"/></svg>';
+      button.append(replay);
       button.disabled = true;
       button.addEventListener('click', () => {
+        if (session.results.get(word.id)?.status === 'missed') { replayWord(word); return; }
         if (audio.paused || audio.ended) return;
-        const tap = session.tap(word.id, audio.currentTime);
+        const tap = session.tap(word.id, now());
         if (tap) {
           message(tap.status === 'caught' ? 'Caught it.' : tap.reason === 'too_early' ? 'A little early. Listen for the next word.' : 'A little late. Keep listening.');
           render();
@@ -35,7 +43,7 @@ function renderText() {
       buttons.set(word.id, button); line.append(button);
       position = word.source_end;
     }
-    line.append(document.createTextNode(characters.slice(position).join('')));
+    line.append(document.createTextNode(characters.slice(position, verse.source_end).join('')));
     block.append(line); fragment.append(block);
   }
   reader.replaceChildren(fragment);
@@ -86,38 +94,50 @@ function render() {
   const label = completed ? 'Play again' : playing ? 'Pause' : session.state === 'paused' ? 'Continue' : 'Play';
   $('play-label').textContent = label;
   $('play').setAttribute('aria-label', completed ? 'Play again' : playing ? 'Pause audio' : 'Play audio');
-  $('play').disabled = !ready || starting;
+  $('play').disabled = !ready || starting || reviewing;
   $('restart').hidden = session.state !== 'paused';
+  $('next-pauri').hidden = !completed || pauri === 38;
   for (const word of words) {
     const button = buttons.get(word.id), result = session.results.get(word.id);
-    button.dataset.result = result?.status || 'pending';
-    button.disabled = !playing || starting || !!result;
-    button.setAttribute('aria-label', `${word.text} — ${result?.status || 'tap as you hear it'}`);
-    button.classList.toggle('is-current', !result && playing && audio.currentTime >= word.start - EARLY_GRACE && audio.currentTime <= word.end + LATE_GRACE);
+    const state = result?.status || 'pending';
+    // Animate only the transition; animation frames never change a judgement.
+    if (button.dataset.result !== state) {
+      button.classList.remove('word-caught','word-missed');
+      if (result) button.classList.add(`word-${state}`);
+    }
+    button.dataset.result = state;
+    button.disabled = reviewing || starting || (state !== 'missed' && (!playing || !!result));
+    button.setAttribute('aria-label', `${word.text} — ${state === 'missed' ? 'missed, hear this word again' : result?.status || 'tap as you hear it'}`);
+    button.classList.toggle('is-current', !result && playing && now() >= word.start - EARLY_GRACE && now() <= word.end + LATE_GRACE);
   }
   const encouragement = session.streak >= 3 ? `ਸ਼ਾਬਾਸ਼! ${session.streak} in a row` : '';
   if ($('encouragement').textContent !== encouragement) $('encouragement').textContent = encouragement;
   if (completed) renderResults();
+  $('instruction').textContent = reviewing ? 'Listen to this word once more' : missed ? 'Tap a red word to hear it again' : playing ? 'Tap each word as you hear it' : 'Press play and listen closely';
 }
 
 function finish() {
   if (session.state !== 'playing') return;
-  session.finish(audio.currentTime); stopFrame(); audio.pause();
+  session.finish(now()); stopFrame(); audio.pause();
   $('progress').value = 1; render(); message('Round complete. Play again whenever you’re ready.');
+  try {
+    const previous = JSON.parse(sessionStorage.getItem('uchaaran-followed-pauris') || '[]');
+    sessionStorage.setItem('uchaaran-followed-pauris', JSON.stringify([...new Set([...previous, pauri])]));
+  } catch {}
 }
 
 function tick() {
   if (session?.state !== 'playing') return;
-  session.advance(audio.currentTime);
-  $('progress').value = Math.max(0, Math.min(1, (audio.currentTime-clipStart)/(clipEnd-clipStart)));
-  if (audio.currentTime >= clipEnd || audio.ended) { finish(); return; }
-  updateVerse(audio.currentTime); render();
+  session.advance(now());
+  $('progress').value = Math.max(0, Math.min(1, (now()-clipStart)/(clipEnd-clipStart)));
+  if (now() >= clipEnd || audio.ended) { finish(); return; }
+  updateVerse(now()); render();
 }
 
 function loop() { tick(); if (session.state === 'playing') frame = requestAnimationFrame(loop); }
 
 function reset() {
-  stopFrame(); session.reset(); audio.pause(); audio.currentTime = clipStart;
+  stopReview(); stopFrame(); session.reset(); audio.pause(); audio.currentTime = Math.max(0, clipStart - clipOffset);
   activeVerse = -1; $('progress').value = 0;
   // Reveal the reader before scrolling: hidden elements retain old scroll offsets.
   render(); reader.scrollTop = 0; updateVerse(clipStart);
@@ -125,9 +145,9 @@ function reset() {
 }
 
 async function play() {
-  if (!ready || starting) return;
+  if (!ready || starting || reviewing) return;
   if (session.state === 'completed') reset();
-  if (session.state === 'ready') audio.currentTime = clipStart;
+  if (session.state === 'ready') audio.currentTime = Math.max(0, clipStart - clipOffset);
   starting = true; session.play(); render();
   try {
     await audio.play(); message('Tap each word as you hear it.');
@@ -139,7 +159,7 @@ async function play() {
 
 $('play').addEventListener('click', () => {
   if (session.state === 'playing') {
-    session.advance(audio.currentTime); session.pause(); audio.pause(); stopFrame(); render();
+    session.advance(now()); session.pause(); audio.pause(); stopFrame(); render();
     message('Paused. Continue when you’re ready.');
   } else play();
 });
@@ -151,30 +171,66 @@ audio.addEventListener('pause', () => {
     session.pause(); stopFrame(); render(); message('Paused. Continue when you’re ready.');
   }
 });
-window.addEventListener('pagehide', () => { stopFrame(); audio.pause(); });
-
-async function init() {
+function stopReview() {
+  reviewToken++; cancelAnimationFrame(reviewFrame); reviewAudio.pause(); reviewing = false;
+  buttons.forEach(button => button.classList.remove('is-replaying'));
+}
+async function replayWord(word) {
+  if (reviewing || !ready) return;
+  const resume = session.state === 'playing';
+  if (resume) { session.advance(now()); session.pause(); audio.pause(); stopFrame(); }
+  const token = ++reviewToken; reviewing = true; render();
+  buttons.get(word.id).classList.add('is-replaying');
   try {
-    const response = await fetch('/data/reference/word-timings.json');
-    if (!response.ok) throw Error('The reference timings could not load.');
-    source = await response.json();
+    if (reviewAudio.readyState < 1) await new Promise((resolve,reject) => {
+      reviewAudio.addEventListener('loadedmetadata',resolve,{once:true});
+      reviewAudio.addEventListener('error',()=>reject(Error('Word replay could not load.')),{once:true});
+      reviewAudio.load();
+    });
+    if (token !== reviewToken) return;
+    reviewAudio.currentTime = Math.max(0, word.start - clipOffset - .08);
+    await reviewAudio.play();
+    function watch() {
+      if (token !== reviewToken) return;
+      if (reviewAudio.ended || reviewAudio.currentTime >= word.end - clipOffset + .08) {
+        stopReview(); render(); if (resume) play(); else message('Press play to continue.');
+      } else reviewFrame = requestAnimationFrame(watch);
+    }
+    reviewFrame = requestAnimationFrame(watch);
+  } catch(error) { if (token === reviewToken) { stopReview(); render(); message(error.message); } }
+}
+window.addEventListener('pagehide', () => { stopReview(); stopFrame(); audio.pause(); if(blobUrl) URL.revokeObjectURL(blobUrl); });
+$('next-pauri').onclick = () => { pauri++; history.replaceState(null,'',`/follow?pauri=${pauri}`); loadSection().catch(error=>message(error.message)); };
+
+async function loadSection() {
+    ready = false; stopReview(); stopFrame(); audio.pause(); buttons.clear();
+    section = fullLesson.sections.find(s => s.id === `pauri-${pauri}`);
+    source = {verses:fullLesson.verses.filter(v => section.verse_ids.includes(v.verse_id))};
+    $('pauri-label').textContent = `PAURI ${pauri} OF 38`;
     words = source.verses.flatMap(verse => verse.words);
-    session = new FollowSession(words); renderText();
-    // Buffer the short clip before play: Blob media supports reliable seeking
-    // even when the development file server does not implement HTTP ranges.
-    const recording = await fetch('/data/reference/recording.wav');
-    if (!recording.ok) throw Error('The recording could not load. Refresh to try again.');
-    audio.src = URL.createObjectURL(await recording.blob());
+    session = new FollowSession(words); renderText(); render(); message('Loading the paath…');
+    const recording = await fetch(`/api/learn/screens/audio?lesson_id=japji-sahib-full&section_id=${section.id}`);
+    if (!recording.ok) { const error = await recording.json().catch(()=>({})); throw Error(error.error || 'The recording could not load.'); }
+    clipOffset = Number(recording.headers.get('X-Audio-Start'));
+    audio.dataset.referenceStart = clipOffset;
+    if (blobUrl) URL.revokeObjectURL(blobUrl);
+    blobUrl = URL.createObjectURL(await recording.blob()); audio.src = reviewAudio.src = blobUrl;
     audio.load();
     if (audio.readyState < 1) await new Promise((resolve, reject) => {
       audio.addEventListener('loadedmetadata', resolve, {once: true});
       audio.addEventListener('error', () => reject(Error('The recording could not load. Refresh to try again.')), {once: true});
-      if (audio.error) reject(Error('The recording could not load. Refresh to try again.'));
     });
-    if (!Number.isFinite(audio.duration) || words.at(-1).end > audio.duration) throw Error('The audio does not cover the reference timings.');
-    clipStart = Math.max(0, words[0].start - .45);
-    clipEnd = Math.min(audio.duration, words.at(-1).end + LATE_GRACE + .03);
+    if (!Number.isFinite(audio.duration) || words.at(-1).end - clipOffset > audio.duration + .01) throw Error('The audio does not cover the reference timings.');
+    clipStart = section.start;
+    clipEnd = Math.min(clipOffset + audio.duration, section.end);
     ready = true; reset();
+}
+async function init() {
+  try {
+    const response = await fetch('/data/lessons/japji-sahib-full.json');
+    if (!response.ok) throw Error('The reference timings could not load.');
+    fullLesson = await response.json();
+    await loadSection();
   } catch (error) { message(error.message); $('play-label').textContent = 'Unable to load'; }
 }
 

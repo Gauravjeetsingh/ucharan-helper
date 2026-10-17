@@ -7,7 +7,10 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
     const page = await browser.newPage({viewport:{width:1280,height:1000}}), errors=[];
     page.on('pageerror', error=>errors.push(error.message));
     await page.goto(base);
-    assert.equal(new URL(page.url()).pathname, '/timestamps');
+    assert.equal(new URL(page.url()).pathname, '/');
+    await page.locator('.bani-card').click();
+    assert.equal(await page.locator('.mode-card').count(),3);
+    await page.goto(`${base}/timestamps`);
     assert.equal(await page.locator('.word, #sound-review, #record-student').count(), 0);
     await page.getByRole('button',{name:'Use the Japji Sahib sample'}).click();
     await page.waitForFunction(()=>!document.getElementById('existing').disabled);
@@ -31,10 +34,10 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
     await page.waitForFunction(()=>document.getElementById('status').textContent.startsWith('Timestamps generated'));
     for (const route of ['follow','test','learn']) {
       await page.goto(`${base}/${route}`);
-      await page.waitForSelector(`nav a[aria-current="page"][href="/${route}"]`);
+      await page.waitForSelector('.practice-home');
       if(route==='learn') await page.waitForSelector('.word');
       else if(route==='follow') await page.waitForSelector('.follow-word');
-      else assert.equal(await page.getByText('Not built yet').count(),1);
+      else await page.waitForSelector('#test-text p');
     }
     await page.goto(`${base}/timestamps`);
     assert.equal(await page.locator('header').count(),1);
@@ -46,6 +49,6 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
     await page.waitForSelector('nav a[aria-current="page"]');
     await page.screenshot({path:require('node:path').join(require('node:os').tmpdir(), 'uchaaran-timestamps-desktop.png'),fullPage:true});
     assert.deepEqual(errors,[]);
-    console.log('PASS: routes, isolated generator, sample JSON/export, browser WAV conversion, placeholders, learn loading, mobile layout.');
+    console.log('PASS: routes, isolated generator, sample JSON/export, browser WAV conversion, bani navigation, practice loading, mobile layout.');
   } finally {await browser.close();}
 })().catch(error=>{console.error(error);process.exit(1);});

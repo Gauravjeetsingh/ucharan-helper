@@ -13,6 +13,7 @@ from .paths import ROOT, REFERENCE
 MODEL_LOCK = threading.Lock()
 MODELS = {}
 ROUTES = {f'/{name}': f'apps/{name}/index.html' for name in ['timestamps', 'follow', 'learn', 'test']}
+ROUTES.update({'/': 'apps/home/index.html', '/bani/japji-sahib': 'apps/home/index.html'})
 PUBLIC = {f'/data/reference/{name}' for name in [
     'word-timings.json', 'banidb-shabad-1.json', 'recording.wav', 'reference-phones.json', 'phone-raw.json']}
 ASSETS = {f'/{p.relative_to(ROOT).as_posix()}' for p in (ROOT/'apps').rglob('*')
@@ -51,12 +52,15 @@ class Handler(SimpleHTTPRequestHandler):
         if not self.local_request():
             return self.reply(403, {'error': 'Local same-origin requests only.'}, head)
         path = unquote(urlparse(self.path).path)
-        if path in {'/', '/index.html'}:
+        if path == '/index.html':
             self.send_response(302)
-            self.send_header('Location', '/timestamps')
+            self.send_header('Location', '/')
             self.send_header('Content-Length', '0')
             self.end_headers()
             return
+        if path == '/api/learn/screens/audio':
+            from .learn.screens_api import audio_clip
+            return audio_clip(self, head)
         if path.startswith('/data/lessons/'):
             from .learn.screens_api import serve_lesson_file
             return serve_lesson_file(self, path, head)
@@ -70,8 +74,8 @@ class Handler(SimpleHTTPRequestHandler):
             return self.reply(200, dict(local_only=True, stores_student_audio=False,
                 timestamp_model_present=all((ROOT/'models/timestamps'/f).is_file() for f in ['model.int8.onnx', 'tokenizer.model']),
                 model_present=(ROOT/'models/phone/pytorch_model.bin').is_file()), head)
-        if path.rstrip('/') in ROUTES:
-            self.path = '/' + ROUTES[path.rstrip('/')]
+        if (path.rstrip('/') or '/') in ROUTES:
+            self.path = '/' + ROUTES[path.rstrip('/') or '/']
         elif path not in PUBLIC | ASSETS:
             return self.reply(404, {'error': 'Not found.'}, head)
         if head:
@@ -163,7 +167,7 @@ def main():
     parser.add_argument('--port', type=int, default=8767)
     args = parser.parse_args()
     server = ThreadingHTTPServer(('127.0.0.1', args.port), Handler)
-    print(f'Open http://127.0.0.1:{args.port}/timestamps', flush=True)
+    print(f'Open http://127.0.0.1:{args.port}/', flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

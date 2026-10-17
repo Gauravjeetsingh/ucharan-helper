@@ -12,6 +12,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m unittest tests.test_server
+      - run: python -m unittest tests.test_learn_screens_routes tests.test_japji_practice
       - run: python -m tests.verify_data
       - run: python -m pip install -r requirements-timestamps.txt
       - run: python -m unittest tests.test_timestamps
@@ -28,8 +29,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: python -m scripts.prepare_japji_audio
       - run: python serve.py > /tmp/uchaaran-server.log 2>&1 &
       - run: npm run test:browser
       - run: npm run test:follow
       - run: npm run test:follow:browser
       - run: npm run test:learn:ui
+      - run: npm run test:unified

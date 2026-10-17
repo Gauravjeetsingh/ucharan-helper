@@ -1,0 +1,17 @@
+/* The bani picker and all three modes share this phone shell. */
+:root{color-scheme:light;--practice-cream:#fff8ed;--practice-ink:#30263f;--practice-line:#eae0ce}
+.practice-stage{min-height:100svh;display:grid;place-items:center;padding:18px 12px;box-sizing:border-box}
+.practice-wrap{width:min(100%,420px)}
+.practice-phone{box-sizing:border-box;height:830px;max-height:calc(100svh - 36px);min-height:560px;border:9px solid var(--practice-ink);border-radius:52px;overflow:hidden;background:var(--practice-cream);box-shadow:0 22px 38px #30263f25}
+.practice-screen{height:100%;box-sizing:border-box;display:flex;flex-direction:column;padding:37px 23px 25px;position:relative}
+.practice-header{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.practice-back,.practice-home{height:39px;width:36px;border-radius:12px;display:grid;place-items:center;border:2px solid var(--practice-line);background:#fffdfa;color:var(--practice-ink);box-shadow:0 3px 0 #e5d8c2;text-decoration:none;flex-shrink:0;box-sizing:border-box;cursor:pointer}
+.practice-back{background:var(--mode-color,#6668ed);border-color:transparent;box-shadow:0 3px 0 var(--mode-shadow,#5153c9);color:white}
+.practice-back svg,.practice-home svg{width:19px;height:19px;fill:currentColor;pointer-events:none}
+.practice-back svg{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.practice-heading{flex:1;min-width:0}.practice-heading>span{display:block;font-size:9px;letter-spacing:.13em;font-weight:800;color:#96897c}.practice-heading h1{font-size:20px;line-height:1.25;letter-spacing:-.5px;margin:0;font-weight:850;color:var(--practice-ink)}
+.practice-utility{position:fixed;right:16px;bottom:10px;z-index:2}.practice-utility a{font:10px/1.5 -apple-system,BlinkMacSystemFont,sans-serif;color:#93867c;text-decoration:none}
+.practice-back:focus-visible,.practice-home:focus-visible{outline:3px solid var(--mode-color,#6668ed);outline-offset:4px}
+@media(max-width:480px){.practice-stage{padding:6px}.practice-wrap{width:min(100%,420px)}.practice-phone{height:calc(100svh - 12px);max-height:none;min-height:550px;border-width:8px;border-radius:43px}.practice-screen{padding:33px 18px 23px}.practice-heading h1{font-size:18px}.practice-heading>span{font-size:8px}.practice-header{gap:9px}.practice-utility{display:none}}
+@media(max-width:360px){.practice-screen{padding-inline:14px}.practice-heading h1{font-size:16px}.practice-header{gap:7px}.practice-back,.practice-home{width:32px;height:36px}}
+@media(max-height:700px){.practice-screen{padding-top:24px;padding-bottom:18px}.practice-phone{min-height:520px}}

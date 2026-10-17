@@ -13,13 +13,28 @@ recordings. Tapping a word also replays its ustaad segment. Uncertain words stay
 neutral and prompt another attempt. There are no percentages or ustaad tips.
 The middle section scrolls while the recording controls stay accessible.
 
-Choose a lesson, shuffle, or return to the previous pankti from the Lesson
-menu above the frame. Existing source text, occurrence IDs, audio and timings
-are preserved. The older timing and sound lab and the pronunciation-card review
-pages remain linked in that menu. The full-recording Japji Sahib lesson is also
-available there. Review-page styles live in `cards.css` so they do not change
-the practice layout. Pronunciation-card guidance stays on the review pages;
-comparison reasons and the card's spoken form can still appear in feedback.
+The app starts at `/`: choose Japji Sahib, then Follow along, Learn, or Test.
+Back returns to these modes; Home returns to all banis. Learn defaults to the
+complete bani, in source order, with no dropdown or shuffle. Previous/next
+pankti controls navigate 386 short screens, including the opening and salok.
+
+`data/lessons/japji-sahib-full.json` is built from the existing MOV timing
+artifact with `python -m scripts.build_japji_practice`; this performs no new
+inference. All 2,150 occurrence IDs, Gurmukhi spellings, Unicode code-point
+offsets (end exclusive), and word times are preserved. Times remain unreviewed
+estimates. The script splits long lines only between existing words to keep
+recording requests under 15 seconds.
+
+Prepare the corresponding supplied MOV locally with
+`python -m scripts.prepare_japji_audio` (FFmpeg or macOS afconvert). The WAV is
+ignored by Git. The source MOV and MP3 have different leading audio; this lesson
+uses the MOV because its timing artifact was made from that file. The bounded
+`/api/learn/screens/audio` route returns only the requested phrase or pauri, with
+its absolute start in `X-Audio-Start`. The browser uses that offset to highlight
+the original word times and keeps at most eight decoded phrases in memory.
+
+The existing lab and pronunciation review remain at `/apps/learn/lab.html` and
+`/apps/learn/cards.html`. Pronunciation guidance stays off the practice page.
 
 ## Source of truth
 
@@ -56,8 +71,8 @@ optional and only adds the voicing check.
 
 `data/lessons/<id>.json`: `screens[]` with `audio` (16-bit PCM WAV under
 `data/`, any rate, mono or stereo), `start`/`end` seconds and per-word
-`id`/`text`/`start`/`end`. `/timestamps` can produce word times. New lessons
-must also be added to `LESSONS` in `apps/learn/screens.js`. Lesson files and
+`id`/`text`/`start`/`end`. `/timestamps` can produce word times. The practice page
+currently opens `japji-sahib-full` only. Lesson files and
 clips under `data/lessons/` are served by `backend/learn/screens_api.py`.
 
 **Save my attempt** downloads the student's recording to their computer for
@@ -67,7 +82,7 @@ debugging; nothing is kept on the server.
 
 - `apps/learn/screens.js`, `apps/learn/screens.css`: UI (IDs prefixed `lp-`).
 - `backend/learn/screens.py`: comparison. `backend/learn/tone.py`: voicing check.
-- `backend/learn/screens_api.py`: HTTP handlers; `server.py` only has two hooks.
+- `backend/learn/screens_api.py`: lesson files, bounded audio and comparison handlers.
 - Tests: `tests/test_learn_screens_routes.py` (stdlib),
   `tests/verify_learn_screens.py` (acoustic checks skip without the model).
   `npm run test:learn:ui` checks browser playback/capture and synthetic

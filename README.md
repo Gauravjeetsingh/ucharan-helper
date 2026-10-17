@@ -1,17 +1,20 @@
 # Uchaaran Helper
 
 A shared hackathon workspace for learning Gurbani from one ustaad recording.
-The timestamp generator is separate from the experimental learning tools.
+Choose a bani, then Follow along, Learn, or Test in the same phone UI. The
+timestamp generator remains a separate development tool.
 
 | Route | Current state | Source |
 | --- | --- | --- |
+| `/` | Choose a bani | `apps/home/` |
+| `/bani/japji-sahib` | Follow along / Learn / Test | `apps/home/` |
 | `/timestamps` | Audio + Gurmukhi → word timing JSON | `apps/timestamps/` |
-| `/follow` | Mobile-frame audio/tap demo with green/red timing feedback | `apps/follow/` |
-| `/learn` | Existing timing review, sound review and phrase practice; experimental | `apps/learn/` |
-| `/test` | Placeholder; ready for implementation | `apps/test/` |
+| `/follow` | Pauri-by-pauri tapping, word animations and missed-word replay | `apps/follow/` |
+| `/learn` | Complete Japji Sahib, listen and repeat; experimental feedback | `apps/learn/` |
+| `/test` | Independent pauri recording, playback and download | `apps/test/` |
 
-`/` redirects to `/timestamps`. The generator does not load the word-review or
-pronunciation-practice UI. Each route works directly and on refresh.
+Back returns to the bani's three modes; Home returns to all banis. Each route
+works directly and on refresh. The generator does not load the practice UI.
 
 ## Quick start on a teammate's laptop
 
@@ -29,6 +32,12 @@ external account, or system-specific cache is required to start the app and
 load/export the existing sample timings. Use `--port 8768` if 8767 is busy.
 Do not use a generic static file server; the Python server supplies the feature
 routes and local inference endpoints.
+
+For the complete Japji Sahib practice recording, install FFmpeg (or use macOS
+afconvert), then run `python -m scripts.prepare_japji_audio` once. This converts
+the supplied MOV into an ignored local WAV without running a model. Open
+<http://127.0.0.1:8767/> to choose Japji Sahib and a mode. Playback requests only
+the current phrase/pauri; the browser does not decode the whole 27-minute file.
 
 ## Enable new timestamp generation
 
@@ -81,30 +90,35 @@ See [docs/DATA.md](docs/DATA.md) for the JSON contracts and model provenance.
 
 Open <http://127.0.0.1:8767/follow>. The desktop page presents a narrow phone
 viewport for the hackathon demo; on a phone it fits the available width. The
-screen uses the supplied recording and existing 25 source-word timings. No ML
-setup or microphone access is required.
+screen opens Pauri 1 of Japji Sahib, with the remaining pauris available after
+each round. No ML setup or microphone access is required.
 
 Press Play and tap each word as it is recited. A tap from 180 ms before the
 word's start to 320 ms after its end is green. An early tap or a word whose
 window expires is red. Each occurrence counts once; repeated words retain
 separate identities. Attention points follow the mockup: +10 per caught word,
-−5 per miss, with a floor of zero. They are not pronunciation scores.
+−5 per miss, with a floor of zero. They are not pronunciation scores. A caught
+word pops green; a missed word shakes red. Tap a red word to hear it again: the
+paath pauses during replay, then resumes without changing its tap result.
+Reduced-motion preferences disable these animations.
 
 Pause freezes playback and leaves the round intact. Start again resets it.
 The audio clock drives progress, expired words, and passage scrolling, including
-after background frame gaps. The short WAV is buffered locally as Blob media
+after background frame gaps. Each pauri clip is buffered locally as Blob media
 before play so seeking/replay work without HTTP-range support. Completion shows
 stars, caught/missed counts, missed-word chips, and Play again. Results remain in
 memory and are not uploaded or persisted. Timing grace values are demo settings,
 not validated attention thresholds; source boundaries still await review.
 
-## Optional Learn development
+## Learn and independent Test recording
 
 The main `/learn` page uses a phone layout: listen, record, then see green/red
 words with explanations below. It shows no percentage score or ustaad tip.
 Phrase comparison uses the timestamp model above; see
 [docs/LEARN_PRACTICE.md](docs/LEARN_PRACTICE.md) for the flow and its limitations.
-The Lesson menu links to the existing timing and sound lab described below.
+Learn opens the full bani in order, including the opening and closing salok,
+with no lesson dropdown. There are 386 short screens from the existing 2,150
+word occurrences. The older lab remains at `/apps/learn/lab.html`.
 
 Existing work lives separately under `/learn`. Static playback, timing edits,
 reference sound review and notes work without the phone model. For local student
@@ -121,7 +135,7 @@ minute on CPU. Start with **ਸਤਿ ਨਾਮੁ**. Audio-derived sound labels
 are experimental; no ustaad-validated pronunciation grade is presented.
 Student audio stays in tab/process memory. Compare sends it only to the local
 loopback server; nothing is automatically retained or uploaded externally.
-Human corrections and timing edits save separately in browser storage and can
+In the older lab, human corrections and timing edits save separately in browser storage and can
 be exported. The original checked-in reference artifact is not overwritten.
 
 Reference reproduction tools (run from the repository root):
@@ -142,14 +156,18 @@ See [docs/PHONETIC_FINDINGS.md](docs/PHONETIC_FINDINGS.md) and
 [evaluation/PROTOCOL.md](evaluation/PROTOCOL.md) for limitations and pending
 human validation. Synthetic teacher controls are not real learner ratings.
 
+Test displays the selected pauri and records up to three minutes in browser
+memory. Stop to replay or explicitly download it. Test does not call a grading
+API or show an invented assessment. Leaving a mode stops its audio/microphone.
+
 ## Repository layout
 
 ```text
-apps/                   independent route pages
+apps/                   unified practice routes + separate timestamp tools
   timestamps/           generation only
-  learn/                previous review + practice prototype
+  learn/                full-bani practice + older review tools
   follow/               mobile tap-along demo
-  test/                 placeholder
+  test/                 local independent pauri recording
   shared/               navigation and styles
 backend/                local server + timestamp inference
   learn/                optional phonetic engine
@@ -186,6 +204,7 @@ npm run test:timing-review
 npm run test:follow
 npm run test:follow:browser
 npm run test:learn:ui
+npm run test:unified
 ```
 
 Use `APP_URL=http://127.0.0.1:8768` for the route smoke test if needed. For the
