@@ -3,3 +3,21 @@
 .phone-screen{--mode-color:#f69619;--mode-shadow:#ce7b13}.points{min-width:53px;padding:7px 10px;gap:5px}.practice-heading h1{font-size:18px}.phone-screen .practice{padding-top:28px}.reader{max-height:330px;padding-top:12px}.follow-word{position:relative;border:2px solid #eae0ce;border-radius:12px;box-shadow:0 3px 0 #e5d8c2;padding:1px 8px 2px;line-height:1.55;transform-origin:center}.follow-word[data-result=caught]{border-color:#40ad7a;background:#d9f2e3;box-shadow:0 3px 0 #badac6}.follow-word[data-result=missed]{border:2px solid #e44d49;box-shadow:none;background:#fffefa}.follow-word.word-caught{animation:word-catch .45s cubic-bezier(.2,.8,.3,1)}.follow-word.word-missed{animation:word-miss .34s ease-out}.word-replay{position:absolute;right:-7px;top:-10px;display:none;place-items:center;width:21px;height:21px;border-radius:50%;background:#e44d49;color:white;z-index:1;box-shadow:0 2px 0 #fff8ed}.word-replay svg{width:12px;height:12px;fill:currentColor}.follow-word[data-result=missed]:hover .word-replay,.follow-word[data-result=missed]:focus-visible .word-replay,.follow-word.is-replaying .word-replay{display:grid}.follow-word.is-replaying{outline:3px solid #f1b4a6;outline-offset:3px}.follow-word.word-caught::after{content:'';position:absolute;inset:-5px;border:2px solid #40ad7a;border-radius:15px;pointer-events:none;animation:word-ripple .5s ease-out forwards}.next-pauri{display:block;margin:12px auto 0;padding:9px 19px;border:1px solid #e7d8be;border-radius:13px;background:#fffdfa;color:#6b4b25;font-weight:750;cursor:pointer}.next-pauri[hidden]{display:none}.phone-screen .play-button{background:#f69619;box-shadow:0 5px 0 #ce7b13}.phone-screen .status{min-height:14px}.phone-screen .instruction{color:#6b5e78;font-weight:650;font-size:12px}.phone-screen .counts{margin-bottom:20px}.gurmukhi-line{font-size:27px}.phone-screen .verse{opacity:.22}.phone-screen .verse.is-active{opacity:1}.phone-screen .verse.is-past{opacity:.35}@keyframes word-catch{0%{transform:scale(1)}40%{transform:translateY(-5px) scale(1.13)}75%{transform:scale(.97)}100%{transform:scale(1)}}@keyframes word-miss{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px) rotate(-2deg)}55%{transform:translateX(4px) rotate(2deg)}80%{transform:translateX(-2px)}}@keyframes word-ripple{from{opacity:.7;transform:scale(.9)}to{opacity:0;transform:scale(1.25)}}@media(max-width:360px){.practice-heading h1{font-size:15px}.points{min-width:44px;padding:7px}.gurmukhi-line{font-size:24px}.follow-word{padding-inline:6px}}@media(max-height:700px){.reader{max-height:270px}.phone-screen .practice{padding-top:18px}}@media(prefers-reduced-motion:reduce){.follow-word.word-caught,.follow-word.word-missed,.follow-word.word-caught::after{animation:none}.follow-word.word-caught::after{display:none}}
 
 body{background:#eae3d3}
+
+/* The supplied Nanak Coin replaces the generic points star. */
+.points{
+  min-width:68px;
+  gap:6px;
+  padding:4px 10px 4px 5px;
+  border-color:#ead6b0;
+  background:linear-gradient(145deg,#fffdf7,#fff4de);
+  color:#6d471d;
+  font-variant-numeric:tabular-nums;
+}
+.nanak-coin{
+  display:block;
+  flex:0 0 34px;
+  width:34px;
+  height:34px;
+  object-fit:contain;
+}

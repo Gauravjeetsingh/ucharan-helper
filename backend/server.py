@@ -17,7 +17,7 @@ ROUTES.update({'/': 'apps/home/index.html', '/bani/japji-sahib': 'apps/home/inde
 PUBLIC = {f'/data/reference/{name}' for name in [
     'word-timings.json', 'banidb-shabad-1.json', 'recording.wav', 'reference-phones.json', 'phone-raw.json']}
 ASSETS = {f'/{p.relative_to(ROOT).as_posix()}' for p in (ROOT/'apps').rglob('*')
-          if p.is_file() and p.suffix in {'.html', '.js', '.mjs', '.css', '.svg'}}
+          if p.is_file() and p.suffix in {'.html', '.js', '.mjs', '.css', '.svg', '.png'}}
 
 
 class Handler(SimpleHTTPRequestHandler):
