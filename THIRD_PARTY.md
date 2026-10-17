@@ -1,5 +1,10 @@
 # Dependencies and model provenance
 
+The home page bundles Fredoka from the Google Fonts project for the “Kids mode”
+label. Copyright 2016 The Fredoka Project Authors. The font is distributed under
+the SIL Open Font License 1.1; its original license is included at
+`apps/home/fonts/OFL.txt`. No external font request is made at runtime.
+
 Project additions are MIT licensed (LICENSE). The optional acoustic recognizer
 is [facebook/wav2vec2-xlsr-53-espeak-cv-ft](https://huggingface.co/facebook/wav2vec2-xlsr-53-espeak-cv-ft),
 revision `2c733782da5604684829819a5eb744c193fe9398`, Apache-2.0 per the

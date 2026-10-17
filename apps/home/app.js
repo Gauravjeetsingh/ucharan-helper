@@ -1,4 +1,5 @@
 const modes = location.pathname.replace(/\/$/, '') === '/bani/japji-sahib';
+document.body.dataset.view = modes ? 'modes' : 'banis';
 document.getElementById('banis').hidden = modes;
 document.getElementById('modes').hidden = !modes;
 if (modes) {
@@ -9,4 +10,4 @@ if (modes) {
     document.getElementById('bani-progress').value = count;
     document.getElementById('step').textContent = `Step ${count}/38`;
   } catch {}
-}
+} else document.title = 'ਸੁੰਦਰ ਗੁਟਕਾ · Kids mode';
