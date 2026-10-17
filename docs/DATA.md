@@ -11,8 +11,8 @@
 }
 ```
 
-Limits: 120 seconds, 4,000 text characters, 250 words, 1,800 model tokens and
-6 MB encoded request. Audio must have a changing non-silent signal. Generation
+Limits: 30 minutes, 60,000 text characters, 8,000 words, 12,000 model tokens and
+80 MB encoded request. Audio over 32 s runs through the model in 30 s chunks with 2 s context. Audio must have a changing non-silent signal. Generation
 is serialized with Learn inference to bound concurrent model memory. A busy
 server returns 429; invalid input returns 400; missing dependencies/model 503.
 No endpoint downloads model weights automatically or retains uploaded audio.
