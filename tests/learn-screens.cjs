@@ -103,14 +103,27 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
       await recordTurn('success');
       assert.equal(await page.locator('.lp-segment.is-reached').count(),turn);
       assert.equal(await page.locator('#lp-segments').getAttribute('aria-valuenow'),String(turn));
-      assert.equal(await page.locator('#lp-coins').innerText(),turn===5?'1':'0');
+      assert.equal(await page.locator('#lp-coins').innerText(),'0','Counter waits for the coin to arrive');
       if(turn===2) await page.screenshot({path:path.join(os.tmpdir(),'uchaaran-learn-streak-mobile.png'),fullPage:true});
     }
     assert.match(await page.locator('#lp-streak-message').innerText(),/\+1 Nanak Coin/);
+    assert.equal(await page.locator('.lp-confetti').count(),72);
+    assert.equal(await page.locator('.lp-flying-coin').isVisible(),true);
+    const origin=await page.locator('.lp-flying-coin').evaluate(el=>{
+      const style=getComputedStyle(el), layer=el.parentElement.getBoundingClientRect();
+      return {x:parseFloat(style.left),y:parseFloat(style.top),width:layer.width,height:layer.height};
+    });
+    assert.ok(Math.abs(origin.x-origin.width/2)<1&&Math.abs(origin.y-origin.height/2)<1,'Coin starts at the center of the phone screen');
+    await page.waitForTimeout(650);
+    await page.screenshot({path:path.join(os.tmpdir(),'uchaaran-learn-coin-flight.png'),fullPage:true});
+    await page.waitForFunction(()=>document.getElementById('lp-coins').value==='1');
+    assert.equal(await page.locator('.lp-segment.is-reached').count(),0);
+    assert.equal(await page.locator('#lp-segments').getAttribute('aria-valuenow'),'0');
+    assert.equal(await page.locator('#lp-streak-message').innerText(),'5 more to go for Nanak Coin');
     await page.screenshot({path:path.join(os.tmpdir(),'uchaaran-learn-coin-earned.png'),fullPage:true});
     await page.locator('.lp-word').first().click();
     assert.equal(await page.locator('#lp-coins').innerText(),'1','Re-rendering feedback never awards again');
-    assert.equal(await page.locator('.lp-segment.is-reached').count(),5);
+    assert.equal(await page.locator('.lp-segment.is-reached').count(),0);
     await page.locator('#lp-listen').click();
     await recordTurn('success');
     assert.equal(await page.locator('.lp-segment.is-reached').count(),1);
@@ -118,8 +131,30 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
     await page.reload();await page.waitForSelector('.lp-word');
     assert.equal(await page.locator('.lp-segment.is-reached').count(),1);
     assert.equal(await page.locator('#lp-coins').innerText(),'1');
+    // A second award survives leaving the phrase before the flight ends.
+    await page.locator('#lp-listen').click();
+    await page.waitForFunction(()=>!document.getElementById('lp-record').disabled,null,{timeout:15000});
+    for(let turn=0;turn<4;turn++) await recordTurn('success');
+    assert.equal(await page.locator('.lp-flying-coin').count(),1);
+    await page.locator('#lp-next').click();
+    assert.equal(await page.locator('#lp-coins').innerText(),'2');
+    assert.equal(await page.locator('.lp-segment.is-reached').count(),0);
+    assert.equal(await page.locator('.lp-confetti,.lp-flying-coin').count(),0);
+    // Reduced motion collects and resets immediately, with no animated layer.
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await page.evaluate(()=>sessionStorage.setItem('uchaaran-learn-streak','4'));
+    await page.reload();await page.waitForSelector('.lp-word');
+    await page.locator('#lp-listen').click();
+    await page.waitForFunction(()=>!document.getElementById('lp-record').disabled,null,{timeout:15000});
+    await recordTurn('success');
+    assert.equal(await page.locator('#lp-coins').innerText(),'3');
+    assert.equal(await page.locator('.lp-segment.is-reached').count(),0);
+    assert.equal(await page.locator('.lp-confetti,.lp-flying-coin').count(),0);
+    await page.reload();await page.waitForSelector('.lp-word');
+    assert.equal(await page.locator('#lp-coins').innerText(),'3');
+    assert.equal(await page.locator('.lp-segment.is-reached').count(),0);
     await page.goto(base+'/follow');await page.waitForFunction(()=>!document.getElementById('play').disabled);
-    assert.equal(await page.locator('#points').innerText(),'1','Learn and Follow share the coin total');
+    assert.equal(await page.locator('#points').innerText(),'3','Learn and Follow share the coin total');
     for(const file of ['', '?file=pronunciation-cards-japji.json']) {
       await page.goto(`${base}/apps/learn/cards.html${file}`);await page.waitForSelector('.word-card');
       assert.equal(await page.locator('link[href="/apps/learn/cards.css"]').count(),1);
@@ -127,6 +162,6 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
       assert.ok(await page.locator('.word-card').count()>0);
     }
     assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
-    console.log(`PASS: Learn playback, capture/WAV, ID-based red/green feedback, unclear retry, replay/download, reset, mobile layout, five-turn streak/reset/reward, shared coins, new lesson and isolated card reviews. Screenshots: ${os.tmpdir()}/uchaaran-learn-{desktop,feedback-mobile}.png`);
+    console.log(`PASS: Learn playback, capture/WAV, ID-based red/green feedback, unclear retry, replay/download, reset, mobile layout, five-turn streak/reset/reward, centered coin flight, interrupted/reduced-motion collection, shared coins, new lesson and isolated card reviews. Screenshots: ${os.tmpdir()}/uchaaran-learn-{desktop,feedback-mobile}.png`);
   } finally {await browser.close();}
 })().catch(error=>{console.error(error);process.exit(1);});

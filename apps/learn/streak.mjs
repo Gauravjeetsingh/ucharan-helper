@@ -3,7 +3,7 @@ export const STREAK_LENGTH = 5;
 
 export class LearnStreak {
   constructor(count = 0) {
-    this.count = Number.isInteger(count) && count >= 0 && count <= STREAK_LENGTH ? count : 0;
+    this.count = Number.isInteger(count) && count >= 0 && count < STREAK_LENGTH ? count : 0;
   }
 
   record(result, words) {
@@ -16,7 +16,9 @@ export class LearnStreak {
       this.count = 0;
       return false;
     }
-    this.count = this.count === STREAK_LENGTH ? 1 : this.count + 1;
-    return this.count === STREAK_LENGTH;
+    this.count++;
+    if (this.count < STREAK_LENGTH) return false;
+    this.count = 0;
+    return true;
   }
 }

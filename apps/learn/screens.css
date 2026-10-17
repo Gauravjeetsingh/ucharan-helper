@@ -25,3 +25,12 @@
 @media(max-width:360px){.lp-streak-meta{gap:3px}.lp-streak-meta p{font-size:10px}}
 @media(max-height:760px){.lp-streak-meta{margin-top:14px}.lp-segments{margin-bottom:17px}}
 @media(prefers-reduced-motion:reduce){.lp-segment{transition:none}}
+
+/* Reward starts at the center of the phone and lands in the header counter. */
+.lp-celebration{position:absolute;inset:0;z-index:5;overflow:hidden;pointer-events:none}
+.lp-confetti{position:absolute;left:50%;top:50%;width:8px;height:13px;border-radius:2px}
+.lp-confetti:nth-child(3n){width:9px;height:9px;border-radius:50%}
+.lp-flying-coin{position:absolute;left:50%;top:50%;width:70px;height:70px;object-fit:contain;filter:drop-shadow(0 5px 7px #a46e2740)}
+.lp-coins.lp-coin-collected{animation:lp-coin-collect .45s ease-out}
+@keyframes lp-coin-collect{0%,100%{transform:scale(1)}45%{transform:scale(1.17);box-shadow:0 0 0 6px #f6c56540}}
+@media(prefers-reduced-motion:reduce){.lp-celebration{display:none}.lp-coins.lp-coin-collected{animation:none}}

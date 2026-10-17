@@ -20,7 +20,11 @@ unclear or missing feedback. A judged turn at 70% or below resets the streak;
 unavailable/unclear assessments and technical errors leave it unchanged.
 The message counts down (for example, “3 more to go for Nanak Coin”). The fifth
 qualifying turn adds one Nanak Coin to the same tab-session counter as Follow.
-All five bars stay filled until the next judged turn updates the streak.
+The fifth turn shows centered confetti and a Nanak Coin that flies into the
+counter. On arrival, the counter increases and the five bars clear for a new
+streak. Reduced-motion mode collects the coin and clears the bars immediately.
+The award and cleared streak are saved before the animation, so refreshing or
+navigating mid-flight preserves the reward without awarding it twice.
 Navigation, playback and re-rendering never count as turns. Only streak and coin
 totals are saved in browser session storage, never recordings or word results.
 This rewards existing experimental feedback; it adds no calibrated score.

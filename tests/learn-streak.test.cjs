@@ -20,7 +20,7 @@ test('five consecutive qualifying turns award once, then start a new cycle', asy
   const streak = new LearnStreak();
   for (let i=1;i<=5;i++) {
     assert.equal(streak.record(result(8),words),i===5);
-    assert.equal(streak.count,i);
+    assert.equal(streak.count,i===5?0:i);
   }
   assert.equal(streak.record(result(10),words),false);
   assert.equal(streak.count,1);
@@ -34,5 +34,5 @@ test('unavailable assessments do not add or erase turns; stored counts are bound
   assert.equal(streak.record(result(0,'unclear'),words),false); assert.equal(streak.count,2);
   assert.equal(streak.record({status:'judged',words:[]},[]),false); assert.equal(streak.count,2);
   for(const value of [-1,6,1.2,'2',NaN]) assert.equal(new LearnStreak(value).count,0);
-  assert.equal(new LearnStreak(5).count,5);
+  assert.equal(new LearnStreak(5).count,0);
 });

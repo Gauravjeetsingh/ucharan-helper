@@ -1,4 +1,5 @@
 import {LearnStreak, STREAK_LENGTH} from './streak.mjs';
+import {celebrateCoin} from './celebration.mjs';
 
 // Learn UI. Lesson text/timings and comparison remain supplied by existing APIs.
 const $ = id => document.getElementById(id);
@@ -17,31 +18,42 @@ function storedNumber(key) {
   } catch { return 0; }
 }
 const streak = new LearnStreak(storedNumber(STREAK_KEY));
-let coins = storedNumber(COIN_KEY);
+let coins = storedNumber(COIN_KEY), displayedCoins = coins;
+let rewardPending = false, cancelCelebration;
+
+function stopCelebration() {
+  cancelCelebration?.(); cancelCelebration = null;
+}
 
 function renderStreak() {
-  const segments = $('lp-segments');
+  const segments = $('lp-segments'), count = rewardPending ? STREAK_LENGTH : streak.count;
   if (segments.children.length !== STREAK_LENGTH) {
     segments.replaceChildren(...Array.from({length:STREAK_LENGTH}, () => element('span', undefined, 'lp-segment')));
   }
-  [...segments.children].forEach((segment,i) => segment.classList.toggle('is-reached', i < streak.count));
-  segments.setAttribute('aria-valuenow', streak.count);
-  segments.setAttribute('aria-valuetext', `${streak.count} of ${STREAK_LENGTH} consecutive qualifying turns`);
-  $('lp-streak-message').textContent = streak.count === STREAK_LENGTH
+  [...segments.children].forEach((segment,i) => segment.classList.toggle('is-reached', i < count));
+  segments.setAttribute('aria-valuenow', count);
+  segments.setAttribute('aria-valuetext', `${count} of ${STREAK_LENGTH} consecutive qualifying turns`);
+  $('lp-streak-message').textContent = rewardPending
     ? '+1 Nanak Coin! Five in a row.'
     : `${STREAK_LENGTH - streak.count} more to go for Nanak Coin`;
-  $('lp-streak-message').classList.toggle('is-earned', streak.count === STREAK_LENGTH);
-  $('lp-coins').value = coins;
+  $('lp-streak-message').classList.toggle('is-earned', rewardPending);
+  $('lp-coins').value = displayedCoins;
 }
 
 function recordTurn(value) {
+  stopCelebration();
   const earned = streak.record(value, screen().words);
   if (earned) coins = Math.max(coins, storedNumber(COIN_KEY)) + 1;
   try {
     sessionStorage.setItem(STREAK_KEY, String(streak.count));
     if (earned) sessionStorage.setItem(COIN_KEY, String(coins));
   } catch {}
+  rewardPending = earned;
   renderStreak();
+  if (earned) cancelCelebration = celebrateCoin($('lp-celebration'), document.querySelector('.lp-coins'), () => {
+    rewardPending = false; displayedCoins = coins;
+    renderStreak();
+  });
 }
 const screen = () => lesson.screens[index];
 const busy = () => ['permission', 'recording', 'checking'].includes(phase);
@@ -225,6 +237,7 @@ function renderFeedback() {
   }
 }
 function renderScreen() {
+  stopCelebration();
   generation++; stop(); result = null; selected = null; student = studentWav = null; hasListened = false;
   $('lp-progress').textContent = `Pankti ${index + 1} / ${lesson.screens.length}`;
   renderStreak();
@@ -261,7 +274,7 @@ async function toggleRecord() {
   if (recorder) { if (recorder.state === 'recording') recorder.stop(); return; }
   if (busy() || !hasListened) return;
   if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) { showError('This browser cannot record here. Open the app on localhost in a browser with microphone support.'); return; }
-  stop(); const token = ++generation, lessonId = lesson.id, screenId = screen().id;
+  stopCelebration(); stop(); const token = ++generation, lessonId = lesson.id, screenId = screen().id;
   result = null; student = studentWav = null; selected = null; renderWords(); renderFeedback();
   setPhase('permission', 'Allow microphone access to record your voice.');
   try {
@@ -311,7 +324,7 @@ async function init() {
   $('lp-hear').onclick=()=>hearStudent().catch(error=>showError(error.message));
   $('lp-back').onclick=()=>{ if(!busy()&&index>0) { index--; renderScreen(); } };
   $('lp-next').onclick=()=>{ if(!busy()&&index<lesson.screens.length-1) { index++; renderScreen(); } };
-  window.addEventListener('pagehide',()=>{ generation++; clearTimeout(timer); stop(); stream?.getTracks().forEach(track=>track.stop()); });
+  window.addEventListener('pagehide',()=>{ stopCelebration(); generation++; clearTimeout(timer); stop(); stream?.getTracks().forEach(track=>track.stop()); });
   await loadLesson(LESSON_ID);
 }
 init().catch(error=>say(`Could not start: ${error.message}`));
