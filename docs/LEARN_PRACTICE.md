@@ -1,8 +1,18 @@
 # Learn · listen and repeat
 
-`/learn` presents a cream phone frame with a five-turn coin streak, pankti position, a Gurmukhi phrase,
-and speaker, microphone and next-pankti controls. Listen to the whole ustaad
-clip to enable the microphone, then record and tap stop to compare locally.
+`/learn` presents a cream phone frame with a five-turn coin streak, pankti
+position, a Gurmukhi phrase, and speaker, microphone and next-pankti controls. Recording is available as soon
+as the lesson loads. Listening to the ustaad is optional; tapping the microphone
+also stops any reference playback before recording.
+
+The browser checks microphone energy locally every 50 ms. After at least 250 ms
+of sustained sound, 1.5 seconds of silence ends the recording and starts the
+existing local comparison. Initial silence and short clicks do not arm the
+stop detector. The stop button still works; a 14.5-second limit also remains.
+No detected speech shows a retry message without requesting a comparison.
+This simple amplitude threshold (RMS 0.015) estimates a pause, not whether all
+words were recited. A long pause within a phrase can end it early; background
+noise can postpone stopping until the limit. No live ASR or new model is used.
 The waveform follows the playing audio or microphone; it does not give live
 pronunciation judgements.
 
@@ -99,8 +109,10 @@ debugging; nothing is kept on the server.
 - `apps/learn/screens.js`, `apps/learn/screens.css`: UI (IDs prefixed `lp-`).
 - `backend/learn/screens.py`: comparison. `backend/learn/tone.py`: voicing check.
 - `backend/learn/screens_api.py`: lesson files, bounded audio and comparison handlers.
-- Streak logic: `node --test tests/learn-streak.test.cjs`.
+- Streak and endpoint logic: `node --test tests/learn-streak.test.cjs tests/learn-endpoint.test.cjs`.
 - Tests: `tests/test_learn_screens_routes.py` (stdlib),
   `tests/verify_learn_screens.py` (acoustic checks skip without the model).
   `npm run test:learn:ui` checks browser playback/capture and synthetic
   comparison responses with a running server; it does not validate acoustics.
+- `node tests/learn-autostop.cjs` checks automatic silence stopping with synthetic
+  microphone energy, immediate recording, manual stopping and cleanup.

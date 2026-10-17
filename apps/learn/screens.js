@@ -1,13 +1,14 @@
 import {LearnStreak, STREAK_LENGTH} from './streak.mjs';
 import {celebrateCoin} from './celebration.mjs';
+import {RecordingEndpoint, MAX_RECORDING_SECONDS} from './endpoint.mjs';
 
 // Learn UI. Lesson text/timings and comparison remain supplied by existing APIs.
 const $ = id => document.getElementById(id);
 const LESSON_ID = 'japji-sahib-full';
 const SVG_NS = 'http://www.w3.org/2000/svg';
 let lesson, index = 0, ctx, playing, analyser, microphone, frame;
-let recorder, stream, timer, student, studentWav, result, selected = null;
-let generation = 0, playbackToken = 0, hasListened = false, phase = 'loading';
+let recorder, stream, timer, endpointInterval, student, studentWav, result, selected = null;
+let generation = 0, playbackToken = 0, phase = 'loading';
 const clips = new Map();
 const STREAK_KEY = 'uchaaran-learn-streak';
 const COIN_KEY = 'uchaaran-nanak-coins';
@@ -59,7 +60,7 @@ const screen = () => lesson.screens[index];
 const busy = () => ['permission', 'recording', 'checking'].includes(phase);
 const wordResult = i => result?.words?.find(w => w.id === screen().words[i].id);
 const say = text => { $('lp-message').textContent = text; };
-const restMessage = () => !result ? hasListened ? 'Your turn. Tap the microphone.' : 'Tap the speaker to hear Ustaad ji.'
+const restMessage = () => !result ? 'Tap the microphone to record, or listen to Ustaad ji.'
   : result.status !== 'judged' ? 'Listen again, then give it another try.'
   : index === lesson.screens.length - 1 ? 'You reached the end of Japji Sahib. You can practise again.' : 'Try again, or go to the next pankti.';
 const element = (tag, text, className) => {
@@ -84,10 +85,10 @@ function controls() {
   $('lp-listen').setAttribute('aria-label', listening ? 'Stop ustaad playback' : 'Listen to ustaad');
   $('lp-listen').title = listening ? 'Stop playback' : 'Listen to ustaad';
   $('lp-speaker-icon').toggleAttribute('hidden', listening); $('lp-speaker-stop').toggleAttribute('hidden', !listening);
-  $('lp-record').disabled = !lesson || phase === 'loading' || phase === 'permission' || phase === 'checking' || listening || (!hasListened && !recording);
+  $('lp-record').disabled = !lesson || phase === 'loading' || phase === 'permission' || phase === 'checking';
   $('lp-record').classList.toggle('recording', recording);
   $('lp-record').setAttribute('aria-label', recording ? 'Stop recording' : result || student ? 'Try again' : 'Record yourself');
-  $('lp-record').title = recording ? 'Stop recording' : hasListened ? 'Record yourself' : 'Listen first, then record';
+  $('lp-record').title = recording ? 'Stop recording' : 'Record yourself';
   $('lp-mic-icon').toggleAttribute('hidden', recording || phase === 'checking'); $('lp-stop-icon').toggleAttribute('hidden', !recording); $('lp-checking-icon').toggleAttribute('hidden', phase !== 'checking');
   $('lp-next').disabled = !lesson || busy() || phase === 'loading' || !result || result.status !== 'judged' || index === lesson.screens.length - 1;
   $('lp-back').disabled = !lesson || busy() || phase === 'loading' || index === 0;
@@ -104,12 +105,26 @@ function stopWave() {
   microphone?.disconnect(); microphone = null; $('lp-wave').hidden = true;
   document.querySelectorAll('.lp-word.is-playing').forEach(node => node.classList.remove('is-playing'));
 }
+function stopEndpoint() {
+  clearInterval(endpointInterval); clearTimeout(timer);
+}
+function startEndpoint(detector) {
+  const input = analyser, samples = new Float32Array(input.fftSize);
+  endpointInterval = setInterval(() => {
+    if (recorder?.state !== 'recording') return;
+    input.getFloatTimeDomainData(samples);
+    const rms = Math.sqrt(samples.reduce((sum,value) => sum + value * value, 0) / samples.length);
+    if (detector.update(ctx.currentTime,rms)) recorder.stop();
+  },50);
+  timer = setTimeout(() => { if (recorder?.state === 'recording') recorder.stop(); }, MAX_RECORDING_SECONDS * 1000);
+}
 function stop() {
+  stopEndpoint();
   playbackToken++; if (playing) { playing.onended = null; try { playing.stop(); } catch {} playing = null; }
   stopWave();
 }
 function startWave(input, playback) {
-  analyser = ctx.createAnalyser(); analyser.fftSize = 256; analyser.smoothingTimeConstant = .65; input.connect(analyser);
+  analyser = ctx.createAnalyser(); analyser.fftSize = 1024; analyser.smoothingTimeConstant = .65; input.connect(analyser);
   const samples = new Uint8Array(analyser.fftSize), bars = [...$('lp-wave').children]; $('lp-wave').hidden = false;
   function draw() {
     if (!analyser) return;
@@ -151,14 +166,13 @@ async function play(buffer, start, end, token, options = {}) {
   source.onended = () => {
     if (token !== playbackToken) return;
     playing = null; stopWave();
-    if (options.fullReference) hasListened = true;
     setPhase(result ? 'result' : 'ready', restMessage());
   };
   const started = ctx.currentTime;
   if (options.reference) startWave(source, {offset:start + options.referenceOffset, started});
   source.start(0, start, end - start);
 }
-async function playUstaad(start, end, fullReference = false) {
+async function playUstaad(start, end) {
   if (busy() || !lesson) return;
   stop(); const token = playbackToken, url = `/api/learn/screens/audio?lesson_id=${encodeURIComponent(lesson.id)}&screen_id=${encodeURIComponent(screen().id)}`;
   setPhase('audio-loading', 'Loading Ustaad ji’s recording…');
@@ -166,7 +180,7 @@ async function playUstaad(start, end, fullReference = false) {
     await audioContext(); const reference = await clip(url);
     if (token !== playbackToken || busy()) return;
     setPhase('listening', 'Ustaad ji is reciting…');
-    await play(reference.buffer, start - reference.offset, end - reference.offset, token, {reference:true, fullReference, referenceOffset:reference.offset});
+    await play(reference.buffer, start - reference.offset, end - reference.offset, token, {reference:true, referenceOffset:reference.offset});
   } catch (error) { if (token === playbackToken) showError(error.message); }
 }
 async function hearStudent(start = 0, end = student?.duration) {
@@ -238,11 +252,11 @@ function renderFeedback() {
 }
 function renderScreen() {
   stopCelebration();
-  generation++; stop(); result = null; selected = null; student = studentWav = null; hasListened = false;
+  generation++; stop(); result = null; selected = null; student = studentWav = null;
   $('lp-progress').textContent = `Pankti ${index + 1} / ${lesson.screens.length}`;
   renderStreak();
   renderWords(); renderFeedback(); $('lp-reader').scrollTop = 0;
-  setPhase('idle', 'Tap the speaker to hear Ustaad ji.');
+  setPhase('idle', restMessage());
 }
 function showError(message) {
   stop(); result = {status:'unclear', words:[], message}; selected = null;
@@ -272,7 +286,7 @@ async function check(blob, token, lessonId, screenId) {
 }
 async function toggleRecord() {
   if (recorder) { if (recorder.state === 'recording') recorder.stop(); return; }
-  if (busy() || !hasListened) return;
+  if (busy() || !lesson || phase === 'loading') return;
   if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) { showError('This browser cannot record here. Open the app on localhost in a browser with microphone support.'); return; }
   stopCelebration(); stop(); const token = ++generation, lessonId = lesson.id, screenId = screen().id;
   result = null; student = studentWav = null; selected = null; renderWords(); renderFeedback();
@@ -280,21 +294,22 @@ async function toggleRecord() {
   try {
     await audioContext(); stream = await navigator.mediaDevices.getUserMedia({audio:{channelCount:1, echoCancellation:false, noiseSuppression:false, autoGainControl:false}});
     if (token !== generation) { stream.getTracks().forEach(track => track.stop()); stream = null; return; }
-    const chunks = []; recorder = new MediaRecorder(stream);
+    const chunks = [], detector = new RecordingEndpoint(ctx.currentTime); recorder = new MediaRecorder(stream);
     recorder.ondataavailable = event => { if (event.data.size) chunks.push(event.data); };
     recorder.onerror = () => { if (recorder?.state === 'recording') recorder.stop(); };
     recorder.onstop = async () => {
-      clearTimeout(timer); stream?.getTracks().forEach(track => track.stop()); stream = null; recorder = null; stopWave();
+      stopEndpoint(); stream?.getTracks().forEach(track => track.stop()); stream = null; recorder = null; stopWave();
       if (token !== generation) return;
+      if (!detector.speechDetected) { showError('I didn’t hear your voice. Try recording the whole phrase.'); return; }
       setPhase('checking', 'Comparing with Ustaad ji…');
       try { await check(new Blob(chunks, {type:chunks[0]?.type || 'audio/webm'}), token, lessonId, screenId); }
       catch (error) { if (token === generation) showError(error.message); }
     };
-    recorder.start(); setPhase('recording', 'Listening to you…');
+    recorder.start(); setPhase('recording', 'Listening… I’ll stop after a pause.');
     microphone = ctx.createMediaStreamSource(stream); startWave(microphone);
-    timer = setTimeout(() => { if (recorder?.state === 'recording') recorder.stop(); },14500);
+    startEndpoint(detector);
   } catch (error) {
-    clearTimeout(timer); stream?.getTracks().forEach(track => track.stop()); stream = null; recorder = null;
+    stopEndpoint(); stream?.getTracks().forEach(track => track.stop()); stream = null; recorder = null;
     if (token === generation) showError(`Microphone unavailable: ${error.message}`);
   }
 }
@@ -317,14 +332,14 @@ async function loadLesson(id) {
 async function init() {
   for(let i=0;i<27;i++) $('lp-wave').append(element('span'));
   $('lp-listen').onclick=()=>{
-    if(phase==='listening'||phase==='audio-loading') { stop(); setPhase(result?'result':hasListened?'ready':'idle',restMessage()); }
-    else playUstaad(screen().start,screen().end,true);
+    if(phase==='listening'||phase==='audio-loading') { stop(); setPhase(result?'result':'idle',restMessage()); }
+    else playUstaad(screen().start,screen().end);
   };
   $('lp-record').onclick=toggleRecord; $('lp-save').onclick=saveAttempt;
   $('lp-hear').onclick=()=>hearStudent().catch(error=>showError(error.message));
   $('lp-back').onclick=()=>{ if(!busy()&&index>0) { index--; renderScreen(); } };
   $('lp-next').onclick=()=>{ if(!busy()&&index<lesson.screens.length-1) { index++; renderScreen(); } };
-  window.addEventListener('pagehide',()=>{ stopCelebration(); generation++; clearTimeout(timer); stop(); stream?.getTracks().forEach(track=>track.stop()); });
+  window.addEventListener('pagehide',()=>{ stopCelebration(); generation++; stop(); if(recorder?.state==='recording') recorder.stop(); stream?.getTracks().forEach(track=>track.stop()); });
   await loadLesson(LESSON_ID);
 }
 init().catch(error=>say(`Could not start: ${error.message}`));

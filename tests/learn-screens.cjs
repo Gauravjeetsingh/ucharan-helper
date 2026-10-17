@@ -12,6 +12,18 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
     page.on('pageerror', e=>errors.push(e.message));
     page.on('request', r=>{if(new URL(r.url()).origin!==new URL(base).origin) external.push(r.url());});
     await page.addInitScript(()=>{
+      // Supply stable microphone energy for recording/UI tests; Chrome's default
+      // fake microphone can be silent and is unsuitable for speech endpointing.
+      navigator.mediaDevices.getUserMedia=async()=>{
+        const ctx=new AudioContext();await ctx.resume();
+        const source=ctx.createOscillator(),gain=ctx.createGain(),destination=ctx.createMediaStreamDestination();
+        gain.gain.value=.2;source.connect(gain);gain.connect(destination);source.start();
+        for(const track of destination.stream.getTracks()){
+          const stop=track.stop.bind(track);
+          track.stop=()=>{stop();source.stop();ctx.close();};
+        }
+        return destination.stream;
+      };
       window.audioStarts=[];
       const start=AudioBufferSourceNode.prototype.start;
       AudioBufferSourceNode.prototype.start=function(...args){window.audioStarts.push(args);return start.apply(this,args);};
@@ -30,7 +42,7 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
     assert.equal(await page.locator('select').count(),0);
     assert.equal(await page.locator('.lp-word').count(),lesson.screens[0].words.length);
     assert.equal(await page.locator('#lp-progress').innerText(),`Pankti 1 / ${lesson.screens.length}`);
-    assert.equal(await page.locator('#lp-record').isDisabled(),true);assert.equal(await page.locator('#lp-next').isDisabled(),true);
+    assert.equal(await page.locator('#lp-record').isDisabled(),false);assert.equal(await page.locator('#lp-next').isDisabled(),true);
     assert.equal(await page.locator('.lp-segment').count(),5);
     assert.equal(await page.locator('.lp-segment.is-reached').count(),0);
     assert.equal(await page.locator('#lp-segments').getAttribute('aria-valuemax'),'5');
@@ -38,13 +50,13 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
     assert.equal(await page.locator('#lp-streak-message').innerText(),'5 more to go for Nanak Coin');
     assert.equal(await page.locator('.lp-word.correct,.lp-word.wrong').count(),0);
     await page.screenshot({path:path.join(os.tmpdir(),'uchaaran-learn-desktop.png'),fullPage:true});
-    // A word replay doesn't unlock the microphone; complete reference playback does.
+    // Listening is optional; recording can interrupt word or full-reference playback.
     await page.locator('.lp-word').first().click();await page.waitForFunction(()=>document.getElementById('lp-screen').dataset.phase==='listening');
-    assert.equal(await page.locator('#lp-record').isDisabled(),true);
+    assert.equal(await page.locator('#lp-record').isDisabled(),false);
     await page.locator('#lp-listen').click();await page.locator('#lp-listen').click();
     await page.waitForFunction(()=>document.querySelector('.lp-word.is-playing'));
-    assert.equal(await page.locator('#lp-wave').isVisible(),true);assert.equal(await page.locator('#lp-record').isDisabled(),true);
-    await page.waitForFunction(()=>!document.getElementById('lp-record').disabled,null,{timeout:15000});
+    assert.equal(await page.locator('#lp-wave').isVisible(),true);assert.equal(await page.locator('#lp-record').isDisabled(),false);
+    await page.waitForFunction(()=>document.getElementById('lp-screen').dataset.phase==='ready',null,{timeout:15000});
     assert.ok((await page.evaluate(()=>window.audioStarts)).some(a=>a[1]===lesson.screens[0].start&&Math.abs(a[2]-(lesson.screens[0].end-lesson.screens[0].start))<.001));
     await page.locator('#lp-record').click();await page.waitForFunction(()=>document.getElementById('lp-screen').dataset.phase==='recording');
     assert.equal(await page.locator('#lp-wave').isVisible(),true);assert.equal(await page.locator('#lp-stop-icon').isVisible(),true);assert.equal(await page.locator('#lp-mic-icon').isVisible(),false);assert.equal(await page.locator('.lp-word.correct,.lp-word.wrong').count(),0);
@@ -76,7 +88,7 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
     assert.equal(await page.locator('.lp-segment.is-reached').count(),2);
     assert.equal(await page.locator('#lp-streak-message').innerText(),'3 more to go for Nanak Coin');
     await page.locator('#lp-next').click();
-    assert.equal(await page.locator('#lp-feedback').isVisible(),false);assert.equal(await page.locator('#lp-attempt-actions').isVisible(),false);assert.equal(await page.locator('#lp-record').isDisabled(),true);
+    assert.equal(await page.locator('#lp-feedback').isVisible(),false);assert.equal(await page.locator('#lp-attempt-actions').isVisible(),false);assert.equal(await page.locator('#lp-record').isDisabled(),false);
     assert.equal(await page.locator('#lp-progress').innerText(),`Pankti 2 / ${lesson.screens.length}`);
     await page.locator('#lp-listen').click();await page.waitForFunction(()=>document.querySelector('.lp-word.is-playing'));
     const lastStart=(await page.evaluate(()=>window.audioStarts)).at(-1);
