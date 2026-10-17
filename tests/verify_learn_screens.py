@@ -16,6 +16,8 @@ class LessonTests(unittest.TestCase):
         known = {w['id']: w for v in timing['verses'] for w in v['words']}
         for path in LESSONS.glob('*.json'):
             lesson = json.loads(path.read_text(encoding='utf-8'))
+            if 'screens' not in lesson:  # cards files, timestamp files (e.g. japjisahib.json)
+                continue
             for screen in lesson['screens']:
                 self.assertTrue(screen['audio'].startswith('/data/') and screen['audio'].endswith('.wav'))
                 self.assertLess(screen['end'] - screen['start'], 15)
@@ -29,11 +31,19 @@ class LessonTests(unittest.TestCase):
 class ToneRuleTests(unittest.TestCase):
     """The ustaad's voicing is the target; only clear opposites are flagged."""
     def test_rules(self):
-        from backend.learn.tone import check
-        self.assertIn('softly', check(None, 'ਭ', (.97, .01), (.74, .61)))   # ustaad p, student bh
-        self.assertIsNone(check(None, 'ਭ', (.97, .01), (.9, .2)))          # student also p
-        self.assertIsNone(check(None, 'ਭ', (.6, .3), (.1, .9)))            # ustaad unclear: no judgement
-        self.assertIn('voiced', check(None, 'ਧ', (.02, .9), (.8, .05)))     # ustaad voiced, student plain
+        from backend.learn.tone import check, check_aunkar, check_s, check_sihari
+        bh = lambda u, st, target=None: check(None, 'ਭ', (*u, 0), (*st, 0), target)
+        self.assertIn('softly', bh((.97, .01), (.74, .61)))                     # nir-bhau
+        self.assertIsNone(bh((.97, .01), (.9, .2)))                             # nir-pau
+        self.assertIn('softly', bh((.39, .56), (.02, .95), 'voiceless'))        # ਭੀ half-heard ustaad, "bhi"
+        self.assertIn('softly', bh((.17, .80), (.0, .98), 'voiceless'))
+        self.assertIsNone(bh((.23, .73), (.12, .86), 'voiceless'))              # noisy ustaad copy
+        self.assertTrue(check_s((.96, .0), (.0, .86)))                          # parshaad
+        self.assertIsNone(check_s((.96, .0), (.93, .0)))
+        self.assertTrue(check_sihari((.40, .03), (.02, .73)))                   # aadee
+        self.assertIsNone(check_sihari((.47, .04), (.0, .0)))                   # faint ending: no grade
+        self.assertTrue(check_aunkar((.63, .02), (.27, .46)))                   # purkhu
+        self.assertIsNone(check_aunkar((.63, .02), (.86, .01)))
 
 
 class AcousticTests(unittest.TestCase):
@@ -73,6 +83,20 @@ class AcousticTests(unittest.TestCase):
         first, second = self.lesson['screens'][:2]
         result = self.run_screen(first, self.clip(second))
         self.assertLessEqual(sum(w['state'] == 'correct' for w in result['words']), 1, result)
+
+    def test_noisy_recording_is_unclear(self):
+        screen = self.lesson['screens'][0]
+        clip = self.clip(screen)
+        noisy = clip + np.random.default_rng(0).normal(0, np.abs(clip).max() * .5, len(clip))
+        noisy = (noisy * .5 / np.abs(noisy).max()).astype(np.float32)
+        result = self.run_screen(screen, noisy)
+        self.assertEqual(result['status'], 'unclear')
+        self.assertIn('background noise', result['message'])
+
+    def test_quiet_recording_is_boosted_not_failed(self):
+        screen = self.lesson['screens'][0]
+        result = self.run_screen(screen, self.clip(screen) * .05)
+        self.assertNotIn('wrong', [w['state'] for w in result['words']], result)
 
     def test_silence_is_unclear(self):
         result = self.run_screen(self.lesson['screens'][0], np.zeros(SR * 3, dtype=np.float32))

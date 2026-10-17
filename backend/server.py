@@ -86,7 +86,7 @@ class Handler(SimpleHTTPRequestHandler):
         self.get(True)
 
     def do_POST(self):
-        if self.path == '/api/learn/screens/compare':
+        if self.path.startswith('/api/learn/screens/'):
             from .learn.screens_api import post
             return post(self, MODEL_LOCK, MODELS)
 

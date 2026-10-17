@@ -1,0 +1,3 @@
+# Generated from data/reference/japjisahib.mp3 by scripts.make_japji_lesson
+*.wav
+*.json

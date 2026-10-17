@@ -1,7 +1,7 @@
 // Learn practice screens: listen, repeat, and each word is judged only against that screen's ustaad clip.
 const $ = id => document.getElementById(id);
-const LESSONS = [['japji-short-phrases', 'Japji Sahib · short phrases'], ['mool-mantar', 'Mool Mantar']];
-let lesson, index = 0, ctx, playing, recorder, stream, timer, student, studentWav, result, selected = null, generation = 0;
+const LESSONS = [['japji-short-phrases', 'Japji Sahib · short phrases'], ['mool-mantar', 'Mool Mantar'], ['japji-sahib', 'Japji Sahib · first lines (full recording)']];
+let cardData = null, lesson, index = 0, ctx, playing, recorder, stream, timer, student, studentWav, result, selected = null, generation = 0;
 const clips = new Map();
 
 const screen = () => lesson.screens[index];
@@ -37,23 +37,49 @@ function renderWords() {
   });
 }
 
-function renderDetail() {
-  const box = $('lp-detail'), w = result?.words[selected];
-  box.hidden = !w || result.status !== 'judged'; box.replaceChildren();
-  if (box.hidden) return;
-  const line = (label, value) => { const p = document.createElement('p'); const b = document.createElement('span'); b.className = 'heard-label'; b.textContent = label; const g = document.createElement('span'); g.className = 'gurmukhi'; g.textContent = value || '(nothing)'; p.append(b, g); return p; };
-  box.append(line('Ustaad sounded like ', w.ustaad_heard), line('You sounded like ', w.student_heard));
-  const reason = document.createElement('p'); reason.className = 'reason';
-  reason.textContent = w.state === 'correct' ? 'This word matched the ustaad.' : (w.reason || 'This word sounded different. Listen again.');
-  box.append(reason);
-  if (w.student_start !== null && w.student_start !== undefined && student) {
-    const mine = document.createElement('button'); mine.textContent = '▶ Hear yours';
-    mine.onclick = () => play(student, w.student_start - .1, w.student_end + .15).catch(e => say(e.message));
-    const ustaad = document.createElement('button'); ustaad.textContent = '▶ Hear ustaad';
-    const word = screen().words[selected];
-    ustaad.onclick = () => playUstaad(word.start - .08, word.end + .08).catch(e => say(e.message));
-    const row = document.createElement('div'); row.className = 'actions center'; row.append(ustaad, mine); box.append(row);
+const cardFor = word => (cardData && cardData.audio === screen().audio && cardData.words?.[word.id]) || null;
+
+function howUstaadSays(word) {
+  // The word's pronunciation card: how the ustaad says each sound.
+  const card = cardFor(word);
+  if (!card) return null;
+  const box = document.createElement('div'); box.className = 'how';
+  const h = document.createElement('h4'); h.textContent = `How the ustaad says it${card.status === 'confirmed' ? '' : ' (draft)'}`;
+  const list = document.createElement('ul');
+  for (const sound of card.sounds) {
+    const li = document.createElement('li');
+    const letters = document.createElement('span'); letters.className = 'gurmukhi-sm'; letters.textContent = sound.letters;
+    li.append(letters, ` ${sound.say}`);
+    if (sound.not) { const n = document.createElement('span'); n.className = 'not'; n.textContent = ` (not ${sound.not})`; li.append(n); }
+    if (sound.check === 'tip') { const t = document.createElement('span'); t.className = 'tip-tag'; t.textContent = 'tip'; li.append(t); }
+    list.append(li);
   }
+  box.append(h, list);
+  return box;
+}
+
+function renderDetail() {
+  const box = $('lp-detail'), word = selected === null ? null : screen().words[selected];
+  const w = result?.status === 'judged' ? result.words[selected] : null;
+  box.replaceChildren();
+  box.hidden = !word || (!w && !cardFor(word));
+  if (box.hidden) return;
+  if (w) {
+    const line = (label, value) => { const p = document.createElement('p'); const b = document.createElement('span'); b.className = 'heard-label'; b.textContent = label; const g = document.createElement('span'); g.className = 'gurmukhi'; g.textContent = value || '(nothing)'; p.append(b, g); return p; };
+    box.append(w.ustaad_says ? line('Ustaad says ', w.ustaad_says) : line('Ustaad sounded like ', w.ustaad_heard), line('You sounded like ', w.student_heard));
+    const reason = document.createElement('p'); reason.className = 'reason';
+    reason.textContent = w.state === 'correct' ? 'This word matched the ustaad.' : (w.reason || 'This word sounded different. Listen again.');
+    box.append(reason);
+    if (w.student_start !== null && w.student_start !== undefined && student) {
+      const mine = document.createElement('button'); mine.textContent = '▶ Hear yours';
+      mine.onclick = () => play(student, w.student_start - .1, w.student_end + .15).catch(e => say(e.message));
+      const ustaad = document.createElement('button'); ustaad.textContent = '▶ Hear ustaad';
+      ustaad.onclick = () => playUstaad(word.start - .08, word.end + .08).catch(e => say(e.message));
+      const row = document.createElement('div'); row.className = 'actions center'; row.append(ustaad, mine); box.append(row);
+    }
+  }
+  const how = howUstaadSays(word);
+  if (how) box.append(how);
 }
 
 function renderScreen() {
@@ -153,6 +179,7 @@ async function loadLesson(id) {
   const response = await fetch(`/data/lessons/${id}.json`);
   if (!response.ok) throw Error('Lesson file not found.');
   lesson = await response.json(); index = 0;
+  try { const r = await fetch(lesson.cards || '/data/lessons/pronunciation-cards.json'); cardData = r.ok ? await r.json() : null; } catch { cardData = null; }
   if (lesson.shuffle) shuffle(); else renderScreen();
 }
 

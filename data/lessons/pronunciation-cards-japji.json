@@ -1,0 +1,5459 @@
+{
+ "schema_version": 1,
+ "audio": "/data/lessons/audio/japjisahib-16k.wav",
+ "about": "Auto-drafted from Gurmukhi letters (backend/learn/cards_draft.py); not yet reviewed. Confirm on the cards page.",
+ "words": {
+  "jp001-w01": {
+   "text": "ੴ",
+   "sounds": [
+    {
+     "letters": "ੴ",
+     "say": "follow the ustaad",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters",
+   "spoken": "ਇਕ ਓਅੰਕਾਰ"
+  },
+  "jp001-w02": {
+   "text": "ਸਤਿ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਤ",
+     "say": "soft Punjabi “t” (tatta): tongue on the back of the upper teeth",
+     "not": "English “t” or “ch”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp001-w03": {
+   "text": "ਨਾਮੁ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp001-w04": {
+   "text": "ਕਰਤਾ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਤ",
+     "say": "soft Punjabi “t” (tatta): tongue on the back of the upper teeth",
+     "not": "English “t” or “ch”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp001-w05": {
+   "text": "ਪੁਰਖੁ",
+   "sounds": [
+    {
+     "letters": "ਪ",
+     "say": "“p” as in spin, no puff of air",
+     "not": "“b”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp001-w06": {
+   "text": "ਨਿਰਭਉ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਭ",
+     "say": "soft “p” with a falling tone",
+     "not": "“bh” as in bhaag",
+     "check": "check",
+     "voicing": "voiceless"
+    },
+    {
+     "letters": "ਉ",
+     "say": "short “u” as in put",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp001-w07": {
+   "text": "ਨਿਰਵੈਰੁ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp001-w08": {
+   "text": "ਅਕਾਲ",
+   "sounds": [
+    {
+     "letters": "ਅ",
+     "say": "short “a” as in about",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp001-w09": {
+   "text": "ਮੂਰਤਿ",
+   "sounds": [
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੂ",
+     "say": "long “oo” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਤ",
+     "say": "soft Punjabi “t” (tatta): tongue on the back of the upper teeth",
+     "not": "English “t” or “ch”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp001-w10": {
+   "text": "ਅਜੂਨੀ",
+   "sounds": [
+    {
+     "letters": "ਅ",
+     "say": "short “a” as in about",
+     "check": "check"
+    },
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ੂ",
+     "say": "long “oo” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp001-w11": {
+   "text": "ਸੈਭੰ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    },
+    {
+     "letters": "ਭ",
+     "say": "soft “p” with a falling tone",
+     "not": "“bh” as in bhaag",
+     "check": "check",
+     "voicing": "voiceless"
+    },
+    {
+     "letters": "ੰ",
+     "say": "nasal sound: the vowel goes through the nose",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp001-w12": {
+   "text": "ਗੁਰ",
+   "sounds": [
+    {
+     "letters": "ਗ",
+     "say": "“g” as in go",
+     "not": "“gh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp001-w13": {
+   "text": "ਪ੍ਰਸਾਦਿ",
+   "sounds": [
+    {
+     "letters": "ਪ",
+     "say": "“p” as in spin, no puff of air",
+     "not": "“b”",
+     "check": "check"
+    },
+    {
+     "letters": "੍ਰ",
+     "say": "“r” joined straight to the letter before",
+     "not": "a vowel between them (“par”)",
+     "check": "check"
+    },
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp002-w01": {
+   "text": "ਜਪੁ",
+   "sounds": [
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ਪ",
+     "say": "“p” as in spin, no puff of air",
+     "not": "“b”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp003-w01": {
+   "text": "ਆਦਿ",
+   "sounds": [
+    {
+     "letters": "ਆ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp003-w02": {
+   "text": "ਸਚੁ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp003-w03": {
+   "text": "ਜੁਗਾਦਿ",
+   "sounds": [
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਗ",
+     "say": "“g” as in go",
+     "not": "“gh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp003-w04": {
+   "text": "ਸਚੁ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp004-w01": {
+   "text": "ਹੈ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp004-w02": {
+   "text": "ਭੀ",
+   "sounds": [
+    {
+     "letters": "ਭ",
+     "say": "soft “p” with a falling tone",
+     "not": "“bh” as in bhaag",
+     "check": "check",
+     "voicing": "voiceless"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp004-w03": {
+   "text": "ਸਚੁ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp004-w04": {
+   "text": "ਨਾਨਕ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp004-w05": {
+   "text": "ਹੋਸੀ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp004-w06": {
+   "text": "ਭੀ",
+   "sounds": [
+    {
+     "letters": "ਭ",
+     "say": "soft “p” with a falling tone",
+     "not": "“bh” as in bhaag",
+     "check": "check",
+     "voicing": "voiceless"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp004-w07": {
+   "text": "ਸਚੁ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp005-w01": {
+   "text": "ਸੋਚੈ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp005-w02": {
+   "text": "ਸੋਚਿ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp005-w03": {
+   "text": "ਨ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp005-w04": {
+   "text": "ਹੋਵਈ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ਈ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp005-w05": {
+   "text": "ਜੇ",
+   "sounds": [
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ੇ",
+     "say": "“e” as in they",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp005-w06": {
+   "text": "ਸੋਚੀ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp005-w07": {
+   "text": "ਲਖ",
+   "sounds": [
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    },
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp005-w08": {
+   "text": "ਵਾਰ",
+   "sounds": [
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp006-w01": {
+   "text": "ਚੁਪੈ",
+   "sounds": [
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਪ",
+     "say": "“p” as in spin, no puff of air",
+     "not": "“b”",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp006-w02": {
+   "text": "ਚੁਪ",
+   "sounds": [
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਪ",
+     "say": "“p” as in spin, no puff of air",
+     "not": "“b”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp006-w03": {
+   "text": "ਨ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp006-w04": {
+   "text": "ਹੋਵਈ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ਈ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp006-w05": {
+   "text": "ਜੇ",
+   "sounds": [
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ੇ",
+     "say": "“e” as in they",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp006-w06": {
+   "text": "ਲਾਇ",
+   "sounds": [
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਇ",
+     "say": "short “i” as in it",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp006-w07": {
+   "text": "ਰਹਾ",
+   "sounds": [
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp006-w08": {
+   "text": "ਲਿਵ",
+   "sounds": [
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp006-w09": {
+   "text": "ਤਾਰ",
+   "sounds": [
+    {
+     "letters": "ਤ",
+     "say": "soft Punjabi “t” (tatta): tongue on the back of the upper teeth",
+     "not": "English “t” or “ch”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp007-w01": {
+   "text": "ਭੁਖਿਆ",
+   "sounds": [
+    {
+     "letters": "ਭ",
+     "say": "soft “p” with a falling tone",
+     "not": "“bh” as in bhaag",
+     "check": "check",
+     "voicing": "voiceless"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਆ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp007-w02": {
+   "text": "ਭੁਖ",
+   "sounds": [
+    {
+     "letters": "ਭ",
+     "say": "soft “p” with a falling tone",
+     "not": "“bh” as in bhaag",
+     "check": "check",
+     "voicing": "voiceless"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp007-w03": {
+   "text": "ਨ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp007-w04": {
+   "text": "ਉਤਰੀ",
+   "sounds": [
+    {
+     "letters": "ਉ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਤ",
+     "say": "soft Punjabi “t” (tatta): tongue on the back of the upper teeth",
+     "not": "English “t” or “ch”",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp007-w05": {
+   "text": "ਜੇ",
+   "sounds": [
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ੇ",
+     "say": "“e” as in they",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp007-w06": {
+   "text": "ਬੰਨਾ",
+   "sounds": [
+    {
+     "letters": "ਬ",
+     "say": "“b” as in bat",
+     "not": "“p”",
+     "check": "check"
+    },
+    {
+     "letters": "ੰ",
+     "say": "nasal sound: the vowel goes through the nose",
+     "check": "check"
+    },
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp007-w07": {
+   "text": "ਪੁਰੀਆ",
+   "sounds": [
+    {
+     "letters": "ਪ",
+     "say": "“p” as in spin, no puff of air",
+     "not": "“b”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    },
+    {
+     "letters": "ਆ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp007-w08": {
+   "text": "ਭਾਰ",
+   "sounds": [
+    {
+     "letters": "ਭ",
+     "say": "soft “p” with a falling tone",
+     "not": "“bh” as in bhaag",
+     "check": "check",
+     "voicing": "voiceless"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp008-w01": {
+   "text": "ਸਹਸ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp008-w02": {
+   "text": "ਸਿਆਣਪਾ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਆ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਣ",
+     "say": "nasal “ṇ”: tongue curled back",
+     "not": "“n”",
+     "check": "check"
+    },
+    {
+     "letters": "ਪ",
+     "say": "“p” as in spin, no puff of air",
+     "not": "“b”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp008-w03": {
+   "text": "ਲਖ",
+   "sounds": [
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    },
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp008-w04": {
+   "text": "ਹੋਹਿ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp008-w05": {
+   "text": "ਤ",
+   "sounds": [
+    {
+     "letters": "ਤ",
+     "say": "soft Punjabi “t” (tatta): tongue on the back of the upper teeth",
+     "not": "English “t” or “ch”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp008-w06": {
+   "text": "ਇਕ",
+   "sounds": [
+    {
+     "letters": "ਇ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp008-w07": {
+   "text": "ਨ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp008-w08": {
+   "text": "ਚਲੈ",
+   "sounds": [
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp008-w09": {
+   "text": "ਨਾਲਿ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp009-w01": {
+   "text": "ਕਿਵ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp009-w02": {
+   "text": "ਸਚਿਆਰਾ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਆ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp009-w03": {
+   "text": "ਹੋਈਐ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਈ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    },
+    {
+     "letters": "ਐ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp009-w04": {
+   "text": "ਕਿਵ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp009-w05": {
+   "text": "ਕੂੜੈ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੂ",
+     "say": "long “oo” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੜ",
+     "say": "flapped “ṛ”: tongue curled back and flicked",
+     "not": "“r”",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp009-w06": {
+   "text": "ਤੁਟੈ",
+   "sounds": [
+    {
+     "letters": "ਤ",
+     "say": "soft Punjabi “t” (tatta): tongue on the back of the upper teeth",
+     "not": "English “t” or “ch”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਟ",
+     "say": "hard “t”: tongue curled back",
+     "not": "the soft ਤ",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp009-w07": {
+   "text": "ਪਾਲਿ",
+   "sounds": [
+    {
+     "letters": "ਪ",
+     "say": "“p” as in spin, no puff of air",
+     "not": "“b”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp010-w01": {
+   "text": "ਹੁਕਮਿ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp010-w02": {
+   "text": "ਰਜਾਈ",
+   "sounds": [
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਈ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp010-w03": {
+   "text": "ਚਲਣਾ",
+   "sounds": [
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    },
+    {
+     "letters": "ਣ",
+     "say": "nasal “ṇ”: tongue curled back",
+     "not": "“n”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp010-w04": {
+   "text": "ਨਾਨਕ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp010-w05": {
+   "text": "ਲਿਖਿਆ",
+   "sounds": [
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਆ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp010-w06": {
+   "text": "ਨਾਲਿ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp011-w01": {
+   "text": "ਹੁਕਮੀ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp011-w02": {
+   "text": "ਹੋਵਨਿ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp011-w03": {
+   "text": "ਆਕਾਰ",
+   "sounds": [
+    {
+     "letters": "ਆ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp011-w04": {
+   "text": "ਹੁਕਮੁ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp011-w05": {
+   "text": "ਨ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp011-w06": {
+   "text": "ਕਹਿਆ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਆ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp011-w07": {
+   "text": "ਜਾਈ",
+   "sounds": [
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਈ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp012-w01": {
+   "text": "ਹੁਕਮੀ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp012-w02": {
+   "text": "ਹੋਵਨਿ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp012-w03": {
+   "text": "ਜੀਅ",
+   "sounds": [
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    },
+    {
+     "letters": "ਅ",
+     "say": "short “a” as in about",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp012-w04": {
+   "text": "ਹੁਕਮਿ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp012-w05": {
+   "text": "ਮਿਲੈ",
+   "sounds": [
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp012-w06": {
+   "text": "ਵਡਿਆਈ",
+   "sounds": [
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ਡ",
+     "say": "hard “d”: tongue curled back",
+     "not": "the soft ਦ",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਆ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਈ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp013-w01": {
+   "text": "ਹੁਕਮੀ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp013-w02": {
+   "text": "ਉਤਮੁ",
+   "sounds": [
+    {
+     "letters": "ਉ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਤ",
+     "say": "soft Punjabi “t” (tatta): tongue on the back of the upper teeth",
+     "not": "English “t” or “ch”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp013-w03": {
+   "text": "ਨੀਚੁ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    },
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp013-w04": {
+   "text": "ਹੁਕਮਿ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp013-w05": {
+   "text": "ਲਿਖਿ",
+   "sounds": [
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp013-w06": {
+   "text": "ਦੁਖ",
+   "sounds": [
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp013-w07": {
+   "text": "ਸੁਖ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp013-w08": {
+   "text": "ਪਾਈਅਹਿ",
+   "sounds": [
+    {
+     "letters": "ਪ",
+     "say": "“p” as in spin, no puff of air",
+     "not": "“b”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਈ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    },
+    {
+     "letters": "ਅ",
+     "say": "short “a” as in about",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp014-w01": {
+   "text": "ਇਕਨਾ",
+   "sounds": [
+    {
+     "letters": "ਇ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp014-w02": {
+   "text": "ਹੁਕਮੀ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp014-w03": {
+   "text": "ਬਖਸੀਸ",
+   "sounds": [
+    {
+     "letters": "ਬ",
+     "say": "“b” as in bat",
+     "not": "“p”",
+     "check": "check"
+    },
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    },
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    },
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp014-w04": {
+   "text": "ਇਕਿ",
+   "sounds": [
+    {
+     "letters": "ਇ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp014-w05": {
+   "text": "ਹੁਕਮੀ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp014-w06": {
+   "text": "ਸਦਾ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp014-w07": {
+   "text": "ਭਵਾਈਅਹਿ",
+   "sounds": [
+    {
+     "letters": "ਭ",
+     "say": "soft “p” with a falling tone",
+     "not": "“bh” as in bhaag",
+     "check": "check",
+     "voicing": "voiceless"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਈ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    },
+    {
+     "letters": "ਅ",
+     "say": "short “a” as in about",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp015-w01": {
+   "text": "ਹੁਕਮੈ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp015-w02": {
+   "text": "ਅੰਦਰਿ",
+   "sounds": [
+    {
+     "letters": "ਅ",
+     "say": "short “a” as in about",
+     "check": "check"
+    },
+    {
+     "letters": "ੰ",
+     "say": "nasal sound: the vowel goes through the nose",
+     "check": "check"
+    },
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp015-w03": {
+   "text": "ਸਭੁ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਭ",
+     "say": "soft “p” with a falling tone",
+     "not": "“bh” as in bhaag",
+     "check": "check",
+     "voicing": "voiceless"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp015-w04": {
+   "text": "ਕੋ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp015-w05": {
+   "text": "ਬਾਹਰਿ",
+   "sounds": [
+    {
+     "letters": "ਬ",
+     "say": "“b” as in bat",
+     "not": "“p”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp015-w06": {
+   "text": "ਹੁਕਮ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp015-w07": {
+   "text": "ਨ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp015-w08": {
+   "text": "ਕੋਇ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਇ",
+     "say": "short “i” as in it",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp016-w01": {
+   "text": "ਨਾਨਕ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp016-w02": {
+   "text": "ਹੁਕਮੈ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp016-w03": {
+   "text": "ਜੇ",
+   "sounds": [
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ੇ",
+     "say": "“e” as in they",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp016-w04": {
+   "text": "ਬੁਝੈ",
+   "sounds": [
+    {
+     "letters": "ਬ",
+     "say": "“b” as in bat",
+     "not": "“p”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਝ",
+     "say": "soft “ch” with a falling tone",
+     "not": "“jh” with breath",
+     "check": "check",
+     "voicing": "voiceless"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp016-w05": {
+   "text": "ਤ",
+   "sounds": [
+    {
+     "letters": "ਤ",
+     "say": "soft Punjabi “t” (tatta): tongue on the back of the upper teeth",
+     "not": "English “t” or “ch”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp016-w06": {
+   "text": "ਹਉਮੈ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ਉ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp016-w07": {
+   "text": "ਕਹੈ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp016-w08": {
+   "text": "ਨ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp016-w09": {
+   "text": "ਕੋਇ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਇ",
+     "say": "short “i” as in it",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp017-w01": {
+   "text": "ਗਾਵੈ",
+   "sounds": [
+    {
+     "letters": "ਗ",
+     "say": "“g” as in go",
+     "not": "“gh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp017-w02": {
+   "text": "ਕੋ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp017-w03": {
+   "text": "ਤਾਣੁ",
+   "sounds": [
+    {
+     "letters": "ਤ",
+     "say": "soft Punjabi “t” (tatta): tongue on the back of the upper teeth",
+     "not": "English “t” or “ch”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਣ",
+     "say": "nasal “ṇ”: tongue curled back",
+     "not": "“n”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp017-w04": {
+   "text": "ਹੋਵੈ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp017-w05": {
+   "text": "ਕਿਸੈ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp017-w06": {
+   "text": "ਤਾਣੁ",
+   "sounds": [
+    {
+     "letters": "ਤ",
+     "say": "soft Punjabi “t” (tatta): tongue on the back of the upper teeth",
+     "not": "English “t” or “ch”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਣ",
+     "say": "nasal “ṇ”: tongue curled back",
+     "not": "“n”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp018-w01": {
+   "text": "ਗਾਵੈ",
+   "sounds": [
+    {
+     "letters": "ਗ",
+     "say": "“g” as in go",
+     "not": "“gh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp018-w02": {
+   "text": "ਕੋ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp018-w03": {
+   "text": "ਦਾਤਿ",
+   "sounds": [
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਤ",
+     "say": "soft Punjabi “t” (tatta): tongue on the back of the upper teeth",
+     "not": "English “t” or “ch”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp018-w04": {
+   "text": "ਜਾਣੈ",
+   "sounds": [
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਣ",
+     "say": "nasal “ṇ”: tongue curled back",
+     "not": "“n”",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp018-w05": {
+   "text": "ਨੀਸਾਣੁ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    },
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਣ",
+     "say": "nasal “ṇ”: tongue curled back",
+     "not": "“n”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp019-w01": {
+   "text": "ਗਾਵੈ",
+   "sounds": [
+    {
+     "letters": "ਗ",
+     "say": "“g” as in go",
+     "not": "“gh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp019-w02": {
+   "text": "ਕੋ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp019-w03": {
+   "text": "ਗੁਣ",
+   "sounds": [
+    {
+     "letters": "ਗ",
+     "say": "“g” as in go",
+     "not": "“gh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਣ",
+     "say": "nasal “ṇ”: tongue curled back",
+     "not": "“n”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp019-w04": {
+   "text": "ਵਡਿਆਈਆ",
+   "sounds": [
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ਡ",
+     "say": "hard “d”: tongue curled back",
+     "not": "the soft ਦ",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਆ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਈ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    },
+    {
+     "letters": "ਆ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp019-w05": {
+   "text": "ਚਾਰ",
+   "sounds": [
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp020-w01": {
+   "text": "ਗਾਵੈ",
+   "sounds": [
+    {
+     "letters": "ਗ",
+     "say": "“g” as in go",
+     "not": "“gh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp020-w02": {
+   "text": "ਕੋ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp020-w03": {
+   "text": "ਵਿਦਿਆ",
+   "sounds": [
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਆ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp020-w04": {
+   "text": "ਵਿਖਮੁ",
+   "sounds": [
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp020-w05": {
+   "text": "ਵੀਚਾਰੁ",
+   "sounds": [
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    },
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp021-w01": {
+   "text": "ਗਾਵੈ",
+   "sounds": [
+    {
+     "letters": "ਗ",
+     "say": "“g” as in go",
+     "not": "“gh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp021-w02": {
+   "text": "ਕੋ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp021-w03": {
+   "text": "ਸਾਜਿ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp021-w04": {
+   "text": "ਕਰੇ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ੇ",
+     "say": "“e” as in they",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp021-w05": {
+   "text": "ਤਨੁ",
+   "sounds": [
+    {
+     "letters": "ਤ",
+     "say": "soft Punjabi “t” (tatta): tongue on the back of the upper teeth",
+     "not": "English “t” or “ch”",
+     "check": "check"
+    },
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp021-w06": {
+   "text": "ਖੇਹ",
+   "sounds": [
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    },
+    {
+     "letters": "ੇ",
+     "say": "“e” as in they",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp022-w01": {
+   "text": "ਗਾਵੈ",
+   "sounds": [
+    {
+     "letters": "ਗ",
+     "say": "“g” as in go",
+     "not": "“gh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp022-w02": {
+   "text": "ਕੋ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp022-w03": {
+   "text": "ਜੀਅ",
+   "sounds": [
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    },
+    {
+     "letters": "ਅ",
+     "say": "short “a” as in about",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp022-w04": {
+   "text": "ਲੈ",
+   "sounds": [
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp022-w05": {
+   "text": "ਫਿਰਿ",
+   "sounds": [
+    {
+     "letters": "ਫ",
+     "say": "“ph”: a “p” with a breath of air",
+     "not": "“f”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp022-w06": {
+   "text": "ਦੇਹ",
+   "sounds": [
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ੇ",
+     "say": "“e” as in they",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp023-w01": {
+   "text": "ਗਾਵੈ",
+   "sounds": [
+    {
+     "letters": "ਗ",
+     "say": "“g” as in go",
+     "not": "“gh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp023-w02": {
+   "text": "ਕੋ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp023-w03": {
+   "text": "ਜਾਪੈ",
+   "sounds": [
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਪ",
+     "say": "“p” as in spin, no puff of air",
+     "not": "“b”",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp023-w04": {
+   "text": "ਦਿਸੈ",
+   "sounds": [
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp023-w05": {
+   "text": "ਦੂਰਿ",
+   "sounds": [
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ੂ",
+     "say": "long “oo” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp024-w01": {
+   "text": "ਗਾਵੈ",
+   "sounds": [
+    {
+     "letters": "ਗ",
+     "say": "“g” as in go",
+     "not": "“gh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp024-w02": {
+   "text": "ਕੋ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp024-w03": {
+   "text": "ਵੇਖੈ",
+   "sounds": [
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ੇ",
+     "say": "“e” as in they",
+     "check": "check"
+    },
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp024-w04": {
+   "text": "ਹਾਦਰਾ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp024-w05": {
+   "text": "ਹਦੂਰਿ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ੂ",
+     "say": "long “oo” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp025-w01": {
+   "text": "ਕਥਨਾ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਥ",
+     "say": "soft “th” with a breath of air, tongue on the teeth",
+     "not": "“th” as in thin",
+     "check": "check"
+    },
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp025-w02": {
+   "text": "ਕਥੀ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਥ",
+     "say": "soft “th” with a breath of air, tongue on the teeth",
+     "not": "“th” as in thin",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp025-w03": {
+   "text": "ਨ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp025-w04": {
+   "text": "ਆਵੈ",
+   "sounds": [
+    {
+     "letters": "ਆ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp025-w05": {
+   "text": "ਤੋਟਿ",
+   "sounds": [
+    {
+     "letters": "ਤ",
+     "say": "soft Punjabi “t” (tatta): tongue on the back of the upper teeth",
+     "not": "English “t” or “ch”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਟ",
+     "say": "hard “t”: tongue curled back",
+     "not": "the soft ਤ",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp026-w01": {
+   "text": "ਕਥਿ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਥ",
+     "say": "soft “th” with a breath of air, tongue on the teeth",
+     "not": "“th” as in thin",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp026-w02": {
+   "text": "ਕਥਿ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਥ",
+     "say": "soft “th” with a breath of air, tongue on the teeth",
+     "not": "“th” as in thin",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp026-w03": {
+   "text": "ਕਥੀ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਥ",
+     "say": "soft “th” with a breath of air, tongue on the teeth",
+     "not": "“th” as in thin",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp026-w04": {
+   "text": "ਕੋਟੀ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਟ",
+     "say": "hard “t”: tongue curled back",
+     "not": "the soft ਤ",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp026-w05": {
+   "text": "ਕੋਟਿ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਟ",
+     "say": "hard “t”: tongue curled back",
+     "not": "the soft ਤ",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp026-w06": {
+   "text": "ਕੋਟਿ",
+   "sounds": [
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੋ",
+     "say": "“o” as in go",
+     "check": "check"
+    },
+    {
+     "letters": "ਟ",
+     "say": "hard “t”: tongue curled back",
+     "not": "the soft ਤ",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp027-w01": {
+   "text": "ਦੇਦਾ",
+   "sounds": [
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ੇ",
+     "say": "“e” as in they",
+     "check": "check"
+    },
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp027-w02": {
+   "text": "ਦੇ",
+   "sounds": [
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ੇ",
+     "say": "“e” as in they",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp027-w03": {
+   "text": "ਲੈਦੇ",
+   "sounds": [
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    },
+    {
+     "letters": "ਦ",
+     "say": "soft Punjabi “d” (dadda): tongue on the back of the upper teeth",
+     "not": "English “d”",
+     "check": "check"
+    },
+    {
+     "letters": "ੇ",
+     "say": "“e” as in they",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp027-w04": {
+   "text": "ਥਕਿ",
+   "sounds": [
+    {
+     "letters": "ਥ",
+     "say": "soft “th” with a breath of air, tongue on the teeth",
+     "not": "“th” as in thin",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp027-w05": {
+   "text": "ਪਾਹਿ",
+   "sounds": [
+    {
+     "letters": "ਪ",
+     "say": "“p” as in spin, no puff of air",
+     "not": "“b”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp028-w01": {
+   "text": "ਜੁਗਾ",
+   "sounds": [
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਗ",
+     "say": "“g” as in go",
+     "not": "“gh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp028-w02": {
+   "text": "ਜੁਗੰਤਰਿ",
+   "sounds": [
+    {
+     "letters": "ਜ",
+     "say": "“j” as in joker",
+     "not": "“z” as in zebra",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਗ",
+     "say": "“g” as in go",
+     "not": "“gh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੰ",
+     "say": "nasal sound: the vowel goes through the nose",
+     "check": "check"
+    },
+    {
+     "letters": "ਤ",
+     "say": "soft Punjabi “t” (tatta): tongue on the back of the upper teeth",
+     "not": "English “t” or “ch”",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp028-w03": {
+   "text": "ਖਾਹੀ",
+   "sounds": [
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp028-w04": {
+   "text": "ਖਾਹਿ",
+   "sounds": [
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "a light, short “i” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a long “ee”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp029-w01": {
+   "text": "ਹੁਕਮੀ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੀ",
+     "say": "long “ee” as in see",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp029-w02": {
+   "text": "ਹੁਕਮੁ",
+   "sounds": [
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "short “u” as in put",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਮ",
+     "say": "“m” as in moon",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp029-w03": {
+   "text": "ਚਲਾਏ",
+   "sounds": [
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ਲ",
+     "say": "clear “l” as in light",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਏ",
+     "say": "“e” as in they",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp029-w04": {
+   "text": "ਰਾਹੁ",
+   "sounds": [
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp030-w01": {
+   "text": "ਨਾਨਕ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਕ",
+     "say": "“k” as in skin, no puff of air",
+     "not": "“kh”",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp030-w02": {
+   "text": "ਵਿਗਸੈ",
+   "sounds": [
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਗ",
+     "say": "“g” as in go",
+     "not": "“gh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ੈ",
+     "say": "“ae” as the a in bat",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp030-w03": {
+   "text": "ਵੇਪਰਵਾਹੁ",
+   "sounds": [
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ੇ",
+     "say": "“e” as in they",
+     "check": "check"
+    },
+    {
+     "letters": "ਪ",
+     "say": "“p” as in spin, no puff of air",
+     "not": "“b”",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ਵ",
+     "say": "soft “v”, lips barely touching",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp031-w01": {
+   "text": "ਸਾਚਾ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp031-w02": {
+   "text": "ਸਾਹਿਬੁ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਹ",
+     "say": "“h” as in home",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਬ",
+     "say": "“b” as in bat",
+     "not": "“p”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp031-w03": {
+   "text": "ਸਾਚੁ",
+   "sounds": [
+    {
+     "letters": "ਸ",
+     "say": "“s” as in soul",
+     "not": "“sh”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਚ",
+     "say": "“ch” as in church",
+     "not": "“s” or “t”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp031-w04": {
+   "text": "ਨਾਇ",
+   "sounds": [
+    {
+     "letters": "ਨ",
+     "say": "“n” as in now",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਇ",
+     "say": "short “i” as in it",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp031-w05": {
+   "text": "ਭਾਖਿਆ",
+   "sounds": [
+    {
+     "letters": "ਭ",
+     "say": "soft “p” with a falling tone",
+     "not": "“bh” as in bhaag",
+     "check": "check",
+     "voicing": "voiceless"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਖ",
+     "say": "“kh”: a “k” with a breath of air",
+     "not": "a plain “k”",
+     "check": "check"
+    },
+    {
+     "letters": "ਿ",
+     "say": "short “i” as in it",
+     "check": "check"
+    },
+    {
+     "letters": "ਆ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp031-w06": {
+   "text": "ਭਾਉ",
+   "sounds": [
+    {
+     "letters": "ਭ",
+     "say": "soft “p” with a falling tone",
+     "not": "“bh” as in bhaag",
+     "check": "check",
+     "voicing": "voiceless"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਉ",
+     "say": "short “u” as in put",
+     "check": "check"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  },
+  "jp031-w07": {
+   "text": "ਅਪਾਰੁ",
+   "sounds": [
+    {
+     "letters": "ਅ",
+     "say": "short “a” as in about",
+     "check": "check"
+    },
+    {
+     "letters": "ਪ",
+     "say": "“p” as in spin, no puff of air",
+     "not": "“b”",
+     "check": "check"
+    },
+    {
+     "letters": "ਾ",
+     "say": "long “aa” as in father",
+     "check": "check"
+    },
+    {
+     "letters": "ਰ",
+     "say": "a light tapped “r”",
+     "check": "check"
+    },
+    {
+     "letters": "ੁ",
+     "say": "a very light “u” at the end; follow the ustaad",
+     "check": "check",
+     "not": "a full “oo”"
+    }
+   ],
+   "status": "draft",
+   "reviewed_by": null,
+   "note": "auto-drafted from letters"
+  }
+ }
+}
