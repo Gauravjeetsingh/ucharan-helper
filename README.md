@@ -1,259 +1,234 @@
 # Uchaaran Helper
 
-A shared hackathon workspace for learning Gurbani from one ustaad recording.
-Choose a bani, then Follow along, Learn, or Read Aloud in the same phone UI. The
-timestamp generator remains a separate development tool.
+A mobile-first Sundar Gutka Kids mode demo for practising Japji Sahib with one
+ustaad recording. Follow along by tapping words, or listen and repeat short
+panktis in Learn. The desktop view uses a phone-sized frame.
 
-| Route | Current state | Source |
+| Route | Feature | Source |
 | --- | --- | --- |
-| `/` | Choose a bani | `apps/home/` |
-| `/bani/japji-sahib` | Follow along / Learn / Read Aloud | `apps/home/` |
-| `/timestamps` | Audio + Gurmukhi → word timing JSON | `apps/timestamps/` |
-| `/follow` | Pauri-by-pauri tapping and word feedback | `apps/follow/` |
-| `/learn` | Complete Japji Sahib, listen and repeat; experimental feedback | `apps/learn/` |
-| `/test` | Read Aloud · Coming soon placeholder | `apps/test/` |
+| `/` | Sundar Gutka home and bani selection | `apps/home/` |
+| `/bani/japji-sahib` | Follow along, Learn and Read Aloud menu | `apps/home/` |
+| `/follow` | Tap along through 38 pauris | `apps/follow/` |
+| `/learn` | Listen, record and get experimental word feedback | `apps/learn/` |
+| `/test` | Read Aloud — coming soon; no recording controls | `apps/test/` |
+| `/timestamps` | Separate audio/text timestamp tool with JSON export | `apps/timestamps/` |
 
-Back returns to the bani's three modes; Home returns to all banis. Each route
-works directly and on refresh. The generator does not load the practice UI.
+Learn covers the full bani in 386 short screens, including the opening and
+closing salok. Back returns to the mode menu; Home returns to bani selection.
+Parent settings, multiple-ustaad management and Read Aloud practice are future
+work.
 
-## Quick start on a teammate's laptop
+## Run locally
 
-Install Python 3.12, then:
+Use Python 3.12 for the pinned model dependencies. Install FFmpeg for reference
+audio preparation; macOS can also use its built-in `afconvert`.
+
+Clone the repository, or extract the submission ZIP and open its project folder:
 
 ```sh
 git clone https://github.com/Gauravjeetsingh/ucharan-helper.git
 cd ucharan-helper
+```
+
+From the project root on macOS/Linux:
+
+```sh
+python3 -m scripts.prepare_japji_audio
 python3 serve.py
 ```
 
-Windows: use `py -3.12 serve.py` instead. Open
-<http://127.0.0.1:8767/timestamps>. No Node, pip install, model download, API key,
-external account, or system-specific cache is required to start the app and
-load/export the existing sample timings. Use `--port 8768` if 8767 is busy.
-Do not use a generic static file server; the Python server supplies the feature
-routes and local inference endpoints.
+On Windows:
 
-For the complete Japji Sahib practice recording, install FFmpeg (or use macOS
-afconvert), then run `python -m scripts.prepare_japji_audio` once. This converts
-the supplied MOV into an ignored local WAV without running a model. Open
-<http://127.0.0.1:8767/> to choose Japji Sahib and a mode. Playback requests only
-the current phrase/pauri; the browser does not decode the whole 27-minute file.
+```powershell
+py -3.12 -m scripts.prepare_japji_audio
+py -3.12 serve.py
+```
 
-## DigitalOcean deployment
+Open **http://127.0.0.1:8767/**. Use `--port 8768` to choose another port.
+Run the app with `serve.py`; its Python backend supplies the feature routes,
+audio clips and comparison endpoints.
 
-From this checkout on your laptop, run `python3 -m scripts.deploy_to_droplet root@DROPLET_IP`.
-The installer supports Ubuntu 24.04 x86_64, installs the model/audio/service,
-and works without a domain through an SSH tunnel. Add `--domain paath.example.org`
-for automatic HTTPS. Use `--dry-run` to preview without connecting.
-[Deployment instructions](docs/DEPLOYMENT.md) cover DNS, access, updates and
-hosted audio processing. In hosted Learn mode, recordings are sent to your
-droplet for in-memory comparison rather than processed on the student's device.
+Audio preparation converts the supplied MOV to an ignored local WAV. It runs
+once and reuses that file on later runs. Follow along and reference playback
+need no model. The server and existing timestamp sample also work without
+installing Python packages. Learn's recording feedback and new timestamp
+generation need the model setup below.
 
-## Render deployment
+## Enable Learn feedback and timestamp generation
 
-Connect this GitHub repository as a Render **Blueprint** using `render.yaml`.
-Render runs the Docker setup script, packages the model and audio, and gives
-you an HTTPS URL without a custom domain. The configuration selects a paid
-4 GB instance; review Render's cost before deploying. See
-[Render setup instructions](docs/RENDER.md) for deployment, updates and local
-container checks. Hosted Learn recordings are processed in server memory.
-
-## Enable new timestamp generation
-
-Use Python 3.12 for the pinned ML wheels. On macOS/Linux:
+Create a Python 3.12 virtual environment. On macOS/Linux:
 
 ```sh
 python3.12 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements-timestamps.txt
-python -m scripts.download_timestamp_model
-python serve.py
 ```
 
-Windows PowerShell:
+On Windows PowerShell:
 
 ```powershell
 py -3.12 -m venv .venv
 .venv\Scripts\Activate.ps1
+```
+
+Then, in the activated environment on either platform:
+
+```sh
 python -m pip install -r requirements-timestamps.txt
 python -m scripts.download_timestamp_model
+python -m scripts.prepare_japji_audio
 python serve.py
 ```
 
-If activation is restricted, call `.venv\Scripts\python.exe` directly.
-The explicit setup downloads the pinned ~184 MB IndicConformer INT8 model to
-ignored `models/timestamps/`. Inference runs on CPU, loads lazily, and never
-sends audio to Hugging Face. No PyTorch or pronunciation model is needed.
+This downloads the pinned, checksum-checked IndicConformer INT8 model (~184 MB)
+to `models/timestamps/`. Inference runs on CPU and loads lazily. The main Learn
+flow and timestamp generator share this model. No API key or PyTorch is needed
+for this setup. If PowerShell activation is restricted, call
+`.venv\Scripts\python.exe` in place of `python`.
 
-Choose **Use the Japji Sahib sample**, or upload audio your browser can decode.
-Paste the Gurmukhi words in recitation order and press **Generate timestamps**.
-The browser converts audio to mono 16 kHz PCM; no FFmpeg installation is needed
-for the UI. Maximum duration is 30 minutes (processed in 30-second chunks), maximum input file size 300 MB.
-Supply a spoken expansion for ੴ when present; the displayed text stays exact.
-Download JSON to keep/share a result; uploaded audio and generated results are
-held in memory, not written by the server. Browser codec support varies; use a
-PCM WAV if a MOV/other format cannot be decoded.
-
-**Load existing sample timings** is a distinct action: it opens the original
-artifact without running the model. It does not pretend to regenerate timings.
-Changing input text or audio invalidates a previous downloadable result.
-
-Alignment is known-text CTC Viterbi with free audio edges. Boundaries and the
-low-support marker are estimates, not calibrated confidence or pronunciation
-scores. Incorrect/missing words can still be forced onto audio; verify before
-using generated timing data as reference labels. The sample's original 25
-source occurrences and extra opening speech remain preserved in its artifact.
-See [docs/DATA.md](docs/DATA.md) for the JSON contracts and model provenance.
-
-## Follow-along mobile demo
-
-Open <http://127.0.0.1:8767/follow>. The desktop page presents a narrow phone
-viewport for the hackathon demo; on a phone it fits the available width. The
-screen opens Pauri 1 of Japji Sahib, with the remaining pauris available after
-each round. No ML setup or microphone access is required.
-
-Press Play and tap each word as it is recited. A tap from 180 ms before the
-word's start to 320 ms after its end is green. An early tap or a word whose
-window expires is red. Each occurrence counts once; repeated words retain
-separate identities. Completing a pauri with at least 70% of words caught earns
-one Nanak Coin.
-Words do not add or subtract coins. Multicolored flower petals fall from the top on completion;
-an earned coin rises from the bottom into the counter. Reduced-motion mode updates the counter without
-animation. Coins accumulate across pauris and qualifying replays in the current
-browser tab session; they are not pronunciation scores. A caught
-word pops green; a missed word shakes red. Only unjudged words in the active
-verse can be tapped during playback. Inactive verses and words already marked
-green or red are disabled; tapping a red word does not replay audio.
-Reduced-motion preferences disable these animations.
-
-Pause freezes playback and leaves the round intact. Start again resets it.
-The audio clock drives progress, expired words, and passage scrolling, including
-after background frame gaps. Each pauri clip is buffered locally as Blob media
-before play so seeking works without HTTP-range support. Completion shows
-the coin reward, caught/missed counts, missed-word chips, and Play again. Tap
-results remain in memory; only the coin total and completed-pauri IDs are saved
-in browser session storage. Nothing is uploaded. Timing grace values are demo
-settings,
-not validated attention thresholds; source boundaries still await review.
-
-## Learn practice and Read Aloud placeholder
-
-The main `/learn` page uses a phone layout: optionally listen, record, then see
-green/red words with explanations below. Recording is available immediately and
-stops after 1.5 seconds of silence once speech starts, or with the stop button.
-The pause detector does not verify word completion; a 14.5-second limit remains.
-Five consecutive judged attempts with more than 70% of expected words marked as matched earn one Nanak Coin. Five bars show the
-streak and a message counts down the remaining turns. A judged result at 70% or
-below resets the streak. Streak and coin totals stay in browser session storage;
-word feedback and recordings are not retained. It shows no percentage score or
-ustaad tip.
-Phrase comparison uses the timestamp model above; see
-[docs/LEARN_PRACTICE.md](docs/LEARN_PRACTICE.md) for the flow and its limitations.
-Learn opens the full bani in order, including the opening and closing salok,
-with no lesson dropdown. There are 386 short screens from the existing 2,150
-word occurrences. The older lab remains at `/apps/learn/lab.html`.
-
-Existing work lives separately under `/learn`. Static playback, timing edits,
-reference sound review and notes work without the phone model. For local student
-comparison, in the activated Python 3.12 environment:
+An optional audio-derived phone model adds further sound checks and supports
+the older phonetic lab. To enable it in the same environment:
 
 ```sh
 python -m pip install -r requirements-phonetics.txt
 python -m scripts.download_phone_model
-python serve.py
 ```
 
-This downloads a separate ~1.26 GB phonetic model. First inference can take a
-minute on CPU. Start with **ਸਤਿ ਨਾਮੁ**. Audio-derived sound labels and feedback
-are experimental; no ustaad-validated pronunciation grade is presented.
-Student audio stays in tab/process memory. Compare sends it only to the local
-loopback server; nothing is automatically retained or uploaded externally.
-In the older lab, human corrections and timing edits save separately in browser storage and can
-be exported. The original checked-in reference artifact is not overwritten.
+It downloads a separate ~1.26 GB model and requires more memory. Restart the
+server after adding it. The main Learn flow works without this optional model.
 
-Reference reproduction tools (run from the repository root):
+## Follow along
 
-```sh
-python -m scripts.extract_phones
-python -m scripts.make_controls
-python -m scripts.report_findings
-python -m scripts.evaluate_ratings
-```
+Press Play and tap each word as the paath recites it. On-time taps turn green;
+early taps and missed words turn red. Only unjudged words in the active verse
+are clickable during playback. Tapping a red word does not replay audio.
+Pause preserves the round; Start again resets it.
 
-The first three require the phonetic environment/model. Existing estimated word
-timings are reused. Regenerating reference phones changes their identity;
-export existing reviews first. Historical alignment scripts accept an explicit
-`GURBANI_CTC_MODEL_DIR` for the original local Gurbani Wav2Vec2 checkpoint;
-the new timestamp generator has its own portable model downloader instead.
-See [docs/PHONETIC_FINDINGS.md](docs/PHONETIC_FINDINGS.md) and
-[evaluation/PROTOCOL.md](evaluation/PROTOCOL.md) for limitations and pending
-human validation. Synthetic teacher controls are not real learner ratings.
+Completing a pauri with **at least 70%** of words caught earns **one Nanak Coin**.
+Words do not earn individual coins. Completion shows falling flower petals; an
+earned coin rises from the bottom into the counter. Below the threshold, the
+action is Retry. Reduced-motion mode collects rewards without the animation.
 
-Read Aloud currently opens a “Coming soon” placeholder without microphone or recording
-controls. Learn remains available for recording practice.
+The audio clock determines tap results. Timing windows are demo settings, and
+the supplied word boundaries remain estimates awaiting review.
 
-## Repository layout
+## Learn
+
+Optionally listen to the ustaad, then record the displayed phrase. Recording is
+available immediately and can interrupt reference playback. Word highlights
+follow the reference timings at a gently faster pace to guide recitation;
+they do not track the learner's spoken words or grade speaking speed.
+
+After sustained sound is detected, **1.5 seconds of silence** ends recording
+automatically. Manual stop remains available, with a **14.5-second limit**.
+This detects a pause, not whether every word was completed; a long pause can
+end an attempt early. No detected speech prompts a retry without comparison.
+
+The comparison shows matched words in green, possible differences in red, and
+unassessed words in neutral. Feedback lets the learner replay the ustaad and
+their own recording. There is no displayed percentage pronunciation grade.
+
+Five consecutive judged turns with **more than 70%** of expected words matched
+earn **one Nanak Coin**. Five bars and a countdown show progress. A judged turn
+at 70% or below resets the streak; unavailable assessments and technical errors
+preserve it. The fifth qualifying turn shows falling petals and a rising coin,
+then clears the bars. Follow along and Learn share the tab's coin counter.
+
+Feedback is experimental and uncalibrated. It compares model evidence from the
+ustaad and learner audio; transcription agreement alone does not establish
+correct uchaaran. See [Learn implementation and limitations](docs/LEARN_PRACTICE.md).
+
+## Timestamp and reference tools
+
+At `/timestamps`, choose the supplied sample or upload audio, then paste or
+upload the corresponding Gurmukhi text and generate word timings. Audio is
+converted in the browser to mono 16 kHz PCM. Inputs can be up to 30 minutes and
+300 MB, subject to browser codec support. Supply a spoken expansion for ੴ;
+the displayed scripture stays unchanged.
+
+**Load existing sample timings** opens the checked-in artifact without running
+inference. New estimates can be inspected, adjusted and exported as JSON.
+Local boundary corrections save under the ignored `data/corrections/` folder.
+Generated boundaries and acoustic support indicators require review; they are
+not pronunciation scores. [Data contracts and provenance](docs/DATA.md) describe
+the preserved text, occurrence IDs, offsets and timing formats.
+
+Additional authoring tools remain at `/apps/learn/cards.html` for pronunciation
+cards and `/apps/learn/lab.html` for the older reference/phonetic lab. These are
+separate from the learner-facing practice screens.
+
+## Privacy and submission files
+
+Student audio stays in browser/server-process memory by default. In a local
+session, comparison sends it to the Python server on that computer. If the app
+is accessed remotely, comparison runs on that server and Learn shows a notice.
+The app does not automatically save recordings or send them to model publishers.
+**Save my attempt** is an explicit download to the learner's computer.
+
+Coins, Learn streaks and completed-pauri IDs use browser session storage.
+Follow along does not upload student audio. Reference-authoring tools can save
+local notes and corrections separately.
+
+For source submissions, keep the code, supplied reference assets, README and
+licenses. Exclude `.local/`, environment secrets, `.git/`, student recordings,
+private evaluations, generated evidence, model weights, virtual environments,
+`node_modules/` and caches. Models and prepared audio are reproduced with the
+setup commands above.
+
+## Project layout
 
 ```text
-apps/                   unified practice routes + separate timestamp tools
-  timestamps/           generation only
-  learn/                full-bani practice + older review tools
-  follow/               mobile tap-along demo
-  test/                 coming-soon placeholder
-  shared/               navigation and styles
-backend/                local server + timestamp inference
-  learn/                optional phonetic engine
-scripts/                portable setup/reproduction modules
-data/reference/         shared demo inputs and reference JSON
-models/                 ignored local weights
-local-recordings/       ignored original audio archive
-data/evidence/         ignored generated logits/evidence arrays
-tests/                 Python and browser checks
-docs/                  data contracts and findings
+apps/home/          bani selection and mode menu
+apps/follow/        tap-along practice
+apps/learn/         Learn practice and separate authoring tools
+apps/test/          Read Aloud placeholder
+apps/timestamps/    timestamp generation and export
+apps/shared/        shared styles, navigation and reward animations
+backend/            HTTP routes and lazy-loaded inference
+data/reference/     supplied ustaad audio and reference artifacts
+data/lessons/       checked-in lessons and pronunciation cards
+scripts/            setup and reproduction modules
+tests/              Python and browser checks
+docs/               implementation details and provenance
 ```
 
 ## Checks
 
-Standard-library checks (no model downloads):
+Core checks require only the Python standard library:
 
 ```sh
-python -m unittest tests.test_server
+python -m unittest tests.test_server tests.test_learn_screens_routes tests.test_japji_practice
 python -m tests.verify_data
 ```
 
-With timestamp dependencies: `python -m unittest tests.test_timestamps`.
-With phonetic dependencies: `python -m tests.verify_phonetics`.
-With a timestamp-ready server running, `python -m tests.timestamp_inference`
-checks real generation on the supplied recording (no mocked acoustic model).
+With timestamp dependencies installed: `python -m unittest tests.test_timestamps`.
+With the optional phone model setup: `python -m tests.verify_phonetics`.
 
-Optional browser tests require Node 20+; start the app in another terminal:
+Browser checks require Node 20+ and the app running in another terminal:
 
 ```sh
 npm ci
 npx playwright install chromium
 npm run test:browser
-npm run test:timing-review
 npm run test:follow
+node --test tests/learn-streak.test.cjs tests/learn-endpoint.test.cjs tests/learn-guide.test.cjs
 npm run test:follow:browser
 npm run test:learn:ui
+node tests/learn-autostop.cjs
 npm run test:unified
 ```
 
-Use `APP_URL=http://127.0.0.1:8768` for the route smoke test if needed. For the
-optional full Learn inference check, generate controls with
-`python -m scripts.make_controls`, run a second server with
-`python serve.py --port 8768`, then `npm run test:learn`. A portable Playwright
-browser is used by default; `BROWSER_EXECUTABLE` is an optional override.
+Use `APP_URL` for another server address in the current practice suites.
+`BROWSER_EXECUTABLE` optionally selects a locally installed browser. Browser
+comparison fixtures test UI behavior, not acoustic accuracy. A timestamp-ready
+server can run `python -m tests.timestamp_inference` for actual model generation
+on the supplied sample.
 
-## Working together
+## Contributing and license
 
-Create a branch for each feature (`git switch -c feature/follow`, for example),
-keep route-specific changes in its folder, push the branch, and open a pull
-request into main. Share this repository with teammates through GitHub's
-collaborator settings. [AGENTS.md](AGENTS.md) contains the local setup commands,
-feature boundaries, checks, and project constraints for their coding agents.
+Use a feature branch and a pull request into `main`. Keep feature-specific work
+in its route directory. [AGENTS.md](AGENTS.md) describes boundaries and local
+commands for teammates and coding agents.
 
-Models, venvs, node_modules, original audio archives, generated arrays, private
-ratings and child recordings are excluded from Git. The shared sample contains
-only the supplied ustaad recording. Application code is MIT; see
-[THIRD_PARTY.md](THIRD_PARTY.md) for separate model/data provenance.
+Application code is MIT licensed. Supplied recordings, source text, model
+weights and fonts retain their own provenance and licenses; see
+[THIRD_PARTY.md](THIRD_PARTY.md).

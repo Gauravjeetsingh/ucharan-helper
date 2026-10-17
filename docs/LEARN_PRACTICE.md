@@ -96,8 +96,9 @@ validated grade.
 
 ## Setup
 
-Timestamp model (README “Enable new timestamp generation”). The phone model is
-optional and only adds the voicing check.
+Use the timestamp model from the
+[README setup](../README.md#enable-learn-feedback-and-timestamp-generation).
+The phone model is optional and only adds the voicing check.
 
 ## Lessons
 
