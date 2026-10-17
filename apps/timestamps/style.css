@@ -1,1 +1,28 @@
-.generator-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}.text-step{margin-top:32px}#transcript{font:23px/1.9 "Gurmukhi MN","Noto Sans Gurmukhi","Raavi",sans-serif}#expansion{font-size:20px}#output{background:var(--paper);padding:16px;border-radius:8px;max-height:520px;overflow:auto;min-height:140px}.result h2{margin-bottom:18px}audio[hidden]{display:none}#result-summary{font-size:13px;color:var(--muted)}@media(max-width:850px){.generator-grid{grid-template-columns:1fr}#output{max-height:350px}}
+.generator-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}.text-step{margin-top:32px}#transcript{font:23px/1.9 "Gurmukhi MN","Noto Sans Gurmukhi","Raavi",sans-serif}#expansion{font-size:20px}#output{background:var(--paper);padding:16px;border-radius:8px;max-height:520px;overflow:auto;min-height:140px}.result h2{margin-bottom:18px}.json-step{margin-top:32px}audio[hidden]{display:none}#result-summary{font-size:13px;color:var(--muted)}
+.word-playback{font:24px/2.1 "Gurmukhi MN","Noto Sans Gurmukhi","Raavi",sans-serif;background:var(--paper);border-radius:8px;padding:16px;min-height:72px}
+.word-playback .word{display:inline-block;padding:1px 4px;border-radius:5px;margin:0 1px;cursor:pointer;background:none;border:none;color:inherit;font:inherit}
+.word-playback .word:hover{background:var(--soft)}
+.word-playback .word.spoken{background:var(--accent);color:#fff}
+.word-playback .word.selected{outline:2px solid var(--accent);outline-offset:1px}
+.word-playback .word.played{color:var(--muted)}
+.word-playback .placeholder{color:var(--muted);font:13px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.word-detail{margin-top:16px;padding:16px;border:1px solid var(--line);border-radius:8px;background:#fffefa}
+.word-detail[hidden]{display:none}
+.word-detail-text{font:26px/1.4 "Gurmukhi MN","Noto Sans Gurmukhi","Raavi",sans-serif;margin:0 0 4px}
+#word-detail-time{margin:0 0 14px}
+.word-waveform{width:100%;height:90px;display:block;border-radius:6px;background:var(--paper);cursor:pointer}
+#word-waveform-status{margin:6px 0 14px}
+.nudge-row{display:flex;align-items:center;gap:10px;margin:10px 0}
+.nudge-row label{margin:0;width:38px;flex:none;font-size:13px}
+.nudge-row input[type=range]{flex:1;min-width:0}
+.time-input{width:84px;flex:none;padding:6px 8px;font-variant-numeric:tabular-nums}
+#word-start-nudge{accent-color:var(--accent)}
+#word-end-nudge{accent-color:#4f6a62}
+.word-detail .actions{margin-top:8px}
+#word-save-status{margin:8px 0 0}
+#word-save-status.saved{color:var(--ink);font-weight:600}
+@media(max-width:850px){.generator-grid{grid-template-columns:1fr}#output{max-height:350px}}
+.loader{display:flex;align-items:center;gap:12px;font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--muted)}
+.spinner{width:22px;height:22px;flex:none;border:3px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.spinner{animation-duration:3s}}

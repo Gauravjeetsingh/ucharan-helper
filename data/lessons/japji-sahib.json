@@ -1,0 +1,1462 @@
+{
+ "schema_version": 1,
+ "id": "japji-sahib",
+ "title": "Japji Sahib · first lines",
+ "min_sound_score": -1.5,
+ "cards": "/data/lessons/pronunciation-cards-japji.json",
+ "note": "One screen per line, from data/reference/japjisahib.mp3 and BaniDB bani 2. Word times are unreviewed estimates.",
+ "screens": [
+  {
+   "id": "line-001-1",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 6.539,
+   "end": 18.278,
+   "words": [
+    {
+     "id": "jp001-w01",
+     "text": "ੴ",
+     "start": 6.639,
+     "end": 8.817
+    },
+    {
+     "id": "jp001-w02",
+     "text": "ਸਤਿ",
+     "start": 10.395,
+     "end": 11.135
+    },
+    {
+     "id": "jp001-w03",
+     "text": "ਨਾਮੁ",
+     "start": 11.154,
+     "end": 11.934
+    },
+    {
+     "id": "jp001-w04",
+     "text": "ਕਰਤਾ",
+     "start": 12.833,
+     "end": 13.572
+    },
+    {
+     "id": "jp001-w05",
+     "text": "ਪੁਰਖੁ",
+     "start": 13.632,
+     "end": 14.451
+    },
+    {
+     "id": "jp001-w06",
+     "text": "ਨਿਰਭਉ",
+     "start": 15.67,
+     "end": 16.689
+    },
+    {
+     "id": "jp001-w07",
+     "text": "ਨਿਰਵੈਰੁ",
+     "start": 16.988,
+     "end": 18.128
+    }
+   ]
+  },
+  {
+   "id": "line-001-2",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 19.126,
+   "end": 24.411,
+   "words": [
+    {
+     "id": "jp001-w08",
+     "text": "ਅਕਾਲ",
+     "start": 19.226,
+     "end": 19.965
+    },
+    {
+     "id": "jp001-w09",
+     "text": "ਮੂਰਤਿ",
+     "start": 19.965,
+     "end": 20.845
+    },
+    {
+     "id": "jp001-w10",
+     "text": "ਅਜੂਨੀ",
+     "start": 20.984,
+     "end": 21.744
+    },
+    {
+     "id": "jp001-w11",
+     "text": "ਸੈਭੰ",
+     "start": 21.744,
+     "end": 22.723
+    },
+    {
+     "id": "jp001-w12",
+     "text": "ਗੁਰ",
+     "start": 22.862,
+     "end": 23.262
+    },
+    {
+     "id": "jp001-w13",
+     "text": "ਪ੍ਰਸਾਦਿ",
+     "start": 23.262,
+     "end": 24.261
+    }
+   ]
+  },
+  {
+   "id": "line-002",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 24.493,
+   "end": 25.339,
+   "words": [
+    {
+     "id": "jp002-w01",
+     "text": "ਜਪੁ",
+     "start": 24.593,
+     "end": 25.189
+    }
+   ]
+  },
+  {
+   "id": "line-003",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 26.057,
+   "end": 29.374,
+   "words": [
+    {
+     "id": "jp003-w01",
+     "text": "ਆਦਿ",
+     "start": 26.157,
+     "end": 26.775
+    },
+    {
+     "id": "jp003-w02",
+     "text": "ਸਚੁ",
+     "start": 26.775,
+     "end": 27.492
+    },
+    {
+     "id": "jp003-w03",
+     "text": "ਜੁਗਾਦਿ",
+     "start": 27.71,
+     "end": 28.586
+    },
+    {
+     "id": "jp003-w04",
+     "text": "ਸਚੁ",
+     "start": 28.586,
+     "end": 29.224
+    }
+   ]
+  },
+  {
+   "id": "line-004",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 29.418,
+   "end": 34.053,
+   "words": [
+    {
+     "id": "jp004-w01",
+     "text": "ਹੈ",
+     "start": 29.518,
+     "end": 29.818
+    },
+    {
+     "id": "jp004-w02",
+     "text": "ਭੀ",
+     "start": 29.956,
+     "end": 30.375
+    },
+    {
+     "id": "jp004-w03",
+     "text": "ਸਚੁ",
+     "start": 30.434,
+     "end": 31.213
+    },
+    {
+     "id": "jp004-w04",
+     "text": "ਨਾਨਕ",
+     "start": 31.351,
+     "end": 32.13
+    },
+    {
+     "id": "jp004-w05",
+     "text": "ਹੋਸੀ",
+     "start": 32.348,
+     "end": 32.906
+    },
+    {
+     "id": "jp004-w06",
+     "text": "ਭੀ",
+     "start": 32.906,
+     "end": 33.285
+    },
+    {
+     "id": "jp004-w07",
+     "text": "ਸਚੁ",
+     "start": 33.304,
+     "end": 33.903
+    }
+   ]
+  },
+  {
+   "id": "line-005",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 35.418,
+   "end": 40.293,
+   "words": [
+    {
+     "id": "jp005-w01",
+     "text": "ਸੋਚੈ",
+     "start": 35.518,
+     "end": 36.216
+    },
+    {
+     "id": "jp005-w02",
+     "text": "ਸੋਚਿ",
+     "start": 36.634,
+     "end": 37.192
+    },
+    {
+     "id": "jp005-w03",
+     "text": "ਨ",
+     "start": 37.192,
+     "end": 37.412
+    },
+    {
+     "id": "jp005-w04",
+     "text": "ਹੋਵਈ",
+     "start": 37.431,
+     "end": 38.129
+    },
+    {
+     "id": "jp005-w05",
+     "text": "ਜੇ",
+     "start": 38.189,
+     "end": 38.568
+    },
+    {
+     "id": "jp005-w06",
+     "text": "ਸੋਚੀ",
+     "start": 38.587,
+     "end": 39.166
+    },
+    {
+     "id": "jp005-w07",
+     "text": "ਲਖ",
+     "start": 39.166,
+     "end": 39.644
+    },
+    {
+     "id": "jp005-w08",
+     "text": "ਵਾਰ",
+     "start": 39.644,
+     "end": 40.143
+    }
+   ]
+  },
+  {
+   "id": "line-006",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 41.178,
+   "end": 46.253,
+   "words": [
+    {
+     "id": "jp006-w01",
+     "text": "ਚੁਪੈ",
+     "start": 41.278,
+     "end": 41.937
+    },
+    {
+     "id": "jp006-w02",
+     "text": "ਚੁਪ",
+     "start": 42.314,
+     "end": 42.793
+    },
+    {
+     "id": "jp006-w03",
+     "text": "ਨ",
+     "start": 42.793,
+     "end": 43.013
+    },
+    {
+     "id": "jp006-w04",
+     "text": "ਹੋਵਈ",
+     "start": 43.013,
+     "end": 43.691
+    },
+    {
+     "id": "jp006-w05",
+     "text": "ਜੇ",
+     "start": 43.949,
+     "end": 44.369
+    },
+    {
+     "id": "jp006-w06",
+     "text": "ਲਾਇ",
+     "start": 44.507,
+     "end": 44.926
+    },
+    {
+     "id": "jp006-w07",
+     "text": "ਰਹਾ",
+     "start": 44.926,
+     "end": 45.305
+    },
+    {
+     "id": "jp006-w08",
+     "text": "ਲਿਵ",
+     "start": 45.305,
+     "end": 45.664
+    },
+    {
+     "id": "jp006-w09",
+     "text": "ਤਾਰ",
+     "start": 45.664,
+     "end": 46.103
+    }
+   ]
+  },
+  {
+   "id": "line-007",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 47.418,
+   "end": 52.053,
+   "words": [
+    {
+     "id": "jp007-w01",
+     "text": "ਭੁਖਿਆ",
+     "start": 47.518,
+     "end": 48.216
+    },
+    {
+     "id": "jp007-w02",
+     "text": "ਭੁਖ",
+     "start": 48.235,
+     "end": 48.774
+    },
+    {
+     "id": "jp007-w03",
+     "text": "ਨ",
+     "start": 48.774,
+     "end": 49.033
+    },
+    {
+     "id": "jp007-w04",
+     "text": "ਉਤਰੀ",
+     "start": 49.033,
+     "end": 49.691
+    },
+    {
+     "id": "jp007-w05",
+     "text": "ਜੇ",
+     "start": 49.869,
+     "end": 50.229
+    },
+    {
+     "id": "jp007-w06",
+     "text": "ਬੰਨਾ",
+     "start": 50.229,
+     "end": 50.727
+    },
+    {
+     "id": "jp007-w07",
+     "text": "ਪੁਰੀਆ",
+     "start": 50.727,
+     "end": 51.305
+    },
+    {
+     "id": "jp007-w08",
+     "text": "ਭਾਰ",
+     "start": 51.305,
+     "end": 51.903
+    }
+   ]
+  },
+  {
+   "id": "line-008",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 52.298,
+   "end": 57.812,
+   "words": [
+    {
+     "id": "jp008-w01",
+     "text": "ਸਹਸ",
+     "start": 52.398,
+     "end": 53.036
+    },
+    {
+     "id": "jp008-w02",
+     "text": "ਸਿਆਣਪਾ",
+     "start": 53.036,
+     "end": 53.893
+    },
+    {
+     "id": "jp008-w03",
+     "text": "ਲਖ",
+     "start": 53.893,
+     "end": 54.452
+    },
+    {
+     "id": "jp008-w04",
+     "text": "ਹੋਹਿ",
+     "start": 54.511,
+     "end": 55.29
+    },
+    {
+     "id": "jp008-w05",
+     "text": "ਤ",
+     "start": 55.588,
+     "end": 55.927
+    },
+    {
+     "id": "jp008-w06",
+     "text": "ਇਕ",
+     "start": 55.986,
+     "end": 56.286
+    },
+    {
+     "id": "jp008-w07",
+     "text": "ਨ",
+     "start": 56.305,
+     "end": 56.585
+    },
+    {
+     "id": "jp008-w08",
+     "text": "ਚਲੈ",
+     "start": 56.585,
+     "end": 57.103
+    },
+    {
+     "id": "jp008-w09",
+     "text": "ਨਾਲਿ",
+     "start": 57.103,
+     "end": 57.662
+    }
+   ]
+  },
+  {
+   "id": "line-009",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 58.418,
+   "end": 63.053,
+   "words": [
+    {
+     "id": "jp009-w01",
+     "text": "ਕਿਵ",
+     "start": 58.518,
+     "end": 58.917
+    },
+    {
+     "id": "jp009-w02",
+     "text": "ਸਚਿਆਰਾ",
+     "start": 58.917,
+     "end": 59.674
+    },
+    {
+     "id": "jp009-w03",
+     "text": "ਹੋਈਐ",
+     "start": 59.674,
+     "end": 60.372
+    },
+    {
+     "id": "jp009-w04",
+     "text": "ਕਿਵ",
+     "start": 60.59,
+     "end": 61.109
+    },
+    {
+     "id": "jp009-w05",
+     "text": "ਕੂੜੈ",
+     "start": 61.109,
+     "end": 61.667
+    },
+    {
+     "id": "jp009-w06",
+     "text": "ਤੁਟੈ",
+     "start": 61.667,
+     "end": 62.225
+    },
+    {
+     "id": "jp009-w07",
+     "text": "ਪਾਲਿ",
+     "start": 62.225,
+     "end": 62.903
+    }
+   ]
+  },
+  {
+   "id": "line-010",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 63.017,
+   "end": 66.933,
+   "words": [
+    {
+     "id": "jp010-w01",
+     "text": "ਹੁਕਮਿ",
+     "start": 63.117,
+     "end": 63.755
+    },
+    {
+     "id": "jp010-w02",
+     "text": "ਰਜਾਈ",
+     "start": 63.755,
+     "end": 64.372
+    },
+    {
+     "id": "jp010-w03",
+     "text": "ਚਲਣਾ",
+     "start": 64.372,
+     "end": 64.99
+    },
+    {
+     "id": "jp010-w04",
+     "text": "ਨਾਨਕ",
+     "start": 65.029,
+     "end": 65.687
+    },
+    {
+     "id": "jp010-w05",
+     "text": "ਲਿਖਿਆ",
+     "start": 65.687,
+     "end": 66.264
+    },
+    {
+     "id": "jp010-w06",
+     "text": "ਨਾਲਿ",
+     "start": 66.264,
+     "end": 66.783
+    }
+   ]
+  },
+  {
+   "id": "line-011",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 67.778,
+   "end": 72.933,
+   "words": [
+    {
+     "id": "jp011-w01",
+     "text": "ਹੁਕਮੀ",
+     "start": 67.878,
+     "end": 68.516
+    },
+    {
+     "id": "jp011-w02",
+     "text": "ਹੋਵਨਿ",
+     "start": 68.556,
+     "end": 69.274
+    },
+    {
+     "id": "jp011-w03",
+     "text": "ਆਕਾਰ",
+     "start": 69.274,
+     "end": 70.012
+    },
+    {
+     "id": "jp011-w04",
+     "text": "ਹੁਕਮੁ",
+     "start": 70.709,
+     "end": 71.427
+    },
+    {
+     "id": "jp011-w05",
+     "text": "ਨ",
+     "start": 71.427,
+     "end": 71.706
+    },
+    {
+     "id": "jp011-w06",
+     "text": "ਕਹਿਆ",
+     "start": 71.706,
+     "end": 72.304
+    },
+    {
+     "id": "jp011-w07",
+     "text": "ਜਾਈ",
+     "start": 72.304,
+     "end": 72.783
+    }
+   ]
+  },
+  {
+   "id": "line-012",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 73.138,
+   "end": 77.293,
+   "words": [
+    {
+     "id": "jp012-w01",
+     "text": "ਹੁਕਮੀ",
+     "start": 73.238,
+     "end": 73.876
+    },
+    {
+     "id": "jp012-w02",
+     "text": "ਹੋਵਨਿ",
+     "start": 73.915,
+     "end": 74.633
+    },
+    {
+     "id": "jp012-w03",
+     "text": "ਜੀਅ",
+     "start": 74.633,
+     "end": 75.291
+    },
+    {
+     "id": "jp012-w04",
+     "text": "ਹੁਕਮਿ",
+     "start": 75.429,
+     "end": 76.067
+    },
+    {
+     "id": "jp012-w05",
+     "text": "ਮਿਲੈ",
+     "start": 76.067,
+     "end": 76.486
+    },
+    {
+     "id": "jp012-w06",
+     "text": "ਵਡਿਆਈ",
+     "start": 76.486,
+     "end": 77.143
+    }
+   ]
+  },
+  {
+   "id": "line-013",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 78.338,
+   "end": 83.973,
+   "words": [
+    {
+     "id": "jp013-w01",
+     "text": "ਹੁਕਮੀ",
+     "start": 78.438,
+     "end": 78.977
+    },
+    {
+     "id": "jp013-w02",
+     "text": "ਉਤਮੁ",
+     "start": 78.996,
+     "end": 79.575
+    },
+    {
+     "id": "jp013-w03",
+     "text": "ਨੀਚੁ",
+     "start": 79.575,
+     "end": 80.373
+    },
+    {
+     "id": "jp013-w04",
+     "text": "ਹੁਕਮਿ",
+     "start": 80.911,
+     "end": 81.569
+    },
+    {
+     "id": "jp013-w05",
+     "text": "ਲਿਖਿ",
+     "start": 81.569,
+     "end": 82.207
+    },
+    {
+     "id": "jp013-w06",
+     "text": "ਦੁਖ",
+     "start": 82.227,
+     "end": 82.686
+    },
+    {
+     "id": "jp013-w07",
+     "text": "ਸੁਖ",
+     "start": 82.686,
+     "end": 83.065
+    },
+    {
+     "id": "jp013-w08",
+     "text": "ਪਾਈਅਹਿ",
+     "start": 83.065,
+     "end": 83.823
+    }
+   ]
+  },
+  {
+   "id": "line-014",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 84.178,
+   "end": 89.173,
+   "words": [
+    {
+     "id": "jp014-w01",
+     "text": "ਇਕਨਾ",
+     "start": 84.278,
+     "end": 84.757
+    },
+    {
+     "id": "jp014-w02",
+     "text": "ਹੁਕਮੀ",
+     "start": 84.757,
+     "end": 85.355
+    },
+    {
+     "id": "jp014-w03",
+     "text": "ਬਖਸੀਸ",
+     "start": 85.355,
+     "end": 86.412
+    },
+    {
+     "id": "jp014-w04",
+     "text": "ਇਕਿ",
+     "start": 87.029,
+     "end": 87.348
+    },
+    {
+     "id": "jp014-w05",
+     "text": "ਹੁਕਮੀ",
+     "start": 87.348,
+     "end": 87.767
+    },
+    {
+     "id": "jp014-w06",
+     "text": "ਸਦਾ",
+     "start": 87.767,
+     "end": 88.145
+    },
+    {
+     "id": "jp014-w07",
+     "text": "ਭਵਾਈਅਹਿ",
+     "start": 88.145,
+     "end": 89.023
+    }
+   ]
+  },
+  {
+   "id": "line-015",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 89.858,
+   "end": 95.533,
+   "words": [
+    {
+     "id": "jp015-w01",
+     "text": "ਹੁਕਮੈ",
+     "start": 89.958,
+     "end": 90.676
+    },
+    {
+     "id": "jp015-w02",
+     "text": "ਅੰਦਰਿ",
+     "start": 90.716,
+     "end": 91.474
+    },
+    {
+     "id": "jp015-w03",
+     "text": "ਸਭੁ",
+     "start": 91.474,
+     "end": 92.032
+    },
+    {
+     "id": "jp015-w04",
+     "text": "ਕੋ",
+     "start": 92.032,
+     "end": 92.372
+    },
+    {
+     "id": "jp015-w05",
+     "text": "ਬਾਹਰਿ",
+     "start": 93.268,
+     "end": 93.887
+    },
+    {
+     "id": "jp015-w06",
+     "text": "ਹੁਕਮ",
+     "start": 93.887,
+     "end": 94.425
+    },
+    {
+     "id": "jp015-w07",
+     "text": "ਨ",
+     "start": 94.425,
+     "end": 94.744
+    },
+    {
+     "id": "jp015-w08",
+     "text": "ਕੋਇ",
+     "start": 94.784,
+     "end": 95.383
+    }
+   ]
+  },
+  {
+   "id": "line-016",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 96.058,
+   "end": 101.093,
+   "words": [
+    {
+     "id": "jp016-w01",
+     "text": "ਨਾਨਕ",
+     "start": 96.158,
+     "end": 96.896
+    },
+    {
+     "id": "jp016-w02",
+     "text": "ਹੁਕਮੈ",
+     "start": 96.995,
+     "end": 97.653
+    },
+    {
+     "id": "jp016-w03",
+     "text": "ਜੇ",
+     "start": 97.653,
+     "end": 97.932
+    },
+    {
+     "id": "jp016-w04",
+     "text": "ਬੁਝੈ",
+     "start": 97.932,
+     "end": 98.651
+    },
+    {
+     "id": "jp016-w05",
+     "text": "ਤ",
+     "start": 98.829,
+     "end": 99.109
+    },
+    {
+     "id": "jp016-w06",
+     "text": "ਹਉਮੈ",
+     "start": 99.109,
+     "end": 99.687
+    },
+    {
+     "id": "jp016-w07",
+     "text": "ਕਹੈ",
+     "start": 99.687,
+     "end": 100.105
+    },
+    {
+     "id": "jp016-w08",
+     "text": "ਨ",
+     "start": 100.105,
+     "end": 100.384
+    },
+    {
+     "id": "jp016-w09",
+     "text": "ਕੋਇ",
+     "start": 100.424,
+     "end": 100.943
+    }
+   ]
+  },
+  {
+   "id": "line-017",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 101.857,
+   "end": 105.414,
+   "words": [
+    {
+     "id": "jp017-w01",
+     "text": "ਗਾਵੈ",
+     "start": 101.957,
+     "end": 102.475
+    },
+    {
+     "id": "jp017-w02",
+     "text": "ਕੋ",
+     "start": 102.475,
+     "end": 102.734
+    },
+    {
+     "id": "jp017-w03",
+     "text": "ਤਾਣੁ",
+     "start": 102.754,
+     "end": 103.452
+    },
+    {
+     "id": "jp017-w04",
+     "text": "ਹੋਵੈ",
+     "start": 103.63,
+     "end": 104.148
+    },
+    {
+     "id": "jp017-w05",
+     "text": "ਕਿਸੈ",
+     "start": 104.148,
+     "end": 104.646
+    },
+    {
+     "id": "jp017-w06",
+     "text": "ਤਾਣੁ",
+     "start": 104.646,
+     "end": 105.264
+    }
+   ]
+  },
+  {
+   "id": "line-018",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 105.417,
+   "end": 108.933,
+   "words": [
+    {
+     "id": "jp018-w01",
+     "text": "ਗਾਵੈ",
+     "start": 105.517,
+     "end": 106.035
+    },
+    {
+     "id": "jp018-w02",
+     "text": "ਕੋ",
+     "start": 106.035,
+     "end": 106.274
+    },
+    {
+     "id": "jp018-w03",
+     "text": "ਦਾਤਿ",
+     "start": 106.274,
+     "end": 107.012
+    },
+    {
+     "id": "jp018-w04",
+     "text": "ਜਾਣੈ",
+     "start": 107.229,
+     "end": 107.787
+    },
+    {
+     "id": "jp018-w05",
+     "text": "ਨੀਸਾਣੁ",
+     "start": 107.787,
+     "end": 108.783
+    }
+   ]
+  },
+  {
+   "id": "line-019",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 109.577,
+   "end": 113.014,
+   "words": [
+    {
+     "id": "jp019-w01",
+     "text": "ਗਾਵੈ",
+     "start": 109.677,
+     "end": 110.255
+    },
+    {
+     "id": "jp019-w02",
+     "text": "ਕੋ",
+     "start": 110.255,
+     "end": 110.575
+    },
+    {
+     "id": "jp019-w03",
+     "text": "ਗੁਣ",
+     "start": 111.071,
+     "end": 111.51
+    },
+    {
+     "id": "jp019-w04",
+     "text": "ਵਡਿਆਈਆ",
+     "start": 111.51,
+     "end": 112.326
+    },
+    {
+     "id": "jp019-w05",
+     "text": "ਚਾਰ",
+     "start": 112.345,
+     "end": 112.864
+    }
+   ]
+  },
+  {
+   "id": "line-020",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 113.258,
+   "end": 116.894,
+   "words": [
+    {
+     "id": "jp020-w01",
+     "text": "ਗਾਵੈ",
+     "start": 113.358,
+     "end": 113.896
+    },
+    {
+     "id": "jp020-w02",
+     "text": "ਕੋ",
+     "start": 113.896,
+     "end": 114.215
+    },
+    {
+     "id": "jp020-w03",
+     "text": "ਵਿਦਿਆ",
+     "start": 114.592,
+     "end": 115.23
+    },
+    {
+     "id": "jp020-w04",
+     "text": "ਵਿਖਮੁ",
+     "start": 115.23,
+     "end": 115.907
+    },
+    {
+     "id": "jp020-w05",
+     "text": "ਵੀਚਾਰੁ",
+     "start": 115.907,
+     "end": 116.744
+    }
+   ]
+  },
+  {
+   "id": "line-021",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 117.618,
+   "end": 121.853,
+   "words": [
+    {
+     "id": "jp021-w01",
+     "text": "ਗਾਵੈ",
+     "start": 117.718,
+     "end": 118.296
+    },
+    {
+     "id": "jp021-w02",
+     "text": "ਕੋ",
+     "start": 118.296,
+     "end": 118.615
+    },
+    {
+     "id": "jp021-w03",
+     "text": "ਸਾਜਿ",
+     "start": 119.312,
+     "end": 120.049
+    },
+    {
+     "id": "jp021-w04",
+     "text": "ਕਰੇ",
+     "start": 120.049,
+     "end": 120.488
+    },
+    {
+     "id": "jp021-w05",
+     "text": "ਤਨੁ",
+     "start": 120.488,
+     "end": 121.006
+    },
+    {
+     "id": "jp021-w06",
+     "text": "ਖੇਹ",
+     "start": 121.006,
+     "end": 121.703
+    }
+   ]
+  },
+  {
+   "id": "line-022",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 121.937,
+   "end": 125.414,
+   "words": [
+    {
+     "id": "jp022-w01",
+     "text": "ਗਾਵੈ",
+     "start": 122.037,
+     "end": 122.595
+    },
+    {
+     "id": "jp022-w02",
+     "text": "ਕੋ",
+     "start": 122.595,
+     "end": 122.935
+    },
+    {
+     "id": "jp022-w03",
+     "text": "ਜੀਅ",
+     "start": 123.511,
+     "end": 123.949
+    },
+    {
+     "id": "jp022-w04",
+     "text": "ਲੈ",
+     "start": 123.949,
+     "end": 124.268
+    },
+    {
+     "id": "jp022-w05",
+     "text": "ਫਿਰਿ",
+     "start": 124.268,
+     "end": 124.726
+    },
+    {
+     "id": "jp022-w06",
+     "text": "ਦੇਹ",
+     "start": 124.726,
+     "end": 125.264
+    }
+   ]
+  },
+  {
+   "id": "line-023",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 126.257,
+   "end": 129.414,
+   "words": [
+    {
+     "id": "jp023-w01",
+     "text": "ਗਾਵੈ",
+     "start": 126.357,
+     "end": 126.935
+    },
+    {
+     "id": "jp023-w02",
+     "text": "ਕੋ",
+     "start": 126.935,
+     "end": 127.254
+    },
+    {
+     "id": "jp023-w03",
+     "text": "ਜਾਪੈ",
+     "start": 127.551,
+     "end": 128.109
+    },
+    {
+     "id": "jp023-w04",
+     "text": "ਦਿਸੈ",
+     "start": 128.109,
+     "end": 128.607
+    },
+    {
+     "id": "jp023-w05",
+     "text": "ਦੂਰਿ",
+     "start": 128.607,
+     "end": 129.264
+    }
+   ]
+  },
+  {
+   "id": "line-024",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 129.617,
+   "end": 132.774,
+   "words": [
+    {
+     "id": "jp024-w01",
+     "text": "ਗਾਵੈ",
+     "start": 129.717,
+     "end": 130.295
+    },
+    {
+     "id": "jp024-w02",
+     "text": "ਕੋ",
+     "start": 130.295,
+     "end": 130.613
+    },
+    {
+     "id": "jp024-w03",
+     "text": "ਵੇਖੈ",
+     "start": 130.672,
+     "end": 131.27
+    },
+    {
+     "id": "jp024-w04",
+     "text": "ਹਾਦਰਾ",
+     "start": 131.27,
+     "end": 131.847
+    },
+    {
+     "id": "jp024-w05",
+     "text": "ਹਦੂਰਿ",
+     "start": 131.847,
+     "end": 132.624
+    }
+   ]
+  },
+  {
+   "id": "line-025",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 133.417,
+   "end": 136.654,
+   "words": [
+    {
+     "id": "jp025-w01",
+     "text": "ਕਥਨਾ",
+     "start": 133.517,
+     "end": 134.115
+    },
+    {
+     "id": "jp025-w02",
+     "text": "ਕਥੀ",
+     "start": 134.115,
+     "end": 134.733
+    },
+    {
+     "id": "jp025-w03",
+     "text": "ਨ",
+     "start": 134.95,
+     "end": 135.249
+    },
+    {
+     "id": "jp025-w04",
+     "text": "ਆਵੈ",
+     "start": 135.269,
+     "end": 135.807
+    },
+    {
+     "id": "jp025-w05",
+     "text": "ਤੋਟਿ",
+     "start": 135.807,
+     "end": 136.504
+    }
+   ]
+  },
+  {
+   "id": "line-026",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 136.778,
+   "end": 140.734,
+   "words": [
+    {
+     "id": "jp026-w01",
+     "text": "ਕਥਿ",
+     "start": 136.878,
+     "end": 137.456
+    },
+    {
+     "id": "jp026-w02",
+     "text": "ਕਥਿ",
+     "start": 137.456,
+     "end": 137.974
+    },
+    {
+     "id": "jp026-w03",
+     "text": "ਕਥੀ",
+     "start": 137.974,
+     "end": 138.532
+    },
+    {
+     "id": "jp026-w04",
+     "text": "ਕੋਟੀ",
+     "start": 138.67,
+     "end": 139.268
+    },
+    {
+     "id": "jp026-w05",
+     "text": "ਕੋਟਿ",
+     "start": 139.308,
+     "end": 139.966
+    },
+    {
+     "id": "jp026-w06",
+     "text": "ਕੋਟਿ",
+     "start": 139.966,
+     "end": 140.584
+    }
+   ]
+  },
+  {
+   "id": "line-027",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 141.538,
+   "end": 145.214,
+   "words": [
+    {
+     "id": "jp027-w01",
+     "text": "ਦੇਦਾ",
+     "start": 141.638,
+     "end": 142.215
+    },
+    {
+     "id": "jp027-w02",
+     "text": "ਦੇ",
+     "start": 142.235,
+     "end": 142.575
+    },
+    {
+     "id": "jp027-w03",
+     "text": "ਲੈਦੇ",
+     "start": 143.35,
+     "end": 143.948
+    },
+    {
+     "id": "jp027-w04",
+     "text": "ਥਕਿ",
+     "start": 143.948,
+     "end": 144.526
+    },
+    {
+     "id": "jp027-w05",
+     "text": "ਪਾਹਿ",
+     "start": 144.526,
+     "end": 145.064
+    }
+   ]
+  },
+  {
+   "id": "line-028",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 145.737,
+   "end": 149.014,
+   "words": [
+    {
+     "id": "jp028-w01",
+     "text": "ਜੁਗਾ",
+     "start": 145.837,
+     "end": 146.315
+    },
+    {
+     "id": "jp028-w02",
+     "text": "ਜੁਗੰਤਰਿ",
+     "start": 146.315,
+     "end": 147.371
+    },
+    {
+     "id": "jp028-w03",
+     "text": "ਖਾਹੀ",
+     "start": 147.629,
+     "end": 148.187
+    },
+    {
+     "id": "jp028-w04",
+     "text": "ਖਾਹਿ",
+     "start": 148.226,
+     "end": 148.864
+    }
+   ]
+  },
+  {
+   "id": "line-029",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 149.737,
+   "end": 152.774,
+   "words": [
+    {
+     "id": "jp029-w01",
+     "text": "ਹੁਕਮੀ",
+     "start": 149.837,
+     "end": 150.455
+    },
+    {
+     "id": "jp029-w02",
+     "text": "ਹੁਕਮੁ",
+     "start": 150.832,
+     "end": 151.39
+    },
+    {
+     "id": "jp029-w03",
+     "text": "ਚਲਾਏ",
+     "start": 151.39,
+     "end": 151.927
+    },
+    {
+     "id": "jp029-w04",
+     "text": "ਰਾਹੁ",
+     "start": 151.946,
+     "end": 152.624
+    }
+   ]
+  },
+  {
+   "id": "line-030",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 153.177,
+   "end": 156.334,
+   "words": [
+    {
+     "id": "jp030-w01",
+     "text": "ਨਾਨਕ",
+     "start": 153.277,
+     "end": 154.015
+    },
+    {
+     "id": "jp030-w02",
+     "text": "ਵਿਗਸੈ",
+     "start": 154.352,
+     "end": 155.069
+    },
+    {
+     "id": "jp030-w03",
+     "text": "ਵੇਪਰਵਾਹੁ",
+     "start": 155.069,
+     "end": 156.184
+    }
+   ]
+  },
+  {
+   "id": "line-031",
+   "ustaad": "Japji Sahib recording",
+   "audio": "/data/lessons/audio/japjisahib-16k.wav",
+   "start": 157.098,
+   "end": 162.492,
+   "words": [
+    {
+     "id": "jp031-w01",
+     "text": "ਸਾਚਾ",
+     "start": 157.198,
+     "end": 157.816
+    },
+    {
+     "id": "jp031-w02",
+     "text": "ਸਾਹਿਬੁ",
+     "start": 157.816,
+     "end": 158.654
+    },
+    {
+     "id": "jp031-w03",
+     "text": "ਸਾਚੁ",
+     "start": 158.873,
+     "end": 159.491
+    },
+    {
+     "id": "jp031-w04",
+     "text": "ਨਾਇ",
+     "start": 159.491,
+     "end": 160.05
+    },
+    {
+     "id": "jp031-w05",
+     "text": "ਭਾਖਿਆ",
+     "start": 160.348,
+     "end": 161.046
+    },
+    {
+     "id": "jp031-w06",
+     "text": "ਭਾਉ",
+     "start": 161.046,
+     "end": 161.505
+    },
+    {
+     "id": "jp031-w07",
+     "text": "ਅਪਾਰੁ",
+     "start": 161.505,
+     "end": 162.342
+    }
+   ]
+  }
+ ]
+}

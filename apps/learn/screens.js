@@ -1,6 +1,6 @@
 // Learn UI. Lesson text/timings and comparison remain supplied by existing APIs.
 const $ = id => document.getElementById(id);
-const LESSONS = [['japji-short-phrases', 'Japji Sahib · short phrases'], ['mool-mantar', 'Mool Mantar']];
+const LESSONS = [['japji-short-phrases', 'Japji Sahib · short phrases'], ['mool-mantar', 'Mool Mantar'], ['japji-sahib', 'Japji Sahib · first lines (full recording)']];
 const SVG_NS = 'http://www.w3.org/2000/svg';
 let lesson, index = 0, ctx, playing, analyser, microphone, frame;
 let recorder, stream, timer, student, studentWav, result, selected = null;
@@ -141,7 +141,7 @@ function renderWords() {
 }
 function heardLine(word) {
   const line = element('div', undefined, 'lp-heard');
-  for (const [label, heard] of [['Reference: ', word.ustaad_heard], ['You: ', word.student_heard]]) {
+  for (const [label, heard] of [[word.ustaad_says ? 'Ustaad says: ' : 'Reference: ', word.ustaad_says || word.ustaad_heard], ['You: ', word.student_heard]]) {
     const part = element('span', label); const value = element('b', heard || '(not clear)'); value.lang = 'pa'; part.append(value); line.append(part);
   }
   return line;

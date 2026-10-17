@@ -60,7 +60,7 @@ sends audio to Hugging Face. No PyTorch or pronunciation model is needed.
 Choose **Use the Japji Sahib sample**, or upload audio your browser can decode.
 Paste the Gurmukhi words in recitation order and press **Generate timestamps**.
 The browser converts audio to mono 16 kHz PCM; no FFmpeg installation is needed
-for the UI. Maximum duration is 120 seconds, maximum input file size 40 MB.
+for the UI. Maximum duration is 30 minutes (processed in 30-second chunks), maximum input file size 300 MB.
 Supply a spoken expansion for ੴ when present; the displayed text stays exact.
 Download JSON to keep/share a result; uploaded audio and generated results are
 held in memory, not written by the server. Browser codec support varies; use a

@@ -23,7 +23,7 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
       assert.equal(input.lesson_id,lesson.id);assert.equal(input.screen_id,'screen-1');
       assert.equal(wav.toString('ascii',0,4),'RIFF');assert.equal(wav.readUInt32LE(24),16000);assert.equal(wav.readUInt16LE(22),1);
       await gate;
-      const words=lesson.screens[0].words.map((w,i)=>({...w,state:i===1?'wrong':'correct',reason:i===1?'The final sound was missing in your recording.':'',ustaad_heard:w.text,student_heard:i===1?'ਸ':w.text,student_start:0,student_end:.5})).reverse();
+      const words=lesson.screens[0].words.map((w,i)=>({...w,state:i===1?'wrong':'correct',reason:i===1?'The final sound was missing in your recording.':'',ustaad_heard:w.text,ustaad_says:w.text,student_heard:i===1?'ਸ':w.text,student_start:0,student_end:.5})).reverse();
       await route.fulfill({json:mode==='unclear'?{status:'unclear',words:[],message:'The recording was too quiet to compare.'}:{status:'judged',words,experimental:true,calibrated:false,message:'4 of 5 words matched the ustaad.',score:80}});
     });
     await page.goto(`${base}/learn`);await page.waitForSelector('.lp-word');
@@ -49,6 +49,7 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
     assert.equal(await page.locator('.lp-word.correct').count(),4);
     assert.equal(await page.locator('.lp-word.wrong').getAttribute('data-word-id'),'v1-w02');assert.equal(await page.locator('.lp-issue').getAttribute('data-word-id'),'v1-w02');
     assert.match(await page.locator('.lp-issue').innerText(),/final sound was missing/);assert.equal(await page.locator('#lp-next').isDisabled(),false);
+    assert.match(await page.locator('.lp-heard').innerText(),/Ustaad says:/);
     assert.doesNotMatch(await page.locator('body').innerText(),/%|4 of 5|80|ustaad.s tip/i);
     await page.locator('.lp-issue .lp-text-button').last().click();await page.waitForFunction(()=>document.getElementById('lp-screen').dataset.phase==='student-playback');
     const download=page.waitForEvent('download');await page.locator('#lp-save').click();assert.match((await download).suggestedFilename(),/\.wav$/);
@@ -62,7 +63,17 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8767';
     assert.equal(await page.locator('.lp-word.correct,.lp-word.wrong,.lp-issue').count(),0);assert.match(await page.locator('#lp-feedback').innerText(),/too quiet/);assert.equal(await page.locator('#lp-next').isDisabled(),true);
     await page.locator('.lp-options summary').click();await page.locator('#lp-shuffle').click();
     assert.equal(await page.locator('#lp-feedback').isVisible(),false);assert.equal(await page.locator('#lp-attempt-actions').isVisible(),false);assert.equal(await page.locator('#lp-record').isDisabled(),true);
+    // Main's new lesson and review pages remain available without changing practice styling.
+    await page.locator('#lp-lesson').selectOption('japji-sahib');
+    await page.waitForSelector('.lp-word[data-word-id="jp001-w01"]');
+    assert.equal(await page.locator('.lp-phone').count(),1);
+    for(const file of ['', '?file=pronunciation-cards-japji.json']) {
+      await page.goto(`${base}/apps/learn/cards.html${file}`);await page.waitForSelector('.word-card');
+      assert.equal(await page.locator('link[href="/apps/learn/cards.css"]').count(),1);
+      assert.equal(await page.locator('link[href="/apps/learn/screens.css"]').count(),0);
+      assert.ok(await page.locator('.word-card').count()>0);
+    }
     assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
-    console.log(`PASS: Learn playback, capture/WAV, ID-based red/green feedback, unclear retry, replay/download, reset and mobile layout. Screenshots: ${os.tmpdir()}/uchaaran-learn-{desktop,feedback-mobile}.png`);
+    console.log(`PASS: Learn playback, capture/WAV, ID-based red/green feedback, unclear retry, replay/download, reset, mobile layout, new lesson and isolated card reviews. Screenshots: ${os.tmpdir()}/uchaaran-learn-{desktop,feedback-mobile}.png`);
   } finally {await browser.close();}
 })().catch(error=>{console.error(error);process.exit(1);});

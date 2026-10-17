@@ -11,8 +11,8 @@
 }
 ```
 
-Limits: 120 seconds, 4,000 text characters, 250 words, 1,800 model tokens and
-6 MB encoded request. Audio must have a changing non-silent signal. Generation
+Limits: 30 minutes, 60,000 text characters, 8,000 words, 12,000 model tokens and
+80 MB encoded request. Audio over 32 s runs through the model in 30 s chunks with 2 s context. Audio must have a changing non-silent signal. Generation
 is serialized with Learn inference to bound concurrent model memory. A busy
 server returns 429; invalid input returns 400; missing dependencies/model 503.
 No endpoint downloads model weights automatically or retains uploaded audio.
@@ -44,6 +44,24 @@ generator UI can display/export either shape; consumers should explicitly
 choose the shape they need rather than assume equivalent coordinate systems.
 Learn intentionally remains tied to the original occurrence IDs and reference
 phone extraction. Generating timestamps does not overwrite or rebind Learn.
+
+## Word boundary corrections
+
+The `/timestamps` word editor saves human start/end corrections to
+`data/corrections/<audio checksum>.json`. This folder is ignored by Git and is local
+to the computer running the server. The checksum is the result's `audio.pcm_sha256`
+(generated) or `audio.sha256` (legacy sample). Each file stores
+`words[<occurrence id>] = {start, end, corrected_at}` in seconds.
+
+When the same recording loads again, saved corrections are applied over the
+generated or reference timings. **Download JSON** then exports the corrected values.
+Corrections never modify `data/reference/` or the audio.
+
+- `GET /api/corrections/<checksum>` returns `{words}`.
+- `POST /api/corrections/save` with `{audio_key, word_id, start, end}`.
+- `POST /api/corrections/delete` with `{audio_key, word_id}`.
+
+These endpoints are local same-origin only and are not blocked by model inference.
 
 ## Provenance
 

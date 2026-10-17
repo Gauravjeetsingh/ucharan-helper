@@ -1,18 +1,32 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Timestamps · Uchaaran</title><link rel="stylesheet" href="/apps/shared/app.css"><link rel="stylesheet" href="/apps/timestamps/style.css">
+<title>Timestamps · Uchaaran</title><link rel="icon" href="/apps/shared/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/apps/shared/app.css"><link rel="stylesheet" href="/apps/timestamps/style.css">
 <script type="module" src="/apps/shared/nav.js"></script><script type="module" src="/apps/timestamps/app.js"></script></head>
 <body><header><div class="brand">ੴ <span>UCHAARAN</span></div><span class="tag">HACKATHON WORKSPACE</span></header>
 <main><section class="intro"><div class="eyebrow">REFERENCE AUDIO → WORD TIMESTAMPS</div><h1>Give every word its place.</h1><p>Pair a recording with its Gurbani text. Generate word boundaries locally and download the timing JSON.</p></section>
 <div class="generator-grid"><section class="card"><div class="eyebrow">01 · RECORDING</div><h2>Choose the paath audio</h2>
-<button id="sample" type="button">Use the Japji Sahib sample</button><label for="upload">Or choose an audio file · up to 2 minutes</label><input id="upload" type="file" accept="audio/*,.mov,.mp4">
+<button id="sample" type="button">Use the Japji Sahib sample</button><label for="upload">Or choose an audio file · up to 30 minutes</label><input id="upload" type="file" accept="audio/*,.mov,.mp4">
 <p id="audio-name" class="hint">No recording selected.</p><audio id="player" controls hidden></audio>
-<div class="eyebrow text-step">02 · MATCHING TEXT</div><label for="transcript">Gurmukhi text, in the order it is recited</label><textarea id="transcript" lang="pa" rows="8" maxlength="4000" placeholder="Paste the words heard in your recording…"></textarea>
+<div class="eyebrow text-step">02 · MATCHING TEXT</div><label for="text-upload">Upload a text file</label><input id="text-upload" type="file" accept=".txt,text/plain"><label for="transcript">Gurmukhi text, in the order it is recited</label><textarea id="transcript" lang="pa" rows="8" placeholder="Paste the words heard in your recording…"></textarea>
 <label for="expansion">Spoken expansion of ੴ, if present</label><input id="expansion" lang="pa" value="ਇਕੁ ਓ ਅੰਕਾਰ"><p class="hint">The displayed scripture stays unchanged. This expansion is used only for audio alignment.</p>
 <div class="actions"><button id="generate" class="primary" disabled>Generate timestamps</button><button id="existing" disabled>Load existing sample timings</button></div>
 <p class="hint">Audio is decoded in your browser and sent only to the local server on this laptop. It is held in memory and is not saved or uploaded to a cloud service.</p>
-</section><section class="card result"><div class="eyebrow">03 · TIMING JSON</div><h2>Ready for the next step</h2><p id="status" class="status" role="status">Choose a recording to begin.</p>
-<p id="model-status" class="hint">Checking local model…</p><div id="result-summary"></div><div class="actions"><button id="download" disabled>Download JSON</button><button id="copy" disabled>Copy JSON</button></div>
+</section><section class="card result"><div class="eyebrow">03 · WORD PLAYBACK</div><h2>Hear each word as it's spoken</h2><p id="status" class="status" role="status">Choose a recording to begin.</p>
+<p id="model-status" class="hint">Checking local model…</p><div id="result-summary"></div>
+<p class="hint">Press play on the recording above to follow along, or click a word below to play just that word.</p>
+<div id="word-playback" class="word-playback" lang="pa" aria-live="off">Generate or load timestamps to see word-by-word highlighting here.</div>
+<div id="word-detail" class="word-detail" hidden>
+  <p id="word-detail-text" lang="pa" class="word-detail-text"></p>
+  <p id="word-detail-time" class="hint"></p>
+  <canvas id="word-waveform" class="word-waveform" height="90" aria-label="Zoomed waveform around this word; click to set where playback starts"></canvas>
+  <p id="word-waveform-status" class="hint"></p>
+  <div class="nudge-row"><label for="word-start-nudge">Start</label><input id="word-start-nudge" type="range" min="0" max="1000" step="1" value="500"><input id="word-start-input" type="number" step="0.001" class="time-input" aria-label="Start time in seconds"></div>
+  <div class="nudge-row"><label for="word-end-nudge">End</label><input id="word-end-nudge" type="range" min="0" max="1000" step="1" value="500"><input id="word-end-input" type="number" step="0.001" class="time-input" aria-label="End time in seconds"></div>
+  <div class="actions"><button id="word-reset" type="button">Reset to detected boundaries</button><button id="word-save" type="button" class="primary">Save corrections to disk</button></div>
+  <p class="hint">Saves to data/corrections/ on this computer for this recording. The original audio and reference JSON are not changed.</p>
+  <p id="word-save-status" class="hint" role="status"></p>
+</div>
+<div class="eyebrow json-step">04 · TIMING JSON</div><h2>Ready for the next step</h2><div class="actions"><button id="download" disabled>Download JSON</button><button id="copy" disabled>Copy JSON</button></div>
 <pre id="output" aria-label="Generated timestamp JSON">Your word timestamps will appear here.</pre>
 <p class="hint">Generated boundaries are initial estimates. Pronunciation practice and word review are separate work in progress under Learn.</p></section></div>
 <footer>Single recording · exact Gurmukhi text · distinct word occurrences</footer></main></body></html>

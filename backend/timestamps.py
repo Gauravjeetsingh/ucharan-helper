@@ -11,7 +11,11 @@ MODEL_ID = 'karansea/indicconformer-stt-pa-ctc-shabad-preview'
 REVISION = '5fd2e89e3a43d31f47b0fb55fdce5ed50a91283f'
 MODEL_DIR = ROOT / 'models/timestamps'
 SR = 16000
-MAX_SECONDS = 120
+MAX_SECONDS = 1800
+MAX_TEXT_CHARS, MAX_WORDS, MAX_TOKENS = 60000, 8000, 12000
+# Long audio is run through the model in 30 s chunks with 2 s of context on each side;
+# only each chunk's central frames are kept. One output frame covers 640 samples (40 ms).
+CHUNK_SAMPLES, CONTEXT_SAMPLES, FRAME_SAMPLES = 30 * SR, 2 * SR, 640
 
 
 def read_audio(encoded):
@@ -34,8 +38,8 @@ def read_audio(encoded):
 
 def source_words(text):
     """Keep word occurrences and offsets; numbers and danda are not spoken labels."""
-    if not isinstance(text, str) or not text.strip() or len(text) > 4000:
-        raise ValueError('Enter the exact spoken text, at most 4,000 characters.')
+    if not isinstance(text, str) or not text.strip() or len(text) > MAX_TEXT_CHARS:
+        raise ValueError(f'Enter the exact spoken text, at most {MAX_TEXT_CHARS:,} characters.')
     words = []
     for match in re.finditer(r'\S+', text):
         spoken = ''.join(c for c in match.group() if '\u0a00' <= c <= '\u0a75' and not '\u0a66' <= c <= '\u0a6f')
@@ -43,8 +47,8 @@ def source_words(text):
             continue
         words.append(dict(id=f'w{len(words)+1:03}', text=match.group(), alignment_text=spoken,
                           source_start=match.start(), source_end=match.end()))
-    if not words or len(words) > 250:
-        raise ValueError('Enter between 1 and 250 Gurmukhi words.')
+    if not words or len(words) > MAX_WORDS:
+        raise ValueError(f'Enter between 1 and {MAX_WORDS:,} Gurmukhi words.')
     return words
 
 
@@ -102,6 +106,26 @@ class TimestampModel:
                                            sess_options=options, providers=['CPUExecutionProvider'])
         self.tokenizer = spm.SentencePieceProcessor(model_file=str(MODEL_DIR / 'tokenizer.model'))
 
+    def run(self, samples):
+        import numpy as np
+        logp, length = self.session.run(['log_probs', 'out_len'],
+            {'audio': samples[None], 'audio_len': np.array([len(samples)], dtype=np.int64)})
+        return logp[0, :int(np.asarray(length).reshape(-1)[0])]
+
+    def log_probs(self, samples):
+        """Model frames for the whole recording; chunked so long audio fits in memory and time."""
+        import numpy as np
+        if len(samples) <= CHUNK_SAMPLES + CONTEXT_SAMPLES:
+            return self.run(samples)  # short clips: one pass, unchanged behaviour
+        parts = []
+        for core in range(0, len(samples), CHUNK_SAMPLES):
+            left = max(0, core - CONTEXT_SAMPLES)
+            right = min(len(samples), core + CHUNK_SAMPLES + CONTEXT_SAMPLES)
+            first = (core - left) // FRAME_SAMPLES
+            count = -(-(min(core + CHUNK_SAMPLES, len(samples)) - core) // FRAME_SAMPLES)
+            parts.append(self.run(samples[left:right])[first:first + count])
+        return np.concatenate(parts)
+
     def generate(self, request):
         import numpy as np
         words = source_words(request.get('text'))
@@ -129,11 +153,9 @@ class TimestampModel:
             ranges.append((len(labels), len(labels) + len(ids)))
             labels.extend(ids)
             word['alignment_text'] = spoken
-        if len(labels) > 1800:
-            raise ValueError('Passage is too long. Choose a shorter phrase.')
-        logp, length = self.session.run(['log_probs', 'out_len'],
-            {'audio': samples[None], 'audio_len': np.array([len(samples)], dtype=np.int64)})
-        logp = logp[0, :int(np.asarray(length).reshape(-1)[0])]
+        if len(labels) > MAX_TOKENS:
+            raise ValueError('Passage is too long for one alignment. Split the text and audio into parts.')
+        logp = self.log_probs(samples)
         logp = logp - np.logaddexp.reduce(logp, axis=1)[:, None]
         path = ctc_path(logp, labels, 256)
         duration = len(samples) / SR

@@ -1,0 +1,1540 @@
+{
+  "schema_version": 1,
+  "audio": "/data/reference/recording.wav",
+  "about": "How the ustaad pronounces each word, sound by sound. Drafted by Claude from santhiya conventions and the learner's notes, plus model measurements of the ustaad clip (scripts.measure_cards). A person must confirm each word. check=\"check\": the app may mark the word red for this sound; \"tip\": shown as guidance only, never graded. voicing (ਭ ਧ ਘ ਝ ਢ): \"voiceless\" = soft p/t/k/ch/ṭ with tone; \"voiced\" = bh/dh/gh/jh/ḍh.",
+  "words": {
+    "v1-w01": {
+      "text": "ੴ",
+      "spoken": "ਇਕ ਓਅੰਕਾਰ",
+      "sounds": [
+        {
+          "letters": "ਇ",
+          "say": "short “i” as in it",
+          "check": "check"
+        },
+        {
+          "letters": "ਕ",
+          "say": "“k” as in skin, without a puff of air",
+          "not": "“kh”",
+          "check": "check"
+        },
+        {
+          "letters": "ਓ",
+          "say": "“o” gliding into the next sound (O-an)",
+          "check": "check"
+        },
+        {
+          "letters": "ਅੰ",
+          "say": "nasal “an”: the “n” is said through the nose",
+          "not": "“Ekam”: no “m” sound",
+          "check": "check"
+        },
+        {
+          "letters": "ਕ",
+          "say": "“k” as in skin, without a puff of air",
+          "not": "“kh”",
+          "check": "check"
+        },
+        {
+          "letters": "ਾ",
+          "say": "long “aa” as in father",
+          "check": "check"
+        },
+        {
+          "letters": "ਰ",
+          "say": "a light tapped “r”, tongue flicks once",
+          "check": "check"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਇਕ ਉਅੰਕਾਰ",
+        "pieces": [
+          {
+            "piece": "ਇਕ",
+            "prob": 0.99,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਉ",
+            "prob": 0.37,
+            "alternatives": {
+              "ਓ": 0.28,
+              "ਊ": 0.18,
+              "ਅ": 0.14
+            }
+          },
+          {
+            "piece": "ਅ",
+            "prob": 0.52,
+            "alternatives": {
+              "silence": 0.22,
+              "ਵ": 0.15
+            }
+          },
+          {
+            "piece": "ੰ",
+            "prob": 0.65,
+            "alternatives": {
+              "silence": 0.34
+            }
+          },
+          {
+            "piece": "ਕਾਰ",
+            "prob": 0.99,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "i",
+          "k",
+          "ʌ",
+          "oː",
+          "ʌ",
+          "ŋ",
+          "ɡ",
+          "aː",
+          "r",
+          "ə"
+        ]
+      }
+    },
+    "v1-w02": {
+      "text": "ਸਤਿ",
+      "sounds": [
+        {
+          "letters": "ਸ",
+          "say": "“s” as in soul",
+          "not": "“sh”",
+          "check": "check"
+        },
+        {
+          "letters": "ਤ",
+          "say": "soft Punjabi “t” (tatta): tongue touches the back of the upper teeth",
+          "not": "English “t” or “ch”",
+          "check": "check"
+        },
+        {
+          "letters": "ਿ",
+          "say": "a light, short “i” at the end; follow the ustaad",
+          "check": "check",
+          "not": "a long “ee”"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਸਤਿ",
+        "pieces": [
+          {
+            "piece": "ਸ",
+            "prob": 0.98,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਤ",
+            "prob": 0.69,
+            "alternatives": {
+              "ਚ": 0.31
+            }
+          },
+          {
+            "piece": "ਿ",
+            "prob": 0.49,
+            "alternatives": {
+              "ੁ": 0.36,
+              "silence": 0.15
+            }
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "s",
+          "a",
+          "t",
+          "e"
+        ]
+      }
+    },
+    "v1-w03": {
+      "text": "ਨਾਮੁ",
+      "sounds": [
+        {
+          "letters": "ਨ",
+          "say": "“n” as in now",
+          "check": "check"
+        },
+        {
+          "letters": "ਾ",
+          "say": "long “aa” as in father",
+          "check": "check"
+        },
+        {
+          "letters": "ਮ",
+          "say": "“m” as in moon",
+          "check": "check"
+        },
+        {
+          "letters": "ੁ",
+          "say": "a very light “u” at the end; follow the ustaad",
+          "check": "check",
+          "not": "a full “oo”"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਨਾਮ",
+        "pieces": [
+          {
+            "piece": "ਨਾ",
+            "prob": 0.99,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਮ",
+            "prob": 1.0,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "n",
+          "aː",
+          "m",
+          "ə"
+        ]
+      }
+    },
+    "v1-w04": {
+      "text": "ਕਰਤਾ",
+      "sounds": [
+        {
+          "letters": "ਕ",
+          "say": "“k” as in skin, without a puff of air",
+          "not": "“kh”",
+          "check": "check"
+        },
+        {
+          "letters": "ਰ",
+          "say": "a light tapped “r”, joined to the next sound (kar-taa)",
+          "check": "check"
+        },
+        {
+          "letters": "ਤ",
+          "say": "soft Punjabi “t” (tatta): tongue touches the back of the upper teeth",
+          "not": "English “t” or “ch”",
+          "check": "check"
+        },
+        {
+          "letters": "ਾ",
+          "say": "long “aa” as in father",
+          "check": "check"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਕਰਤਾ",
+        "pieces": [
+          {
+            "piece": "ਕਰ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਤਾ",
+            "prob": 1.0,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "k",
+          "a",
+          "r",
+          "t",
+          "aː"
+        ]
+      }
+    },
+    "v1-w05": {
+      "text": "ਪੁਰਖੁ",
+      "sounds": [
+        {
+          "letters": "ਪ",
+          "say": "“p” as in spin, without a puff of air",
+          "not": "“b”",
+          "check": "check"
+        },
+        {
+          "letters": "ੁ",
+          "say": "short “u” as in put",
+          "check": "check"
+        },
+        {
+          "letters": "ਰ",
+          "say": "a light tapped “r”, tongue flicks once",
+          "check": "check"
+        },
+        {
+          "letters": "ਖ",
+          "say": "“kh”: a “k” with a breath of air",
+          "not": "a plain “k”",
+          "check": "check"
+        },
+        {
+          "letters": "ੁ",
+          "say": "a very light “u” at the end; follow the ustaad",
+          "check": "check",
+          "not": "a full “oo”"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਪੁਰਖੁ",
+        "pieces": [
+          {
+            "piece": "ਪ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ੁਰ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਖ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ੁ",
+            "prob": 0.78,
+            "alternatives": {
+              "silence": 0.14
+            }
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "p",
+          "o",
+          "r",
+          "k",
+          "y"
+        ]
+      }
+    },
+    "v1-w06": {
+      "text": "ਨਿਰਭਉ",
+      "sounds": [
+        {
+          "letters": "ਨ",
+          "say": "“n” as in now",
+          "check": "check"
+        },
+        {
+          "letters": "ਿ",
+          "say": "short “i” as in it",
+          "check": "check"
+        },
+        {
+          "letters": "ਰ",
+          "say": "a light tapped “r”, tongue flicks once",
+          "check": "check"
+        },
+        {
+          "letters": "ਭ",
+          "say": "soft “p” with a falling tone (nir-pau)",
+          "not": "“bh” as in bhaag",
+          "check": "check",
+          "voicing": "voiceless"
+        },
+        {
+          "letters": "ਉ",
+          "say": "“au/o” glide at the end",
+          "check": "check"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਨਿਰਭਉ",
+        "pieces": [
+          {
+            "piece": "ਨ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਿਰ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਭ",
+            "prob": 0.99,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਉ",
+            "prob": 0.96,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "n",
+          "i",
+          "r",
+          "p",
+          "ɑ",
+          "h",
+          "o"
+        ],
+        "voicing": {
+          "ਭ": {
+            "voiceless": 0.97,
+            "voiced": 0.01,
+            "breath": 0.82
+          }
+        }
+      }
+    },
+    "v1-w07": {
+      "text": "ਨਿਰਵੈਰੁ",
+      "sounds": [
+        {
+          "letters": "ਨ",
+          "say": "“n” as in now",
+          "check": "check"
+        },
+        {
+          "letters": "ਿ",
+          "say": "short “i” as in it",
+          "check": "check"
+        },
+        {
+          "letters": "ਰ",
+          "say": "a light tapped “r”, tongue flicks once",
+          "check": "check"
+        },
+        {
+          "letters": "ਵ",
+          "say": "soft “v”, lips barely touching",
+          "check": "check"
+        },
+        {
+          "letters": "ੈ",
+          "say": "“ae” as the a in bat",
+          "check": "check"
+        },
+        {
+          "letters": "ਰ",
+          "say": "a light tapped “r”, tongue flicks once",
+          "check": "check"
+        },
+        {
+          "letters": "ੁ",
+          "say": "a very light “u” at the end; follow the ustaad",
+          "check": "check",
+          "not": "a full “oo”"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਨਿਰਵੈਰ",
+        "pieces": [
+          {
+            "piece": "ਨ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਿਰ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਵ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ੈ",
+            "prob": 0.96,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਰ",
+            "prob": 0.98,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "n",
+          "e",
+          "r",
+          "ʌ",
+          "v",
+          "ɛ",
+          "r",
+          "ʉ"
+        ]
+      }
+    },
+    "v1-w08": {
+      "text": "ਅਕਾਲ",
+      "sounds": [
+        {
+          "letters": "ਅ",
+          "say": "short “a” as in about",
+          "check": "check"
+        },
+        {
+          "letters": "ਕ",
+          "say": "“k” as in skin, without a puff of air",
+          "not": "“kh”",
+          "check": "check"
+        },
+        {
+          "letters": "ਾ",
+          "say": "long “aa” as in father",
+          "check": "check"
+        },
+        {
+          "letters": "ਲ",
+          "say": "clear “l” as in light",
+          "check": "check"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਅਕਾਲ",
+        "pieces": [
+          {
+            "piece": "ਅ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਕ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਾਲ",
+            "prob": 1.0,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "ʌ",
+          "k",
+          "aː",
+          "l",
+          "ə"
+        ]
+      }
+    },
+    "v1-w09": {
+      "text": "ਮੂਰਤਿ",
+      "sounds": [
+        {
+          "letters": "ਮ",
+          "say": "“m” as in moon",
+          "check": "check"
+        },
+        {
+          "letters": "ੂ",
+          "say": "long “oo” as in moon",
+          "check": "check"
+        },
+        {
+          "letters": "ਰ",
+          "say": "a light tapped “r”, tongue flicks once",
+          "check": "check"
+        },
+        {
+          "letters": "ਤ",
+          "say": "soft Punjabi “t” (tatta): tongue touches the back of the upper teeth",
+          "not": "English “t” or “ch”",
+          "check": "check"
+        },
+        {
+          "letters": "ਿ",
+          "say": "a light, short “i” at the end; follow the ustaad",
+          "check": "check",
+          "not": "a long “ee”"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਮੂਰਤਿ",
+        "pieces": [
+          {
+            "piece": "ਮ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ੂਰ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਤ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਿ",
+            "prob": 0.98,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "ʌ",
+          "m",
+          "uː",
+          "r",
+          "ʌ",
+          "t",
+          "ʌ"
+        ]
+      }
+    },
+    "v1-w10": {
+      "text": "ਅਜੂਨੀ",
+      "sounds": [
+        {
+          "letters": "ਅ",
+          "say": "short “a” as in about",
+          "check": "check"
+        },
+        {
+          "letters": "ਜ",
+          "say": "“j” as in joker",
+          "not": "“z” as in zebra",
+          "check": "check"
+        },
+        {
+          "letters": "ੂ",
+          "say": "long “oo” as in moon",
+          "check": "check"
+        },
+        {
+          "letters": "ਨ",
+          "say": "“n” as in now",
+          "check": "check"
+        },
+        {
+          "letters": "ੀ",
+          "say": "long “ee” as in see",
+          "check": "check"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਅਜੂਨੀ",
+        "pieces": [
+          {
+            "piece": "ਅ",
+            "prob": 0.99,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਜ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ੂ",
+            "prob": 0.99,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਨੀ",
+            "prob": 1.0,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "a",
+          "d",
+          "j",
+          "uː",
+          "n",
+          "i"
+        ]
+      }
+    },
+    "v1-w11": {
+      "text": "ਸੈਭੰ",
+      "sounds": [
+        {
+          "letters": "ਸ",
+          "say": "“s” as in soul",
+          "not": "“sh”",
+          "check": "check"
+        },
+        {
+          "letters": "ੈ",
+          "say": "“ae” as the a in bat",
+          "check": "check"
+        },
+        {
+          "letters": "ਭ",
+          "say": "follow the ustaad: soft “p” with tone, or “bh”?",
+          "check": "check",
+          "voicing": "voiced"
+        },
+        {
+          "letters": "ੰ",
+          "say": "nasal “ng” at the end (Saibhang)",
+          "check": "check"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਸਹਿਭ",
+        "pieces": [
+          {
+            "piece": "ਸ",
+            "prob": 0.95,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਹਿ",
+            "prob": 0.31,
+            "alternatives": {
+              "ੈ": 0.31,
+              "ਹ": 0.28
+            }
+          },
+          {
+            "piece": "ਭ",
+            "prob": 0.78,
+            "alternatives": {}
+          }
+        ],
+        "flags": [
+          "Card says ਭ is a voiced “bh”, but the phone model hears the ustaad as “p” (0.68 vs 0.20). Please listen and confirm."
+        ],
+        "phone_labels": [
+          "s",
+          "h",
+          "eː",
+          "p",
+          "a",
+          "ŋ"
+        ],
+        "voicing": {
+          "ਭ": {
+            "voiceless": 0.68,
+            "voiced": 0.2,
+            "breath": 0.0
+          }
+        }
+      }
+    },
+    "v1-w12": {
+      "text": "ਗੁਰ",
+      "sounds": [
+        {
+          "letters": "ਗ",
+          "say": "“g” as in go",
+          "not": "“gh”",
+          "check": "check"
+        },
+        {
+          "letters": "ੁ",
+          "say": "short “u” as in put",
+          "check": "check"
+        },
+        {
+          "letters": "ਰ",
+          "say": "a light tapped “r”, tongue flicks once",
+          "check": "check"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਗੁਰ",
+        "pieces": [
+          {
+            "piece": "ਗ",
+            "prob": 0.65,
+            "alternatives": {
+              "ੰਗ": 0.29
+            }
+          },
+          {
+            "piece": "ੁਰ",
+            "prob": 0.99,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "ɡ",
+          "u",
+          "r"
+        ]
+      }
+    },
+    "v1-w13": {
+      "text": "ਪ੍ਰਸਾਦਿ",
+      "sounds": [
+        {
+          "letters": "ਪ",
+          "say": "“p” as in spin",
+          "check": "check"
+        },
+        {
+          "letters": "੍ਰ",
+          "say": "“r” joined straight to the p: “pr”",
+          "not": "“par-saad”: no vowel between p and r",
+          "check": "check"
+        },
+        {
+          "letters": "ਸ",
+          "say": "“s” as in soul",
+          "not": "“sh”",
+          "check": "check"
+        },
+        {
+          "letters": "ਾ",
+          "say": "long “aa” as in father",
+          "check": "check"
+        },
+        {
+          "letters": "ਦ",
+          "say": "soft Punjabi “d” (dadda): tongue touches the back of the upper teeth",
+          "not": "English “d”",
+          "check": "check"
+        },
+        {
+          "letters": "ਿ",
+          "say": "a light, short “i” at the end; follow the ustaad",
+          "check": "check",
+          "not": "a long “ee”"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਪ੍ਰਸਾਦਿ",
+        "pieces": [
+          {
+            "piece": "ਪ੍ਰ",
+            "prob": 0.9,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਸ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਾ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਦ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਿ",
+            "prob": 0.95,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "p",
+          "r",
+          "a",
+          "s",
+          "aː",
+          "d",
+          "e"
+        ]
+      }
+    },
+    "v2-w01": {
+      "text": "ਜਪੁ",
+      "sounds": [
+        {
+          "letters": "ਜ",
+          "say": "“j” as in joker",
+          "not": "“z” as in zebra",
+          "check": "check"
+        },
+        {
+          "letters": "ਪ",
+          "say": "“p” as in spin",
+          "check": "check"
+        },
+        {
+          "letters": "ੁ",
+          "say": "a very light “u” at the end; follow the ustaad",
+          "check": "check",
+          "not": "a full “oo”"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਜਪਿ",
+        "pieces": [
+          {
+            "piece": "ਜ",
+            "prob": 0.99,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਪ",
+            "prob": 0.98,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਿ",
+            "prob": 0.91,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "dʒ",
+          "aː",
+          "p",
+          "ə"
+        ]
+      }
+    },
+    "v3-w01": {
+      "text": "ਆਦਿ",
+      "sounds": [
+        {
+          "letters": "ਆ",
+          "say": "long “aa” as in father",
+          "check": "check"
+        },
+        {
+          "letters": "ਦ",
+          "say": "soft Punjabi “d” (dadda): tongue touches the back of the upper teeth",
+          "not": "English “d”",
+          "check": "check"
+        },
+        {
+          "letters": "ਿ",
+          "say": "a light, short “i” at the end; follow the ustaad",
+          "check": "check",
+          "not": "a long “ee”"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਆਦਿ",
+        "pieces": [
+          {
+            "piece": "ਆ",
+            "prob": 0.98,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਦ",
+            "prob": 0.99,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਿ",
+            "prob": 0.98,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "aː",
+          "d",
+          "ɪ",
+          "s"
+        ]
+      }
+    },
+    "v3-w02": {
+      "text": "ਸਚੁ",
+      "sounds": [
+        {
+          "letters": "ਸ",
+          "say": "“s” as in soul",
+          "not": "“sh”",
+          "check": "check"
+        },
+        {
+          "letters": "ਚ",
+          "say": "“ch” as in church",
+          "not": "“s” or “t”",
+          "check": "check"
+        },
+        {
+          "letters": "ੁ",
+          "say": "a very light “u” at the end; follow the ustaad",
+          "check": "check",
+          "not": "a full “oo”"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਸਚੁ",
+        "pieces": [
+          {
+            "piece": "ਸ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਚ",
+            "prob": 0.98,
+            "alternatives": {}
+          },
+          {
+            "piece": "ੁ",
+            "prob": 0.86,
+            "alternatives": {
+              "ਿ": 0.14
+            }
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "s",
+          "a",
+          "dʒ",
+          "ə"
+        ]
+      }
+    },
+    "v3-w03": {
+      "text": "ਜੁਗਾਦਿ",
+      "sounds": [
+        {
+          "letters": "ਜ",
+          "say": "“j” as in joker",
+          "not": "“z” as in zebra",
+          "check": "check"
+        },
+        {
+          "letters": "ੁ",
+          "say": "short “u” as in put",
+          "check": "check"
+        },
+        {
+          "letters": "ਗ",
+          "say": "“g” as in go",
+          "check": "check"
+        },
+        {
+          "letters": "ਾ",
+          "say": "long “aa” as in father",
+          "check": "check"
+        },
+        {
+          "letters": "ਦ",
+          "say": "soft Punjabi “d” (dadda): tongue touches the back of the upper teeth",
+          "not": "English “d”",
+          "check": "check"
+        },
+        {
+          "letters": "ਿ",
+          "say": "a light, short “i” at the end; follow the ustaad",
+          "check": "check",
+          "not": "a long “ee”"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਜੁਗਾਦਿ",
+        "pieces": [
+          {
+            "piece": "ਜ",
+            "prob": 0.99,
+            "alternatives": {}
+          },
+          {
+            "piece": "ੁ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਗਾ",
+            "prob": 0.99,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਦ",
+            "prob": 0.89,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਿ",
+            "prob": 0.85,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "d",
+          "uː",
+          "ɡ",
+          "a",
+          "d",
+          "e"
+        ]
+      }
+    },
+    "v3-w04": {
+      "text": "ਸਚੁ",
+      "sounds": [
+        {
+          "letters": "ਸ",
+          "say": "“s” as in soul",
+          "not": "“sh”",
+          "check": "check"
+        },
+        {
+          "letters": "ਚ",
+          "say": "“ch” as in church",
+          "not": "“s” or “t”",
+          "check": "check"
+        },
+        {
+          "letters": "ੁ",
+          "say": "a very light “u” at the end; follow the ustaad",
+          "check": "check",
+          "not": "a full “oo”"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਸਚੁ",
+        "pieces": [
+          {
+            "piece": "ਸ",
+            "prob": 0.97,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਚ",
+            "prob": 0.98,
+            "alternatives": {}
+          },
+          {
+            "piece": "ੁ",
+            "prob": 0.89,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "s",
+          "a",
+          "dʒ",
+          "ø"
+        ]
+      }
+    },
+    "v4-w01": {
+      "text": "ਹੈ",
+      "sounds": [
+        {
+          "letters": "ਹ",
+          "say": "“h” as in hai",
+          "check": "check"
+        },
+        {
+          "letters": "ੈ",
+          "say": "“ae” as the a in bat",
+          "check": "check"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਹੈ",
+        "pieces": [
+          {
+            "piece": "ਹੈ",
+            "prob": 0.99,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "h",
+          "æ"
+        ]
+      }
+    },
+    "v4-w02": {
+      "text": "ਭੀ",
+      "sounds": [
+        {
+          "letters": "ਭ",
+          "say": "soft “p” with a falling tone (“pee”)",
+          "not": "“bh” as in bhaag",
+          "check": "check",
+          "voicing": "voiceless"
+        },
+        {
+          "letters": "ੀ",
+          "say": "long “ee” as in see",
+          "check": "check"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਭੀ",
+        "pieces": [
+          {
+            "piece": "ਭ",
+            "prob": 0.99,
+            "alternatives": {}
+          },
+          {
+            "piece": "ੀ",
+            "prob": 0.94,
+            "alternatives": {}
+          }
+        ],
+        "flags": [
+          "Card says ਭ is a soft “p”, but the phone model hears the ustaad as “bh” (0.10 vs 0.88). Please listen and confirm."
+        ],
+        "phone_labels": [
+          "b",
+          "iː"
+        ],
+        "voicing": {
+          "ਭ": {
+            "voiceless": 0.1,
+            "voiced": 0.88,
+            "breath": 0.07
+          }
+        }
+      }
+    },
+    "v4-w03": {
+      "text": "ਸਚੁ",
+      "sounds": [
+        {
+          "letters": "ਸ",
+          "say": "“s” as in soul",
+          "not": "“sh”",
+          "check": "check"
+        },
+        {
+          "letters": "ਚ",
+          "say": "“ch” as in church",
+          "not": "“s” or “t”",
+          "check": "check"
+        },
+        {
+          "letters": "ੁ",
+          "say": "a very light “u” at the end; follow the ustaad",
+          "check": "check",
+          "not": "a full “oo”"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਸਚੁ",
+        "pieces": [
+          {
+            "piece": "ਸ",
+            "prob": 0.92,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਚ",
+            "prob": 0.97,
+            "alternatives": {}
+          },
+          {
+            "piece": "ੁ",
+            "prob": 0.94,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "s",
+          "ɑː",
+          "t",
+          "dʒ",
+          "ɚ"
+        ]
+      }
+    },
+    "v4-w04": {
+      "text": "ਨਾਨਕ",
+      "sounds": [
+        {
+          "letters": "ਨ",
+          "say": "“n” as in now",
+          "check": "check"
+        },
+        {
+          "letters": "ਾ",
+          "say": "long “aa” as in father",
+          "check": "check"
+        },
+        {
+          "letters": "ਨ",
+          "say": "“n” as in now",
+          "check": "check"
+        },
+        {
+          "letters": "ਕ",
+          "say": "“k” at the end (Naa-nak)",
+          "check": "check"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਨਾਨਕੁ",
+        "pieces": [
+          {
+            "piece": "ਨ",
+            "prob": 0.99,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਾਨ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਕ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ੁ",
+            "prob": 0.54,
+            "alternatives": {
+              "silence": 0.46
+            }
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "n",
+          "aː",
+          "n",
+          "ʌ",
+          "k",
+          "ɚ"
+        ]
+      }
+    },
+    "v4-w05": {
+      "text": "ਹੋਸੀ",
+      "sounds": [
+        {
+          "letters": "ਹ",
+          "say": "“h” as in home",
+          "check": "check"
+        },
+        {
+          "letters": "ੋ",
+          "say": "“o” as in go",
+          "check": "check"
+        },
+        {
+          "letters": "ਸ",
+          "say": "“s” as in soul",
+          "not": "“sh”",
+          "check": "check"
+        },
+        {
+          "letters": "ੀ",
+          "say": "long “ee” as in see",
+          "check": "check"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਹੋਸੀ",
+        "pieces": [
+          {
+            "piece": "ਹੋ",
+            "prob": 0.92,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਸੀ",
+            "prob": 0.89,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "h",
+          "u",
+          "s",
+          "i"
+        ]
+      }
+    },
+    "v4-w06": {
+      "text": "ਭੀ",
+      "sounds": [
+        {
+          "letters": "ਭ",
+          "say": "soft “p” with a falling tone (“pee”)",
+          "not": "“bh” as in bhaag",
+          "check": "check",
+          "voicing": "voiceless"
+        },
+        {
+          "letters": "ੀ",
+          "say": "long “ee” as in see",
+          "check": "check"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਭੀ",
+        "pieces": [
+          {
+            "piece": "ਭ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ੀ",
+            "prob": 0.94,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "p",
+          "iː"
+        ],
+        "voicing": {
+          "ਭ": {
+            "voiceless": 0.55,
+            "voiced": 0.39,
+            "breath": 0.0
+          }
+        }
+      }
+    },
+    "v4-w07": {
+      "text": "ਸਚੁ",
+      "sounds": [
+        {
+          "letters": "ਸ",
+          "say": "“s” as in soul",
+          "not": "“sh”",
+          "check": "check"
+        },
+        {
+          "letters": "ਚ",
+          "say": "“ch” as in church",
+          "not": "“s” or “t”",
+          "check": "check"
+        },
+        {
+          "letters": "ੁ",
+          "say": "a very light “u” at the end; follow the ustaad",
+          "check": "check",
+          "not": "a full “oo”"
+        }
+      ],
+      "status": "draft",
+      "reviewed_by": null,
+      "note": "",
+      "measured": {
+        "heard": "ਸਚੁ",
+        "pieces": [
+          {
+            "piece": "ਸ",
+            "prob": 1.0,
+            "alternatives": {}
+          },
+          {
+            "piece": "ਚ",
+            "prob": 0.99,
+            "alternatives": {}
+          },
+          {
+            "piece": "ੁ",
+            "prob": 0.92,
+            "alternatives": {}
+          }
+        ],
+        "flags": [],
+        "phone_labels": [
+          "s",
+          "ɑ",
+          "dʒ",
+          "ə",
+          "m"
+        ]
+      }
+    }
+  }
+}
