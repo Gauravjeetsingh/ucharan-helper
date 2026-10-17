@@ -14,6 +14,14 @@ const words=verses.flatMap(v=>v.words);
     const page=await browser.newPage({viewport:{width:1280,height:1000}}),errors=[],external=[];
     page.on('pageerror',error=>errors.push(error.message));
     page.on('request',request=>{if(!request.url().startsWith(base)&&!request.url().startsWith('blob:'))external.push(request.url());});
+    await page.addInitScript(() => {
+      window.mediaPlayCalls = 0;
+      const play = HTMLMediaElement.prototype.play;
+      HTMLMediaElement.prototype.play = function(...args) {
+        window.mediaPlayCalls++;
+        return play.apply(this,args);
+      };
+    });
     await page.goto(base+'/follow');
     await page.waitForFunction(()=>!document.getElementById('play').disabled);
     assert.equal(await page.locator('.follow-word').count(),words.length);
@@ -27,7 +35,13 @@ const words=verses.flatMap(v=>v.words);
     await page.waitForFunction(()=>!document.getElementById('paath').paused);
     assert.equal(await page.locator('#play-icon').isVisible(),false);
     assert.equal(await page.locator('#pause-icon').isVisible(),true);
-    // Real audio clock: a future word is red, while the word being recited is green.
+    const inactive=page.locator('.verse:not(.is-active) .follow-word').first();
+    assert.equal(await inactive.isDisabled(),true);
+    await inactive.evaluate(button=>{button.click();button.dispatchEvent(new MouseEvent('click',{bubbles:true}));});
+    assert.equal(await page.locator('#caught').innerText(),'0');
+    assert.equal(await page.locator('#missed').innerText(),'0');
+    assert.equal(await page.locator('.verse:not(.is-active) .follow-word:enabled').count(),0);
+    // Early taps within the active verse remain red; on-time taps are green.
     await page.locator(`[data-word-id="${words[1].id}"]`).click();
     assert.equal(await page.locator('#missed').textContent(),'1');
     assert.equal(await page.locator(`[data-word-id="${words[1].id}"]`).getAttribute('data-result'),'missed');
@@ -41,14 +55,30 @@ const words=verses.flatMap(v=>v.words);
     assert.equal(await page.locator('.word-caught').evaluate(e=>getComputedStyle(e).animationName),'none');
     await page.emulateMedia({reducedMotion:'no-preference'});
     assert.ok(await page.locator('.word-missed').count()>0);
-    const beforeReplay=await page.locator('#caught').innerText();
-    await page.locator(`[data-word-id="${words[1].id}"]`).click();
-    await page.waitForSelector('.is-replaying');
-    await page.waitForFunction(()=>!document.querySelector('.is-replaying'));
-    assert.equal(await page.locator('#caught').innerText(),beforeReplay);
+    const red=page.locator(`[data-word-id="${words[1].id}"]`);
+    assert.equal(await red.isDisabled(),true);
+    const beforeRed=await page.evaluate(()=>({plays:window.mediaPlayCalls,time:document.getElementById('paath').currentTime}));
+    await red.evaluate(button=>{button.click();button.dispatchEvent(new MouseEvent('click',{bubbles:true}));});
+    assert.equal(await page.evaluate(()=>window.mediaPlayCalls),beforeRed.plays,'Red words never start audio');
+    assert.equal(await page.locator('#paath').evaluate(audio=>audio.paused),false,'Red words do not interrupt the paath');
+    assert.ok(await page.locator('#paath').evaluate(audio=>audio.currentTime)>=beforeRed.time);
+    assert.equal(await page.locator('#caught').innerText(),'1');
+    assert.equal(await page.locator('.word-replay,.is-replaying').count(),0);
+    const nextVerseWord=verses[1].words[0];
+    await page.evaluate(time=>{
+      const audio=document.getElementById('paath');audio.currentTime=time-Number(audio.dataset.referenceStart);
+      audio.dispatchEvent(new Event('timeupdate'));
+    },nextVerseWord.start+.05);
+    assert.equal(await page.locator(`[data-word-id="${nextVerseWord.id}"]`).isEnabled(),true);
+    assert.equal(await page.locator(`[data-word-id="${words[0].id}"]`).isDisabled(),true);
+    assert.equal(await page.locator('.verse:not(.is-active) .follow-word:enabled').count(),0);
     await page.getByRole('button',{name:'Pause audio',exact:true}).click();
     assert.equal(await page.locator('#play-icon').isVisible(),true);
     assert.equal(await page.locator('#pause-icon').isVisible(),false);
+    assert.equal(await page.locator('.follow-word:enabled').count(),0);
+    const pausedPlays=await page.evaluate(()=>window.mediaPlayCalls);
+    await red.evaluate(button=>button.dispatchEvent(new MouseEvent('click',{bubbles:true})));
+    assert.equal(await page.evaluate(()=>window.mediaPlayCalls),pausedPlays);
     const stopped=await page.locator('#paath').evaluate(audio=>audio.currentTime);
     await page.waitForTimeout(400);
     assert.ok(Math.abs(await page.locator('#paath').evaluate(audio=>audio.currentTime)-stopped)<.02);
@@ -101,6 +131,7 @@ const words=verses.flatMap(v=>v.words);
         const audio=document.getElementById('paath'), offset=Number(audio.dataset.referenceStart);
         for(const word of sample.slice(0,count)){
           audio.currentTime=(word.start+word.end)/2-offset;
+          audio.dispatchEvent(new Event('timeupdate'));
           document.querySelector(`[data-word-id="${word.id}"]`).click();
         }
         audio.currentTime=end+.02-offset;
@@ -140,6 +171,6 @@ const words=verses.flatMap(v=>v.words);
     assert.equal(await page.locator('#points').innerText(),'3');
     assert.equal(await page.locator('.reward-coin,.confetti-piece').count(),0);
     assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
-    console.log('PASS: exact Gurmukhi, phone viewport, real audio-clock hits/misses, pause, restart, completion/replay, mobile fit, 70% coin threshold, coin flight, accumulated rewards, reduced motion, no external requests.');
+    console.log('PASS: exact Gurmukhi, phone viewport, real audio-clock hits/misses, inactive and red words disabled, no word replay, pause, restart, completion/replay, mobile fit, 70% coin threshold, coin flight, accumulated rewards, reduced motion, no external requests.');
   }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exit(1);});

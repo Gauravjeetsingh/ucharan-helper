@@ -9,7 +9,7 @@ timestamp generator remains a separate development tool.
 | `/` | Choose a bani | `apps/home/` |
 | `/bani/japji-sahib` | Follow along / Learn / Test | `apps/home/` |
 | `/timestamps` | Audio + Gurmukhi → word timing JSON | `apps/timestamps/` |
-| `/follow` | Pauri-by-pauri tapping, word animations and missed-word replay | `apps/follow/` |
+| `/follow` | Pauri-by-pauri tapping and word feedback | `apps/follow/` |
 | `/learn` | Complete Japji Sahib, listen and repeat; experimental feedback | `apps/learn/` |
 | `/test` | Independent pauri recording, playback and download | `apps/test/` |
 
@@ -102,14 +102,15 @@ Words do not add or subtract coins. Confetti celebrates completion; an earned
 coin flies into the counter. Reduced-motion mode updates the counter without
 animation. Coins accumulate across pauris and qualifying replays in the current
 browser tab session; they are not pronunciation scores. A caught
-word pops green; a missed word shakes red. Tap a red word to hear it again: the
-paath pauses during replay, then resumes without changing its tap result.
+word pops green; a missed word shakes red. Only unjudged words in the active
+verse can be tapped during playback. Inactive verses and words already marked
+green or red are disabled; tapping a red word does not replay audio.
 Reduced-motion preferences disable these animations.
 
 Pause freezes playback and leaves the round intact. Start again resets it.
 The audio clock drives progress, expired words, and passage scrolling, including
 after background frame gaps. Each pauri clip is buffered locally as Blob media
-before play so seeking/replay work without HTTP-range support. Completion shows
+before play so seeking works without HTTP-range support. Completion shows
 the coin reward, caught/missed counts, missed-word chips, and Play again. Tap
 results remain in memory; only the coin total and completed-pauri IDs are saved
 in browser session storage. Nothing is uploaded. Timing grace values are demo
