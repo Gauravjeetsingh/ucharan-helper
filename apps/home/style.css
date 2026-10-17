@@ -8,9 +8,16 @@
   font-style:normal;
   font-display:swap;
 }
+@font-face{
+  font-family:'Baloo Paaji';
+  src:url('/apps/home/fonts/baloo-paaji.ttf') format('truetype');
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
 .gutka-header{text-align:center;margin:18px 0 48px}
-.gutka-invocation{font:400 14px/1.8 'Gurmukhi MN','Nirmala UI','Raavi',sans-serif;color:#8f827a;white-space:nowrap;margin:0 0 16px}
-.gutka-header .gutka-title{font:750 40px/1.55 'Gurmukhi MN','Nirmala UI','Raavi',sans-serif;letter-spacing:0;color:#30263f;margin:0}
+.gutka-invocation{font:400 14px/1.8 'Gurmukhi MN','Nirmala UI','Raavi',sans-serif;color:#8f827a;white-space:nowrap;margin:0 0 4px}
+.gutka-header .gutka-title{font:400 40px/1.35 'Baloo Paaji','Gurmukhi MN','Nirmala UI','Raavi',sans-serif;letter-spacing:0;color:#30263f;margin:0}
 .kids-mode{font:600 27px/1.3 Fredoka,ui-rounded,'Comic Sans MS',cursive;color:#e99426;letter-spacing:.025em;margin:12px 0 0}
 @media(max-width:360px){.gutka-invocation{font-size:12px}.gutka-header .gutka-title{font-size:36px}.kids-mode{font-size:25px}}
 @media(max-height:700px){.gutka-header{margin-top:12px;margin-bottom:35px}}
