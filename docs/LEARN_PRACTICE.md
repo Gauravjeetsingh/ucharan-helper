@@ -14,7 +14,13 @@ This simple amplitude threshold (RMS 0.015) estimates a pause, not whether all
 words were recited. A long pause within a phrase can end it early; background
 noise can postpone stopping until the limit. No live ASR or new model is used.
 The waveform follows the playing audio or microphone; it does not give live
-pronunciation judgements.
+pronunciation judgements. During recording, a lavender word highlight guides
+the recitation using the ustaad's word timings at 1.08× pace (8% faster). It
+starts on the first word when recording starts, holds through gaps until the
+next word, and clears after the last word's expected ending. Each retry starts
+from the first occurrence. This is a timing prompt, not live speech tracking or
+correctness feedback. Its ending never stops or grades the recording; silence
+detection and manual stop remain independent.
 
 Words turn green when the model finds a match and red when it finds a possible
 sound difference. Red cards below the phrase explain the differences returned
@@ -109,7 +115,7 @@ debugging; nothing is kept on the server.
 - `apps/learn/screens.js`, `apps/learn/screens.css`: UI (IDs prefixed `lp-`).
 - `backend/learn/screens.py`: comparison. `backend/learn/tone.py`: voicing check.
 - `backend/learn/screens_api.py`: lesson files, bounded audio and comparison handlers.
-- Streak and endpoint logic: `node --test tests/learn-streak.test.cjs tests/learn-endpoint.test.cjs`.
+- Streak, endpoint and guide logic: `node --test tests/learn-streak.test.cjs tests/learn-endpoint.test.cjs tests/learn-guide.test.cjs`.
 - Tests: `tests/test_learn_screens_routes.py` (stdlib),
   `tests/verify_learn_screens.py` (acoustic checks skip without the model).
   `npm run test:learn:ui` checks browser playback/capture and synthetic

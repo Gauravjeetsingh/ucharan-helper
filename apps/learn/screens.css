@@ -34,3 +34,6 @@
 .lp-coins.lp-coin-collected{animation:lp-coin-collect .45s ease-out}
 @keyframes lp-coin-collect{0%,100%{transform:scale(1)}45%{transform:scale(1.17);box-shadow:0 0 0 6px #f6c56540}}
 @media(prefers-reduced-motion:reduce){.lp-celebration{display:none}.lp-coins.lp-coin-collected{animation:none}}
+
+/* Recording uses a gentle pace prompt, separate from red/green word feedback. */
+.lp-word.is-guided{background:#eeeaff;box-shadow:inset 0 0 0 2px #c1baff;color:var(--lp-ink)}

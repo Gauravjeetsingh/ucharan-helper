@@ -1,6 +1,7 @@
 import {LearnStreak, STREAK_LENGTH} from './streak.mjs';
 import {celebrateCoin} from './celebration.mjs';
 import {RecordingEndpoint, MAX_RECORDING_SECONDS} from './endpoint.mjs';
+import {recordingGuideWord} from './guide.mjs';
 
 // Learn UI. Lesson text/timings and comparison remain supplied by existing APIs.
 const $ = id => document.getElementById(id);
@@ -103,7 +104,9 @@ async function audioContext() { ctx ||= new AudioContext(); await ctx.resume(); 
 function stopWave() {
   cancelAnimationFrame(frame); analyser?.disconnect(); analyser = null;
   microphone?.disconnect(); microphone = null; $('lp-wave').hidden = true;
-  document.querySelectorAll('.lp-word.is-playing').forEach(node => node.classList.remove('is-playing'));
+  document.querySelectorAll('.lp-word.is-playing,.lp-word.is-guided').forEach(node => {
+    node.classList.remove('is-playing','is-guided'); node.removeAttribute('aria-current');
+  });
 }
 function stopEndpoint() {
   clearInterval(endpointInterval); clearTimeout(timer);
@@ -126,6 +129,7 @@ function stop() {
 function startWave(input, playback) {
   analyser = ctx.createAnalyser(); analyser.fftSize = 1024; analyser.smoothingTimeConstant = .65; input.connect(analyser);
   const samples = new Uint8Array(analyser.fftSize), bars = [...$('lp-wave').children]; $('lp-wave').hidden = false;
+  const guide = playback ? null : {words:screen().words, started:ctx.currentTime};
   function draw() {
     if (!analyser) return;
     analyser.getByteTimeDomainData(samples);
@@ -134,12 +138,19 @@ function startWave(input, playback) {
       let amplitude = 0; for (let j = a; j < b; j++) amplitude = Math.max(amplitude, Math.abs(samples[j] - 128) / 128);
       bar.style.height = `${Math.min(48, 5 + amplitude * 130)}px`;
     });
-    // Playback highlighting uses the actual audio clock. No live pronunciation
-    // judgement or inferred student word timing is fabricated during recording.
+    // Playback follows the media clock. Recording uses a reference-paced prompt,
+    // never a claim about which word the student has actually spoken.
     if (playback) {
       const position = playback.offset + ctx.currentTime - playback.started;
       document.querySelectorAll('.lp-word').forEach((button, i) => {
         const word = screen().words[i]; button.classList.toggle('is-playing', word.start <= position && position < word.end);
+      });
+    } else if (guide) {
+      const id = recordingGuideWord(guide.words, ctx.currentTime - guide.started);
+      document.querySelectorAll('.lp-word').forEach(button => {
+        const active = button.dataset.wordId === id;
+        button.classList.toggle('is-guided', active);
+        if (active) button.setAttribute('aria-current','step'); else button.removeAttribute('aria-current');
       });
     }
     frame = requestAnimationFrame(draw);
@@ -305,7 +316,7 @@ async function toggleRecord() {
       try { await check(new Blob(chunks, {type:chunks[0]?.type || 'audio/webm'}), token, lessonId, screenId); }
       catch (error) { if (token === generation) showError(error.message); }
     };
-    recorder.start(); setPhase('recording', 'Listening… I’ll stop after a pause.');
+    recorder.start(); setPhase('recording', 'Follow the highlighted words. I’ll stop after a pause.');
     microphone = ctx.createMediaStreamSource(stream); startWave(microphone);
     startEndpoint(detector);
   } catch (error) {
