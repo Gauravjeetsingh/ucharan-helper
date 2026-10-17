@@ -64,6 +64,6 @@ export class FollowSession {
   get stats() {
     const caught = [...this.results.values()].filter(result => result.status === 'caught').length;
     const missed = this.results.size - caught;
-    return {caught, missed, total: this.words.length, points: Math.max(0, caught * 10 - missed * 5)};
+    return {caught, missed, total: this.words.length, coinsEarned: this.state === 'completed' && caught * 10 >= this.words.length * 7 ? 1 : 0};
   }
 }

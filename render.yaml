@@ -1,0 +1,17 @@
+# Render runs Dockerfile -> scripts/render_build.sh, then scripts/render_start.py.
+services:
+  - type: web
+    name: ucharan-helper
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    # Paid starting size for CPU inference; review cost before deploying.
+    # This is not a benchmarked minimum. Adjust after testing your demo workload.
+    plan: 2c-4g
+    healthCheckPath: /healthz
+    autoDeployTrigger: "off"
+    envVars:
+      - key: UCHAARAN_DEPLOYED_DEMO
+        value: "1"
+      - key: OMP_NUM_THREADS
+        value: "2"

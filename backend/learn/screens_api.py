@@ -6,9 +6,11 @@ server.py calls serve_lesson_file() for /data/lessons/* and post() for
 import base64
 import binascii
 import json
+import io
 import re
 import wave
 from http.server import SimpleHTTPRequestHandler
+from urllib.parse import parse_qs, urlparse
 
 from ..paths import ROOT
 
@@ -31,6 +33,51 @@ def serve_lesson_file(handler, path, head=False):
         return handler.reply(404, {'error': 'Not found.'}, head)
     handler.path = path
     return SimpleHTTPRequestHandler.do_HEAD(handler) if head else SimpleHTTPRequestHandler.do_GET(handler)
+
+
+def audio_clip(handler, head=False):
+    """Serve a bounded reference segment, so phones never decode the whole bani."""
+    try:
+        query = parse_qs(urlparse(handler.path).query)
+        lesson = load_lesson(query.get('lesson_id', [''])[0])
+        screen_id, section_id = query.get('screen_id', [''])[0], query.get('section_id', [''])[0]
+        if bool(screen_id) == bool(section_id):
+            raise ValueError('Choose one screen or section.')
+        items = lesson['screens'] if screen_id else lesson.get('sections', [])
+        segment = next((s for s in items if s['id'] == (screen_id or section_id)), None)
+        if segment is None:
+            raise ValueError('Unknown audio segment.')
+        start, end = max(0, segment['start'] - .16), segment['end'] + .16
+        if not 0 < end - start <= 180:
+            raise ValueError('Audio segment is too long or invalid.')
+        url = segment.get('audio') or lesson.get('audio', '')
+        target = (ROOT / url.lstrip('/')).resolve()
+        if (ROOT / 'data').resolve() not in target.parents or target.suffix != '.wav':
+            raise ValueError('Invalid reference audio.')
+        if not target.is_file():
+            return handler.reply(503, {'error': 'Prepare the local recording: python -m scripts.prepare_japji_audio'}, head)
+        with wave.open(str(target)) as audio:
+            rate = audio.getframerate()
+            offset = min(int(start * rate), audio.getnframes())
+            audio.setpos(offset)
+            frames = audio.readframes(max(0, min(int(end * rate), audio.getnframes()) - offset))
+            output = io.BytesIO()
+            with wave.open(output, 'wb') as clip:
+                clip.setnchannels(audio.getnchannels())
+                clip.setsampwidth(audio.getsampwidth())
+                clip.setframerate(rate)
+                clip.writeframes(frames)
+        raw = output.getvalue()
+        handler.send_response(200)
+        handler.send_header('Content-Type', 'audio/wav')
+        handler.send_header('Content-Length', str(len(raw)))
+        handler.send_header('X-Audio-Start', str(offset / rate))
+        handler.send_header('Cache-Control', 'no-store')
+        handler.end_headers()
+        if not head:
+            handler.wfile.write(raw)
+    except (ValueError, KeyError, TypeError, StopIteration, wave.Error) as error:
+        handler.reply(400, {'error': str(error)}, head)
 
 
 CARD_FIELDS = {'say': 300, 'not': 300}

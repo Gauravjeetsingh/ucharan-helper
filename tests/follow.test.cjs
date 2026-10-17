@@ -38,8 +38,8 @@ test('unanswered words expire once, including after background-frame gaps', asyn
   const {FollowSession} = await load();
   const session = new FollowSession(words); session.play();
   session.advance(4.5); session.advance(4.6);
-  assert.equal(session.stats.missed,2); assert.equal(session.stats.points,0);
-  session.tap('three',5.5); assert.equal(session.stats.points,0);
+  assert.equal(session.stats.missed,2); assert.equal(session.stats.coinsEarned,0);
+  session.tap('three',5.5); assert.equal(session.stats.coinsEarned,0);
   session.finish(6.4); assert.equal(session.state,'completed');
   assert.equal(session.stats.caught+session.stats.missed,words.length);
 });
@@ -50,9 +50,9 @@ test('repeated text uses distinct occurrences and restarting clears all state', 
   session.tap('one',1.5); session.tap('two',3.5);
   assert.equal(session.stats.caught,2); assert.equal(session.streak,2);
   session.tap('three',3.6);
-  assert.equal(session.streak,0); assert.equal(session.stats.points,15);
+  assert.equal(session.streak,0); assert.equal(session.stats.coinsEarned,0);
   session.finish(6.4); session.reset();
-  assert.deepEqual(session.stats,{caught:0,missed:0,total:3,points:0});
+  assert.deepEqual(session.stats,{caught:0,missed:0,total:3,coinsEarned:0});
   assert.equal(session.state,'ready'); assert.equal(session.lastTap,null);
 });
 
@@ -63,6 +63,24 @@ test('the supplied 25-word clip completes with exact source identities', async (
   session.play();
   for(const word of sample) session.tap(word.id,(word.start+word.end)/2);
   session.finish(sample.at(-1).end+.4);
-  assert.deepEqual(session.stats,{caught:25,missed:0,total:25,points:250});
+  assert.deepEqual(session.stats,{caught:25,missed:0,total:25,coinsEarned:1});
   assert.equal(session.results.size,25);
+});
+
+test('one coin requires completion and at least 70% caught, without rounding up', async () => {
+  const {FollowSession} = await load();
+  const sample = Array.from({length:100}, (_, i) => ({id:String(i), start:i*2, end:i*2+1}));
+  for (const [caught, expected] of [[0,0], [69,0], [70,1], [71,1], [100,1]]) {
+    const session = new FollowSession(sample); session.play();
+    for (const word of sample.slice(0,caught)) session.tap(word.id,word.start+.5);
+    assert.equal(session.stats.coinsEarned,0,'Tapping words never awards coins');
+    session.pause(); assert.equal(session.stats.coinsEarned,0);
+    session.play(); session.finish(201);
+    assert.equal(session.stats.coinsEarned,expected,`${caught}% completed`);
+    session.finish(202); assert.equal(session.stats.coinsEarned,expected);
+    session.reset(); assert.equal(session.stats.coinsEarned,0);
+  }
+  const session = new FollowSession(words); session.play();
+  session.tap('one',1.5); session.tap('two',3.5); session.finish(7);
+  assert.equal(session.stats.coinsEarned,0,'Two of three words is below 70%');
 });

@@ -29,11 +29,10 @@ class RouteTests(unittest.TestCase):
         connection.close()
         return result
 
-    def test_routes_and_root_redirect(self):
+    def test_routes_and_bani_entry(self):
         status, headers, _ = self.request('/')
-        self.assertEqual(status, 302)
-        self.assertEqual(headers['Location'], '/timestamps')
-        for route in ['timestamps', 'follow', 'learn', 'test']:
+        self.assertEqual(status, 200)
+        for route in ['timestamps', 'follow', 'learn', 'test', 'bani/japji-sahib']:
             for suffix in ['', '/']:
                 with self.subTest(route=route, suffix=suffix):
                     status, headers, body = self.request('/'+route+suffix)

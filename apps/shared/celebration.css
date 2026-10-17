@@ -1,0 +1,7 @@
+/* Petals rain across the phone; the coin rises from the bottom into its counter. */
+.celebration-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:5;perspective:700px}
+.celebration-petal{position:absolute;top:-45px;height:auto;overflow:visible;filter:drop-shadow(0 2px 1px #71345a10);will-change:transform,opacity}
+.celebration-coin{position:absolute;left:50%;top:calc(100% - 75px);width:70px;height:70px;object-fit:contain;filter:drop-shadow(0 5px 7px #a46e2740)}
+.reward-collected{animation:reward-collect .45s ease-out}
+@keyframes reward-collect{0%,100%{transform:scale(1)}45%{transform:scale(1.17);box-shadow:0 0 0 6px #f6c56540}}
+@media(prefers-reduced-motion:reduce){.celebration-layer{display:none}.reward-collected{animation:none}}

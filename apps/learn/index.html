@@ -1,30 +1,52 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Learn · Uchaaran</title><link rel="icon" href="/apps/shared/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/apps/shared/app.css"><link rel="stylesheet" href="/apps/learn/screens.css"><script type="module" src="/apps/shared/nav.js"></script><script type="module" src="/apps/learn/screens.js"></script></head>
-<body><header><div class="brand">ੴ <span>UCHAARAN</span></div><span class="tag">HACKATHON WORKSPACE</span></header>
-<main class="lp">
-  <div class="screen-head">
-    <div><label class="lesson-pick"><span class="eyebrow">LESSON</span><select id="lp-lesson" aria-label="Lesson"></select></label><div class="hint" id="lp-ustaad"></div></div>
-    <div class="progress" id="lp-progress"></div>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#fff8ed"><title>Learn · Uchaaran</title>
+  <link rel="icon" href="/apps/shared/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/apps/learn/screens.css">
+  <link rel="stylesheet" href="/apps/shared/practice.css">
+  <link rel="stylesheet" href="/apps/shared/celebration.css">
+  <script type="module" src="/apps/learn/screens.js"></script>
+</head>
+<body>
+<main class="practice-stage">
+  <div class="practice-wrap">
+    <section class="practice-phone" aria-label="Learn practice">
+      <div class="practice-screen lp-screen" id="lp-screen" data-phase="idle">
+        <header class="practice-header"><a class="practice-back" href="/bani/japji-sahib" aria-label="Back to Japji Sahib"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7"/></svg></a><a class="practice-home" href="/" aria-label="All banis"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v11h-6v-7H9v7H3Z"/></svg></a><div class="practice-heading"><span>JAPJI SAHIB</span><h1>Learn</h1></div><div class="lp-coins" role="group" aria-label="Nanak Coins"><img src="/apps/follow/assets/nanak-coin.png" alt="" aria-hidden="true" width="34" height="34"><output id="lp-coins" aria-live="polite">0</output></div></header>
+        <div id="lp-celebration" class="celebration-layer" aria-hidden="true" hidden></div>
+        <div class="lp-streak-meta"><p id="lp-streak-message" role="status">5 more to go for Nanak Coin</p><span id="lp-progress" class="lp-progress"></span></div>
+        <div id="lp-segments" class="lp-segments" role="progressbar" aria-label="Nanak Coin streak" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0"></div>
+        <div class="lp-reader" id="lp-reader">
+          <section class="lp-phrase" aria-label="Words to practise"><div id="lp-words" class="lp-words" lang="pa"></div></section>
+          <section id="lp-feedback" class="lp-feedback" aria-label="Practice feedback" aria-live="polite" hidden>
+            <div class="lp-feedback-heading"><span id="lp-feedback-icon" aria-hidden="true"></span><div><h2 id="lp-feedback-title"></h2><p id="lp-feedback-summary"></p></div></div>
+            <div id="lp-issues"></div><div id="lp-detail" hidden></div>
+          </section>
+        </div>
+        <footer class="lp-footer">
+          <div id="lp-wave" class="lp-wave" aria-hidden="true" hidden></div>
+          <div class="lp-controls">
+            <button id="lp-listen" class="lp-round lp-speaker" aria-label="Listen to ustaad" title="Listen to ustaad">
+              <svg id="lp-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14" class="lp-stroke"/></svg>
+              <svg id="lp-speaker-stop" viewBox="0 0 24 24" aria-hidden="true" hidden><rect x="6" y="6" width="12" height="12" rx="3"/></svg>
+            </button>
+            <button id="lp-record" class="lp-round lp-microphone" aria-label="Record yourself" title="Record yourself" disabled>
+              <svg id="lp-mic-icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="12" y="3" width="8" height="17" rx="4"/><path d="M7 14v2a9 9 0 0 0 18 0v-2M16 25v5m-5 0h10" class="lp-stroke"/></svg>
+              <svg id="lp-stop-icon" viewBox="0 0 32 32" aria-hidden="true" hidden><rect x="6" y="6" width="20" height="20" rx="6"/></svg>
+              <svg id="lp-checking-icon" class="lp-spinner" viewBox="0 0 32 32" aria-hidden="true" hidden><circle cx="16" cy="16" r="11" class="lp-stroke"/></svg>
+            </button>
+            <button id="lp-next" class="lp-round lp-next" aria-label="Next pankti" title="Next pankti" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" class="lp-stroke"/></svg></button>
+          </div>
+          <p id="lp-message" class="lp-message" role="status">Loading the lesson…</p>
+          <p id="lp-hosted-privacy" class="lp-hosted-privacy" hidden>Voice recordings are checked on this server and aren’t saved.</p>
+          <button id="lp-back" class="lp-previous" disabled>Previous pankti</button>
+          <div class="lp-attempt-actions" id="lp-attempt-actions" hidden><button id="lp-hear">Hear my attempt</button><span aria-hidden="true">·</span><button id="lp-save">Save my attempt</button></div>
+        </footer>
+      </div>
+    </section>
   </div>
-  <div class="bar" aria-hidden="true"><div id="lp-bar-fill"></div></div>
-  <section class="card lp-card">
-    <p class="hint">Listen to the ustaad, then record yourself saying the same words.</p>
-    <div class="words" id="lp-words" aria-live="polite"></div>
-    <div class="detail" id="lp-detail" hidden></div>
-    <div class="actions center">
-      <button id="lp-listen">▶ Listen to ustaad</button>
-      <button id="lp-record" class="primary">● Record</button>
-      <button id="lp-save" hidden>⤓ Save my attempt</button>
-    </div>
-    <p class="message" id="lp-message" role="status"></p>
-  </section>
-  <div class="actions nav-row">
-    <button id="lp-back">← Back</button>
-    <button id="lp-shuffle">🔀 Shuffle</button>
-    <button id="lp-next">Next →</button>
-  </div>
-  <p class="hint">Green means your sounds matched this ustaad's sounds; red means a sound clearly differed; grey means the app couldn't tell. Tap a word to see what the app heard from the ustaad and from you. “Sounded like” is how a Gurbani speech model heard the audio, not the written text. This is an experimental comparison, not a certified grade. Your recording stays on this computer.</p>
-  <p class="hint"><a href="/apps/learn/cards.html">Pronunciation cards: how the ustaad says each word (review and confirm) →</a></p>
-  <p class="hint"><a href="/apps/learn/cards.html?file=pronunciation-cards-japji.json">Japji Sahib cards (auto-drafted) →</a></p>
-  <p class="hint"><a href="/apps/learn/lab.html">Older tools: word timing review and phone-label lab →</a></p>
-</main></body></html>
+</main>
+<aside class="practice-utility"><a href="/apps/learn/cards.html">Pronunciation review</a></aside>
+</body></html>

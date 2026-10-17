@@ -1,50 +1,32 @@
-.lp{max-width:760px;margin:0 auto 40px}
-.lp .screen-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:10px}
-.lp .progress{font-size:13px;color:var(--muted);white-space:nowrap}
-.lp .bar{height:6px;background:var(--soft);border-radius:3px;margin-bottom:22px;overflow:hidden}
-.lp .bar div{height:100%;width:0;background:var(--ink);transition:width .3s}
-.lp .lp-card{text-align:center}
-.lp .words{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:26px 0 18px}
-.lp .word-chip{font:500 34px/1.3 "Noto Sans Gurmukhi","Gurmukhi MN","Mukta Mahee",sans-serif;padding:10px 18px;border-radius:12px;border:2px solid var(--line);background:#fff;color:var(--ink);transition:background .2s,border-color .2s}
-.lp .word-chip.correct{background:#e3f2e1;border-color:#3f8f4a;color:#1f5a28}
-.lp .word-chip.wrong{background:#fbe4e1;border-color:#c0443a;color:#8a231b}
-.lp .word-chip.unclear{background:#eeeeea;border-color:#b9bab3;color:#6b6c66}
-.lp .word-chip.selected{outline:3px solid #c38a45;outline-offset:2px}
-.lp .detail{font-size:14px;color:var(--muted);margin:0 auto 8px;max-width:520px;padding:12px 16px;border-radius:10px;background:var(--soft)}
-.lp .detail p{margin:4px 0}
-.lp .detail .gurmukhi{font:500 20px/1.4 "Noto Sans Gurmukhi","Gurmukhi MN","Mukta Mahee",sans-serif;color:var(--ink)}
-.lp .detail .reason{color:var(--ink);font-weight:500;margin-top:8px}
-.lp .detail .actions{margin-top:8px}
-.lp .center{justify-content:center}
-.lp #lp-record{min-width:130px}
-.lp #lp-record.recording{background:#c0443a;border-color:#c0443a}
-.lp .message{min-height:1.6em;margin:18px 0 0;font-weight:500}
-.lp .nav-row{justify-content:space-between;margin:18px 0}
-@media(max-width:650px){.lp .word-chip{font-size:27px;padding:8px 13px}}
-.lp .lesson-pick{display:flex;flex-direction:column;gap:4px;margin:0}
-.lp .lesson-pick select{font:inherit;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:6px;padding:6px 10px;max-width:100%}
-.lp .how{text-align:left;margin:10px 0 2px;padding-top:8px;border-top:1px solid var(--line)}
-.lp .how h4{margin:0 0 4px;font-size:13px;color:var(--ink)}
-.lp .how ul{margin:0;padding-left:18px}
-.lp .how li{margin:2px 0}
-.lp .how .gurmukhi-sm,.cards-page .gurmukhi-sm{font:500 17px/1.3 "Noto Sans Gurmukhi","Gurmukhi MN","Mukta Mahee",sans-serif;color:var(--ink)}
-.lp .how .not{color:var(--muted)}
-.lp .how .tip-tag{font-size:11px;border:1px solid var(--line);border-radius:10px;padding:0 6px;margin-left:4px;color:var(--muted)}
-.cards-page{max-width:980px}
-.cards-page h1{font-size:34px}
-.cards-page .summary{font-weight:600}
-.cards-page .reviewer{max-width:320px}
-.cards-page .word-card{margin:16px 0;padding:18px}
-.cards-page .word-card.confirmed{border-color:#3f8f4a}
-.cards-page .word-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.cards-page .gurmukhi-lg{font:500 30px/1.3 "Noto Sans Gurmukhi","Gurmukhi MN","Mukta Mahee",sans-serif}
-.cards-page .badge{font-size:12px;border-radius:20px;padding:2px 10px;border:1px solid var(--line);color:var(--muted)}
-.cards-page .badge.confirmed{background:#e3f2e1;border-color:#3f8f4a;color:#1f5a28}
-.cards-page .measured{margin:6px 0}
-.cards-page .flag{background:#fdf1dc;border-radius:8px;padding:8px 12px;margin:6px 0;font-size:13px}
-.cards-page .flag-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#d48a1f;margin-right:6px}
-.cards-page .sounds{display:grid;gap:6px;margin:10px 0}
-.cards-page .sound-row{display:grid;grid-template-columns:44px 2fr 1.3fr auto auto;gap:6px;align-items:center}
-.cards-page .sound-row input,.cards-page .sound-row select,.cards-page .note{font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink);min-width:0}
-.cards-page .letters{text-align:center}
-@media(max-width:700px){.cards-page .sound-row{grid-template-columns:36px 1fr;}.cards-page .sound-row input,.cards-page .sound-row select{grid-column:2}}
+:root{color-scheme:light;--lp-cream:#fff8ed;--lp-ink:#30263f;--lp-purple:#6668ed;--lp-muted:#93867c;--lp-line:#eae0ce;--lp-green:#2da46f;--lp-red:#db4944}
+*{box-sizing:border-box}body{margin:0;background:#eae3d3;color:var(--lp-ink);font:14px/1.5 ui-rounded,"Arial Rounded MT Bold",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,select{font:inherit}button,a,summary{-webkit-tap-highlight-color:transparent}button{cursor:pointer;touch-action:manipulation}button:disabled{cursor:default}button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible{outline:3px solid var(--lp-purple);outline-offset:4px}[hidden]{display:none!important}
+.lp-stage{min-height:100svh;padding:20px 16px;display:grid;place-items:center}.lp-wrap{width:min(100%,420px)}.lp-nav{display:flex;justify-content:center;gap:25px;margin-bottom:16px;font-size:11px}.lp-nav a{color:#8a7c73;text-decoration:none}.lp-nav a[aria-current=page]{color:var(--lp-ink);font-weight:750;text-decoration:underline;text-underline-offset:5px}.lp-demo-heading{display:flex;align-items:center;justify-content:space-between;margin:0 3px 12px;font-size:12px;font-weight:750}.lp-options{position:relative;z-index:2;font-size:11px;font-weight:500}.lp-options summary{cursor:pointer;list-style:none;color:#7f726b;display:flex;align-items:center;gap:6px}.lp-options summary::-webkit-details-marker{display:none}.lp-options-panel{position:absolute;right:0;top:24px;width:285px;background:#fffdf8;border:1px solid var(--lp-line);box-shadow:0 10px 30px #30263f25;padding:17px;border-radius:14px}.lp-options-panel label{display:block;margin-bottom:6px}.lp-options-panel select{width:100%;max-width:100%;border:1px solid var(--lp-line);border-radius:7px;padding:8px;background:white;color:var(--lp-ink)}.lp-options-panel p{font-size:11px;color:var(--lp-muted)}.lp-options-panel a{color:#6862ae;display:block;font-size:11px;margin-top:13px}.lp-option-actions{display:flex;gap:7px}.lp-option-actions button{background:#f6f0e6;border:1px solid var(--lp-line);padding:6px 9px;border-radius:6px;color:var(--lp-ink);font-size:11px}.lp-option-actions button:disabled{opacity:.4}
+.lp-phone{height:830px;max-height:calc(100svh - 125px);min-height:620px;border:9px solid var(--lp-ink);border-radius:52px;background:var(--lp-cream);overflow:hidden;box-shadow:0 24px 38px #30263f28,0 3px 0 #30263f12}.lp-screen{height:100%;display:flex;flex-direction:column;padding:35px 23px 25px}.lp-header{display:flex;align-items:center;gap:12px;flex-shrink:0}.lp-level-badge{display:grid;place-items:center;width:43px;height:46px;border-radius:14px;background:var(--lp-purple);color:#fff;font-size:23px;font-weight:800;box-shadow:0 4px 0 #5153c9}.lp-heading{flex:1}.lp-heading>span{display:block;font-size:9px;letter-spacing:.17em;font-weight:800;color:#978b7e}.lp-heading h1{font-size:22px;line-height:1.2;font-weight:850;letter-spacing:-.6px;margin:1px 0 0}.lp-progress{font-size:12px;font-weight:750;white-space:nowrap}.lp-segments{display:grid;gap:6px;margin:19px 0 23px;flex-shrink:0}.lp-segment{height:9px;border-radius:9px;background:#e9e0d0}.lp-segment.is-reached{background:var(--lp-purple)}
+.lp-reader{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#e0d3c1 transparent;padding-bottom:14px}.lp-phrase{border:2px solid var(--lp-line);border-radius:25px;background:#fffefd;min-height:150px;display:grid;place-items:center;padding:17px 9px}.lp-words{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 2px;width:100%}.lp-word{font:600 33px/1.65 "Gurmukhi MN","Nirmala UI","Raavi",sans-serif;border:0;border-radius:13px;background:transparent;color:var(--lp-ink);padding:0 9px;position:relative;transition:background .15s,color .15s}.lp-word.is-playing{background:#ffe6b8}.lp-word.correct{color:#238653}.lp-word.wrong{color:#bc3432;text-decoration:underline;text-decoration-color:#edb3aa;text-underline-offset:8px;text-decoration-thickness:2px}.lp-word.selected.correct{background:#e3f3e8}.lp-word.selected.wrong{background:#fce8e4}.lp-word:disabled{opacity:1}
+.lp-feedback{padding:20px 0 0}.lp-feedback-heading{display:flex;gap:12px;align-items:center;margin-bottom:16px}.lp-feedback-heading>span{height:42px;width:42px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;background:#e0f1e5;color:#258453;font-size:24px;font-weight:800}.lp-feedback.has-differences .lp-feedback-heading>span{background:#f9e4df;color:#bf3c36}.lp-feedback.needs-recording .lp-feedback-heading>span{background:#eee8dc;color:#8e7e6f}.lp-feedback-heading h2{font-size:21px;letter-spacing:-.45px;line-height:1.25;margin:0 0 5px;font-weight:850}.lp-feedback-heading p{font-size:12px;color:#8a7d77;line-height:1.65;margin:0}.lp-issue{background:#fbe9e5;border-radius:20px;padding:14px 15px;margin-bottom:11px}.lp-issue-top{display:flex;gap:12px;align-items:center}.lp-issue-word{font:650 28px/1.6 "Gurmukhi MN","Nirmala UI","Raavi",sans-serif;color:#bb3531;flex-shrink:0}.lp-issue p{font-size:12px;color:#794f4c;line-height:1.65;margin:7px 0 0;overflow-wrap:anywhere}.lp-issue-top .lp-issue-reason{margin:0;flex:1}.lp-issue-replay{width:39px;height:39px;border:0;border-radius:50%;background:var(--lp-red);color:white;box-shadow:0 3px 0 #b83531;display:grid;place-items:center;flex-shrink:0}.lp-issue-replay svg{width:18px;height:18px;fill:currentColor}.lp-heard{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:#8e615c}.lp-heard b{font:500 17px/1.5 "Gurmukhi MN","Nirmala UI","Raavi",sans-serif;color:#71403d}.lp-issue-actions{display:flex;gap:12px;margin-top:10px}.lp-text-button{border:0;background:transparent;padding:0;color:#9b4943;font-size:11px;text-decoration:underline;text-underline-offset:3px}.lp-match-detail{background:#e4f2e7;border-radius:16px;padding:14px;font-size:12px;margin-bottom:10px}.lp-match-detail p{margin:0 0 8px}.lp-match-detail .lp-text-button{color:#287c4f}.lp-uncertain{color:#8e7e6f;font-size:12px;line-height:1.6;margin:0 0 12px}
+.lp-footer{flex-shrink:0;text-align:center;padding-top:12px}.lp-wave{height:52px;display:flex;align-items:center;justify-content:center;gap:4px;margin:0 auto 20px;color:var(--lp-purple)}.lp-wave span{width:5px;min-height:5px;background:currentColor;border-radius:5px;transition:height 70ms linear}.lp-screen[data-phase=recording] .lp-wave{color:var(--lp-green)}.lp-controls{display:flex;align-items:center;justify-content:center;gap:25px;min-height:90px}.lp-round{display:grid;place-items:center;border-radius:50%;border:0;flex-shrink:0;padding:0}.lp-round svg{height:25px;width:25px;fill:currentColor;pointer-events:none}.lp-stroke{fill:none;stroke:currentColor;stroke-width:2.7;stroke-linecap:round;stroke-linejoin:round}.lp-speaker,.lp-next{height:61px;width:61px;background:#fffdf7;border:2px solid #eee3d0;box-shadow:0 4px 0 #e4d6bf}.lp-speaker{color:var(--lp-purple)}.lp-next{color:var(--lp-ink)}.lp-next:disabled{color:#dcd5c9;border-color:#f5edde;box-shadow:0 4px 0 #f0e6d5}.lp-microphone{height:88px;width:88px;background:var(--lp-green);color:white;box-shadow:0 6px 0 #218253}.lp-microphone svg{width:32px;height:32px}.lp-microphone:disabled{background:#adddc8;box-shadow:0 6px 0 #91c5af}.lp-microphone.recording{background:#e44842;box-shadow:0 5px 0 #c63a36,0 0 0 6px #fae4df}.lp-screen[data-phase=recording] .lp-speaker,.lp-screen[data-phase=recording] .lp-next{visibility:hidden}.lp-screen[data-phase=checking] .lp-microphone{background:var(--lp-green);box-shadow:0 6px 0 #218253}.lp-speaker:disabled{opacity:.4}.lp-round:not(:disabled):active{transform:translateY(2px);box-shadow:0 2px 0 #d7c9b4}.lp-microphone:not(:disabled):active{box-shadow:0 3px 0 #218253}.lp-spinner{animation:lp-spin 1s linear infinite}.lp-spinner circle{stroke-dasharray:48 22}.lp-message{font-size:12px;font-weight:650;color:#64576d;line-height:1.6;min-height:39px;margin:16px 0 0;display:grid;place-items:start center;overflow-wrap:anywhere}.lp-attempt-actions{display:flex;justify-content:center;align-items:center;gap:9px;font-size:10px;color:#a29489;margin-top:2px}.lp-attempt-actions button{border:0;background:transparent;color:#938478;font-size:10px;padding:0;text-decoration:underline;text-underline-offset:3px}.lp-note{font-size:10px;text-align:center;color:#a29588;margin:13px 0 0}.lp-error{color:#8e7e6f;font-size:12px;line-height:1.65;margin:0}
+@keyframes lp-spin{to{transform:rotate(360deg)}}
+@media(max-width:480px){.lp-stage{padding:12px 8px}.lp-nav{gap:23px;margin-bottom:13px}.lp-demo-heading{margin-bottom:11px;font-size:11px}.lp-phone{border-width:8px;border-radius:43px;height:calc(100svh - 115px);max-height:none;min-height:590px}.lp-screen{padding:27px 18px 19px}.lp-level-badge{width:38px;height:41px;border-radius:12px;font-size:21px}.lp-heading h1{font-size:21px}.lp-progress{font-size:11px}.lp-segments{gap:5px;margin:17px 0 22px}.lp-word{font-size:30px;padding:0 7px}.lp-phrase{min-height:146px;padding:15px 8px;border-radius:23px}.lp-controls{gap:24px}.lp-microphone{height:82px;width:82px}.lp-speaker,.lp-next{height:57px;width:57px}.lp-wave{gap:4px;margin-bottom:16px}.lp-wave span{width:4px}.lp-feedback-heading h2{font-size:20px}.lp-note{margin-top:10px}}
+@media(max-width:360px){.lp-screen{padding-inline:14px}.lp-word{font-size:27px;padding:0 5px}.lp-progress{font-size:10px}.lp-controls{gap:20px}.lp-issue-top{gap:9px}.lp-issue{padding:12px}.lp-issue-word{font-size:25px}}
+@media(max-height:760px){.lp-screen{padding-top:22px}.lp-segments{margin-bottom:17px}.lp-phone{min-height:540px}.lp-footer{padding-top:6px}.lp-wave{height:34px;margin-bottom:12px}.lp-controls{min-height:78px}.lp-microphone{height:73px;width:73px}.lp-speaker,.lp-next{height:52px;width:52px}.lp-message{margin-top:12px;min-height:35px}.lp-feedback{padding-top:16px}}
+@media(prefers-reduced-motion:reduce){.lp-word,.lp-wave span{transition:none}.lp-spinner{animation:none}}
+/* Unified mode navigation; the recording/result controls remain in the footer. */
+.lp-screen{--mode-color:#6668ed;--mode-shadow:#5153c9}.lp-progress{font-size:10px}.lp-segments{margin:18px 0 23px;gap:5px}.lp-segment{height:8px}.lp-previous{border:0;background:none;color:#938478;text-decoration:underline;text-underline-offset:3px;padding:0;margin:2px 0 8px;font-family:inherit;font-size:10px;line-height:1.6;cursor:pointer}.lp-previous:disabled{opacity:.4}.lp-previous[hidden]{display:none}.lp-message{min-height:34px}.lp-screen .lp-phrase{padding-inline:7px}.lp-screen .lp-word{padding-inline:7px}@media(max-width:360px){.lp-progress{font-size:9px}.lp-screen .lp-word{font-size:26px;padding-inline:5px}}
+
+/* Five checked turns above 70% fill the coin streak; pankti navigation stays separate. */
+.lp-streak-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:19px;flex-shrink:0}
+.lp-streak-meta p{font-size:11px;font-weight:750;color:#766382;line-height:1.5;margin:0}
+.lp-streak-meta p.is-earned{color:#987021}
+.lp-streak-meta .lp-progress{color:var(--lp-muted);font-size:9px;margin-left:auto}
+.lp-segments{grid-template-columns:repeat(5,minmax(0,1fr));margin:9px 0 23px;gap:7px}
+.lp-segment{height:9px;transition:background .2s}
+.lp-coins{display:flex;align-items:center;gap:6px;flex-shrink:0;min-width:68px;padding:4px 10px 4px 5px;border:1px solid #ead6b0;border-radius:25px;background:linear-gradient(145deg,#fffdf7,#fff4de);color:#6d471d;font-weight:800;font-size:13px;font-variant-numeric:tabular-nums}
+.lp-coins img{display:block;width:34px;height:34px;object-fit:contain}
+@media(max-width:360px){.lp-streak-meta{gap:3px}.lp-streak-meta p{font-size:10px}}
+@media(max-height:760px){.lp-streak-meta{margin-top:14px}.lp-segments{margin-bottom:17px}}
+@media(prefers-reduced-motion:reduce){.lp-segment{transition:none}}
+
+/* Recording uses a gentle pace prompt, separate from red/green word feedback. */
+.lp-word.is-guided{background:#eeeaff;box-shadow:inset 0 0 0 2px #c1baff;color:var(--lp-ink)}
+
+.lp-hosted-privacy{font-size:10px;line-height:1.5;color:#938478;margin:0 0 7px}

@@ -10,7 +10,9 @@
     "test:follow": "node --test tests/follow.test.cjs",
     "test:follow:browser": "node tests/follow.cjs",
     "test:timing-review": "node tests/verify_browser.cjs",
-    "test:learn": "node tests/verify_practice.cjs"
+    "test:learn": "node tests/verify_practice.cjs",
+    "test:learn:ui": "node tests/learn-screens.cjs",
+    "test:unified": "node tests/unified.cjs"
   },
   "devDependencies": { "playwright": "1.62.1" }
 }
