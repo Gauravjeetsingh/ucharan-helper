@@ -4,6 +4,7 @@ import base64
 import binascii
 import hashlib
 import json
+import os
 import threading
 import wave
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -28,9 +29,12 @@ class Handler(SimpleHTTPRequestHandler):
         pass
 
     def local_request(self):
-        allowed = {f'127.0.0.1:{self.server.server_port}', f'localhost:{self.server.server_port}'}
-        return self.headers.get('Host') in allowed and self.headers.get('Origin') in (
-            None, *(f'http://{host}' for host in allowed))
+        local_hosts = {f'127.0.0.1:{self.server.server_port}', f'localhost:{self.server.server_port}'}
+        host, origin = self.headers.get('Host'), self.headers.get('Origin')
+        public = getattr(self.server, 'public_origin', None)
+        if public and host == urlparse(public).netloc:
+            return origin == public or origin is None and self.command in {'GET', 'HEAD'}
+        return host in local_hosts and origin in (None, *(f'http://{name}' for name in local_hosts))
 
     def reply(self, code, payload, head=False):
         raw = json.dumps(payload, ensure_ascii=False, allow_nan=False).encode()
@@ -49,6 +53,10 @@ class Handler(SimpleHTTPRequestHandler):
         super().end_headers()
 
     def get(self, head=False):
+        # Render probes may use a different Host when custom domains are added.
+        # This endpoint exposes no data and does not load any inference models.
+        if self.path == '/healthz':
+            return self.reply(200, {'ok': True}, head)
         if not self.local_request():
             return self.reply(403, {'error': 'Local same-origin requests only.'}, head)
         path = unquote(urlparse(self.path).path)
@@ -65,13 +73,15 @@ class Handler(SimpleHTTPRequestHandler):
             from .learn.screens_api import serve_lesson_file
             return serve_lesson_file(self, path, head)
         if path.startswith('/api/corrections/'):
+            if getattr(self.server, 'deployed_demo', False):
+                return self.reply(403, {'error': 'Reference editing is disabled in the hosted demo.'}, head)
             from . import corrections
             try:
                 return self.reply(200, {'words': corrections.load(path.rsplit('/', 1)[1])}, head)
             except ValueError as error:
                 return self.reply(400, {'error': str(error)}, head)
         if path == '/api/status':
-            return self.reply(200, dict(local_only=True, stores_student_audio=False,
+            return self.reply(200, dict(local_only=not getattr(self.server, 'deployed_demo', False), stores_student_audio=False, audio_processing='server-memory',
                 timestamp_model_present=all((ROOT/'models/timestamps'/f).is_file() for f in ['model.int8.onnx', 'tokenizer.model']),
                 model_present=(ROOT/'models/phone/pytorch_model.bin').is_file()), head)
         if (path.rstrip('/') or '/') in ROUTES:
@@ -90,6 +100,9 @@ class Handler(SimpleHTTPRequestHandler):
         self.get(True)
 
     def do_POST(self):
+        if getattr(self.server, 'deployed_demo', False) and self.path in {
+                '/api/learn/screens/cards', '/api/corrections/save', '/api/corrections/delete'}:
+            return self.reply(403, {'error': 'Reference editing is disabled in the hosted demo.'})
         if self.path.startswith('/api/learn/screens/'):
             from .learn.screens_api import post
             return post(self, MODEL_LOCK, MODELS)
@@ -162,12 +175,17 @@ class Handler(SimpleHTTPRequestHandler):
             self.reply(500, {'error': 'Could not write the corrections file on this computer.'})
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser()
+    parser.add_argument('--host', default='127.0.0.1', help='Bind address; defaults to loopback for local use.')
     parser.add_argument('--port', type=int, default=8767)
-    args = parser.parse_args()
-    server = ThreadingHTTPServer(('127.0.0.1', args.port), Handler)
-    print(f'Open http://127.0.0.1:{args.port}/', flush=True)
+    args = parser.parse_args(argv)
+    from .deployment import public_origin
+    origin = public_origin(os.environ.get('UCHAARAN_PUBLIC_ORIGIN'))
+    server = ThreadingHTTPServer((args.host, args.port), Handler)
+    server.public_origin = origin
+    server.deployed_demo = bool(origin) or os.environ.get('UCHAARAN_DEPLOYED_DEMO') == '1'
+    print(f'Open {origin or f"http://127.0.0.1:{args.port}"}/', flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

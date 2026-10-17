@@ -1,17 +1,17 @@
 # Uchaaran Helper
 
 A shared hackathon workspace for learning Gurbani from one ustaad recording.
-Choose a bani, then Follow along, Learn, or Test in the same phone UI. The
+Choose a bani, then Follow along, Learn, or Read Aloud in the same phone UI. The
 timestamp generator remains a separate development tool.
 
 | Route | Current state | Source |
 | --- | --- | --- |
 | `/` | Choose a bani | `apps/home/` |
-| `/bani/japji-sahib` | Follow along / Learn / Test | `apps/home/` |
+| `/bani/japji-sahib` | Follow along / Learn / Read Aloud | `apps/home/` |
 | `/timestamps` | Audio + Gurmukhi → word timing JSON | `apps/timestamps/` |
 | `/follow` | Pauri-by-pauri tapping and word feedback | `apps/follow/` |
 | `/learn` | Complete Japji Sahib, listen and repeat; experimental feedback | `apps/learn/` |
-| `/test` | Independent pauri recording, playback and download | `apps/test/` |
+| `/test` | Read Aloud · Coming soon placeholder | `apps/test/` |
 
 Back returns to the bani's three modes; Home returns to all banis. Each route
 works directly and on refresh. The generator does not load the practice UI.
@@ -38,6 +38,25 @@ afconvert), then run `python -m scripts.prepare_japji_audio` once. This converts
 the supplied MOV into an ignored local WAV without running a model. Open
 <http://127.0.0.1:8767/> to choose Japji Sahib and a mode. Playback requests only
 the current phrase/pauri; the browser does not decode the whole 27-minute file.
+
+## DigitalOcean deployment
+
+From this checkout on your laptop, run `python3 -m scripts.deploy_to_droplet root@DROPLET_IP`.
+The installer supports Ubuntu 24.04 x86_64, installs the model/audio/service,
+and works without a domain through an SSH tunnel. Add `--domain paath.example.org`
+for automatic HTTPS. Use `--dry-run` to preview without connecting.
+[Deployment instructions](docs/DEPLOYMENT.md) cover DNS, access, updates and
+hosted audio processing. In hosted Learn mode, recordings are sent to your
+droplet for in-memory comparison rather than processed on the student's device.
+
+## Render deployment
+
+Connect this GitHub repository as a Render **Blueprint** using `render.yaml`.
+Render runs the Docker setup script, packages the model and audio, and gives
+you an HTTPS URL without a custom domain. The configuration selects a paid
+4 GB instance; review Render's cost before deploying. See
+[Render setup instructions](docs/RENDER.md) for deployment, updates and local
+container checks. Hosted Learn recordings are processed in server memory.
 
 ## Enable new timestamp generation
 
@@ -98,8 +117,8 @@ word's start to 320 ms after its end is green. An early tap or a word whose
 window expires is red. Each occurrence counts once; repeated words retain
 separate identities. Completing a pauri with at least 70% of words caught earns
 one Nanak Coin.
-Words do not add or subtract coins. Confetti celebrates completion; an earned
-coin flies into the counter. Reduced-motion mode updates the counter without
+Words do not add or subtract coins. Multicolored flower petals fall from the top on completion;
+an earned coin rises from the bottom into the counter. Reduced-motion mode updates the counter without
 animation. Coins accumulate across pauris and qualifying replays in the current
 browser tab session; they are not pronunciation scores. A caught
 word pops green; a missed word shakes red. Only unjudged words in the active
@@ -117,7 +136,7 @@ in browser session storage. Nothing is uploaded. Timing grace values are demo
 settings,
 not validated attention thresholds; source boundaries still await review.
 
-## Learn and independent Test recording
+## Learn practice and Read Aloud placeholder
 
 The main `/learn` page uses a phone layout: optionally listen, record, then see
 green/red words with explanations below. Recording is available immediately and
@@ -170,9 +189,8 @@ See [docs/PHONETIC_FINDINGS.md](docs/PHONETIC_FINDINGS.md) and
 [evaluation/PROTOCOL.md](evaluation/PROTOCOL.md) for limitations and pending
 human validation. Synthetic teacher controls are not real learner ratings.
 
-Test displays the selected pauri and records up to three minutes in browser
-memory. Stop to replay or explicitly download it. Test does not call a grading
-API or show an invented assessment. Leaving a mode stops its audio/microphone.
+Read Aloud currently opens a “Coming soon” placeholder without microphone or recording
+controls. Learn remains available for recording practice.
 
 ## Repository layout
 
@@ -181,7 +199,7 @@ apps/                   unified practice routes + separate timestamp tools
   timestamps/           generation only
   learn/                full-bani practice + older review tools
   follow/               mobile tap-along demo
-  test/                 local independent pauri recording
+  test/                 coming-soon placeholder
   shared/               navigation and styles
 backend/                local server + timestamp inference
   learn/                optional phonetic engine

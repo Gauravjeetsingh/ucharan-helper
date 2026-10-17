@@ -1,0 +1,29 @@
+# Allow only application code and checked-in reference inputs into the context.
+**
+!Dockerfile
+!serve.py
+!LICENSE
+!THIRD_PARTY.md
+!requirements-timestamps.txt
+!apps/
+!apps/**
+!backend/
+!backend/**
+!scripts/
+!scripts/**
+!data/
+!data/reference/
+!data/reference/**
+!data/lessons/
+!data/lessons/*.json
+
+# Exclude hidden files, local dependencies and caches even in allowed folders.
+**/.*
+**/__pycache__
+**/node_modules
+**/models
+**/local-recordings
+**/test-results
+**/playwright-report
+**/*.pyc
+**/*.partial
