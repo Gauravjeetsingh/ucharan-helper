@@ -1,3 +1,5 @@
+import {LearnStreak, STREAK_LENGTH} from './streak.mjs';
+
 // Learn UI. Lesson text/timings and comparison remain supplied by existing APIs.
 const $ = id => document.getElementById(id);
 const LESSON_ID = 'japji-sahib-full';
@@ -6,6 +8,41 @@ let lesson, index = 0, ctx, playing, analyser, microphone, frame;
 let recorder, stream, timer, student, studentWav, result, selected = null;
 let generation = 0, playbackToken = 0, hasListened = false, phase = 'loading';
 const clips = new Map();
+const STREAK_KEY = 'uchaaran-learn-streak';
+const COIN_KEY = 'uchaaran-nanak-coins';
+function storedNumber(key) {
+  try {
+    const value = Number(sessionStorage.getItem(key));
+    return Number.isSafeInteger(value) && value >= 0 ? value : 0;
+  } catch { return 0; }
+}
+const streak = new LearnStreak(storedNumber(STREAK_KEY));
+let coins = storedNumber(COIN_KEY);
+
+function renderStreak() {
+  const segments = $('lp-segments');
+  if (segments.children.length !== STREAK_LENGTH) {
+    segments.replaceChildren(...Array.from({length:STREAK_LENGTH}, () => element('span', undefined, 'lp-segment')));
+  }
+  [...segments.children].forEach((segment,i) => segment.classList.toggle('is-reached', i < streak.count));
+  segments.setAttribute('aria-valuenow', streak.count);
+  segments.setAttribute('aria-valuetext', `${streak.count} of ${STREAK_LENGTH} consecutive qualifying turns`);
+  $('lp-streak-message').textContent = streak.count === STREAK_LENGTH
+    ? '+1 Nanak Coin! Five in a row.'
+    : `${STREAK_LENGTH - streak.count} more to go for Nanak Coin`;
+  $('lp-streak-message').classList.toggle('is-earned', streak.count === STREAK_LENGTH);
+  $('lp-coins').value = coins;
+}
+
+function recordTurn(value) {
+  const earned = streak.record(value, screen().words);
+  if (earned) coins = Math.max(coins, storedNumber(COIN_KEY)) + 1;
+  try {
+    sessionStorage.setItem(STREAK_KEY, String(streak.count));
+    if (earned) sessionStorage.setItem(COIN_KEY, String(coins));
+  } catch {}
+  renderStreak();
+}
 const screen = () => lesson.screens[index];
 const busy = () => ['permission', 'recording', 'checking'].includes(phase);
 const wordResult = i => result?.words?.find(w => w.id === screen().words[i].id);
@@ -190,9 +227,7 @@ function renderFeedback() {
 function renderScreen() {
   generation++; stop(); result = null; selected = null; student = studentWav = null; hasListened = false;
   $('lp-progress').textContent = `Pankti ${index + 1} / ${lesson.screens.length}`;
-  const segments = $('lp-segments'), count = Math.min(12, lesson.screens.length); segments.replaceChildren(); segments.style.gridTemplateColumns = `repeat(${count}, minmax(0, 1fr))`;
-  segments.setAttribute('aria-valuemax', lesson.screens.length); segments.setAttribute('aria-valuenow', index + 1);
-  for (let i=0;i<count;i++) { const segment = element('span', undefined, 'lp-segment'); segment.classList.toggle('is-reached', i <= Math.floor(index * count / lesson.screens.length)); segments.append(segment); }
+  renderStreak();
   renderWords(); renderFeedback(); $('lp-reader').scrollTop = 0;
   setPhase('idle', 'Tap the speaker to hear Ustaad ji.');
 }
@@ -219,7 +254,7 @@ async function check(blob, token, lessonId, screenId) {
   const value = await response.json().catch(() => ({})); if (!response.ok) throw Error(value.error || 'The local server could not check this recording.');
   if (token !== generation) return;
   if (!Array.isArray(value.words)) throw Error('The comparison did not return word feedback. Please try again.');
-  result = value; selected = null; renderWords(); renderFeedback();
+  result = value; selected = null; recordTurn(value); renderWords(); renderFeedback();
   setPhase('result', restMessage());
 }
 async function toggleRecord() {

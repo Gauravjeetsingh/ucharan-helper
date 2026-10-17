@@ -12,3 +12,16 @@
 @media(prefers-reduced-motion:reduce){.lp-word,.lp-wave span{transition:none}.lp-spinner{animation:none}}
 /* Unified mode navigation; the recording/result controls remain in the footer. */
 .lp-screen{--mode-color:#6668ed;--mode-shadow:#5153c9}.lp-progress{font-size:10px}.lp-segments{margin:18px 0 23px;gap:5px}.lp-segment{height:8px}.lp-previous{border:0;background:none;color:#938478;text-decoration:underline;text-underline-offset:3px;padding:0;margin:2px 0 8px;font-family:inherit;font-size:10px;line-height:1.6;cursor:pointer}.lp-previous:disabled{opacity:.4}.lp-previous[hidden]{display:none}.lp-message{min-height:34px}.lp-screen .lp-phrase{padding-inline:7px}.lp-screen .lp-word{padding-inline:7px}@media(max-width:360px){.lp-progress{font-size:9px}.lp-screen .lp-word{font-size:26px;padding-inline:5px}}
+
+/* Five checked turns above 70% fill the coin streak; pankti navigation stays separate. */
+.lp-streak-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:19px;flex-shrink:0}
+.lp-streak-meta p{font-size:11px;font-weight:750;color:#766382;line-height:1.5;margin:0}
+.lp-streak-meta p.is-earned{color:#987021}
+.lp-streak-meta .lp-progress{color:var(--lp-muted);font-size:9px;margin-left:auto}
+.lp-segments{grid-template-columns:repeat(5,minmax(0,1fr));margin:9px 0 23px;gap:7px}
+.lp-segment{height:9px;transition:background .2s}
+.lp-coins{display:flex;align-items:center;gap:6px;flex-shrink:0;min-width:68px;padding:4px 10px 4px 5px;border:1px solid #ead6b0;border-radius:25px;background:linear-gradient(145deg,#fffdf7,#fff4de);color:#6d471d;font-weight:800;font-size:13px;font-variant-numeric:tabular-nums}
+.lp-coins img{display:block;width:34px;height:34px;object-fit:contain}
+@media(max-width:360px){.lp-streak-meta{gap:3px}.lp-streak-meta p{font-size:10px}}
+@media(max-height:760px){.lp-streak-meta{margin-top:14px}.lp-segments{margin-bottom:17px}}
+@media(prefers-reduced-motion:reduce){.lp-segment{transition:none}}

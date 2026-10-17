@@ -120,7 +120,12 @@ not validated attention thresholds; source boundaries still await review.
 ## Learn and independent Test recording
 
 The main `/learn` page uses a phone layout: listen, record, then see green/red
-words with explanations below. It shows no percentage score or ustaad tip.
+words with explanations below. Five consecutive judged attempts with more than
+70% of expected words marked as matched earn one Nanak Coin. Five bars show the
+streak and a message counts down the remaining turns. A judged result at 70% or
+below resets the streak. Streak and coin totals stay in browser session storage;
+word feedback and recordings are not retained. It shows no percentage score or
+ustaad tip.
 Phrase comparison uses the timestamp model above; see
 [docs/LEARN_PRACTICE.md](docs/LEARN_PRACTICE.md) for the flow and its limitations.
 Learn opens the full bani in order, including the opening and closing salok,

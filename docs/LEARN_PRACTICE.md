@@ -1,6 +1,6 @@
 # Learn · listen and repeat
 
-`/learn` presents a cream phone frame with lesson progress, a Gurmukhi phrase,
+`/learn` presents a cream phone frame with a five-turn coin streak, pankti position, a Gurmukhi phrase,
 and speaker, microphone and next-pankti controls. Listen to the whole ustaad
 clip to enable the microphone, then record and tap stop to compare locally.
 The waveform follows the playing audio or microphone; it does not give live
@@ -12,6 +12,18 @@ by the comparison API, show what the model heard, and let you replay both
 recordings. Tapping a word also replays its ustaad segment. Uncertain words stay
 neutral and prompt another attempt. There are no percentages or ustaad tips.
 The middle section scrolls while the recording controls stay accessible.
+
+Each completed, judged recording is one turn, including retries. More than 70%
+of the expected word occurrences must have the existing `correct` feedback to
+fill one of five bars. All expected words form the denominator, including
+unclear or missing feedback. A judged turn at 70% or below resets the streak;
+unavailable/unclear assessments and technical errors leave it unchanged.
+The message counts down (for example, “3 more to go for Nanak Coin”). The fifth
+qualifying turn adds one Nanak Coin to the same tab-session counter as Follow.
+All five bars stay filled until the next judged turn updates the streak.
+Navigation, playback and re-rendering never count as turns. Only streak and coin
+totals are saved in browser session storage, never recordings or word results.
+This rewards existing experimental feedback; it adds no calibrated score.
 
 The app starts at `/`: choose Japji Sahib, then Follow along, Learn, or Test.
 Back returns to these modes; Home returns to all banis. Learn defaults to the
@@ -83,6 +95,7 @@ debugging; nothing is kept on the server.
 - `apps/learn/screens.js`, `apps/learn/screens.css`: UI (IDs prefixed `lp-`).
 - `backend/learn/screens.py`: comparison. `backend/learn/tone.py`: voicing check.
 - `backend/learn/screens_api.py`: lesson files, bounded audio and comparison handlers.
+- Streak logic: `node --test tests/learn-streak.test.cjs`.
 - Tests: `tests/test_learn_screens_routes.py` (stdlib),
   `tests/verify_learn_screens.py` (acoustic checks skip without the model).
   `npm run test:learn:ui` checks browser playback/capture and synthetic
